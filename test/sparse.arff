@@ -1,0 +1,25 @@
+% Sample sparse ARFF file
+@RELATION sparseness
+
+@ATTRIBUTE attr1  INTEGER
+@ATTRIBUTE attr2   NUMERIC
+@ATTRIBUTE attr3  INTEGER
+@ATTRIBUTE attr4   INTEGER
+@ATTRIBUTE attr5   INTEGER
+@ATTRIBUTE attr6   INTEGER
+@ATTRIBUTE attr7   INTEGER
+@ATTRIBUTE attr8   INTEGER
+@ATTRIBUTE attr9   INTEGER
+@ATTRIBUTE attr10   INTEGER
+@ATTRIBUTE attr11   INTEGER
+@ATTRIBUTE attr12   INTEGER
+@ATTRIBUTE attr13   INTEGER
+
+@ATTRIBUTE class   {classA, classB}
+
+@DATA
+{3 7, 10 34, 13 classA}
+{1 2.1, 4 62, 12 19, 13 classA}
+{1 1.2, 2 2, 3 3, 4 4, 5 5, 6 6, 7 7, 8 8, 9 9, 10 10, 11 11, 12 12, 13 classA}
+{9 42, 13 classB}
+{2 54, 3 92, 11 10, 13 classB}

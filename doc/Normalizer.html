@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Normalizer
+  
+    &mdash; Documentation by YARD 0.7.5
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (N)</a> &raquo; 
+    
+    
+    <span class="title">Normalizer</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Normalizer
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="FSelector/BaseContinuous.html" title="FSelector::BaseContinuous (class)">FSelector::BaseContinuous</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/fselector/algo_continuous/normalizer.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>normalize continuous feature</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalize_log%21-instance_method" title="#normalize_log! (instance method)">- (Object) <strong>normalize_log!</strong>(base = 10) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>log transformation, requires positive feature values.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalize_min_max%21-instance_method" title="#normalize_min_max! (instance method)">- (Object) <strong>normalize_min_max!</strong>(min = 0.0, max = 1.0) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>scale to [min,max], max &gt; min.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalize_zscore%21-instance_method" title="#normalize_zscore! (instance method)">- (Object) <strong>normalize_zscore!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>by z-score.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="normalize_log!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>normalize_log!</strong>(base = 10) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>log transformation, requires positive feature values</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_normalize_log!'>normalize_log!</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='op'>=</span><span class='int'>10</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+      <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_base'>base</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='float'>0.0</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="normalize_min_max!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>normalize_min_max!</strong>(min = 0.0, max = 1.0) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>scale to [min,max], max &gt; min</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 16</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_normalize_min_max!'>normalize_min_max!</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='op'>=</span><span class='float'>1.0</span><span class='rparen'>)</span>
+  <span class='comment'># first determine min and max for each feature
+</span>  <span class='id identifier rubyid_f2min_max'>f2min_max</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+       
+  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='id identifier rubyid_fvs'>fvs</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_f2min_max'>f2min_max</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># then normalize
+</span>  <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+      <span class='id identifier rubyid_min_v'>min_v</span><span class='comma'>,</span> <span class='id identifier rubyid_max_v'>max_v</span> <span class='op'>=</span> <span class='id identifier rubyid_f2min_max'>f2min_max</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='op'>-</span><span class='id identifier rubyid_min_v'>min_v</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_max'>max</span><span class='op'>-</span><span class='id identifier rubyid_min'>min</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='id identifier rubyid_max_v'>max_v</span><span class='op'>-</span><span class='id identifier rubyid_min_v'>min_v</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="normalize_zscore!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>normalize_zscore!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>by z-score</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_normalize_zscore!'>normalize_zscore!</span>
+  <span class='comment'># first determine mean and sd for each feature
+</span>  <span class='id identifier rubyid_f2mean_sd'>f2mean_sd</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='id identifier rubyid_fvs'>fvs</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_f2mean_sd'>f2mean_sd</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_mean'>mean</span><span class='comma'>,</span> <span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_sd'>sd</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># then normalize
+</span>  <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+      <span class='id identifier rubyid_mean'>mean</span><span class='comma'>,</span> <span class='id identifier rubyid_sd'>sd</span> <span class='op'>=</span> <span class='id identifier rubyid_f2mean_sd'>f2mean_sd</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_sd'>sd</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+        <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='float'>0.0</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='op'>-</span><span class='id identifier rubyid_mean'>mean</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_sd'>sd</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon Feb 27 17:10:32 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.5 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

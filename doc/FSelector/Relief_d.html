@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: FSelector::Relief_d
+  
+    &mdash; Documentation by YARD 0.7.5
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../FSelector.html" title="FSelector (module)">FSelector</a></span></span>
+     &raquo; 
+    <span class="title">Relief_d</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: FSelector::Relief_d
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></li>
+          
+            <li class="next">FSelector::Relief_d</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/fselector/algo_discrete/Relief_d.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>Relief applicable only to two-class problem without missing data</p>
+</div>
+  </div>
+
+<p>Relief algorithm for discrete feature (Relief_d)</p>
+
+<p>ref: <a href="http://www.aaai.org/Papers/AAAI/1992/AAAI92-020.pdf">The Feature Selection Problem: Traditional Methods 
+      and a New Algorithm</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Relief_d) <strong>initialize</strong>(m = nil, data = nil) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>new().</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Base.html#each_class-instance_method" title="FSelector::Base#each_class (method)">#each_class</a></span>, <span class='object_link'><a href="Base.html#each_feature-instance_method" title="FSelector::Base#each_feature (method)">#each_feature</a></span>, <span class='object_link'><a href="Base.html#each_sample-instance_method" title="FSelector::Base#each_sample (method)">#each_sample</a></span>, <span class='object_link'><a href="Base.html#get_classes-instance_method" title="FSelector::Base#get_classes (method)">#get_classes</a></span>, <span class='object_link'><a href="Base.html#get_data-instance_method" title="FSelector::Base#get_data (method)">#get_data</a></span>, <span class='object_link'><a href="Base.html#get_feature_ranks-instance_method" title="FSelector::Base#get_feature_ranks (method)">#get_feature_ranks</a></span>, <span class='object_link'><a href="Base.html#get_feature_scores-instance_method" title="FSelector::Base#get_feature_scores (method)">#get_feature_scores</a></span>, <span class='object_link'><a href="Base.html#get_feature_values-instance_method" title="FSelector::Base#get_feature_values (method)">#get_feature_values</a></span>, <span class='object_link'><a href="Base.html#get_features-instance_method" title="FSelector::Base#get_features (method)">#get_features</a></span>, <span class='object_link'><a href="Base.html#get_opt-instance_method" title="FSelector::Base#get_opt (method)">#get_opt</a></span>, <span class='object_link'><a href="Base.html#get_sample_size-instance_method" title="FSelector::Base#get_sample_size (method)">#get_sample_size</a></span>, <span class='object_link'><a href="Base.html#print_feature_ranks-instance_method" title="FSelector::Base#print_feature_ranks (method)">#print_feature_ranks</a></span>, <span class='object_link'><a href="Base.html#print_feature_scores-instance_method" title="FSelector::Base#print_feature_scores (method)">#print_feature_scores</a></span>, <span class='object_link'><a href="Base.html#select_data_by_rank%21-instance_method" title="FSelector::Base#select_data_by_rank! (method)">#select_data_by_rank!</a></span>, <span class='object_link'><a href="Base.html#select_data_by_score%21-instance_method" title="FSelector::Base#select_data_by_score! (method)">#select_data_by_score!</a></span>, <span class='object_link'><a href="Base.html#set_classes-instance_method" title="FSelector::Base#set_classes (method)">#set_classes</a></span>, <span class='object_link'><a href="Base.html#set_data-instance_method" title="FSelector::Base#set_data (method)">#set_data</a></span>, <span class='object_link'><a href="Base.html#set_feature_score-instance_method" title="FSelector::Base#set_feature_score (method)">#set_feature_score</a></span>, <span class='object_link'><a href="Base.html#set_features-instance_method" title="FSelector::Base#set_features (method)">#set_features</a></span>, <span class='object_link'><a href="Base.html#set_opt-instance_method" title="FSelector::Base#set_opt (method)">#set_opt</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../FileIO.html" title="FileIO (module)">FileIO</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FileIO.html#data_from_csv-instance_method" title="FileIO#data_from_csv (method)">#data_from_csv</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_libsvm-instance_method" title="FileIO#data_from_libsvm (method)">#data_from_libsvm</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_random-instance_method" title="FileIO#data_from_random (method)">#data_from_random</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_weka-instance_method" title="FileIO#data_from_weka (method)">#data_from_weka</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_csv-instance_method" title="FileIO#data_to_csv (method)">#data_to_csv</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_libsvm-instance_method" title="FileIO#data_to_libsvm (method)">#data_to_libsvm</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_weka-instance_method" title="FileIO#data_to_weka (method)">#data_to_weka</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="FSelector::Relief_d (class)">Relief_d</a></span></tt>) <strong>initialize</strong>(m = nil, data = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>new()</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>m</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>number of samples to be used 
+for estimating feature contribution. max can be
+the number of training samples</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>existing data structure</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/Relief_d.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  <span class='ivar'>@m</span> <span class='op'>=</span> <span class='id identifier rubyid_m'>m</span> <span class='comment'># default use all samples
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon Feb 27 17:10:32 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.5 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

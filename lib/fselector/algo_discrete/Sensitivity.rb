@@ -1,0 +1,38 @@
+#
+# FSelector: a Ruby gem for feature selection and ranking
+#
+module FSelector
+#
+# Sensitivity (SN)
+#
+#             TP        A
+#     SN = ------- = -----
+#            TP+FN     A+C
+#  
+  class Sensitivity < BaseDiscrete
+    
+    private
+    
+    # calculate contribution of each feature (f) for each class (k)
+    def calc_contribution(f)
+      each_class do |k|
+        a, c = get_A(f, k), get_C(f, k)
+        
+        s = a/(a+c)
+        
+        set_feature_score(f, k, s)
+      end
+    end # calc_contribution
+    
+    
+  end # class
+  
+  
+  
+  # shortcut so that you can use FSelector::SN instead of FSelector::Sensitivity
+  SN = Sensitivity
+  # Sensitivity, also known as Recall
+  Recall = Sensitivity
+  
+  
+end # module

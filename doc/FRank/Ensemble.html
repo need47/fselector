@@ -1,0 +1,911 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: FRank::Ensemble
+  
+    &mdash; Documentation by YARD 0.7.5
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (E)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../FRank.html" title="FRank (module)">FRank</a></span></span>
+     &raquo; 
+    <span class="title">Ensemble</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: FRank::Ensemble
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Base.html" title="FRank::Base (class)">Base</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Base.html" title="FRank::Base (class)">Base</a></span></li>
+          
+            <li class="next">FRank::Ensemble</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/frank/ensemble.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>select feature by an ensemble of ranking algorithms</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#by_ave-instance_method" title="#by_ave (instance method)">- (Object) <strong>by_ave</strong>(arr) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>by average value of an array.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#by_max-instance_method" title="#by_max (instance method)">- (Object) <strong>by_max</strong>(arr) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>by max value of an array.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#by_min-instance_method" title="#by_min (instance method)">- (Object) <strong>by_min</strong>(arr) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>by min value of an array.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ensemble_by_rank-instance_method" title="#ensemble_by_rank (instance method)">- (Object) <strong>ensemble_by_rank</strong>(by_what = method(:by_min)) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>ensemble based on rank.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ensemble_by_score-instance_method" title="#ensemble_by_score (instance method)">- (Object) <strong>ensemble_by_score</strong>(by_what = method(:by_max), norm = :min_max) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>ensemble based on score.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_feature_ranks-instance_method" title="#get_feature_ranks (instance method)">- (Object) <strong>get_feature_ranks</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>reload get_feature_ranks.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_feature_scores-instance_method" title="#get_feature_scores (instance method)">- (Object) <strong>get_feature_scores</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>reload get_feature_scores.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Ensemble) <strong>initialize</strong>(*algos) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>new().</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_data-instance_method" title="#set_data (instance method)">- (Object) <strong>set_data</strong>(data) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>reload set_data.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Base.html" title="FRank::Base (class)">Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Base.html#each_class-instance_method" title="FRank::Base#each_class (method)">#each_class</a></span>, <span class='object_link'><a href="Base.html#each_feature-instance_method" title="FRank::Base#each_feature (method)">#each_feature</a></span>, <span class='object_link'><a href="Base.html#each_sample-instance_method" title="FRank::Base#each_sample (method)">#each_sample</a></span>, <span class='object_link'><a href="Base.html#get_classes-instance_method" title="FRank::Base#get_classes (method)">#get_classes</a></span>, <span class='object_link'><a href="Base.html#get_data-instance_method" title="FRank::Base#get_data (method)">#get_data</a></span>, <span class='object_link'><a href="Base.html#get_feature_values-instance_method" title="FRank::Base#get_feature_values (method)">#get_feature_values</a></span>, <span class='object_link'><a href="Base.html#get_features-instance_method" title="FRank::Base#get_features (method)">#get_features</a></span>, <span class='object_link'><a href="Base.html#get_opt-instance_method" title="FRank::Base#get_opt (method)">#get_opt</a></span>, <span class='object_link'><a href="Base.html#get_sample_size-instance_method" title="FRank::Base#get_sample_size (method)">#get_sample_size</a></span>, <span class='object_link'><a href="Base.html#print_feature_ranks-instance_method" title="FRank::Base#print_feature_ranks (method)">#print_feature_ranks</a></span>, <span class='object_link'><a href="Base.html#print_feature_scores-instance_method" title="FRank::Base#print_feature_scores (method)">#print_feature_scores</a></span>, <span class='object_link'><a href="Base.html#select_data_by_rank%21-instance_method" title="FRank::Base#select_data_by_rank! (method)">#select_data_by_rank!</a></span>, <span class='object_link'><a href="Base.html#select_data_by_score%21-instance_method" title="FRank::Base#select_data_by_score! (method)">#select_data_by_score!</a></span>, <span class='object_link'><a href="Base.html#set_classes-instance_method" title="FRank::Base#set_classes (method)">#set_classes</a></span>, <span class='object_link'><a href="Base.html#set_feature_score-instance_method" title="FRank::Base#set_feature_score (method)">#set_feature_score</a></span>, <span class='object_link'><a href="Base.html#set_features-instance_method" title="FRank::Base#set_features (method)">#set_features</a></span>, <span class='object_link'><a href="Base.html#set_opt-instance_method" title="FRank::Base#set_opt (method)">#set_opt</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../FileIO.html" title="FileIO (module)">FileIO</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FileIO.html#data_from_csv-instance_method" title="FileIO#data_from_csv (method)">#data_from_csv</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_libsvm-instance_method" title="FileIO#data_from_libsvm (method)">#data_from_libsvm</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_random-instance_method" title="FileIO#data_from_random (method)">#data_from_random</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_weka-instance_method" title="FileIO#data_from_weka (method)">#data_from_weka</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_csv-instance_method" title="FileIO#data_to_csv (method)">#data_to_csv</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_libsvm-instance_method" title="FileIO#data_to_libsvm (method)">#data_to_libsvm</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_weka-instance_method" title="FileIO#data_to_weka (method)">#data_to_weka</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="FRank::Ensemble (class)">Ensemble</a></span></tt>) <strong>initialize</strong>(*algos) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>new()</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>rankers</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>multiple feature ranking algorithms</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12
+13
+14
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_algos'>algos</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  
+  <span class='ivar'>@algos</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_algos'>algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
+    <span class='ivar'>@algos</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_r'>r</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="by_ave-instance_method">
+  
+    - (<tt>Object</tt>) <strong>by_ave</strong>(arr) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>by average value of an array</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_by_ave'>by_ave</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="by_max-instance_method">
+  
+    - (<tt>Object</tt>) <strong>by_max</strong>(arr) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>by max value of an array</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 137</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_by_max'>by_max</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="by_min-instance_method">
+  
+    - (<tt>Object</tt>) <strong>by_min</strong>(arr) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>by min value of an array</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+131
+132
+133</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 131</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_by_min'>by_min</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ensemble_by_rank-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ensemble_by_rank</strong>(by_what = method(:by_min)) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>ensemble based on rank</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>by_what</span>
+      
+      
+        <span class='type'>(<tt>Method</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>method(:by_min)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>by what criterion that ensemble
+rank should be obtained from those of individual algorithms<br>
+allowed values are:<br>
+method(:by_min) # by min rank<br>
+method(:by_max) # by max rank<br>
+method(:by_ave) # by ave rank</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_rank'>ensemble_by_rank</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span><span class='op'>=</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:by_min</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+       
+  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='id identifier rubyid_ranks'>ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_by_what'>by_what</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span>
+      <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_new_ranks'>new_ranks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_sorted_features'>sorted_features</span> <span class='op'>=</span> <span class='id identifier rubyid_ranks'>ranks</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>|</span>
+    <span class='id identifier rubyid_ranks'>ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_ranks'>ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_y'>y</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_sorted_features'>sorted_features</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sf'>sf</span><span class='comma'>,</span> <span class='id identifier rubyid_si'>si</span><span class='op'>|</span>
+    <span class='id identifier rubyid_new_ranks'>new_ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_sf'>sf</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_si'>si</span><span class='op'>+</span><span class='int'>1</span>
+  <span class='kw'>end</span>
+  
+  <span class='ivar'>@ranks</span> <span class='op'>=</span> <span class='id identifier rubyid_new_ranks'>new_ranks</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ensemble_by_score-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ensemble_by_score</strong>(by_what = method(:by_max), norm = :min_max) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>scores from different algos are usually incompatible with
+each other, we have to normalize it first</p>
+</div>
+  </div>
+
+<p>ensemble based on score</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>by_what</span>
+      
+      
+        <span class='type'>(<tt>Method</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>method(:by_max)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>by what criterion that ensemble
+score should be obtained from those of individual algorithms<br>
+allowed values are:<br>
+receiver.method(:by_min) # by min rank<br>
+receiver.method(:by_max) # by max rank<br>
+receiver.method(:by_ave) # by ave rank</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>norm</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:min_max</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>normalization<br>
+:min_max, score scaled to [0, 1]<br>
+:zscore, score converted to zscore</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_score'>ensemble_by_score</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span><span class='op'>=</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:by_max</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_norm'>norm</span><span class='op'>=</span><span class='symbol'>:min_max</span><span class='rparen'>)</span>
+  <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_norm'>norm</span> <span class='op'>==</span> <span class='symbol'>:min_max</span>
+      <span class='id identifier rubyid_normalize_min_max!'>normalize_min_max!</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_norm'>norm</span> <span class='op'>==</span> <span class='symbol'>:zscore</span>
+      <span class='id identifier rubyid_normalize_zscore!'>normalize_zscore!</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>invalid normalizer, only :min_max and :zscore supported!</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='ivar'>@scores</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='ivar'>@scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='ivar'>@scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BEST</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_by_what'>by_what</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span>
+      <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BEST</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>end</span>      
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_feature_ranks-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_feature_ranks</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>reload get_feature_ranks</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
+  <span class='kw'>return</span> <span class='ivar'>@ranks</span> <span class='kw'>if</span> <span class='ivar'>@ranks</span>
+  
+  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>please call one consensus ranking method first!</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_feature_scores-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_feature_scores</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>reload get_feature_scores</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
+  <span class='kw'>return</span> <span class='ivar'>@scores</span> <span class='kw'>if</span> <span class='ivar'>@scores</span>
+  
+  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>please call one consensus scoring method first!</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_data-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_data</strong>(data) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>all algos share the same data structure</p>
+</div>
+  </div>
+
+<p>reload set_data</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/frank/ensemble.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+  <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
+    <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Fri Feb 24 23:41:35 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.5 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,37 @@
+#
+# FSelector: a Ruby gem for feature selection and ranking
+#
+module FSelector
+#
+# GMean (GM)
+#
+#     GM = sqrt(Sensitivity * Specificity)
+#     
+#                      TP*TN                     A*D
+#        = sqrt(------------------) = sqrt(---------------)
+#                (TP+FN) * (TN+FP)          (A+C) * (B+D)
+#
+  class GMean < BaseDiscrete
+    
+    private
+    
+    # calculate contribution of each feature (f) for each class (k)
+    def calc_contribution(f)
+      each_class do |k|
+        a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
+        
+        s = Math.sqrt( (a*d)/((a+c)*(b+d)) )
+        
+        set_feature_score(f, k, s)
+      end
+    end # calc_contribution
+    
+    
+  end # class
+  
+  
+  # shortcut so that you can use FSelector::GM instead of FSelector::GMean
+  GM = GMean
+  
+  
+end # module

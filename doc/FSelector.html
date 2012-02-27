@@ -1,0 +1,502 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: FSelector
+  
+    &mdash; Documentation by YARD 0.7.5
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (F)</a> &raquo; 
+    
+    
+    <span class="title">FSelector</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: FSelector
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/fselector.rb<span class="defines">,<br />
+  lib/fselector/base.rb,<br /> lib/fselector/ensemble.rb,<br /> lib/fselector/base_discrete.rb,<br /> lib/fselector/base_continuous.rb,<br /> lib/fselector/algo_discrete/GMean.rb,<br /> lib/fselector/algo_discrete/Power.rb,<br /> lib/fselector/algo_discrete/Random.rb,<br /> lib/fselector/algo_discrete/Accuracy.rb,<br /> lib/fselector/algo_continuous/TScore.rb,<br /> lib/fselector/algo_discrete/Relief_d.rb,<br /> lib/fselector/algo_continuous/PMetric.rb,<br /> lib/fselector/algo_discrete/GiniIndex.rb,<br /> lib/fselector/algo_discrete/ReliefF_d.rb,<br /> lib/fselector/algo_discrete/OddsRatio.rb,<br /> lib/fselector/algo_discrete/Precision.rb,<br /> lib/fselector/algo_discrete/F1Measure.rb,<br /> lib/fselector/algo_continuous/Relief_c.rb,<br /> lib/fselector/algo_discrete/Specificity.rb,<br /> lib/fselector/algo_discrete/Sensitivity.rb,<br /> lib/fselector/algo_continuous/ReliefF_c.rb,<br /> lib/fselector/algo_discrete/McNemarsTest.rb,<br /> lib/fselector/algo_discrete/ChiSquaredTest.rb,<br /> lib/fselector/algo_discrete/GSSCoefficient.rb,<br /> lib/fselector/algo_discrete/InformationGain.rb,<br /> lib/fselector/algo_discrete/FishersExactTest.rb,<br /> lib/fselector/algo_discrete/ProbabilityRatio.rb,<br /> lib/fselector/algo_discrete/AccuracyBalanced.rb,<br /> lib/fselector/algo_discrete/DocumentFrequency.rb,<br /> lib/fselector/algo_discrete/MutualInformation.rb,<br /> lib/fselector/algo_discrete/OddsRatioNumerator.rb,<br /> lib/fselector/algo_discrete/BiNormalSeparation.rb,<br /> lib/fselector/algo_discrete/CorrelationCoefficient.rb,<br /> lib/fselector/algo_discrete/MatthewsCorrelationCoefficient.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>FSelector: a Ruby gem for feature selection and ranking</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+   
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="FSelector/Accuracy.html" title="FSelector::Accuracy (class)">Accuracy</a></span>, <span class='object_link'><a href="FSelector/AccuracyBalanced.html" title="FSelector::AccuracyBalanced (class)">AccuracyBalanced</a></span>, <span class='object_link'><a href="FSelector/Base.html" title="FSelector::Base (class)">Base</a></span>, <span class='object_link'><a href="FSelector/BaseContinuous.html" title="FSelector::BaseContinuous (class)">BaseContinuous</a></span>, <span class='object_link'><a href="FSelector/BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span>, <span class='object_link'><a href="FSelector/BiNormalSeparation.html" title="FSelector::BiNormalSeparation (class)">BiNormalSeparation</a></span>, <span class='object_link'><a href="FSelector/ChiSquaredTest.html" title="FSelector::ChiSquaredTest (class)">ChiSquaredTest</a></span>, <span class='object_link'><a href="FSelector/CorrelationCoefficient.html" title="FSelector::CorrelationCoefficient (class)">CorrelationCoefficient</a></span>, <span class='object_link'><a href="FSelector/DocumentFrequency.html" title="FSelector::DocumentFrequency (class)">DocumentFrequency</a></span>, <span class='object_link'><a href="FSelector/Ensemble.html" title="FSelector::Ensemble (class)">Ensemble</a></span>, <span class='object_link'><a href="FSelector/F1Measure.html" title="FSelector::F1Measure (class)">F1Measure</a></span>, <span class='object_link'><a href="FSelector/FishersExactTest.html" title="FSelector::FishersExactTest (class)">FishersExactTest</a></span>, <span class='object_link'><a href="FSelector/GMean.html" title="FSelector::GMean (class)">GMean</a></span>, <span class='object_link'><a href="FSelector/GSSCoefficient.html" title="FSelector::GSSCoefficient (class)">GSSCoefficient</a></span>, <span class='object_link'><a href="FSelector/GiniIndex.html" title="FSelector::GiniIndex (class)">GiniIndex</a></span>, <span class='object_link'><a href="FSelector/InformationGain.html" title="FSelector::InformationGain (class)">InformationGain</a></span>, <span class='object_link'><a href="FSelector/MatthewsCorrelationCoefficient.html" title="FSelector::MatthewsCorrelationCoefficient (class)">MatthewsCorrelationCoefficient</a></span>, <span class='object_link'><a href="FSelector/McNemarsTest.html" title="FSelector::McNemarsTest (class)">McNemarsTest</a></span>, <span class='object_link'><a href="FSelector/MutualInformation.html" title="FSelector::MutualInformation (class)">MutualInformation</a></span>, <span class='object_link'><a href="FSelector/OddsRatio.html" title="FSelector::OddsRatio (class)">OddsRatio</a></span>, <span class='object_link'><a href="FSelector/OddsRatioNumerator.html" title="FSelector::OddsRatioNumerator (class)">OddsRatioNumerator</a></span>, <span class='object_link'><a href="FSelector/PMetric.html" title="FSelector::PMetric (class)">PMetric</a></span>, <span class='object_link'><a href="FSelector/Power.html" title="FSelector::Power (class)">Power</a></span>, <span class='object_link'><a href="FSelector/Precision.html" title="FSelector::Precision (class)">Precision</a></span>, <span class='object_link'><a href="FSelector/ProbabilityRatio.html" title="FSelector::ProbabilityRatio (class)">ProbabilityRatio</a></span>, <span class='object_link'><a href="FSelector/Random.html" title="FSelector::Random (class)">Random</a></span>, <span class='object_link'><a href="FSelector/ReliefF_c.html" title="FSelector::ReliefF_c (class)">ReliefF_c</a></span>, <span class='object_link'><a href="FSelector/ReliefF_d.html" title="FSelector::ReliefF_d (class)">ReliefF_d</a></span>, <span class='object_link'><a href="FSelector/Relief_c.html" title="FSelector::Relief_c (class)">Relief_c</a></span>, <span class='object_link'><a href="FSelector/Relief_d.html" title="FSelector::Relief_d (class)">Relief_d</a></span>, <span class='object_link'><a href="FSelector/Sensitivity.html" title="FSelector::Sensitivity (class)">Sensitivity</a></span>, <span class='object_link'><a href="FSelector/Specificity.html" title="FSelector::Specificity (class)">Specificity</a></span>, <span class='object_link'><a href="FSelector/TScore.html" title="FSelector::TScore (class)">TScore</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          <div class="docstring">
+  <div class="discussion">
+    <p>module version</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>0.1.0</span><span class='tstring_end'>'</span></span></pre></dd>
+      
+        <dt id="GM-constant" class="">GM =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::GM instead of FSelector::GMean</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>GMean</span></pre></dd>
+      
+        <dt id="Acc-constant" class="">Acc =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::Acc instead of FSelector::Accuracy</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Accuracy</span></pre></dd>
+      
+        <dt id="TS-constant" class="">TS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::TS instead of FSelector::TScore</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>TScore</span></pre></dd>
+      
+        <dt id="PM-constant" class="">PM =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::PM instead of FSelector::PMetric</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>PMetric</span></pre></dd>
+      
+        <dt id="GI-constant" class="">GI =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::GI instead of FSelector::GiniIndex</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>GiniIndex</span></pre></dd>
+      
+        <dt id="Odd-constant" class="">Odd =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::Odd instead of FSelector::OddsRatio</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>OddsRatio</span></pre></dd>
+      
+        <dt id="F1-constant" class="">F1 =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::F1 instead of FSelector::F1Measure</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>F1Measure</span></pre></dd>
+      
+        <dt id="SP-constant" class="">SP =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::SP instead of FSelector::Specificity</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Specificity</span></pre></dd>
+      
+        <dt id="SN-constant" class="">SN =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::SN instead of FSelector::Sensitivity</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Sensitivity</span></pre></dd>
+      
+        <dt id="Recall-constant" class="">Recall =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Sensitivity, also known as Recall</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Sensitivity</span></pre></dd>
+      
+        <dt id="MNT-constant" class="">MNT =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::MNT instead of FSelector::McNemarsTest</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>McNemarsTest</span></pre></dd>
+      
+        <dt id="CHI-constant" class="">CHI =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::CHI instead of FSelector::ChiSquaredTest</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>ChiSquaredTest</span></pre></dd>
+      
+        <dt id="GSS-constant" class="">GSS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::GSS instead of FSelector::GSSCoefficient</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>GSSCoefficient</span></pre></dd>
+      
+        <dt id="IG-constant" class="">IG =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::IG instead of FSelector::InformationGain</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>InformationGain</span></pre></dd>
+      
+        <dt id="FET-constant" class="">FET =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::FET instead of FSelector::FishersExactTest</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>FishersExactTest</span></pre></dd>
+      
+        <dt id="PR-constant" class="">PR =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::PR instead of FSelector::ProbabilityRatio</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>ProbabilityRatio</span></pre></dd>
+      
+        <dt id="Acc2-constant" class="">Acc2 =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::Acc2 instead of FSelector::AccuracyBalanced</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>AccuracyBalanced</span></pre></dd>
+      
+        <dt id="DF-constant" class="">DF =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::DF instead of FSelector::DocumentFrequency</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>DocumentFrequency</span></pre></dd>
+      
+        <dt id="MI-constant" class="">MI =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::MI instead of FSelector::MutualInformation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>MutualInformation</span></pre></dd>
+      
+        <dt id="OddN-constant" class="">OddN =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::OddN instead of FSelector::OddsRatioNumerator</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>OddsRatioNumerator</span></pre></dd>
+      
+        <dt id="BNS-constant" class="">BNS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::BNS instead of FSelector::BiNormalSeparation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>BiNormalSeparation</span></pre></dd>
+      
+        <dt id="CC-constant" class="">CC =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::CC instead of FSelector::CorrelationCoefficient</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>CorrelationCoefficient</span></pre></dd>
+      
+        <dt id="MCC-constant" class="">MCC =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::MCC instead of FSelector::MatthewsCorrelationCoefficient</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>MatthewsCorrelationCoefficient</span></pre></dd>
+      
+        <dt id="PHI-constant" class="">PHI =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Matthews Correlation Coefficient (MCC), also known as Phi coefficient</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>MatthewsCorrelationCoefficient</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon Feb 27 17:10:31 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.5 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
