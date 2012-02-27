@@ -4,7 +4,7 @@ FSelector: a Ruby package for feature selection and ranking
 **Git**: [https://github.com/need47/fselector](https://github.com/need47/fselector)  
 **Author**: Tiejun Cheng  
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
-**Copyright**: 2011-2012  
+**Copyright**: 2012  
 **License**: MIT License  
 **Latest Version**: 0.1.0  
 **Release Date**: March 1st 2012

@@ -23,6 +23,10 @@ module FSelector
 #      P(f,c')  = B/N
 #      P(f',c)  = C/N
 #      P(f',c') = D/N
+#      P(f|c)   = A/(A+C)
+#      P(f|c')  = B/(B+D)
+#      P(f'|c)  = C/(A+C)
+#      P(f'|c') = D/(B+D)
 #
   class BaseDiscrete < Base
     # initialize from an existing data structure

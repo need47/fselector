@@ -142,6 +142,7 @@ module FSelector
         abort "[#{__FILE__}@#{__LINE__}]: "+
               "data must be a Hash object!"
       end
+      data
     end
     
     
