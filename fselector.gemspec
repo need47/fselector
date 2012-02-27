@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.require_path     = 'lib'
   s.required_ruby_version = '>= 1.9.0'
   s.files            = %w(README.md LICENSE) + Dir.glob('lib/**/*')
-  s.homepage         = 'github.com/need47/fselector'
+  s.homepage         = 'http://github.com/need47/fselector'
 end
