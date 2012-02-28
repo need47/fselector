@@ -13,8 +13,7 @@ module FSelector
 # suitable for large samples and 
 # none of the values of (A, B, C, D) < 5
 #
-# ref: [A Comparative Study on Feature Selection Methods for Drug 
-#       Discovery](http://pubs.acs.org/doi/abs/10.1021/ci049875d)
+# ref: [A Comparative Study on Feature Selection Methods for Drug Discovery](http://pubs.acs.org/doi/abs/10.1021/ci049875d)
 #
   class GSSCoefficient < BaseDiscrete
     

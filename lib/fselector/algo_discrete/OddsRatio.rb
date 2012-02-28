@@ -13,12 +13,7 @@ module FSelector
 #              = -----
 #                 B*C
 #
-# ref: [Wikipedia][wiki] and [An extensive empirical study of feature selection
-#       metrics for text classification][url1] and [Optimally Combining Positive
-#       and Negative Features for Text Categorization][url2]
-# [wiki]: http://en.wikipedia.org/wiki/Odds_ratio
-# [url1]: http://dl.acm.org/citation.cfm?id=944974
-# [url2]: http://www.site.uottawa.ca/~nat/Workshop2003/zheng.pdf
+# ref: [Wikipedia](http://en.wikipedia.org/wiki/Odds_ratio) and [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974) and [Optimally Combining Positive and Negative Features for Text Categorization](http://www.site.uottawa.ca/~nat/Workshop2003/zheng.pdf) 
 #
   class OddsRatio < BaseDiscrete
     

@@ -10,9 +10,7 @@ module FSelector
 #     where F' is normal inverse cumulative distribution function
 #     R executable is required to calculate qnorm, i.e. F'(x)
 # 
-# ref: [An extensive empirical study of feature selection metrics
-#      for text classification](http://dl.acm.org/citation.cfm?id=944974)
-#      and [Rubystats](http://rubystats.rubyforge.org)
+# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974) and [Rubystats](http://rubystats.rubyforge.org)
 #
   class BiNormalSeparation < BaseDiscrete
     # include Ruby statistics libraries

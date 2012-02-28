@@ -12,9 +12,7 @@ module FSelector
 #     for FET, the smaller, the better, but we intentionally negate it
 #     so that the larger is always the better (consistent with other algorithms)
 #
-# ref: [Wikipedia][wiki] and [Rubystats][url]
-# [wiki]: http://en.wikipedia.org/wiki/Fisher's_exact_test
-# [url]: http://rubystats.rubyforge.org
+# ref: [Wikipedia](http://en.wikipedia.org/wiki/Fisher's_exact_test) and [Rubystats](http://rubystats.rubyforge.org)
 #
   class FishersExactTest < BaseDiscrete
     # include Ruby statistics libraries

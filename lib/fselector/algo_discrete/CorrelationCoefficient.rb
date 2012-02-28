@@ -10,9 +10,7 @@ module FSelector
 #     CC(f,c) = --------------------------------------
 #                sqrt( (A+B) * (C+D) * (A+C) * (B+D) )
 #
-# ref: [Optimally Combining Positive and Negative Features for 
-#       Text Categorization][url]
-# [url]: http://www.site.uottawa.ca/~nat/Workshop2003/zheng.pdf
+# ref: [Optimally Combining Positive and Negative Features for Text Categorization](http://www.site.uottawa.ca/~nat/Workshop2003/zheng.pdf)
 #
   class CorrelationCoefficient < BaseDiscrete
     

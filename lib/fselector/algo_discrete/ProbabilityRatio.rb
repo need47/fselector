@@ -11,9 +11,7 @@ module FSelector
 #        = -------- = -----------
 #           B/(B+D)    (A+C) * B
 #
-# ref: [An extensive empirical study of feature selection metrics
-#       for text classification][url]
-# [url]: http://dl.acm.org/citation.cfm?id=944974
+# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
   class ProbabilityRatio < BaseDiscrete
     

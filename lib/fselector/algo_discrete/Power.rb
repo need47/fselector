@@ -11,9 +11,7 @@ module FSelector
 #     
 #         = (D/(B+D))^k - (C/(A+C))^k
 #
-# ref: [An extensive empirical study of feature selection metrics
-#       for text classification][url]
-# [url]: http://dl.acm.org/citation.cfm?id=944974
+# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
   class Power < BaseDiscrete    
     #

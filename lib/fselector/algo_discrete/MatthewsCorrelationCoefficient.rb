@@ -13,8 +13,7 @@ module FSelector
 #         = -------------------------------------
 #           sqrt((A+B) * (A+C) * (B+D) * (C+D))
 #
-# ref: [Wikipedia][wiki]
-# [wiki]: http://en.wikipedia.org/wiki/Matthews_correlation_coefficient
+# ref: [Wikipedia](http://en.wikipedia.org/wiki/Matthews_correlation_coefficient)
 #
   class MatthewsCorrelationCoefficient < BaseDiscrete
     

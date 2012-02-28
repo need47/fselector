@@ -7,8 +7,7 @@ module FSelector
 #
 # @note applicable to multi-class problem with missing data
 #
-# ref: [Estimating Attributes: Analysis and Extensions of RELIEF][url]
-# [url]: http://www.springerlink.com/content/fp23jh2h0426ww45/
+# ref: [Estimating Attributes: Analysis and Extensions of RELIEF](http://www.springerlink.com/content/fp23jh2h0426ww45/)
 #
   class ReliefF_c < BaseContinuous
     #

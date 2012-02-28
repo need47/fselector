@@ -72,11 +72,10 @@ module Discretilizer
   # @param [Float] chisq chi-squared value
   # @note data structure will be altered
   #
-  # ref: [ChiMerge: Discretization of Numberic Attributes][url]
-  # [url]: http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf
+  # ref: [ChiMerge: Discretization of Numberic Attributes](http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf)
   #
   # chi-squared values and associated p values can be looked up at
-  # [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_distribution) <br>
+  # [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_distribution)  
   # degrees of freedom: one less than number of classes
   #
   #     chi-squared values vs p values

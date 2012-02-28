@@ -16,9 +16,7 @@ module FSelector
 # suitable for large samples and
 # none of the values of (A, B, C, D) < 5
 #
-# ref: [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_test)
-#      and [A Comparative Study on Feature Selection Methods for
-#      Drug Discovery] (http://pubs.acs.org/doi/abs/10.1021/ci049875d)
+# ref: [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_test) and [A Comparative Study on Feature Selection Methods for Drug Discovery](http://pubs.acs.org/doi/abs/10.1021/ci049875d)
 #
   class ChiSquaredTest < BaseDiscrete
     #

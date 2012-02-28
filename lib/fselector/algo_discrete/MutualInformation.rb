@@ -13,8 +13,7 @@ module FSelector
 #             = log2 ---------------
 #                     (A+B) * (A+C)
 #
-# ref: [A Comparative Study on Feature Selection Methods for Drug 
-#      Discovery](http://pubs.acs.org/doi/abs/10.1021/ci049875d)
+# ref: [A Comparative Study on Feature Selection Methods for Drug Discovery](http://pubs.acs.org/doi/abs/10.1021/ci049875d)
 #
   class MutualInformation < BaseDiscrete
         

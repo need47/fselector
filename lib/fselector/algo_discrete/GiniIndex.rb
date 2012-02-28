@@ -10,9 +10,7 @@ module FSelector
 # for GI, the smaller, the better, but we intentionally negate it
 # so that the larger is always the better (consistent with other algorithms)
 #
-# ref: [Advancing Feaure Selection Research -
-#       ASU Feature Selection Repository][url]
-# [url]: http://featureselection.asu.edu/featureselection_techreport.pdf
+# ref: [Advancing Feaure Selection Research - ASU Feature Selection Repository](http://featureselection.asu.edu/featureselection_techreport.pdf)
 #
   class GiniIndex < BaseDiscrete
           

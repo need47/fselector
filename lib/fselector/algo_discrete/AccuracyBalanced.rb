@@ -7,9 +7,7 @@ module FSelector
 #
 #     Acc2 = |tpr - fpr| = |A/(A+C) - B/(B+D)|
 #
-# ref: [An extensive empirical study of feature selection metrics
-#      for text classification][url]
-# [url]: http://dl.acm.org/citation.cfm?id=944974
+# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
   class AccuracyBalanced < BaseDiscrete
     

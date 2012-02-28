@@ -11,9 +11,7 @@ module FSelector
 #           H(c|f) = sigma_j (P(fj)*H(c|fj))
 #           H(c|fj) = -1 * sigma_k (P(ck|fj) logP(ck|fj))
 #
-# ref: [Using Information Gain to Analyze and Fine Tune
-#      the Performance of Supply Chain Trading Agents][url]
-# [url]: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.141.7895
+# ref: [Using Information Gain to Analyze and Fine Tune the Performance of Supply Chain Trading Agents](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.141.7895)
 #
   class InformationGain < BaseDiscrete
 

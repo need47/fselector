@@ -7,9 +7,7 @@ module FSelector
 #
 # @note Relief applicable only to two-class problem without missing data
 #
-# ref: [The Feature Selection Problem: Traditional Methods 
-#       and a New Algorithm][url]
-# [url]: http://www.aaai.org/Papers/AAAI/1992/AAAI92-020.pdf
+# ref: [The Feature Selection Problem: Traditional Methods and a New Algorithm](http://www.aaai.org/Papers/AAAI/1992/AAAI92-020.pdf)
 #
   class Relief_d < BaseDiscrete
     #

@@ -11,8 +11,7 @@ module FSelector
 #
 # @note TS applicable only to two-class problems
 #
-# ref: [Filter versus wrapper gene selection approaches][url]
-# [url]: http://www.sciencedirect.com/science/article/pii/S0933365704000193
+# ref: [Filter versus wrapper gene selection approaches](http://www.sciencedirect.com/science/article/pii/S0933365704000193)
 #
   class TScore < BaseContinuous
         

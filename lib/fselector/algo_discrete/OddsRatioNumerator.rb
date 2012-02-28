@@ -11,9 +11,7 @@ module FSelector
 #               = ---- * (1 - ----) = ---------------
 #                  A+C         B+D     (A+C) * (B+D)
 #
-# ref: [An extensive empirical study of feature selection metrics
-#       for text classification][url]
-# [url]: http://dl.acm.org/citation.cfm?id=944974
+# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
   class OddsRatioNumerator < BaseDiscrete
     
