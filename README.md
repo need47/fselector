@@ -1,7 +1,9 @@
 FSelector: a Ruby package for feature selection and ranking
 ===========================================================
 
-**Git**: [https://github.com/need47/fselector](https://github.com/need47/fselector)  
+**Home** [https://rubygems.org/gems/fselector](https://rubygems.org/gems/fselector)  
+**Source Code**: [https://github.com/need47/fselector](https://github.com/need47/fselector)  
+**Documentation** [http://rubydoc.info/github/need47/fselector/master/frames](http://rubydoc.info/github/need47/fselector/master/frames)  
 **Author**: Tiejun Cheng  
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
@@ -110,7 +112,7 @@ Usage
     # select the top-ranked features with scores >0.01
     r1.select_data_by_score!('>0.01')
     
-    # number of features before feature selection
+    # number of features after feature selection
     puts "# features (after): "+ r1.get_features.size.to_s
     
     # you can also use multiple alogirithms in a tandem manner
@@ -124,7 +126,7 @@ Usage
     # select the top-ranked 3 features
     r2.select_data_by_rank!('<=3')
     
-    # number of features before feature selection
+    # number of features after feature selection
     puts "# features (after): "+ r2.get_features.size.to_s
     
     # save data to standard ouput as a weka ARFF file (sparse format)
@@ -147,7 +149,7 @@ Usage
     re.data_from_random(100, 2, 10, 3, true)
     
     # number of features before feature selection
-    puts '# features before feature selection: ' + re.get_features.size.to_s
+    puts '# features (before): ' + re.get_features.size.to_s
     
     # based on the min feature rank among
     # ensemble feature selection algorithms
@@ -156,8 +158,8 @@ Usage
     # select the top-ranked 3 features
     re.select_data_by_rank!('<=3')
     
-    # number of features before feature selection
-    puts '# features before feature selection: ' + re.get_features.size.to_s
+    # number of features after feature selection
+    puts '# features (after): ' + re.get_features.size.to_s
 
     
  **3. normalization and discretization before feature selection**
