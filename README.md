@@ -15,14 +15,15 @@ Synopsis
 --------
 
 FSelector is an open-access Ruby package that aims to integrate as many 
-feature selection/ranking algorithms as possible. It enables the user
-to perform feature selection by using either a single algorithm or an
-ensemble of algorithms. FSelector acts on a full data set and outputs
-a reduced data set with only selected features, which can later be used
-as the input for various machine learning softwares including LibSVM and 
-WEKA. FSelector, itself, does not implement any of the machine learning
-algorithms such as support vector machines and random forest. Below is
-a summary of FSelector's features.
+feature selection/ranking algorithms as possible. You're highly welcomed
+and encouraged to contact me if you want to contribute and/or add your own
+feature selection algorithms. FSelector enables the user to perform feature
+selection by using either a single algorithm or an ensemble of algorithms.
+FSelector acts on a full-feature data set and outputs a reduced data set with
+only selected features, which can later be used as the input for various
+machine learning softwares including LibSVM and WEKA. FSelector, itself, does
+not implement any of the machine learning algorithms such as support vector
+machines and random forest. Below is a summary of FSelector's features.
 
 Feature List
 ------------
