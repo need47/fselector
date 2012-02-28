@@ -13,8 +13,7 @@ module FSelector
 #        = ------------------- = --------------
 #           tp + fn + tp + fp     A + C + A + B
 #
-# ref: [An extensive empirical study of feature selection metrics
-#       for text classification](http://dl.acm.org/citation.cfm?id=944974)
+# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
   class F1Measure < BaseDiscrete
     
