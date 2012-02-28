@@ -1,0 +1,6 @@
+--readme README.md
+--markup markdown
+--default-return ""
+--title "FSelector Documentation"
+--no-private
+--files README.md,LICENCE lib
