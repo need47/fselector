@@ -22,7 +22,7 @@ re.ensemble_by_rank(re.method(:by_min))
 # select the top-ranked 3 features
 re.select_data_by_rank!('<=3')
 
-# number of features before feature selection
+# number of features after feature selection
 puts '# features before (after): ' + re.get_features.size.to_s
 
 puts "======= end test #{File.basename(__FILE__)} ======="

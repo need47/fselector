@@ -19,7 +19,7 @@ puts "# features (before): "+ r1.get_features.size.to_s
 # select the top-ranked features with scores >0.01
 r1.select_data_by_score!('>0.01')
 
-# number of features before feature selection
+# number of features after feature selection
 puts "# features (after): "+ r1.get_features.size.to_s
 
 # you can also use various alogirithms in a tandem manner
@@ -33,7 +33,7 @@ puts "# features (before): "+ r2.get_features.size.to_s
 # select the top-ranked 3 features
 r2.select_data_by_rank!('<=3')
 
-# number of features before feature selection
+# number of features after feature selection
 puts "# features (after): "+ r2.get_features.size.to_s
 
 # save data to standard ouput as a weka ARFF file (sparse format)
