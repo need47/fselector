@@ -116,6 +116,10 @@
  P(f,c')  = B/N
  P(f',c)  = C/N
  P(f',c') = D/N
+ P(f|c)   = A/(A+C)
+ P(f|c')  = B/(B+D)
+ P(f'|c)  = C/(A+C)
+ P(f'|c') = D/(B+D)
 </code></pre>
 
 
@@ -216,12 +220,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base_discrete.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/base_discrete.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -237,7 +241,7 @@
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 27 17:10:31 2012 by 
+  Generated on Tue Feb 28 10:38:38 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
