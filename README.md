@@ -1,4 +1,4 @@
-FSelector: a Ruby package for feature selection and ranking
+FSelector: a Ruby gem for feature selection and ranking
 ===========================================================
 
 **Home** [https://rubygems.org/gems/fselector](https://rubygems.org/gems/fselector)  
