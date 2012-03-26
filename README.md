@@ -170,7 +170,7 @@ Usage
     
  **3. normalization and discretization before feature selection**
 
- In addition to the algorithms designed for continous feature, one
+ In addition to the algorithms designed for continuous feature, one
  can apply those deisgned for discrete feature after (optionally
  normalization and) discretization
  
