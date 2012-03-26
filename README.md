@@ -180,7 +180,7 @@ Usage
     r1 = FSelector::BaseContinuous.new
     
     # read the Iris data set (under the test/ directory)
-    r1.data_from_csv(File.expand_path(File.dirname(__FILE__))+'/iris.csv')
+    r1.data_from_csv('test/iris.csv')
     
     # normalization by log2 (optional)
     # r1.normalize_log!(2)
