@@ -116,7 +116,7 @@ Usage
     puts "# features (before): "+ r1.get_features.size.to_s
     
     # select the top-ranked features with scores >0.01
-    r1.select_data_by_score!('>0.01')
+    r1.select_feature_by_score!('>0.01')
     
     # number of features after feature selection
     puts "# features (after): "+ r1.get_features.size.to_s
@@ -130,7 +130,7 @@ Usage
     puts "# features (before): "+ r2.get_features.size.to_s
     
     # select the top-ranked 3 features
-    r2.select_data_by_rank!('<=3')
+    r2.select_feature_by_rank!('<=3')
     
     # number of features after feature selection
     puts "# features (after): "+ r2.get_features.size.to_s
@@ -162,7 +162,7 @@ Usage
     re.ensemble_by_rank(re.method(:by_min))
     
     # select the top-ranked 3 features
-    re.select_data_by_rank!('<=3')
+    re.select_feature_by_rank!('<=3')
     
     # number of features after feature selection
     puts '# features (after): ' + re.get_features.size.to_s
@@ -187,7 +187,7 @@ Usage
     
     # discretization by ChiMerge algorithm
     # chi-squared value = 4.60 for a three-class problem at alpha=0.10
-    r1.discretize_chimerge!(4.60)
+    r1.discretize_by_chimerge!(4.60)
     
     # apply Relief_d for discrete feature
     # initialize with discretized data from r1
