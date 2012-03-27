@@ -7,7 +7,7 @@ module Discretilizer
   # @param [Integer] n_interval
   #        desired number of intervals
   # @note data structure will be altered
-  def discretize_equal_width!(n_interval)
+  def discretize_by_equal_width!(n_interval)
     n_interval = 1 if n_interval < 1 # at least one interval
     
     # first determine min and max for each feature
@@ -39,7 +39,7 @@ module Discretilizer
   # @param [Integer] n_interval
   #        desired number of intervals
   # @note data structure will be altered
-  def discretize_equal_frequency!(n_interval)
+  def discretize_by_equal_frequency!(n_interval)
     n_interval = 1 if n_interval < 1 # at least one interval
     
     # first determine the boundaries
@@ -84,7 +84,7 @@ module Discretilizer
   #             2          4.60    5.99    9.21    13.82
   #             3          6.35    7.82    11.34   16.27
   #    
-  def discretize_chimerge!(chisq)
+  def discretize_by_chimerge!(chisq)
     # chisq = 4.60 # for iris::Sepal.Length
     # for intialization
     hzero = {}
