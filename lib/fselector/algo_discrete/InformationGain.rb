@@ -19,7 +19,7 @@ module FSelector
   
     # calculate contribution of each feature (f) across all classes
     def calc_contribution(f)
-      # H(c)
+      # step 1: H(c)
       hc = 0.0
       n = get_sample_size.to_f
       
@@ -30,11 +30,11 @@ module FSelector
         if p1.zero?
           hc += -0.0
         else
-          hc += -1.0 * ( p1 * Math.log2(p1) )
+          hc += -1.0 * (p1 * Math.log2(p1))
         end
       end
       
-      # H(c|f)
+      # step 2: H(c|f)
       hcf = 0.0
       m = {}
       
@@ -77,7 +77,7 @@ module FSelector
         end
       end
       
-      # IG
+      # step 3: IG
      s =  hc - hcf
      
      set_feature_score(f, :BEST, s)      
