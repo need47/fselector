@@ -256,6 +256,18 @@ module FSelector
     
     
     #
+    # reconstruct data with selected features
+    #
+    # @return [Hash] data after feature selection
+    # @note derived class must implement its own method
+    #
+    def select_feature!
+      abort "[#{__FILE__}@#{__LINE__}]: "+
+            "derived class must implement its own selec_feature! method"
+    end
+    
+    
+    #
     # reconstruct data with feature scores satisfying cutoff
     #
     # @param [String] criterion 
@@ -265,7 +277,7 @@ module FSelector
     # @return [Hash] data after feature selection
     # @note data structure will be altered
     #
-    def select_data_by_score!(criterion, my_scores=nil)
+    def select_feature_by_score!(criterion, my_scores=nil)
       # user scores or internal scores
       scores = my_scores || get_feature_scores
       
@@ -296,7 +308,7 @@ module FSelector
     # @return [Hash] data after feature selection
     # @note data structure will be altered
     #
-    def select_data_by_rank!(criterion, my_ranks=nil)
+    def select_feature_by_rank!(criterion, my_ranks=nil)
       # user ranks or internal ranks
       ranks = my_ranks || get_feature_ranks
       
