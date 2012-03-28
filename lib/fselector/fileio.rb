@@ -21,7 +21,7 @@ module FileIO
     data = {}
   
     nsample.times do
-      k = "c#{rand(nclass)}".to_sym
+      k = "c#{rand(nclass)+1}".to_sym
       
       data[k] = [] if not data.has_key? k
       
