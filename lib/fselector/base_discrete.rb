@@ -353,6 +353,149 @@ module FSelector
     end
     
     
+    #
+    # entropy-related function
+    #
+    
+    # H(c) = -1 * sigma_i (P(ci) logP(ci))
+    def get_Hc
+      if not @hc
+        hc = 0.0
+        n = get_sample_size.to_f
+        
+        each_class do |k|
+          nk = get_data[k].size
+          p = nk/n
+          
+          if p.zero?
+            hc += -0.0
+          else
+            hc += -1.0 * (p * Math.log2(p))
+          end
+        end
+        
+        @hc = hc
+      end
+      
+      @hc
+    end
+    
+    
+    # H(c|f) = sigma_j (P(fj)*H(c|fj))
+    # H(c|fj) = -1 * sigma_k (P(ck|fj) logP(ck|fj))
+    def get_Hcf(f)
+      hcf = 0.0
+      n = get_sample_size.to_f
+      
+      # missing values for each class
+      m = {}
+      
+      fvs = get_feature_values(f).uniq
+      each_class do |k|
+        nk = get_data[k].size.to_f
+        nv = 0.0
+        
+        fvs.each do |v|
+          a, b = get_Av(f, k, v), get_Bv(f, k, v)
+          nv += a
+          
+          p1 = (a+b)/n
+          p2 = a/(a+b)          
+          
+          if p2.zero?
+            hcf += -0.0
+          else
+            hcf += -1.0 * p1 * (p2 * Math.log2(p2))
+          end
+        end
+        
+        m[k] = nk - nv
+      end
+      
+      # handle missing values of feature (f)
+      sm = m.values.sum
+      p3 = sm/n
+      
+      if not sm.zero?
+        m.each do |k, i|
+          p4 = i/sm
+          
+          if p4.zero?
+            hcf += -0.0
+          else
+            hcf += -1.0 * p3 * (p4 * Math.log2(p4))
+          end
+        end
+      end
+      
+      hcf
+    end
+    
+    
+    # H(f) = -1 * sigma_i (P(fi) logP(fi))
+    def get_Hf(f)
+      hf = 0.0
+      n = get_sample_size.to_f
+      
+      fvs = get_feature_values(f)
+      fvs.uniq.each do |v|
+        p = fvs.count(v)/n
+        
+        if p.zero?
+          hf += -0.0
+        else
+          hf += -1.0 * (p * Math.log2(p))
+        end
+      end
+      
+      # handle missing values of feature (f)
+      p1 = (n-fvs.size)/n
+
+      if p1.zero?
+        hf += -0.0
+      else
+        hf += -1.0 * (p1 * Math.log2(p1))
+      end
+      
+      hf
+    end
+       
+    
+    # H(f|c) = sigma_j (P(cj) * H(f|cj))
+    # H(f|cj) = -1 * sigma_k (P(fk|cj) logP(fk|cj))
+    def get_Hfc(f)
+      hfc = 0.0
+      n = get_sample_size.to_f
+      
+      each_class do |k|
+        nk = get_data[k].size.to_f
+        p0 = nk/n
+        
+        fvs = get_feature_values(f, k)        
+        fvs.uniq.each do |v|
+          a = get_Av(f, k, v)          
+          p1 = a/nk
+          
+          if p1.zero?
+            hfc += -0.0
+          else
+            hfc += -1.0 * p0 * (p1 * Math.log2(p1))
+          end          
+        end
+        
+        # handle missing values of feature (f) in class k
+        p2 = (nk-fvs.size)/nk
+        if p2.zero?
+          hfc += -0.0
+        else
+          hfc += -1.0 * p0 * (p2 * Math.log2(p2))
+        end
+      end
+      
+      hfc
+    end
+    
+    
   end # class
 
 
