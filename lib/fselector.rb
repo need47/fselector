@@ -3,7 +3,7 @@
 #
 module FSelector
   # module version
-  VERSION = '0.1.0'
+  VERSION = '0.1.2'
 end
 
 ROOT = File.expand_path(File.dirname(__FILE__))
