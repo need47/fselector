@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.1.0  
-**Release Date**: March 1st 2012
+**Latest Version**: 0.1.2  
+**Release Date**: March 29th 2012
 
 Synopsis
 --------
@@ -40,6 +40,7 @@ Feature List
     DocumentFrequency               DF          discrete
     F1Measure                       F1          discrete
     FishersExactTest                FET         discrete
+    FastCorrelationBasedFilter      FCBF        discrete
     GiniIndex                       GI          discrete
     GMean                           GM          discrete
     GSSCoefficient                  GSS         discrete
@@ -58,6 +59,7 @@ Feature List
     ReliefF_d                       ReliefF_d   discrete
     Sensitivity                     SN, Recall  discrete
     Specificity                     SP          discrete
+    SymmetricalUncertainty          SU          discrete
     PMetric                         PM          continuous
     Relief_c                        Relief_c    continuous
     ReliefF_c                       ReliefF_c   continuous
@@ -189,12 +191,18 @@ Usage
     # chi-squared value = 4.60 for a three-class problem at alpha=0.10
     r1.discretize_by_chimerge!(4.60)
     
-    # apply Relief_d for discrete feature
+    # apply Fast Correlation-Based Filter (FCBF) algorithm for discrete feature
     # initialize with discretized data from r1
-    r2 = FSelector::ReliefF_d.new(r1.get_sample_size, 10, r1.get_data)
+    r2 = FSelector::FCBF.new(0.0, r1.get_data)
     
-    # print feature ranks
-    r2.print_feature_ranks
+    # number of features before feature selection
+    puts '# features (before): ' + r2.get_features.size.to_s
+    
+    # feature selection
+    r2.select_feature!
+    
+    # number of features after feature selection
+    puts '# features (after): ' + r2.get_features.size.to_s
 
 Copyright
 ---------
