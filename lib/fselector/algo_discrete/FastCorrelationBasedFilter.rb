@@ -66,7 +66,7 @@ module FSelector
       end
       
       subset
-    end
+    end # get_feature_subset
     
     
     # SU(X,Y) = 2 * ( H(X)-H(X|Y) ) / ( H(X)+H(Y) )
