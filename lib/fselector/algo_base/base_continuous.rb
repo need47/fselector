@@ -1,5 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/algo_continuous/normalizer.rb')
-require File.expand_path(File.dirname(__FILE__) + '/algo_continuous/discretizer.rb')
+require File.expand_path(File.dirname(__FILE__) + '/../algo_continuous/normalizer.rb')
+require File.expand_path(File.dirname(__FILE__) + '/../algo_continuous/discretizer.rb')
 #
 # FSelector: a Ruby gem for feature selection and ranking
 #
