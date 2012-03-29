@@ -5,7 +5,7 @@ module FSelector
 #
 # Information Gain for feature with discrete data (IG)
 #
-#     IG_d(c,f) = H(c) - H(c|f)
+#     IG(c,f) = H(c) - H(c|f)
 #     
 #     where H(c) = -1 * sigma_i (P(ci) logP(ci))
 #           H(c|f) = sigma_j (P(fj)*H(c|fj))
@@ -18,71 +18,15 @@ module FSelector
     private
   
     # calculate contribution of each feature (f) across all classes
+    # see entropy-related functions in BaseDiscrete
     def calc_contribution(f)
-      # step 1: H(c)
-      hc = 0.0
-      n = get_sample_size.to_f
+      hc, hcf = get_Hc, get_Hcf(f)
       
-      each_class do |k|
-        nk = get_data[k].size
-        p1 = nk/n
-
-        if p1.zero?
-          hc += -0.0
-        else
-          hc += -1.0 * (p1 * Math.log2(p1))
-        end
-      end
+      s =  hc - hcf
       
-      # step 2: H(c|f)
-      hcf = 0.0
-      m = {}
-      
-      each_class do |k|
-        nk = get_data[k].size        
-        nv = 0.0
+      set_feature_score(f, :BEST, s)      
+    end # calc_contribution 
         
-        fvs = get_feature_values(f).uniq
-        fvs.each do |v|
-          a, b = get_Av(f, k, v), get_Bv(f, k, v)
-          #pp "(v,a,b) => (#{v}, #{a}, #{b})"
-          nv += a
-          
-          p2 = a/(a+b)
-          p3 = (a+b)/n
-          
-          if p2.zero?
-            hcf += -0.0
-          else
-            hcf += -1.0 * p3 * (p2 * Math.log2(p2))
-          end           
-        end
-        
-        m[k] = nk - nv
-         
-      end
-      
-      # handle empty feature for each class
-      sm = m.values.sum
-      if not sm.zero?
-        #pp m
-        m.each do |k, i|
-          pm = i/sm
-          
-          if pm.zero?
-            hcf += -0.0
-          else
-            hcf += -1.0 * (sm/n) * (pm * Math.log2(pm))
-          end
-        end
-      end
-      
-      # step 3: IG
-     s =  hc - hcf
-     
-     set_feature_score(f, :BEST, s)      
-    end # calc_contribution
-    
       	
   end # class 
  
