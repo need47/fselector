@@ -101,19 +101,53 @@ module FSelector
     # get feature values
     #
     # @param [Symbol] f feature of interest
+    # @param [Symbol] ck class of interest.
+    #   if not nil return feature values for the
+    #   specific class, otherwise return all feature values
     #
-    def get_feature_values(f)
+    def get_feature_values(f, ck=nil)
       @fvs ||= {}
       
       if not @fvs.has_key? f
-        @fvs[f] = []
+        @fvs[f] = {}
         each_sample do |k, s|
-          @fvs[f] << s[f] if s.has_key? f
+          @fvs[f][k] = [] if not @fvs[f].has_key? k
+          @fvs[f][k] << s[f] if s.has_key? f
         end
       end
       
-      @fvs[f]
+      ck ? @fvs[f][ck] : @fvs[f].values.flatten   
     end
+    
+    
+    #
+    # get feature values (including missing ones)
+    #
+    # @param [Symbol] f feature of interest
+    # @param [Symbol] ck class of interest.
+    #   if not nil return feature values for the
+    #   specific class, otherwise return all feature values
+    # @note missing feature values are stored as nil
+    #
+    def get_feature_values_mv(f, ck=nil)
+      @fvs_mv ||= {}
+      
+      if not @fvs_mv.has_key? f
+        @fvs_mv[f] = {}
+        each_sample do |k, s|
+          @fvs_mv[f][k] = [] if not @fvs_mv[f].has_key? k
+   
+          if s.has_key? f
+            @fvs_mv[f][k] << s[f] 
+          else
+            @fvs_mv[f][k] << nil # use nil for missing feature values
+          end
+        end
+      end
+      
+      ck ? @fvs_mv[f][ck] : @fvs_mv[f].values.flatten   
+    end
+    
     
     # set features
     def set_features(features)
@@ -222,13 +256,6 @@ module FSelector
     end
     
     
-    # set feature (f) score (f) for class (k)
-    def set_feature_score(f, k, s)
-      @scores ||= {}
-      @scores[f] ||= {}
-      @scores[f][k] = s
-    end
-    
     #
     # get the ranked features based on their best scores
     #
@@ -259,11 +286,26 @@ module FSelector
     # reconstruct data with selected features
     #
     # @return [Hash] data after feature selection
-    # @note derived class must implement its own method
+    # @note derived class must implement its own get_subset()
     #
     def select_feature!
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-            "derived class must implement its own selec_feature! method"
+      subset = get_feature_subset
+      return if subset.empty?
+      
+      my_data = {}
+      
+      each_sample do |k, s|
+        my_data[k] ||= []
+        my_s = {}
+        
+        s.each do |f, v|
+          my_s[f] = v if subset.include? f
+        end
+        
+        my_data[k] << my_s if not my_s.empty?
+      end
+      
+      set_data(my_data)
     end
     
     
@@ -326,6 +368,21 @@ module FSelector
       end
       
       set_data(my_data)
+    end
+    
+    private
+    
+    # set feature (f) score (s) for class (k)
+    def set_feature_score(f, k, s)
+      @scores ||= {}
+      @scores[f] ||= {}
+      @scores[f][k] = s
+    end
+    
+    # get subset of feature
+    def get_feature_subset
+      abort "[#{__FILE__}@#{__LINE__}]: "+
+              "derived class must implement its own get_feature_subset()"
     end
   
   
