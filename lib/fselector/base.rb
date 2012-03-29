@@ -120,35 +120,6 @@ module FSelector
     end
     
     
-    #
-    # get feature values (including missing ones)
-    #
-    # @param [Symbol] f feature of interest
-    # @param [Symbol] ck class of interest.
-    #   if not nil return feature values for the
-    #   specific class, otherwise return all feature values
-    # @note missing feature values are stored as nil
-    #
-    def get_feature_values_mv(f, ck=nil)
-      @fvs_mv ||= {}
-      
-      if not @fvs_mv.has_key? f
-        @fvs_mv[f] = {}
-        each_sample do |k, s|
-          @fvs_mv[f][k] = [] if not @fvs_mv[f].has_key? k
-   
-          if s.has_key? f
-            @fvs_mv[f][k] << s[f] 
-          else
-            @fvs_mv[f][k] << nil # use nil for missing feature values
-          end
-        end
-      end
-      
-      ck ? @fvs_mv[f][ck] : @fvs_mv[f].values.flatten   
-    end
-    
-    
     # set features
     def set_features(features)
       if features and features.class == Array
