@@ -16,15 +16,9 @@ require "#{ROOT}/fselector/util.rb"
 
 #
 # base class
-#
-require "#{ROOT}/fselector/base.rb"
-require "#{ROOT}/fselector/base_discrete.rb"
-require "#{ROOT}/fselector/base_continuous.rb"
-
-#
-# feature selection use an ensemble of algorithms
-#
-require "#{ROOT}/fselector/ensemble.rb"
+Dir.glob("#{ROOT}/fselector/algo_base/*").each do |f|
+  require f
+end
 
 #
 # algorithms for handling discrete feature
@@ -39,3 +33,9 @@ end
 Dir.glob("#{ROOT}/fselector/algo_continuous/*").each do |f|
   require f
 end
+
+#
+# feature selection use an ensemble of algorithms
+#
+require "#{ROOT}/fselector/ensemble.rb"
+
