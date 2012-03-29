@@ -206,6 +206,6 @@ Usage
 
 Copyright
 ---------
-FSelector &copy; 2011-2012 by [Tiejun Cheng](mailto:need47@gmail.com).
+FSelector &copy; 2012 by [Tiejun Cheng](mailto:need47@gmail.com).
 FSelector is licensed under the MIT license. Please see the {file:LICENSE} for
 more information.
