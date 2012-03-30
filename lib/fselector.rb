@@ -13,6 +13,7 @@ ROOT = File.expand_path(File.dirname(__FILE__))
 #
 require "#{ROOT}/fselector/fileio.rb"
 require "#{ROOT}/fselector/util.rb"
+require "#{ROOT}/fselector/entropy.rb"
 
 #
 # base class
