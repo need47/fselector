@@ -72,7 +72,27 @@ class Array
   end
   
   
-end
+  # pearson's correlation coefficient
+  # two vectors must be of the same length
+  def pearson_r(v)
+    sm, vm = self.ave, v.ave
+    a, b, c = 00, 0.0, 0.0
+    
+    self.each_with_index do |s, i|
+      a += (s-sm)*(v[i]-vm)
+      b += (s-sm)**2
+      c += (v[i]-vm)**2
+    end
+    
+    if b.zero? or c.zero?
+      return 0.0
+    else
+      return a / Math.sqrt(b) / Math.sqrt(c)
+    end
+  end
+  
+  
+end # Array
 
 
 #
@@ -114,7 +134,7 @@ class String
   end
   
   
-end
+end # String
 
 #puts "a, 'b,c, d' ,'e'".split_me(/,\s*/, "'")
 #=>a
