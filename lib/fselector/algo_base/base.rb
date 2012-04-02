@@ -136,6 +136,7 @@ module FSelector
       @data
     end
     
+    
     # set data
     def set_data(data)
       if data and data.class == Hash
@@ -167,42 +168,7 @@ module FSelector
     def get_sample_size
       @sz ||= get_data.values.flatten.size
     end
-    
-    
-    #
-    # print feature scores
-    #
-    # @param [String] kclass class of interest
-    #
-    def print_feature_scores(feat=nil, kclass=nil)
-      scores = get_feature_scores
-      
-      scores.each do |f, ks|
-        next if feat and feat != f
-        
-        print "#{f} =>"
-        ks.each do |k, s|
-          if kclass
-            print " #{k}->#{s}" if k == kclass
-          else
-            print " #{k}->#{s}"
-          end
-        end
-        puts
-      end
-    end
-    
-    
-    # print feature ranks
-    def print_feature_ranks
-      ranks = get_feature_ranks
-      
-      ranks.each do |f, r|
-        puts "#{f} => #{r}"
-      end
-    end
-    
-    
+       
     #
     # get scores of all features for all classes
     #
