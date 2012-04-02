@@ -14,15 +14,28 @@ module FSelector
 # ref: [Using Information Gain to Analyze and Fine Tune the Performance of Supply Chain Trading Agents](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.141.7895)
 #
   class InformationGain < BaseDiscrete
+    # include entropy module
+    include Entropy
 
     private
   
     # calculate contribution of each feature (f) across all classes
     # see entropy-related functions in BaseDiscrete
     def calc_contribution(f)
-      hc, hcf = get_Hc, get_Hcf(f)
+      # cache H(c)
+      if not @hc
+        cv = get_class_labels
+        @hc = get_marginal_entropy(cv)
+      end
       
-      s =  hc - hcf
+      # H(c|f)
+      # collect class labels (cv) and feature values (fv)
+      cv = get_class_labels
+      fv = get_feature_values(f, :include_missing_values)
+      hcf = get_conditional_entropy(cv, fv)
+      
+      # information gain
+      s =  @hc - hcf
       
       set_feature_score(f, :BEST, s)      
     end # calc_contribution 
