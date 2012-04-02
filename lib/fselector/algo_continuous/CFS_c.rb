@@ -35,7 +35,7 @@ module FSelector
     end # do_rcf
     
     
-    # calc the feature-class correlation of two vectors
+    # calc the feature-feature correlation of two vectors
     def do_rff(fv, sv)
       fv.pearson_r(sv) # use pearson's correlation coefficient
     end # do_rff
