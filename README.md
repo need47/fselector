@@ -8,22 +8,22 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.1.2  
-**Release Date**: March 29th 2012
+**Latest Version**: 0.2.0  
+**Release Date**: April 1st 2012
 
 Synopsis
 --------
 
-FSelector is an open-access Ruby gem that aims to integrate various feature
-selection/ranking algorithms into one single package. Welcome to contact me
-if you want to contribute and/or add your own feature selection algorithms.
-FSelector enables the user to perform feature selection by using either a
-single algorithm or an ensemble of algorithms. FSelector acts on a full-feature
-data set and outputs a reduced data set with only selected features, which
-can later be used as the input for various machine learning softwares
-including LibSVM and WEKA. FSelector, itself, does not implement any of the
-machine learning algorithms such as support vector machines and random forest.
-Below is a summary of FSelector's features.
+FSelector is a Ruby gem that aims to integrate various feature selection/ranking 
+algorithms into one single package. Welcome to contact me (need47@gmail.com) 
+if you want to contribute your own algorithms or report a bug. FSelector enables 
+the user to perform feature selection by using either a single algorithm or an 
+ensemble of algorithms. FSelector acts on a full-feature data set with CSV, LibSVM 
+or WEKA file format and outputs a reduced data set with only selected subset of 
+features, which can later be used as the input for various machine learning softwares 
+including LibSVM and WEKA. FSelector, itself, does not implement any of the machine 
+learning algorithms such as support vector machines and random forest. Below is a 
+summary of FSelector's features.
 
 Feature List
 ------------
@@ -35,6 +35,7 @@ Feature List
     Accuracy                        Acc         discrete
     AccuracyBalanced                Acc2        discrete
     BiNormalSeparation              BNS         discrete
+    CFS_d                           CFS_d       discrete
     ChiSquaredTest                  CHI         discrete
     CorrelationCoefficient          CC          discrete
     DocumentFrequency               DF          discrete
@@ -60,6 +61,7 @@ Feature List
     Sensitivity                     SN, Recall  discrete
     Specificity                     SP          discrete
     SymmetricalUncertainty          SU          discrete
+    CFS_c                           CFS_c       continuous
     PMetric                         PM          continuous
     Relief_c                        Relief_c    continuous
     ReliefF_c                       ReliefF_c   continuous
