@@ -80,6 +80,20 @@ module FSelector
     end
     
     
+    # get class labels
+    def get_class_labels
+      if not @cv
+        @cv = []
+        
+        each_sample do |k, s|
+          @cv << k
+        end
+      end
+      
+      @cv
+    end
+    
+    
     # set classes
     def set_classes(classes)
       if classes and classes.class == Array
@@ -101,22 +115,34 @@ module FSelector
     # get feature values
     #
     # @param [Symbol] f feature of interest
+    # @param [Symbol] mv including missing feature values?
+    #   don't include missing feature values (recorded as nils)
+    #   if mv==nil, include otherwise
     # @param [Symbol] ck class of interest.
-    #   if not nil return feature values for the
-    #   specific class, otherwise return all feature values
+    #   return feature values for all classes, otherwise return feature
+    # values for the specific class (ck)
     #
-    def get_feature_values(f, ck=nil)
+    def get_feature_values(f, mv=nil, ck=nil)
       @fvs ||= {}
       
       if not @fvs.has_key? f
         @fvs[f] = {}
+        
         each_sample do |k, s|
           @fvs[f][k] = [] if not @fvs[f].has_key? k
-          @fvs[f][k] << s[f] if s.has_key? f
+          if s.has_key? f
+            @fvs[f][k] << s[f]
+          else
+            @fvs[f][k] << nil # for missing featue values
+          end
         end
       end
       
-      ck ? @fvs[f][ck] : @fvs[f].values.flatten   
+      if mv # include missing feature values
+        return ck ? @fvs[f][ck] : @fvs[f].values.flatten
+      else # don't include
+        return ck ? @fvs[f][ck].compact : @fvs[f].values.flatten.compact
+      end  
     end
     
     
