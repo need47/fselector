@@ -6,7 +6,7 @@
 <title>
   Module: FileIO
   
-    &mdash; Documentation by YARD 0.7.5
+    &mdash; FSelector Documentation
   
 </title>
 
@@ -117,7 +117,7 @@ e.g. length =&gt; :length</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#data_from_csv-instance_method" title="#data_from_csv (instance method)">- (Object) <strong>data_from_csv</strong>(fname = :stdin) </a>
+      <a href="#data_from_csv-instance_method" title="#data_from_csv (instance method)">- <strong>data_from_csv</strong>(fname = :stdin) </a>
     
 
     
@@ -139,7 +139,7 @@ e.g. length =&gt; :length</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#data_from_libsvm-instance_method" title="#data_from_libsvm (instance method)">- (Object) <strong>data_from_libsvm</strong>(fname = :stdin) </a>
+      <a href="#data_from_libsvm-instance_method" title="#data_from_libsvm (instance method)">- <strong>data_from_libsvm</strong>(fname = :stdin) </a>
     
 
     
@@ -161,7 +161,7 @@ e.g. length =&gt; :length</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#data_from_random-instance_method" title="#data_from_random (instance method)">- (Object) <strong>data_from_random</strong>(nsample = 100, nclass = 2, nfeature = 10, ncategory = 2, allow_mv = true) </a>
+      <a href="#data_from_random-instance_method" title="#data_from_random (instance method)">- <strong>data_from_random</strong>(nsample = 100, nclass = 2, nfeature = 10, ncategory = 2, allow_mv = true) </a>
     
 
     
@@ -183,7 +183,7 @@ e.g. length =&gt; :length</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#data_from_weka-instance_method" title="#data_from_weka (instance method)">- (Object) <strong>data_from_weka</strong>(fname = :stdin, quote_char = '&quot;') </a>
+      <a href="#data_from_weka-instance_method" title="#data_from_weka (instance method)">- <strong>data_from_weka</strong>(fname = :stdin, quote_char = '&quot;') </a>
     
 
     
@@ -205,7 +205,7 @@ e.g. length =&gt; :length</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#data_to_csv-instance_method" title="#data_to_csv (instance method)">- (Object) <strong>data_to_csv</strong>(fname = :stdout) </a>
+      <a href="#data_to_csv-instance_method" title="#data_to_csv (instance method)">- <strong>data_to_csv</strong>(fname = :stdout) </a>
     
 
     
@@ -227,7 +227,7 @@ e.g. length =&gt; :length</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#data_to_libsvm-instance_method" title="#data_to_libsvm (instance method)">- (Object) <strong>data_to_libsvm</strong>(fname = :stdout) </a>
+      <a href="#data_to_libsvm-instance_method" title="#data_to_libsvm (instance method)">- <strong>data_to_libsvm</strong>(fname = :stdout) </a>
     
 
     
@@ -249,7 +249,7 @@ e.g. length =&gt; :length</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#data_to_weka-instance_method" title="#data_to_weka (instance method)">- (Object) <strong>data_to_weka</strong>(fname = :stdout, format = nil) </a>
+      <a href="#data_to_weka-instance_method" title="#data_to_weka (instance method)">- <strong>data_to_weka</strong>(fname = :stdout, format = nil) </a>
     
 
     
@@ -280,7 +280,7 @@ e.g. length =&gt; :length</p>
       <div class="method_details first">
   <p class="signature first" id="data_from_csv-instance_method">
   
-    - (<tt>Object</tt>) <strong>data_from_csv</strong>(fname = :stdin) 
+    - <strong>data_from_csv</strong>(fname = :stdin) 
   
 
   
@@ -479,7 +479,7 @@ INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
       <div class="method_details ">
   <p class="signature " id="data_from_libsvm-instance_method">
   
-    - (<tt>Object</tt>) <strong>data_from_libsvm</strong>(fname = :stdin) 
+    - <strong>data_from_libsvm</strong>(fname = :stdin) 
   
 
   
@@ -600,7 +600,7 @@ INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
       <div class="method_details ">
   <p class="signature " id="data_from_random-instance_method">
   
-    - (<tt>Object</tt>) <strong>data_from_random</strong>(nsample = 100, nclass = 2, nfeature = 10, ncategory = 2, allow_mv = true) 
+    - <strong>data_from_random</strong>(nsample = 100, nclass = 2, nfeature = 10, ncategory = 2, allow_mv = true) 
   
 
   
@@ -754,7 +754,7 @@ otherwise =&gt; continuous feature with vaule in the range of [0, 1)</p>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
 
   <span class='id identifier rubyid_nsample'>nsample</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_k'>k</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='id identifier rubyid_nclass'>nclass</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+    <span class='id identifier rubyid_k'>k</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='id identifier rubyid_nclass'>nclass</span><span class='rparen'>)</span><span class='op'>+</span><span class='int'>1</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
     
     <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_k'>k</span>
     
@@ -792,7 +792,7 @@ otherwise =&gt; continuous feature with vaule in the range of [0, 1)</p>
       <div class="method_details ">
   <p class="signature " id="data_from_weka-instance_method">
   
-    - (<tt>Object</tt>) <strong>data_from_weka</strong>(fname = :stdin, quote_char = '&quot;') 
+    - <strong>data_from_weka</strong>(fname = :stdin, quote_char = '&quot;') 
   
 
   
@@ -1041,7 +1041,7 @@ otherwise =&gt; continuous feature with vaule in the range of [0, 1)</p>
       <div class="method_details ">
   <p class="signature " id="data_to_csv-instance_method">
   
-    - (<tt>Object</tt>) <strong>data_to_csv</strong>(fname = :stdout) 
+    - <strong>data_to_csv</strong>(fname = :stdout) 
   
 
   
@@ -1153,7 +1153,7 @@ and the remaing rows showing data</p>
       <div class="method_details ">
   <p class="signature " id="data_to_libsvm-instance_method">
   
-    - (<tt>Object</tt>) <strong>data_to_libsvm</strong>(fname = :stdout) 
+    - <strong>data_to_libsvm</strong>(fname = :stdout) 
   
 
   
@@ -1243,7 +1243,7 @@ and the remaing rows showing data</p>
       <div class="method_details ">
   <p class="signature " id="data_to_weka-instance_method">
   
-    - (<tt>Object</tt>) <strong>data_to_weka</strong>(fname = :stdout, format = nil) 
+    - <strong>data_to_weka</strong>(fname = :stdout, format = nil) 
   
 
   
@@ -1463,7 +1463,7 @@ and the remaing rows showing data</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Feb 28 15:56:03 2012 by 
+  Generated on Mon Apr  2 15:37:30 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

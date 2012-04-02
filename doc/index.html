@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.7.5
+    &mdash; FSelector Documentation
   
 </title>
 
@@ -54,7 +54,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><div id='filecontents'><h1>FSelector: a Ruby package for feature selection and ranking</h1>
+    <div id="content"><div id='filecontents'><h1>FSelector: a Ruby gem for feature selection and ranking</h1>
 
 <p><strong>Home</strong> <a href="https://rubygems.org/gems/fselector">https://rubygems.org/gems/fselector</a><br>
 <strong>Source Code</strong>: <a href="https://github.com/need47/fselector">https://github.com/need47/fselector</a><br>
@@ -63,20 +63,21 @@
 <strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br>
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
-<strong>Latest Version</strong>: 0.1.0<br>
-<strong>Release Date</strong>: March 1st 2012</p>
+<strong>Latest Version</strong>: 0.2.0<br>
+<strong>Release Date</strong>: April 1st 2012</p>
 
 <h2>Synopsis</h2>
 
-<p>FSelector is an open-access Ruby package that aims to integrate as many 
-feature selection/ranking algorithms as possible. It enables the user
-to perform feature selection by using either a single algorithm or an
-ensemble of algorithms. FSelector acts on a full data set and outputs
-a reduced data set with only selected features, which can later be used
-as the input for various machine learning softwares including LibSVM and 
-WEKA. FSelector, itself, does not implement any of the machine learning
-algorithms such as support vector machines and random forest. Below is
-a summary of FSelector&#39;s features.</p>
+<p>FSelector is a Ruby gem that aims to integrate various feature selection/ranking 
+algorithms into one single package. Welcome to contact me (<a href="mailto:need47@gmail.com">need47@gmail.com</a>) 
+if you want to contribute your own algorithms or report a bug. FSelector enables 
+the user to perform feature selection by using either a single algorithm or an 
+ensemble of algorithms. FSelector acts on a full-feature data set with CSV, LibSVM 
+or WEKA file format and outputs a reduced data set with only selected subset of 
+features, which can later be used as the input for various machine learning softwares 
+including LibSVM and WEKA. FSelector, itself, does not implement any of the machine 
+learning algorithms such as support vector machines and random forest. Below is a 
+summary of FSelector&#39;s features.</p>
 
 <h2>Feature List</h2>
 
@@ -87,11 +88,13 @@ a summary of FSelector&#39;s features.</p>
 Accuracy                        Acc         discrete
 AccuracyBalanced                Acc2        discrete
 BiNormalSeparation              BNS         discrete
+CFS_d                           CFS_d       discrete
 ChiSquaredTest                  CHI         discrete
 CorrelationCoefficient          CC          discrete
 DocumentFrequency               DF          discrete
 F1Measure                       F1          discrete
 FishersExactTest                FET         discrete
+FastCorrelationBasedFilter      FCBF        discrete
 GiniIndex                       GI          discrete
 GMean                           GM          discrete
 GSSCoefficient                  GSS         discrete
@@ -110,6 +113,8 @@ Relief_d                        Relief_d    discrete
 ReliefF_d                       ReliefF_d   discrete
 Sensitivity                     SN, Recall  discrete
 Specificity                     SP          discrete
+SymmetricalUncertainty          SU          discrete
+CFS_c                           CFS_c       continuous
 PMetric                         PM          continuous
 Relief_c                        Relief_c    continuous
 ReliefF_c                       ReliefF_c   continuous
@@ -173,7 +178,7 @@ ChiMerge           discretization by ChiMerge method
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'># features (before): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 
 <span class='comment'># select the top-ranked features with scores &gt;0.01
-</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_select_data_by_score!'>select_data_by_score!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&gt;0.01</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_select_feature_by_score!'>select_feature_by_score!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&gt;0.01</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 
 <span class='comment'># number of features after feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'># features (after): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -187,7 +192,7 @@ ChiMerge           discretization by ChiMerge method
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'># features (before): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 
 <span class='comment'># select the top-ranked 3 features
-</span><span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_select_data_by_rank!'>select_data_by_rank!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&lt;=3</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_select_feature_by_rank!'>select_feature_by_rank!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&lt;=3</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 
 <span class='comment'># number of features after feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'># features (after): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -219,7 +224,7 @@ ChiMerge           discretization by ChiMerge method
 </span><span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_ensemble_by_rank'>ensemble_by_rank</span><span class='lparen'>(</span><span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:by_min</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
 <span class='comment'># select the top-ranked 3 features
-</span><span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_select_data_by_rank!'>select_data_by_rank!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&lt;=3</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_select_feature_by_rank!'>select_feature_by_rank!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&lt;=3</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 
 <span class='comment'># number of features after feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'># features (after): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -227,7 +232,7 @@ ChiMerge           discretization by ChiMerge method
 
 <p><strong>3. normalization and discretization before feature selection</strong></p>
 
-<p>In addition to the algorithms designed for continous feature, one
+<p>In addition to the algorithms designed for continuous feature, one
  can apply those deisgned for discrete feature after (optionally
  normalization and) discretization</p>
 
@@ -237,32 +242,38 @@ ChiMerge           discretization by ChiMerge method
 </span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>BaseContinuous</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
 <span class='comment'># read the Iris data set (under the test/ directory)
-</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_data_from_csv'>data_from_csv</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/iris.csv</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_data_from_csv'>data_from_csv</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>test/iris.csv</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 
 <span class='comment'># normalization by log2 (optional)
 </span><span class='comment'># r1.normalize_log!(2)
 </span>
 <span class='comment'># discretization by ChiMerge algorithm
 </span><span class='comment'># chi-squared value = 4.60 for a three-class problem at alpha=0.10
-</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_discretize_chimerge!'>discretize_chimerge!</span><span class='lparen'>(</span><span class='float'>4.60</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_discretize_by_chimerge!'>discretize_by_chimerge!</span><span class='lparen'>(</span><span class='float'>4.60</span><span class='rparen'>)</span>
 
-<span class='comment'># apply Relief_d for discrete feature
+<span class='comment'># apply Fast Correlation-Based Filter (FCBF) algorithm for discrete feature
 </span><span class='comment'># initialize with discretized data from r1
-</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>ReliefF_d</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_sample_size'>get_sample_size</span><span class='comma'>,</span> <span class='int'>10</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>FCBF</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
 
-<span class='comment'># print feature ranks
-</span><span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_print_feature_ranks'>print_feature_ranks</span>
+<span class='comment'># number of features before feature selection
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'># features (before): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+
+<span class='comment'># feature selection
+</span><span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_select_feature!'>select_feature!</span>
+
+<span class='comment'># number of features after feature selection
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'># features (after): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 </code></pre>
 
 <h2>Copyright</h2>
 
-<p>FSelector &copy; 2011-2012 by <a href="mailto:need47@gmail.com">Tiejun Cheng</a>.
+<p>FSelector &copy; 2012 by <a href="mailto:need47@gmail.com">Tiejun Cheng</a>.
 FSelector is licensed under the MIT license. Please see the <a href="file.LICENSE.html" title="LICENSE">LICENSE</a> for
 more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Tue Feb 28 15:56:03 2012 by 
+  Generated on Mon Apr  2 15:37:30 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

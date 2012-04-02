@@ -6,7 +6,7 @@
 <title>
   Class: Rubystats::NormalDistribution
   
-    &mdash; Documentation by YARD 0.7.5
+    &mdash; FSelector Documentation
   
 </title>
 
@@ -120,7 +120,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_cdf-instance_method" title="#get_cdf (instance method)">- (Object) <strong>get_cdf</strong>(x) </a>
+      <a href="#get_cdf-instance_method" title="#get_cdf (instance method)">- <strong>get_cdf</strong>(x) </a>
     
 
     
@@ -144,7 +144,7 @@ i.e.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_icdf-instance_method" title="#get_icdf (instance method)">- (Object) <strong>get_icdf</strong>(p) </a>
+      <a href="#get_icdf-instance_method" title="#get_icdf (instance method)">- <strong>get_icdf</strong>(p) </a>
     
 
     
@@ -166,7 +166,7 @@ i.e.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_pdf-instance_method" title="#get_pdf (instance method)">- (Object) <strong>get_pdf</strong>(x) </a>
+      <a href="#get_pdf-instance_method" title="#get_pdf (instance method)">- <strong>get_pdf</strong>(x) </a>
     
 
     
@@ -242,19 +242,19 @@ unity variance)</p>
       <pre class="lines">
 
 
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330</pre>
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 321</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 341</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_mu'>mu</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_sigma'>sigma</span><span class='op'>=</span><span class='float'>1.0</span><span class='rparen'>)</span>
   <span class='ivar'>@mean</span> <span class='op'>=</span> <span class='id identifier rubyid_mu'>mu</span>
@@ -281,7 +281,7 @@ unity variance)</p>
       <div class="method_details first">
   <p class="signature first" id="get_cdf-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_cdf</strong>(x) 
+    - <strong>get_cdf</strong>(x) 
   
 
   
@@ -303,12 +303,12 @@ i.e. P(x&lt;X)</p>
       <pre class="lines">
 
 
-344
-345
-346</pre>
+364
+365
+366</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 344</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 364</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_cdf'>get_cdf</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_complementary_error'>complementary_error</span><span class='lparen'>(</span> <span class='op'>-</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span> <span class='op'>-</span> <span class='ivar'>@mean</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='ivar'>@cdf_denominator</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='int'>2</span>
@@ -321,7 +321,7 @@ i.e. P(x&lt;X)</p>
       <div class="method_details ">
   <p class="signature " id="get_icdf-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_icdf</strong>(p) 
+    - <strong>get_icdf</strong>(p) 
   
 
   
@@ -342,26 +342,6 @@ returns the value X for which P(x&lt;X).</p>
       <pre class="lines">
 
 
-351
-352
-353
-354
-355
-356
-357
-358
-359
-360
-361
-362
-363
-364
-365
-366
-367
-368
-369
-370
 371
 372
 373
@@ -369,10 +349,30 @@ returns the value X for which P(x&lt;X).</p>
 375
 376
 377
-378</pre>
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 351</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 371</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_icdf'>get_icdf</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_check_range'>check_range</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
@@ -410,7 +410,7 @@ returns the value X for which P(x&lt;X).</p>
       <div class="method_details ">
   <p class="signature " id="get_pdf-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_pdf</strong>(x) 
+    - <strong>get_pdf</strong>(x) 
   
 
   
@@ -432,12 +432,12 @@ i.e. P(x=X)</p>
       <pre class="lines">
 
 
-336
-337
-338</pre>
+356
+357
+358</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 336</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 356</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_pdf'>get_pdf</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span>
   <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span><span class='lparen'>(</span> <span class='op'>-</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='op'>-</span><span class='ivar'>@mean</span><span class='rparen'>)</span><span class='op'>**</span><span class='int'>2</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='int'>2</span> <span class='op'>*</span> <span class='ivar'>@variance</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='ivar'>@pdf_denominator</span>
@@ -452,7 +452,7 @@ i.e. P(x=X)</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Feb 28 15:56:03 2012 by 
+  Generated on Mon Apr  2 15:37:30 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

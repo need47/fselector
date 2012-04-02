@@ -6,7 +6,7 @@
 <title>
   Class: FSelector::Base
   
-    &mdash; Documentation by YARD 0.7.5
+    &mdash; FSelector Documentation
   
 </title>
 
@@ -91,7 +91,7 @@
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/fselector/base.rb</dd>
+    <dd class="r1 last">lib/fselector/algo_base/base.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -108,7 +108,7 @@
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="BaseContinuous.html" title="FSelector::BaseContinuous (class)">BaseContinuous</a></span>, <span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span>, <span class='object_link'><a href="Ensemble.html" title="FSelector::Ensemble (class)">Ensemble</a></span></p>
+  <p class="children"><span class='object_link'><a href="BaseCFS.html" title="FSelector::BaseCFS (class)">BaseCFS</a></span>, <span class='object_link'><a href="BaseContinuous.html" title="FSelector::BaseContinuous (class)">BaseContinuous</a></span>, <span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span>, <span class='object_link'><a href="BaseRelief.html" title="FSelector::BaseRelief (class)">BaseRelief</a></span>, <span class='object_link'><a href="BaseReliefF.html" title="FSelector::BaseReliefF (class)">BaseReliefF</a></span>, <span class='object_link'><a href="Ensemble.html" title="FSelector::Ensemble (class)">Ensemble</a></span></p>
 </div>
 
 
@@ -128,7 +128,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#each_class-instance_method" title="#each_class (instance method)">- (Object) <strong>each_class</strong> </a>
+      <a href="#each_class-instance_method" title="#each_class (instance method)">- <strong>each_class</strong> </a>
     
 
     
@@ -150,7 +150,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#each_feature-instance_method" title="#each_feature (instance method)">- (Object) <strong>each_feature</strong> </a>
+      <a href="#each_feature-instance_method" title="#each_feature (instance method)">- <strong>each_feature</strong> </a>
     
 
     
@@ -172,7 +172,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#each_sample-instance_method" title="#each_sample (instance method)">- (Object) <strong>each_sample</strong> </a>
+      <a href="#each_sample-instance_method" title="#each_sample (instance method)">- <strong>each_sample</strong> </a>
     
 
     
@@ -194,7 +194,29 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_classes-instance_method" title="#get_classes (instance method)">- (Object) <strong>get_classes</strong> </a>
+      <a href="#get_class_labels-instance_method" title="#get_class_labels (instance method)">- <strong>get_class_labels</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>get class labels.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_classes-instance_method" title="#get_classes (instance method)">- <strong>get_classes</strong> </a>
     
 
     
@@ -216,7 +238,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_data-instance_method" title="#get_data (instance method)">- (Object) <strong>get_data</strong> </a>
+      <a href="#get_data-instance_method" title="#get_data (instance method)">- <strong>get_data</strong> </a>
     
 
     
@@ -282,7 +304,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_feature_values-instance_method" title="#get_feature_values (instance method)">- (Object) <strong>get_feature_values</strong>(f) </a>
+      <a href="#get_feature_values-instance_method" title="#get_feature_values (instance method)">- <strong>get_feature_values</strong>(f, mv = nil, ck = nil) </a>
     
 
     
@@ -304,7 +326,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_features-instance_method" title="#get_features (instance method)">- (Object) <strong>get_features</strong> </a>
+      <a href="#get_features-instance_method" title="#get_features (instance method)">- <strong>get_features</strong> </a>
     
 
     
@@ -326,7 +348,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_opt-instance_method" title="#get_opt (instance method)">- (Object) <strong>get_opt</strong>(key) </a>
+      <a href="#get_opt-instance_method" title="#get_opt (instance method)">- <strong>get_opt</strong>(key) </a>
     
 
     
@@ -348,7 +370,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_sample_size-instance_method" title="#get_sample_size (instance method)">- (Object) <strong>get_sample_size</strong> </a>
+      <a href="#get_sample_size-instance_method" title="#get_sample_size (instance method)">- <strong>get_sample_size</strong> </a>
     
 
     
@@ -394,7 +416,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#print_feature_ranks-instance_method" title="#print_feature_ranks (instance method)">- (Object) <strong>print_feature_ranks</strong> </a>
+      <a href="#select_feature%21-instance_method" title="#select_feature! (instance method)">- (Hash) <strong>select_feature!</strong> </a>
     
 
     
@@ -407,7 +429,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>print feature ranks.</p>
+    <span class="summary_desc"><div class='inline'><p>reconstruct data with selected features.</p>
 </div></span>
   
 </li>
@@ -416,29 +438,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#print_feature_scores-instance_method" title="#print_feature_scores (instance method)">- (Object) <strong>print_feature_scores</strong>(feat = nil, kclass = nil) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>print feature scores.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#select_data_by_rank%21-instance_method" title="#select_data_by_rank! (instance method)">- (Hash) <strong>select_data_by_rank!</strong>(criterion, my_ranks = nil) </a>
+      <a href="#select_feature_by_rank%21-instance_method" title="#select_feature_by_rank! (instance method)">- (Hash) <strong>select_feature_by_rank!</strong>(criterion, my_ranks = nil) </a>
     
 
     
@@ -460,7 +460,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#select_data_by_score%21-instance_method" title="#select_data_by_score! (instance method)">- (Hash) <strong>select_data_by_score!</strong>(criterion, my_scores = nil) </a>
+      <a href="#select_feature_by_score%21-instance_method" title="#select_feature_by_score! (instance method)">- (Hash) <strong>select_feature_by_score!</strong>(criterion, my_scores = nil) </a>
     
 
     
@@ -482,7 +482,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_classes-instance_method" title="#set_classes (instance method)">- (Object) <strong>set_classes</strong>(classes) </a>
+      <a href="#set_classes-instance_method" title="#set_classes (instance method)">- <strong>set_classes</strong>(classes) </a>
     
 
     
@@ -504,7 +504,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_data-instance_method" title="#set_data (instance method)">- (Object) <strong>set_data</strong>(data) </a>
+      <a href="#set_data-instance_method" title="#set_data (instance method)">- <strong>set_data</strong>(data) </a>
     
 
     
@@ -526,29 +526,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_feature_score-instance_method" title="#set_feature_score (instance method)">- (Object) <strong>set_feature_score</strong>(f, k, s) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>set feature (f) score (f) for class (k).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#set_features-instance_method" title="#set_features (instance method)">- (Object) <strong>set_features</strong>(features) </a>
+      <a href="#set_features-instance_method" title="#set_features (instance method)">- <strong>set_features</strong>(features) </a>
     
 
     
@@ -570,7 +548,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_opt-instance_method" title="#set_opt (instance method)">- (Object) <strong>set_opt</strong>(key, value) </a>
+      <a href="#set_opt-instance_method" title="#set_opt (instance method)">- <strong>set_opt</strong>(key, value) </a>
     
 
     
@@ -634,7 +612,7 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
@@ -655,7 +633,7 @@
       <div class="method_details first">
   <p class="signature first" id="each_class-instance_method">
   
-    - (<tt>Object</tt>) <strong>each_class</strong> 
+    - <strong>each_class</strong> 
   
 
   
@@ -691,7 +669,7 @@
 34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_class'>each_class</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -709,7 +687,7 @@
       <div class="method_details ">
   <p class="signature " id="each_feature-instance_method">
   
-    - (<tt>Object</tt>) <strong>each_feature</strong> 
+    - <strong>each_feature</strong> 
   
 
   
@@ -745,7 +723,7 @@
 52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_feature'>each_feature</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -763,7 +741,7 @@
       <div class="method_details ">
   <p class="signature " id="each_sample-instance_method">
   
-    - (<tt>Object</tt>) <strong>each_sample</strong> 
+    - <strong>each_sample</strong> 
   
 
   
@@ -803,7 +781,7 @@
 74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_sample'>each_sample</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -821,9 +799,63 @@
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="get_class_labels-instance_method">
+  
+    - <strong>get_class_labels</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>get class labels</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 84</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_class_labels'>get_class_labels</span>
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@cv</span>
+    <span class='ivar'>@cv</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    
+    <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+      <span class='ivar'>@cv</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_k'>k</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='ivar'>@cv</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="get_classes-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_classes</strong> 
+    - <strong>get_classes</strong> 
   
 
   
@@ -848,7 +880,7 @@
 80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_classes'>get_classes</span>
   <span class='ivar'>@classes</span> <span class='op'>||=</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span>
@@ -861,7 +893,7 @@
       <div class="method_details ">
   <p class="signature " id="get_data-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_data</strong> 
+    - <strong>get_data</strong> 
   
 
   
@@ -881,12 +913,12 @@
       <pre class="lines">
 
 
-130
-131
-132</pre>
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_data'>get_data</span>
   <span class='ivar'>@data</span>
@@ -936,6 +968,16 @@
       <pre class="lines">
 
 
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
 237
 238
 239
@@ -944,20 +986,10 @@
 242
 243
 244
-245
-246
-247
-248
-249
-250
-251
-252
-253
-254
-255</pre>
+245</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 237</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 227</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
   <span class='kw'>return</span> <span class='ivar'>@ranks</span> <span class='kw'>if</span> <span class='ivar'>@ranks</span> <span class='comment'># already done
@@ -1024,6 +1056,9 @@
       <pre class="lines">
 
 
+204
+205
+206
 207
 208
 209
@@ -1036,13 +1071,10 @@
 216
 217
 218
-219
-220
-221
-222</pre>
+219</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 207</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 204</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
   <span class='kw'>return</span> <span class='ivar'>@scores</span> <span class='kw'>if</span> <span class='ivar'>@scores</span> <span class='comment'># already done
@@ -1068,13 +1100,15 @@
       <div class="method_details ">
   <p class="signature " id="get_feature_values-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_feature_values</strong>(f) 
+    - <strong>get_feature_values</strong>(f, mv = nil, ck = nil) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>get feature values</p>
+
+<p>values for the specific class (ck)</p>
 
 
   </div>
@@ -1098,6 +1132,43 @@
       
     </li>
   
+    <li>
+      
+        <span class='name'>mv</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>including missing feature values?
+don&#39;t include missing feature values (recorded as nils)
+if mv==nil, include otherwise</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ck</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>class of interest.
+return feature values for all classes, otherwise return feature</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -1107,33 +1178,53 @@
       <pre class="lines">
 
 
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116</pre>
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 125</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_mv'>mv</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_ck'>ck</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@fvs</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@fvs</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
-    <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    
     <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
-      <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
+      <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_k'>k</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
+        <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span>
+      <span class='kw'>else</span>
+        <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='kw'>nil</span> <span class='comment'># for missing featue values
+</span>      <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
   
-  <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_mv'>mv</span> <span class='comment'># include missing feature values
+</span>    <span class='kw'>return</span> <span class='id identifier rubyid_ck'>ck</span> <span class='op'>?</span> <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_ck'>ck</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+  <span class='kw'>else</span> <span class='comment'># don't include
+</span>    <span class='kw'>return</span> <span class='id identifier rubyid_ck'>ck</span> <span class='op'>?</span> <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_ck'>ck</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span> <span class='op'>:</span> <span class='ivar'>@fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
+  <span class='kw'>end</span>  
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1143,7 +1234,7 @@
       <div class="method_details ">
   <p class="signature " id="get_features-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_features</strong> 
+    - <strong>get_features</strong> 
   
 
   
@@ -1163,12 +1254,12 @@
       <pre class="lines">
 
 
-95
-96
-97</pre>
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_features'>get_features</span>
   <span class='ivar'>@features</span> <span class='op'>||=</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_x'>x</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_y'>y</span><span class='op'>|</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
@@ -1181,7 +1272,7 @@
       <div class="method_details ">
   <p class="signature " id="get_opt-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_opt</strong>(key) 
+    - <strong>get_opt</strong>(key) 
   
 
   
@@ -1201,12 +1292,12 @@
       <pre class="lines">
 
 
-150
-151
-152</pre>
+182
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_opt'>get_opt</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@opts</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='kw'>nil</span>
@@ -1219,7 +1310,7 @@
       <div class="method_details ">
   <p class="signature " id="get_sample_size-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_sample_size</strong> 
+    - <strong>get_sample_size</strong> 
   
 
   
@@ -1239,12 +1330,12 @@
       <pre class="lines">
 
 
-162
-163
-164</pre>
+194
+195
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 194</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_sample_size'>get_sample_size</span>
   <span class='ivar'>@sz</span> <span class='op'>||=</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
@@ -1255,132 +1346,93 @@
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="print_feature_ranks-instance_method">
+  <p class="signature " id="select_feature!-instance_method">
   
-    - (<tt>Object</tt>) <strong>print_feature_ranks</strong> 
+    - (<tt>Hash</tt>) <strong>select_feature!</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>print feature ranks</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-192
-193
-194
-195
-196
-197
-198</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 192</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_print_feature_ranks'>print_feature_ranks</span>
-  <span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
-  
-  <span class='id identifier rubyid_ranks'>ranks</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_f'>f</span><span class='rbrace'>}</span><span class='tstring_content'> =&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_r'>r</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
     
-      <div class="method_details ">
-  <p class="signature " id="print_feature_scores-instance_method">
-  
-    - (<tt>Object</tt>) <strong>print_feature_scores</strong>(feat = nil, kclass = nil) 
-  
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>derived class must implement its own get_subset()</p>
+</div>
+  </div>
 
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>print feature scores</p>
+<p>reconstruct data with selected features</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
-<ul class="param">
+  
+<h3>Returns:</h3>
+<ul class="return">
   
     <li>
       
-        <span class='name'>kclass</span>
       
+        <span class='type'>(<tt>Hash</tt>)</span>
       
-        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>class of interest</p>
+        <div class='inline'><p>data after feature selection</p>
 </div>
       
     </li>
   
 </ul>
 
-
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188</pre>
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 254</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_print_feature_scores'>print_feature_scores</span><span class='lparen'>(</span><span class='id identifier rubyid_feat'>feat</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_kclass'>kclass</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_scores'>scores</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_select_feature!'>select_feature!</span>
+  <span class='id identifier rubyid_subset'>subset</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_subset'>get_feature_subset</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_subset'>subset</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   
-  <span class='id identifier rubyid_scores'>scores</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_ks'>ks</span><span class='op'>|</span>
-    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_feat'>feat</span> <span class='kw'>and</span> <span class='id identifier rubyid_feat'>feat</span> <span class='op'>!=</span> <span class='id identifier rubyid_f'>f</span>
+  <span class='id identifier rubyid_my_data'>my_data</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_my_data'>my_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_my_s'>my_s</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     
-    <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_f'>f</span><span class='rbrace'>}</span><span class='tstring_content'> =&gt;</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_ks'>ks</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_kclass'>kclass</span>
-        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k'>k</span><span class='rbrace'>}</span><span class='tstring_content'>-&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'>s</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>==</span> <span class='id identifier rubyid_kclass'>kclass</span>
-      <span class='kw'>else</span>
-        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k'>k</span><span class='rbrace'>}</span><span class='tstring_content'>-&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'>s</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>end</span>
+    <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+      <span class='id identifier rubyid_my_s'>my_s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> <span class='kw'>if</span> <span class='id identifier rubyid_subset'>subset</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_f'>f</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_puts'>puts</span>
+    
+    <span class='id identifier rubyid_my_data'>my_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_my_s'>my_s</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_my_s'>my_s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_my_data'>my_data</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1388,9 +1440,9 @@
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="select_data_by_rank!-instance_method">
+  <p class="signature " id="select_feature_by_rank!-instance_method">
   
-    - (<tt>Hash</tt>) <strong>select_data_by_rank!</strong>(criterion, my_ranks = nil) 
+    - (<tt>Hash</tt>) <strong>select_feature_by_rank!</strong>(criterion, my_ranks = nil) 
   
 
   
@@ -1470,30 +1522,30 @@
       <pre class="lines">
 
 
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309
-310
-311
-312
-313
-314
-315
 316
-317</pre>
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 299</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 316</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_select_data_by_rank!'>select_data_by_rank!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_ranks'>my_ranks</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_select_feature_by_rank!'>select_feature_by_rank!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_ranks'>my_ranks</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># user ranks or internal ranks
 </span>  <span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>=</span> <span class='id identifier rubyid_my_ranks'>my_ranks</span> <span class='op'>||</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
   
@@ -1518,9 +1570,9 @@
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="select_data_by_score!-instance_method">
+  <p class="signature " id="select_feature_by_score!-instance_method">
   
-    - (<tt>Hash</tt>) <strong>select_data_by_score!</strong>(criterion, my_scores = nil) 
+    - (<tt>Hash</tt>) <strong>select_feature_by_score!</strong>(criterion, my_scores = nil) 
   
 
   
@@ -1600,30 +1652,30 @@
       <pre class="lines">
 
 
-268
-269
-270
-271
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
 285
-286</pre>
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 268</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 285</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_select_data_by_score!'>select_data_by_score!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_scores'>my_scores</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_select_feature_by_score!'>select_feature_by_score!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_scores'>my_scores</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># user scores or internal scores
 </span>  <span class='id identifier rubyid_scores'>scores</span> <span class='op'>=</span> <span class='id identifier rubyid_my_scores'>my_scores</span> <span class='op'>||</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
   
@@ -1650,7 +1702,7 @@
       <div class="method_details ">
   <p class="signature " id="set_classes-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_classes</strong>(classes) 
+    - <strong>set_classes</strong>(classes) 
   
 
   
@@ -1670,17 +1722,17 @@
       <pre class="lines">
 
 
-84
-85
-86
-87
-88
-89
-90
-91</pre>
+98
+99
+100
+101
+102
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_classes'>set_classes</span><span class='lparen'>(</span><span class='id identifier rubyid_classes'>classes</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_classes'>classes</span> <span class='kw'>and</span> <span class='id identifier rubyid_classes'>classes</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
@@ -1698,7 +1750,7 @@
       <div class="method_details ">
   <p class="signature " id="set_data-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_data</strong>(data) 
+    - <strong>set_data</strong>(data) 
   
 
   
@@ -1718,21 +1770,21 @@
       <pre class="lines">
 
 
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146</pre>
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span> <span class='kw'>and</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Hash</span>
@@ -1752,51 +1804,9 @@
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="set_feature_score-instance_method">
-  
-    - (<tt>Object</tt>) <strong>set_feature_score</strong>(f, k, s) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>set feature (f) score (f) for class (k)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-226
-227
-228
-229
-230</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 226</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_set_feature_score'>set_feature_score</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
-  <span class='ivar'>@scores</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='ivar'>@scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='ivar'>@scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <p class="signature " id="set_features-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_features</strong>(features) 
+    - <strong>set_features</strong>(features) 
   
 
   
@@ -1816,17 +1826,17 @@
       <pre class="lines">
 
 
-119
-120
-121
-122
-123
-124
-125
-126</pre>
+150
+151
+152
+153
+154
+155
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_features'>set_features</span><span class='lparen'>(</span><span class='id identifier rubyid_features'>features</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_features'>features</span> <span class='kw'>and</span> <span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
@@ -1844,7 +1854,7 @@
       <div class="method_details ">
   <p class="signature " id="set_opt-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_opt</strong>(key, value) 
+    - <strong>set_opt</strong>(key, value) 
   
 
   
@@ -1864,12 +1874,12 @@
       <pre class="lines">
 
 
-156
-157
-158</pre>
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/base.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 188</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_opt'>set_opt</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -1884,7 +1894,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Feb 28 15:56:03 2012 by 
+  Generated on Mon Apr  2 15:37:31 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

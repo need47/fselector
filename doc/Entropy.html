@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Entropy
+  
+    &mdash; FSelector Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (E)</a> &raquo; 
+    
+    
+    <span class="title">Entropy</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Entropy
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="FSelector/CFS_d.html" title="FSelector::CFS_d (class)">FSelector::CFS_d</a></span>, <span class='object_link'><a href="FSelector/InformationGain.html" title="FSelector::InformationGain (class)">FSelector::InformationGain</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/fselector/entropy.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>entropy-related functions for discrete data</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_conditional_entropy-instance_method" title="#get_conditional_entropy (instance method)">- <strong>get_conditional_entropy</strong>(arrX, arrY) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>get the conditional entropy of array (X) given another array (Y).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_joint_entropy-instance_method" title="#get_joint_entropy (instance method)">- <strong>get_joint_entropy</strong>(arrX, arrY) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>get the joint entropy of array (X) and array (Y).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_marginal_entropy-instance_method" title="#get_marginal_entropy (instance method)">- <strong>get_marginal_entropy</strong>(arrX) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>get the marginal entropy of array (X).</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="get_conditional_entropy-instance_method">
+  
+    - <strong>get_conditional_entropy</strong>(arrX, arrY) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>get the conditional entropy of array (X) given another array (Y)</p>
+
+<p>H(X|Y) = sigma<em>j (P(y</em>j) * H(C|y_j))</p>
+
+<p>where H(X|y<em>j) = -1 * sigma</em>i (P(x<em>i|y</em>j) logP(x<em>i|y</em>j))</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>array must be of same length</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    
+  <span class='id identifier rubyid_hxy'>hxy</span> <span class='op'>=</span> <span class='float'>0.0</span>
+<span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+
+<span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_y_j'>y_j</span><span class='op'>|</span>
+  <span class='id identifier rubyid_p1'>p1</span> <span class='op'>=</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_y_j'>y_j</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_n'>n</span>
+  
+  <span class='id identifier rubyid_indices'>indices</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_y_j'>y_j</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_xvs'>xvs</span> <span class='op'>=</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_indices'>indices</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_m'>m</span> <span class='op'>=</span> <span class='id identifier rubyid_xvs'>xvs</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+  
+  <span class='id identifier rubyid_xvs'>xvs</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x_i'>x_i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_p2'>p2</span> <span class='op'>=</span> <span class='id identifier rubyid_xvs'>xvs</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_x_i'>x_i</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_m'>m</span>
+  
+  <span class='id identifier rubyid_hxy'>hxy</span> <span class='op'>+=</span> <span class='op'>-</span><span class='float'>1.0</span> <span class='op'>*</span> <span class='id identifier rubyid_p1'>p1</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_p2'>p2</span> <span class='op'>*</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log2'>log2</span><span class='lparen'>(</span><span class='id identifier rubyid_p2'>p2</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_hxy'>hxy</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_joint_entropy-instance_method">
+  
+    - <strong>get_joint_entropy</strong>(arrX, arrY) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>get the joint entropy of array (X) and array (Y)</p>
+
+<p>H(X,Y) = H(Y) + H(X|Y)
+       = H(X) + H(Y|X)</p>
+
+<p>i.e. H(X,Y) == H(Y,X)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_joint_entropy'>get_joint_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>array must be of same length</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+
+  <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_marginal_entropy-instance_method">
+  
+    - <strong>get_marginal_entropy</strong>(arrX) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>get the marginal entropy of array (X)</p>
+
+<p>H(X) = -1 * sigma<em>i (P(x</em>i) logP(x_i))</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_h'>h</span> <span class='op'>=</span> <span class='float'>0.0</span>
+  <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+
+<span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x_i'>x_i</span><span class='op'>|</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_x_i'>x_i</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_n'>n</span>
+  <span class='id identifier rubyid_h'>h</span> <span class='op'>+=</span> <span class='op'>-</span><span class='float'>1.0</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span> <span class='op'>*</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log2'>log2</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_h'>h</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon Apr  2 15:37:30 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.5 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
