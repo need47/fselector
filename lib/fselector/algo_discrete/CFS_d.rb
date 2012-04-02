@@ -24,7 +24,7 @@ module FSelector
     end # do_rcf
     
     
-    # calc the feature-class correlation of two vectors
+    # calc the feature-feature correlation of two vectors
     def do_rff(fv, sv)
       hf = get_marginal_entropy(fv)
       hs = get_marginal_entropy(sv)
