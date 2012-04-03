@@ -171,7 +171,7 @@ module FileIO
           end
         else
           abort "[#{__FILE__}@#{__LINE__}]: "+
-                "1st and 2nd row must have same fields"
+                "the first two rows must have same number of fields"
         end
       else # data rows
         label, *fvs = ln.chomp.split(/,/)
