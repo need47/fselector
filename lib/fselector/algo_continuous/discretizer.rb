@@ -10,7 +10,7 @@ module Discretizer
   # @param [Integer] n_interval
   #        desired number of intervals
   # @note data structure will be altered
-  def discretize_equal_width!(n_interval)
+  def discretize_by_equal_width!(n_interval)
     n_interval = 1 if n_interval < 1 # at least one interval
     
     # first determine min and max for each feature
@@ -42,7 +42,7 @@ module Discretizer
   # @param [Integer] n_interval
   #        desired number of intervals
   # @note data structure will be altered
-  def discretize_equal_frequency!(n_interval)
+  def discretize_by_equal_frequency!(n_interval)
     n_interval = 1 if n_interval < 1 # at least one interval
     
     # first determine the boundaries
@@ -87,7 +87,7 @@ module Discretizer
   #             2          4.60    5.99    9.21    13.82
   #             3          6.35    7.82    11.34   16.27
   #    
-  def discretize_ChiMerge!(chisq)
+  def discretize_by_ChiMerge!(chisq)
     # chisq = 4.60 # for iris::Sepal.Length
     # for intialization
     hzero = {}
@@ -185,10 +185,11 @@ module Discretizer
   
   #
   # discretize by Multi-Interval Discretization (MID) algorithm
+  # @note data structure will be altered
   #
   # ref: [Multi-Interval Discretization of Continuous-Valued Attributes for Classification Learning](http://www.ijcai.org/Past%20Proceedings/IJCAI-93-VOL2/PDF/022.pdf)
   #
-  def discretize_MID!
+  def discretize_by_MID!
     # determine the final boundaries
     f2cp = {} # cut points for each feature
     each_feature do |f|

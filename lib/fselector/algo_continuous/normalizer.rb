@@ -3,7 +3,7 @@
 #
 module Normalizer
    # log transformation, requires positive feature values 
-   def normalize_log!(base=10)
+   def normalize_by_log!(base=10)
      each_sample do |k, s|
        s.keys.each do |f|
          s[f] = Math.log(s[f], base) if s[f] > 0.0
@@ -13,7 +13,7 @@ module Normalizer
    
    
    # scale to [min,max], max > min
-   def normalize_min_max!(min=0.0, max=1.0)
+   def normalize_by_min_max!(min=0.0, max=1.0)
      # first determine min and max for each feature
      f2min_max = {}
           
@@ -33,7 +33,7 @@ module Normalizer
    
    
    # by z-score
-   def normalize_zscore!
+   def normalize_by_zscore!
      # first determine mean and sd for each feature
      f2mean_sd = {}
      
