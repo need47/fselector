@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.3.0  
-**Release Date**: April 3rd 2012
+**Latest Version**: 0.3.1  
+**Release Date**: April 4 2012
 
 Synopsis
 --------
