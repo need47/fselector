@@ -8,6 +8,9 @@ module FSelector
 # ref: [Feature Selection for Discrete and Numeric Class Machine Learning](http://www.cs.waikato.ac.nz/ml/publications/1999/99MH-Feature-Select.pdf)
 #
   class CFS_c < BaseCFS
+    # include normalizer and discretizer
+    include Normalizer
+    include Discretizer
     
     private
         

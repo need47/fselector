@@ -10,6 +10,9 @@ module FSelector
 # ref: [The Feature Selection Problem: Traditional Methods and a New Algorithm](http://www.aaai.org/Papers/AAAI/1992/AAAI92-020.pdf)
 #
   class Relief_c < BaseRelief
+    # include normalizer and discretizer
+    include Normalizer
+    include Discretizer
         
     private
     
