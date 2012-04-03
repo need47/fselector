@@ -122,9 +122,9 @@ module FSelector
       end
       
       fq
-    end 
+    end
     
-        
+     
   end # class 
  
     

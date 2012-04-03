@@ -17,12 +17,19 @@ module FSelector
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Symmetric_uncertainty)
 #
   class SymmetricalUncertainty < BaseDiscrete
+    # include Entropy module
+    include Entropy
 
     private
   
     # calculate contribution of each feature (f) across all classes
     def calc_contribution(f)
-      hc, hcf, hf = get_Hc, get_Hcf(f), get_Hf(f)
+      cv = get_class_labels
+      fv = get_feature_values(f, :include_missing_values)
+      
+      hc = get_marginal_entropy(cv)
+      hcf = get_conditional_entropy(cv, fv)
+      hf = get_marginal_entropy(fv)
       
       s =  2*(hc-hcf)/(hc+hf)
      
