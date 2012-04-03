@@ -22,7 +22,7 @@ module FSelector
     # use sequential forward search
     def get_feature_subset
       # handle missing values
-      handle_missing_value
+      handle_missing_values
       
       subset = []
       feats = get_features.dup
