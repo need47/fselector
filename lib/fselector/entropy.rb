@@ -7,16 +7,16 @@ module Entropy
   #
   # H(X) = -1 * sigma_i (P(x_i) logP(x_i))
   #
-  def get_marginal_entropy(arrX)
+   def get_marginal_entropy(arrX)
     h = 0.0
     n = arrX.size.to_f
-  
-  arrX.uniq.each do |x_i|
-    p = arrX.count(x_i)/n
-    h += -1.0 * (p * Math.log2(p))
-  end
-  
-  h
+
+    arrX.uniq.each do |x_i|
+      p = arrX.count(x_i)/n
+      h += -1.0 * (p * Math.log2(p))
+    end
+
+    h
   end # get_marginal_entropy
   
   
@@ -27,28 +27,28 @@ module Entropy
   #
   # where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) logP(x_i|y_j))
   #
-  def get_conditional_entropy(arrX, arrY)
-  abort "[#{__FILE__}@#{__LINE__}]: "+
-        "array must be of same length" if not arrX.size == arrY.size
-      
+   def get_conditional_entropy(arrX, arrY)
+    abort "[#{__FILE__}@#{__LINE__}]: "+
+          "array must be of same length" if not arrX.size == arrY.size
+
     hxy = 0.0
-  n = arrX.size.to_f
-  
-  arrY.uniq.each do |y_j|
-    p1 = arrY.count(y_j)/n
-    
-    indices = (0...n).to_a.select { |k| arrY[k] == y_j }
-    xvs = arrX.values_at(*indices)
-    m = xvs.size.to_f
-    
-    xvs.uniq.each do |x_i|
-      p2 = xvs.count(x_i)/m
-    
-    hxy += -1.0 * p1 * (p2 * Math.log2(p2))
+    n = arrX.size.to_f
+
+    arrY.uniq.each do |y_j|
+      p1 = arrY.count(y_j)/n
+
+      indices = (0...n).to_a.select { |k| arrY[k] == y_j }
+      xvs = arrX.values_at(*indices)
+      m = xvs.size.to_f
+
+      xvs.uniq.each do |x_i|
+        p2 = xvs.count(x_i)/m
+
+        hxy += -1.0 * p1 * (p2 * Math.log2(p2))
+      end
     end
-  end
-  
-  hxy
+
+    hxy
   end # get_conditional_entropy
   
   
@@ -60,11 +60,11 @@ module Entropy
   #
   # i.e. H(X,Y) == H(Y,X)
   #
-  def get_joint_entropy(arrX, arrY)
+   def get_joint_entropy(arrX, arrY)
     abort "[#{__FILE__}@#{__LINE__}]: "+
         "array must be of same length" if not arrX.size == arrY.size
-  
-    get_marginal_entropy(arrY) + get_conditional_entropy(arrX, arrY)  
+
+    get_marginal_entropy(arrY) + get_conditional_entropy(arrX, arrY)
   end # get_joint_entropy
   
   
