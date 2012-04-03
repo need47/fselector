@@ -77,12 +77,13 @@ Feature List
     
     algorithm          note
     --------------------------------------------------------------------
-    log                normalization by logarithmic transformation
-    min_max            normalization by scaling into [min, max]
-    zscore             normalization by converting into zscore
-    equal_width        discretization by equal width among intervals
-    equal_frequency    discretization by equal frequency among intervals
-    ChiMerge           discretization by ChiMerge method
+    log                normalize by logarithmic transformation
+    min_max            normalize by scaling into [min, max]
+    zscore             normalize by converting into zscore
+    equal_width        discretize by equal width among intervals
+    equal_frequency    discretize by equal frequency among intervals
+    ChiMerge           discretize by ChiMerge method
+    MID                discretize by Multi-Interval Discretization
     
 **4. supported input/output file types**
 
