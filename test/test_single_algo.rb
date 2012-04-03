@@ -17,7 +17,7 @@ r1.data_from_random(100, 2, 10, 3, true)
 puts "# features (before): "+ r1.get_features.size.to_s
 
 # select the top-ranked features with scores >0.01
-r1.select_data_by_score!('>0.01')
+r1.select_feature_by_score!('>0.01')
 
 # number of features after feature selection
 puts "# features (after): "+ r1.get_features.size.to_s
@@ -31,7 +31,7 @@ r2 = FSelector::ChiSquaredTest.new(:yates, r1.get_data)
 puts "# features (before): "+ r2.get_features.size.to_s
 
 # select the top-ranked 3 features
-r2.select_data_by_rank!('<=3')
+r2.select_feature_by_rank!('<=3')
 
 # number of features after feature selection
 puts "# features (after): "+ r2.get_features.size.to_s

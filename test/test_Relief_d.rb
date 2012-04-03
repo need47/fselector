@@ -13,13 +13,13 @@ r1.data_from_csv(File.expand_path(File.dirname(__FILE__))+'/iris.csv')
 
 # discretization by ChiMerge algorithm
 # chi-squared value = 4.60 for a three-class problem at alpha=0.10
-r1.discretize_chimerge!(4.60)
+r1.discretize_by_ChiMerge!(4.60)
 
 # apply Relief_d for discrete feature
 # initialize with discretized data from r1
 r2 = FSelector::ReliefF_d.new(r1.get_sample_size, 10, r1.get_data)
 
 # print feature ranks
-r2.print_feature_ranks
+puts r2.get_feature_ranks
 
 puts "======= end test #{File.basename(__FILE__)} ======="
