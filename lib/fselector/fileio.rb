@@ -110,10 +110,22 @@ module FileIO
       ofs = File.open(fname, 'w')
     end
     
+    # convert class label to integer type
+    k2idx = {}
+    get_classes.each_with_index do |k, i|
+      k2idx[k] = i+1
+    end
+    
+    # convert feature to integer type
+    f2idx = {}
+    get_features.each_with_index do |f, i|
+      f2idx[f] = i+1
+    end
+    
     each_sample do |k, s|
-      ofs.print "#{k} "
+      ofs.print "#{k2idx[k]} "
       s.keys.sort { |x, y| x.to_s.to_i <=> y.to_s.to_i }.each do |i|
-        ofs.print " #{i}:#{s[i]}" if not s[i].zero?
+        ofs.print " #{f2idx[i]}:#{s[i]}" if not s[i].zero? # implicit mode
       end
       ofs.puts
     end
