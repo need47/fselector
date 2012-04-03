@@ -10,8 +10,8 @@ module FSelector
   class BaseContinuous < Base
     # include normalizer
     include Normalizer
-    # include discretilizer
-    include Discretilizer
+    # include discretizer
+    include Discretizer
     
     # initialize from an existing data structure
     def initialize(data=nil)
