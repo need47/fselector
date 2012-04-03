@@ -8,6 +8,9 @@ module FSelector
 # ref: [Feature Selection for High-Dimensional Data: A Fast Correlation-Based Filter Solution](http://www.hpl.hp.com/conferences/icml2003/papers/144.pdf)
 #
   class FastCorrelationBasedFilter < BaseDiscrete
+    # include Entropy
+    include Entropy
+    
     #
     # initialize from an existing data structure
     #
@@ -70,18 +73,21 @@ module FSelector
     
     
     # SU(X,Y) = 2 * ( H(X)-H(X|Y) ) / ( H(X)+H(Y) )
-    def get_SU_fc(f)   
+    def get_SU_fc(f)
+      cv = get_class_labels
+      fv = get_feature_values(f, :include_missing_values)
+      
       # Hf
-      hf = get_Hf(f)
+      hf = get_marginal_entropy(fv)
       # cache for future use
       @f2hf ||= {}
       @f2hf[f] = hf
       
       # Hfc
-      hfc = get_Hfc(f)
+      hfc = get_conditional_entropy(fv, cv)
       
       # Hc
-      hc = get_Hc
+      hc = get_marginal_entropy(cv)
       
       2.0*(hf-hfc)/(hf+hc)
     end
@@ -92,72 +98,16 @@ module FSelector
       hp = @f2hf[p]
       
       # Hpq
-      hpq = get_Hpq(p, q)
+      # H(p|q) = sigma_j (P(qj) H(p|qj))
+      # H(p|qj) = -1 * sigma_k (P(pk|qj) logP(pk|qj))
+      pv = get_feature_values(p, :include_missing_values)
+      qv = get_feature_values(q, :include_missing_values)
+      hpq = get_conditional_entropy(pv, qv)
       
       # Hq, use cache
       hq = @f2hf[q]
       
       2.0*(hp-hpq)/(hp+hq)
-    end
-    
-    
-    # H(p|q) = sigma_j (P(qj) H(p|qj))
-    # H(p|qj) = -1 * sigma_k (P(pk|qj) logP(pk|qj))
-    def get_Hpq(p, q)
-      hpq = 0.0
-      
-      pvs, qvs = get_fv(p), get_fv(q)
-      nq = qvs.size.to_f
-      
-      qvs.uniq.each do |qv|
-        p0 = qvs.count(qv)/nq
-        
-        res = get_pv_at_qv(pvs, qvs, qv)
-        np = res.size.to_f
-        
-        res.uniq.each do |pv|
-          p1 = res.count(pv)/np
-          
-          if p1.zero?
-            hpq += -0.0
-          else
-            hpq += -1.0 * p0 * (p1 * Math.log2(p1))
-          end
-        end
-      end
-      
-      hpq
-    end
-    
-    
-    # collect all pv at i in pvs when qvs[i] == qv
-    def get_pv_at_qv(pvs, qvs, qv)
-      res = []
-      
-      pvs.each_with_index do |pv, i|
-        res << pv if qvs[i] == qv
-      end
-      
-      res
-    end
-    
-    
-    # get values (including missing ones) for feature (f)
-    def get_fv(f)
-      @f2fv ||= {} # cache
-      
-      if not @f2fv.has_key? f
-        @f2fv[f] = []
-        each_sample do |k, s|
-          if s.has_key? f
-            @f2fv[f] << s[f]
-          else
-            @f2fv[f] << nil # for missing values
-          end
-        end      
-      end
-      
-      @f2fv[f]
     end
     
     
