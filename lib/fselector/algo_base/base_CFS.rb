@@ -21,6 +21,9 @@ module FSelector
     
     # use sequential forward search
     def get_feature_subset
+      # handle missing values
+      handle_missing_value
+      
       subset = []
       feats = get_features.dup
 	  
@@ -56,6 +59,15 @@ module FSelector
       
       subset
     end # get_feature_subset
+    
+    
+    # handle missing values
+    # CFS replaces missing values with the mean for continous features and
+    # the most seen value for discrete features
+    def handle_missing_values
+      abort "[#{__FILE__}@#{__LINE__}]: "+
+             "derived CFS algo must implement its own handle_missing_values()"
+    end
     
     
     # calc new merit of subset when adding feature (f)

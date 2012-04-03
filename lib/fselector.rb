@@ -11,9 +11,14 @@ ROOT = File.expand_path(File.dirname(__FILE__))
 #
 # include necessary files
 #
+# read and write file, supported formats include CSV, LibSVM and WEKA files
 require "#{ROOT}/fselector/fileio.rb"
+# extend Array and String class
 require "#{ROOT}/fselector/util.rb"
+# entropy-related functions
 require "#{ROOT}/fselector/entropy.rb"
+# replace missing values
+require "#{ROOT}/fselector/replace_missing_values.rb"
 
 #
 # base class

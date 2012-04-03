@@ -13,6 +13,13 @@ module FSelector
     include Discretizer
     
     private
+    
+    
+    # replace missing values with mean feature value
+    def handle_missing_values
+      replace_with_mean_value!
+    end
+    
         
     # calc the feature-class correlation of two vectors
     def do_rcf(cv, fv)

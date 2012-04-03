@@ -8,6 +8,8 @@ module FSelector
   class Base
     # include FileIO
     include FileIO
+    # include ReplaceMissingValues
+    include ReplaceMissingValues
     
     # initialize from an existing data structure
     def initialize(data=nil)
@@ -167,13 +169,13 @@ module FSelector
     def set_data(data)
       if data and data.class == Hash
         @data = data
-        # clear
-        @classes, @features, @fvs = nil, nil, nil
-        @scores, @ranks, @sz = nil, nil, nil
+        # clear variables
+        clear_vars
       else
         abort "[#{__FILE__}@#{__LINE__}]: "+
               "data must be a Hash object!"
       end
+      
       data
     end
     
@@ -335,12 +337,21 @@ module FSelector
     
     private
     
+    # clear variables when data structure is altered
+    def clear_vars
+      @classes, @features, @fvs = nil, nil, nil
+      @scores, @ranks, @sz = nil, nil, nil
+      @cv, @fvs = nil, nil
+    end
+    
+    
     # set feature (f) score (s) for class (k)
     def set_feature_score(f, k, s)
       @scores ||= {}
       @scores[f] ||= {}
       @scores[f][k] = s
     end
+    
     
     # get subset of feature
     def get_feature_subset

@@ -12,6 +12,12 @@ module FSelector
     include Entropy
     
     private
+    
+    # replace missing values with most seen feature value
+    def handle_missing_values
+      replace_with_most_seen_value!
+    end
+    
         
     # calc the feature-class correlation of two vectors
     def do_rcf(cv, fv)

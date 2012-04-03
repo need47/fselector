@@ -28,10 +28,17 @@ summary of FSelector's features.
 Feature List
 ------------
 
-**1. available feature selection/ranking algorithms**
+**1. supported input/output file types**
+
+ - csv
+ - libsvm
+ - weka ARFF
+ - random data (for test purpose)
+
+**2. available feature selection/ranking algorithms**
     
-    algorithm                       alias      feature type
-    -------------------------------------------------------
+    algorithm                       alias       feature type
+    --------------------------------------------------------
     Accuracy                        Acc         discrete
     AccuracyBalanced                Acc2        discrete
     BiNormalSeparation              BNS         discrete
@@ -67,16 +74,16 @@ Feature List
     ReliefF_c                       ReliefF_c   continuous
     TScore                          TS          continuous
 
-**2. feature selection approaches**
+**3. feature selection approaches**
 
  - by a single algorithm
  - by multiple algorithms in a tandem manner
  - by multiple algorithms in a consensus manner
  
-**3. availabe normalization and discretization algorithms for continuous feature**
+**4. availabe normalization and discretization algorithms for continuous feature**
     
     algorithm          note
-    --------------------------------------------------------------------
+    -----------------------------------------------------------------
     log                normalize by logarithmic transformation
     min_max            normalize by scaling into [min, max]
     zscore             normalize by converting into zscore
@@ -85,12 +92,13 @@ Feature List
     ChiMerge           discretize by ChiMerge method
     MID                discretize by Multi-Interval Discretization
     
-**4. supported input/output file types**
-
- - csv
- - libsvm
- - weka ARFF
- - random data (for test purpose)
+**5. availabe algorithms for replacing missing feature values**
+    
+    algorithm          note                                  feature type                     
+    --------------------------------------------------------------------------------------
+    fixed_value        replace with a fixed value            discrete, continuous
+    mean_value         replace with the mean feature value   continuous
+    most_seen_value    replace with most seen feature value  discrete
 
 Installing
 ----------
@@ -188,7 +196,7 @@ Usage
     r1.data_from_csv('test/iris.csv')
     
     # normalization by log2 (optional)
-    # r1.normalize_log!(2)
+    # r1.normalize_by_log!(2)
     
     # discretization by ChiMerge algorithm
     # chi-squared value = 4.60 for a three-class problem at alpha=0.10
