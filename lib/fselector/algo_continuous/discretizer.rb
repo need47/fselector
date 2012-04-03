@@ -185,7 +185,7 @@ module Discretizer
   
   #
   # discretize by Multi-Interval Discretization (MID) algorithm
-  # @note data structure will be altered
+  # @note no missing feature values allowed and data structure will be altered
   #
   # ref: [Multi-Interval Discretization of Continuous-Valued Attributes for Classification Learning](http://www.ijcai.org/Past%20Proceedings/IJCAI-93-VOL2/PDF/022.pdf)
   #
@@ -194,7 +194,7 @@ module Discretizer
     f2cp = {} # cut points for each feature
     each_feature do |f|
       cv = get_class_labels
-      # for now we assume no missing feature values 
+      # we assume no missing feature values 
       fv = get_feature_values(f)
       
       n = cv.size
