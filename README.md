@@ -8,22 +8,26 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.2.0  
-**Release Date**: April 1st 2012
+**Latest Version**: 0.3.0  
+**Release Date**: April 3rd 2012
 
 Synopsis
 --------
 
-FSelector is a Ruby gem that aims to integrate various feature selection/ranking 
-algorithms into one single package. Welcome to contact me (need47@gmail.com) 
-if you want to contribute your own algorithms or report a bug. FSelector enables 
-the user to perform feature selection by using either a single algorithm or an 
-ensemble of algorithms. FSelector acts on a full-feature data set with CSV, LibSVM 
-or WEKA file format and outputs a reduced data set with only selected subset of 
-features, which can later be used as the input for various machine learning softwares 
-including LibSVM and WEKA. FSelector, itself, does not implement any of the machine 
-learning algorithms such as support vector machines and random forest. Below is a 
-summary of FSelector's features.
+FSelector is a Ruby gem that aims to integrate various feature 
+selection/ranking algorithms and related functions into one single 
+package. Welcome to contact me (need47@gmail.com) if you'd like to 
+contribute your own algorithms or report a bug. FSelector allows user 
+to perform feature selection by using either a single algorithm or an 
+ensemble of multiple algorithms, and other common tasks including 
+normalization and discretization on continuous data, as well as replace 
+missing feature values with certain criterion. FSelector acts on a 
+full-feature data set in either CSV, LibSVM or WEKA file format and 
+outputs a reduced data set with only selected subset of features, which 
+can later be used as the input for various machine learning softwares 
+including LibSVM and WEKA. FSelector, itself, does not implement 
+any of the machine learning algorithms such as support vector machines 
+and random forest. See below for a list of FSelector's features.
 
 Feature List
 ------------
@@ -200,7 +204,7 @@ Usage
     
     # discretization by ChiMerge algorithm
     # chi-squared value = 4.60 for a three-class problem at alpha=0.10
-    r1.discretize_by_chimerge!(4.60)
+    r1.discretize_by_ChiMerge!(4.60)
     
     # apply Fast Correlation-Based Filter (FCBF) algorithm for discrete feature
     # initialize with discretized data from r1

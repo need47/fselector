@@ -71,7 +71,7 @@
   
   
     <dt class="r1">Included in:</dt>
-    <dd class="r1"><span class='object_link'><a href="FSelector/BaseContinuous.html" title="FSelector::BaseContinuous (class)">FSelector::BaseContinuous</a></span></dd>
+    <dd class="r1"><span class='object_link'><a href="FSelector/BaseContinuous.html" title="FSelector::BaseContinuous (class)">FSelector::BaseContinuous</a></span>, <span class='object_link'><a href="FSelector/CFS_c.html" title="FSelector::CFS_c (class)">FSelector::CFS_c</a></span>, <span class='object_link'><a href="FSelector/ReliefF_c.html" title="FSelector::ReliefF_c (class)">FSelector::ReliefF_c</a></span>, <span class='object_link'><a href="FSelector/Relief_c.html" title="FSelector::Relief_c (class)">FSelector::Relief_c</a></span></dd>
     
   
   
@@ -109,7 +109,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#normalize_log%21-instance_method" title="#normalize_log! (instance method)">- <strong>normalize_log!</strong>(base = 10) </a>
+      <a href="#normalize_by_log%21-instance_method" title="#normalize_by_log! (instance method)">- <strong>normalize_by_log!</strong>(base = 10) </a>
     
 
     
@@ -131,7 +131,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#normalize_min_max%21-instance_method" title="#normalize_min_max! (instance method)">- <strong>normalize_min_max!</strong>(min = 0.0, max = 1.0) </a>
+      <a href="#normalize_by_min_max%21-instance_method" title="#normalize_by_min_max! (instance method)">- <strong>normalize_by_min_max!</strong>(min = 0.0, max = 1.0) </a>
     
 
     
@@ -153,7 +153,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#normalize_zscore%21-instance_method" title="#normalize_zscore! (instance method)">- <strong>normalize_zscore!</strong> </a>
+      <a href="#normalize_by_zscore%21-instance_method" title="#normalize_by_zscore! (instance method)">- <strong>normalize_by_zscore!</strong> </a>
     
 
     
@@ -182,9 +182,9 @@
     
     
       <div class="method_details first">
-  <p class="signature first" id="normalize_log!-instance_method">
+  <p class="signature first" id="normalize_by_log!-instance_method">
   
-    - <strong>normalize_log!</strong>(base = 10) 
+    - <strong>normalize_by_log!</strong>(base = 10) 
   
 
   
@@ -215,7 +215,7 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 6</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_normalize_log!'>normalize_log!</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='op'>=</span><span class='int'>10</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_log!'>normalize_by_log!</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='op'>=</span><span class='int'>10</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
     <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
       <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_base'>base</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='float'>0.0</span>
@@ -228,9 +228,9 @@
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="normalize_min_max!-instance_method">
+  <p class="signature " id="normalize_by_min_max!-instance_method">
   
-    - <strong>normalize_min_max!</strong>(min = 0.0, max = 1.0) 
+    - <strong>normalize_by_min_max!</strong>(min = 0.0, max = 1.0) 
   
 
   
@@ -271,7 +271,7 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 16</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_normalize_min_max!'>normalize_min_max!</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='op'>=</span><span class='float'>1.0</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_min_max!'>normalize_by_min_max!</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='op'>=</span><span class='float'>1.0</span><span class='rparen'>)</span>
   <span class='comment'># first determine min and max for each feature
 </span>  <span class='id identifier rubyid_f2min_max'>f2min_max</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
        
@@ -294,9 +294,9 @@
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="normalize_zscore!-instance_method">
+  <p class="signature " id="normalize_by_zscore!-instance_method">
   
-    - <strong>normalize_zscore!</strong> 
+    - <strong>normalize_by_zscore!</strong> 
   
 
   
@@ -341,7 +341,7 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 36</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_normalize_zscore!'>normalize_zscore!</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_zscore!'>normalize_by_zscore!</span>
   <span class='comment'># first determine mean and sd for each feature
 </span>  <span class='id identifier rubyid_f2mean_sd'>f2mean_sd</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   
@@ -372,7 +372,7 @@
 </div>
     
     <div id="footer">
-  Generated on Mon Apr  2 15:40:47 2012 by 
+  Generated on Tue Apr  3 18:20:23 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
