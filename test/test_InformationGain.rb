@@ -1,11 +1,13 @@
 #
-# test example for Information Gain
+# test Information Gain (IG) algorithm
+# for selecting discrete feature
 #
 require 'fselector'
 
-puts "\n======= begin test #{File.basename(__FILE__)} ======="
+puts "\n>============> #{File.basename(__FILE__)}"
 
-# data1 has two classes(:c0, :c1) and one feature with two discrete vaules (0, 1)
+# data1 has two classes(:c0, :c1) and 
+# one feature (:f1) with two discrete vaules (0, 1)
 data1 = {
   :c1 => [
     {:f1 => 1},{:f1 => 1},{:f1 => 1},{:f1 => 1},{:f1 => 1},
@@ -42,9 +44,9 @@ data2 = {
 
 # two data sets give exactly the same information gain
 r1 = FSelector::IG.new(data1)
-puts "IG1(f1) = #{r1.get_feature_scores[:f1][:BEST]}" #=> 0.26503777490949343
+puts "  IG1(f1) = #{r1.get_feature_scores[:f1][:BEST]}" #=> 0.26503777490949343
 
 r2 = FSelector::IG.new(data2) # discrete data
-puts "IG2(f1) = #{r2.get_feature_scores[:f1][:BEST]}" #=> 0.26503777490949343
+puts "  IG2(f1) = #{r2.get_feature_scores[:f1][:BEST]}" #=> 0.26503777490949343
 
-puts "======= end test #{File.basename(__FILE__)} ======="
+puts "<============< #{File.basename(__FILE__)}"
