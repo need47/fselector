@@ -80,7 +80,7 @@
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/fselector/algo_continuous/discretizer.rb</dd>
+    <dd class="r1 last">lib/fselector/discretizer.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -376,7 +376,7 @@ degree_of_freedom  p&lt;0.10  p&lt;0.05  p&lt;0.01  p&lt;0.001
 183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/discretizer.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='id identifier rubyid_chisq'>chisq</span><span class='rparen'>)</span>
   <span class='comment'># chisq = 4.60 # for iris::Sepal.Length
@@ -553,7 +553,7 @@ degree_of_freedom  p&lt;0.10  p&lt;0.05  p&lt;0.01  p&lt;0.001
 69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/discretizer.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_equal_frequency!'>discretize_by_equal_frequency!</span><span class='lparen'>(</span><span class='id identifier rubyid_n_interval'>n_interval</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>&lt;</span> <span class='int'>1</span> <span class='comment'># at least one interval
@@ -661,7 +661,7 @@ degree_of_freedom  p&lt;0.10  p&lt;0.05  p&lt;0.01  p&lt;0.001
 37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/discretizer.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_equal_width!'>discretize_by_equal_width!</span><span class='lparen'>(</span><span class='id identifier rubyid_n_interval'>n_interval</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>&lt;</span> <span class='int'>1</span> <span class='comment'># at least one interval
@@ -770,7 +770,7 @@ ref: <a href="http://www.ijcai.org/Past%20Proceedings/IJCAI-93-VOL2/PDF/022.pdf"
 235</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/discretizer.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_MID!'>discretize_by_MID!</span>
   <span class='comment'># determine the final boundaries
@@ -826,7 +826,7 @@ ref: <a href="http://www.ijcai.org/Past%20Proceedings/IJCAI-93-VOL2/PDF/022.pdf"
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  3 19:24:23 2012 by 
+  Generated on Wed Apr  4 15:38:54 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

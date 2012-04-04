@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.3.1  
-**Release Date**: April 4 2012
+**Latest Version**: 0.4.0  
+**Release Date**: April 5 2012
 
 Synopsis
 --------
@@ -101,7 +101,7 @@ Feature List
     algorithm          note                                  feature type                     
     --------------------------------------------------------------------------------------
     fixed_value        replace with a fixed value            discrete, continuous
-    mean_value         replace with the mean feature value   continuous
+    mean_value         replace with mean feature value       continuous
     most_seen_value    replace with most seen feature value  discrete
 
 Installing
@@ -124,10 +124,10 @@ Usage
     # read from random data (or csv, libsvm, weka ARFF file)
     # no. of samples: 100
     # no. of classes: 2
-    # no. of features: 10
+    # no. of features: 15
     # no. of possible values for each feature: 3
     # allow missing values: true
-    r1.data_from_random(100, 2, 10, 3, true)
+    r1.data_from_random(100, 2, 15, 3, true)
     
     # number of features before feature selection
     puts "# features (before): "+ r1.get_features.size.to_s
@@ -141,7 +141,7 @@ Usage
     # you can also use multiple alogirithms in a tandem manner
     # e.g. use the ChiSquaredTest with Yates' continuity correction
     # initialize from r1's data
-    r2 = FSelector::ChiSquaredTest.new(:yates, r1.get_data)
+    r2 = FSelector::ChiSquaredTest.new(:yates_continuity_correction, r1.get_data)
     
     # number of features before feature selection
     puts "# features (before): "+ r2.get_features.size.to_s
@@ -157,7 +157,7 @@ Usage
     r2.data_to_weka(:stdout, :sparse)
 
 	
-**2. feature selection by an ensemble of algorithms**
+**2. feature selection by an ensemble of multiple algorithms**
 
     require 'fselector'
 	
@@ -169,7 +169,7 @@ Usage
     re = FSelector::Ensemble.new(r1, r2)
     
     # read random data
-    re.data_from_random(100, 2, 10, 3, true)
+    re.data_from_random(100, 2, 15, 3, true)
     
     # number of features before feature selection
     puts '# features (before): ' + re.get_features.size.to_s
@@ -185,7 +185,7 @@ Usage
     puts '# features (after): ' + re.get_features.size.to_s
 
     
- **3. normalization and discretization before feature selection**
+**3. normalization and discretization before feature selection**
 
  In addition to the algorithms designed for continuous feature, one
  can apply those deisgned for discrete feature after (optionally
@@ -194,14 +194,11 @@ Usage
     require 'fselector'
     
     # for continuous feature
-    r1 = FSelector::BaseContinuous.new
+    r1 = FSelector::Relief_c.new
     
     # read the Iris data set (under the test/ directory)
     r1.data_from_csv('test/iris.csv')
-    
-    # normalization by log2 (optional)
-    # r1.normalize_by_log!(2)
-    
+        
     # discretization by ChiMerge algorithm
     # chi-squared value = 4.60 for a three-class problem at alpha=0.10
     r1.discretize_by_ChiMerge!(4.60)
@@ -218,6 +215,8 @@ Usage
     
     # number of features after feature selection
     puts '# features (after): ' + r2.get_features.size.to_s
+
+**4. see more examples test_*.rb under the test/ directory**
 
 Copyright
 ---------

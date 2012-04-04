@@ -76,7 +76,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/fselector/algo_continuous/normalizer.rb</dd>
+    <dd class="r2 last">lib/fselector/normalizer.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -213,7 +213,7 @@
 12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_log!'>normalize_by_log!</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='op'>=</span><span class='int'>10</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
@@ -269,7 +269,7 @@
 32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_min_max!'>normalize_by_min_max!</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='op'>=</span><span class='float'>1.0</span><span class='rparen'>)</span>
   <span class='comment'># first determine min and max for each feature
@@ -339,7 +339,7 @@
 56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/normalizer.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_zscore!'>normalize_by_zscore!</span>
   <span class='comment'># first determine mean and sd for each feature
@@ -372,7 +372,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  3 19:24:23 2012 by 
+  Generated on Wed Apr  4 15:38:54 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

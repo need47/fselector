@@ -63,8 +63,8 @@
 <strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br>
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
-<strong>Latest Version</strong>: 0.3.1<br>
-<strong>Release Date</strong>: April 4 2012</p>
+<strong>Latest Version</strong>: 0.4.0<br>
+<strong>Release Date</strong>: April 5 2012</p>
 
 <h2>Synopsis</h2>
 
@@ -160,7 +160,7 @@ MID                discretize by Multi-Interval Discretization
 <pre class="code ruby"><code>algorithm          note                                  feature type                     
 --------------------------------------------------------------------------------------
 fixed_value        replace with a fixed value            discrete, continuous
-mean_value         replace with the mean feature value   continuous
+mean_value         replace with mean feature value       continuous
 most_seen_value    replace with most seen feature value  discrete
 </code></pre>
 
@@ -183,10 +183,10 @@ most_seen_value    replace with most seen feature value  discrete
 <span class='comment'># read from random data (or csv, libsvm, weka ARFF file)
 </span><span class='comment'># no. of samples: 100
 </span><span class='comment'># no. of classes: 2
-</span><span class='comment'># no. of features: 10
+</span><span class='comment'># no. of features: 15
 </span><span class='comment'># no. of possible values for each feature: 3
 </span><span class='comment'># allow missing values: true
-</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_data_from_random'>data_from_random</span><span class='lparen'>(</span><span class='int'>100</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>10</span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_data_from_random'>data_from_random</span><span class='lparen'>(</span><span class='int'>100</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>15</span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
 
 <span class='comment'># number of features before feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'># features (before): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -200,7 +200,7 @@ most_seen_value    replace with most seen feature value  discrete
 <span class='comment'># you can also use multiple alogirithms in a tandem manner
 </span><span class='comment'># e.g. use the ChiSquaredTest with Yates' continuity correction
 </span><span class='comment'># initialize from r1's data
-</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>ChiSquaredTest</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:yates</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>ChiSquaredTest</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:yates_continuity_correction</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
 
 <span class='comment'># number of features before feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'># features (before): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -216,7 +216,7 @@ most_seen_value    replace with most seen feature value  discrete
 </span><span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_data_to_weka'>data_to_weka</span><span class='lparen'>(</span><span class='symbol'>:stdout</span><span class='comma'>,</span> <span class='symbol'>:sparse</span><span class='rparen'>)</span>
 </code></pre>
 
-<p><strong>2. feature selection by an ensemble of algorithms</strong></p>
+<p><strong>2. feature selection by an ensemble of multiple algorithms</strong></p>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>fselector</span><span class='tstring_end'>'</span></span>
 
@@ -228,7 +228,7 @@ most_seen_value    replace with most seen feature value  discrete
 </span><span class='id identifier rubyid_re'>re</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>Ensemble</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_r1'>r1</span><span class='comma'>,</span> <span class='id identifier rubyid_r2'>r2</span><span class='rparen'>)</span>
 
 <span class='comment'># read random data
-</span><span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_data_from_random'>data_from_random</span><span class='lparen'>(</span><span class='int'>100</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>10</span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_data_from_random'>data_from_random</span><span class='lparen'>(</span><span class='int'>100</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>15</span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
 
 <span class='comment'># number of features before feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'># features (before): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -253,14 +253,11 @@ most_seen_value    replace with most seen feature value  discrete
 <pre class="code ruby"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>fselector</span><span class='tstring_end'>'</span></span>
 
 <span class='comment'># for continuous feature
-</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>BaseContinuous</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>Relief_c</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
 <span class='comment'># read the Iris data set (under the test/ directory)
 </span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_data_from_csv'>data_from_csv</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>test/iris.csv</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 
-<span class='comment'># normalization by log2 (optional)
-</span><span class='comment'># r1.normalize_by_log!(2)
-</span>
 <span class='comment'># discretization by ChiMerge algorithm
 </span><span class='comment'># chi-squared value = 4.60 for a three-class problem at alpha=0.10
 </span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='float'>4.60</span><span class='rparen'>)</span>
@@ -279,6 +276,8 @@ most_seen_value    replace with most seen feature value  discrete
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'># features (after): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 </code></pre>
 
+<p><strong>4. see more examples test_*.rb under the test/ directory</strong></p>
+
 <h2>Copyright</h2>
 
 <p>FSelector &copy; 2012 by <a href="mailto:need47@gmail.com">Tiejun Cheng</a>.
@@ -287,7 +286,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Tue Apr  3 19:24:21 2012 by 
+  Generated on Wed Apr  4 15:38:54 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

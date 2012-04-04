@@ -230,8 +230,8 @@ none of the values of (A, B, C, D) &lt; 5</p>
       
       
         &mdash;
-        <div class='inline'><p>Yates&#39;s continuity correction<br>
-:yates, Yates&#39;s continuity correction</p>
+        <div class='inline'><p>Yates&#39;s continuity correction?<br>
+no correction if nil, correction otherwise</p>
 </div>
       
     </li>
@@ -255,7 +255,7 @@ none of the values of (A, B, C, D) &lt; 5</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
-  <span class='ivar'>@correction</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span><span class='op'>==</span><span class='symbol'>:yates</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
+  <span class='ivar'>@correction</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span> <span class='op'>||</span> <span class='kw'>false</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -268,7 +268,7 @@ none of the values of (A, B, C, D) &lt; 5</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  3 19:24:23 2012 by 
+  Generated on Wed Apr  4 15:38:56 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
