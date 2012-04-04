@@ -122,7 +122,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>replace missing feature value with a fixed value
+    <span class="summary_desc"><div class='inline'><p>replace missing feature value with a fixed value, 
 applicable for both discrete and continuous feature.</p>
 </div></span>
   
@@ -145,7 +145,7 @@ applicable for both discrete and continuous feature.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>replace missing feature value with mean feature value
+    <span class="summary_desc"><div class='inline'><p>replace missing feature value with mean feature value, 
 applicable only to continuous feature.</p>
 </div></span>
   
@@ -168,7 +168,7 @@ applicable only to continuous feature.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>replace missing feature value with most seen feature value
+    <span class="summary_desc"><div class='inline'><p>replace missing feature value with most seen feature value, 
 applicable only to discrete feature.</p>
 </div></span>
   
@@ -200,7 +200,7 @@ applicable only to discrete feature.</p>
 </div>
   </div>
 
-<p>replace missing feature value with a fixed value
+<p>replace missing feature value with a fixed value, 
 applicable for both discrete and continuous feature</p>
 
 
@@ -215,7 +215,6 @@ applicable for both discrete and continuous feature</p>
       <pre class="lines">
 
 
-10
 11
 12
 13
@@ -226,10 +225,11 @@ applicable for both discrete and continuous feature</p>
 18
 19
 20
-21</pre>
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace_with_fixed_value!'>replace_with_fixed_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
@@ -264,7 +264,7 @@ applicable for both discrete and continuous feature</p>
 </div>
   </div>
 
-<p>replace missing feature value with mean feature value
+<p>replace missing feature value with mean feature value, 
 applicable only to continuous feature</p>
 
 
@@ -279,8 +279,6 @@ applicable only to continuous feature</p>
       <pre class="lines">
 
 
-29
-30
 31
 32
 33
@@ -294,10 +292,12 @@ applicable only to continuous feature</p>
 41
 42
 43
-44</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace_with_mean_value!'>replace_with_mean_value!</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
@@ -336,7 +336,7 @@ applicable only to continuous feature</p>
 </div>
   </div>
 
-<p>replace missing feature value with most seen feature value
+<p>replace missing feature value with most seen feature value, 
 applicable only to discrete feature</p>
 
 
@@ -351,9 +351,6 @@ applicable only to discrete feature</p>
       <pre class="lines">
 
 
-52
-53
-54
 55
 56
 57
@@ -374,10 +371,13 @@ applicable only to discrete feature</p>
 72
 73
 74
-75</pre>
+75
+76
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace_with_most_seen_value!'>replace_with_most_seen_value!</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
@@ -413,7 +413,7 @@ applicable only to discrete feature</p>
 </div>
     
     <div id="footer">
-  Generated on Wed Apr  4 15:38:55 2012 by 
+  Generated on Wed Apr  4 16:38:08 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

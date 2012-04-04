@@ -192,9 +192,10 @@
   <div class="discussion">
     <p>get the conditional entropy of array (X) given another array (Y)</p>
 
-<p>H(X|Y) = sigma<em>j (P(y</em>j) * H(C|y_j))</p>
+<pre class="code ruby"><code>H(X|Y) = sigma_j (P(y_j) * H(C|y_j))
 
-<p>where H(X|y<em>j) = -1 * sigma</em>i (P(x<em>i|y</em>j) logP(x<em>i|y</em>j))</p>
+where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) logP(x_i|y_j))
+</code></pre>
 
 
   </div>
@@ -274,10 +275,11 @@
   <div class="discussion">
     <p>get the joint entropy of array (X) and array (Y)</p>
 
-<p>H(X,Y) = H(Y) + H(X|Y)
-       = H(X) + H(Y|X)</p>
+<pre class="code ruby"><code>H(X,Y) = H(Y) + H(X|Y)
+       = H(X) + H(Y|X)
 
-<p>i.e. H(X,Y) == H(Y,X)</p>
+i.e. H(X,Y) == H(Y,X)
+</code></pre>
 
 
   </div>
@@ -323,7 +325,8 @@
   <div class="discussion">
     <p>get the marginal entropy of array (X)</p>
 
-<p>H(X) = -1 * sigma<em>i (P(x</em>i) logP(x_i))</p>
+<pre class="code ruby"><code>H(X) = -1 * sigma_i (P(x_i) logP(x_i))
+</code></pre>
 
 
   </div>
@@ -373,7 +376,7 @@
 </div>
     
     <div id="footer">
-  Generated on Wed Apr  4 15:38:54 2012 by 
+  Generated on Wed Apr  4 16:38:08 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

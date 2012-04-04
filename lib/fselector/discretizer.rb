@@ -185,8 +185,9 @@ module Discretizer
   
   #
   # discretize by Multi-Interval Discretization (MID) algorithm
-  # @note no missing feature values allowed and data structure will be altered
   #
+  # @note no missing feature values allowed and data structure will be altered
+  # 
   # ref: [Multi-Interval Discretization of Continuous-Valued Attributes for Classification Learning](http://www.ijcai.org/Past%20Proceedings/IJCAI-93-VOL2/PDF/022.pdf)
   #
   def discretize_by_MID!

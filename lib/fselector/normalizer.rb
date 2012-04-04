@@ -12,7 +12,7 @@ module Normalizer
    end
    
    
-   # scale to [min,max], max > min
+   # scale to [min, max], max > min
    def normalize_by_min_max!(min=0.0, max=1.0)
      # first determine min and max for each feature
      f2min_max = {}

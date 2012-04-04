@@ -3,8 +3,9 @@
 #
 module ReplaceMissingValues
   #
-  # replace missing feature value with a fixed value
+  # replace missing feature value with a fixed value, 
   # applicable for both discrete and continuous feature
+  #
   # @note data structure will be altered
   #
   def replace_with_fixed_value!(val)
@@ -22,8 +23,9 @@ module ReplaceMissingValues
   
   
   #
-  # replace missing feature value with mean feature value
+  # replace missing feature value with mean feature value, 
   # applicable only to continuous feature
+  #
   # @note data structure will be altered
   #
   def replace_with_mean_value!
@@ -45,8 +47,9 @@ module ReplaceMissingValues
   
   
   #
-  # replace missing feature value with most seen feature value
+  # replace missing feature value with most seen feature value, 
   # applicable only to discrete feature
+  #
   # @note data structure will be altered
   #
   def replace_with_most_seen_value!

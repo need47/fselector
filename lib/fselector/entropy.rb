@@ -5,7 +5,7 @@ module Entropy
   #
   # get the marginal entropy of array (X)
   #
-  # H(X) = -1 * sigma_i (P(x_i) logP(x_i))
+  #     H(X) = -1 * sigma_i (P(x_i) logP(x_i))
   #
    def get_marginal_entropy(arrX)
     h = 0.0
@@ -23,9 +23,9 @@ module Entropy
   #
   # get the conditional entropy of array (X) given another array (Y)
   #
-  # H(X|Y) = sigma_j (P(y_j) * H(C|y_j))
-  #
-  # where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) logP(x_i|y_j))
+  #     H(X|Y) = sigma_j (P(y_j) * H(C|y_j))
+  #     
+  #     where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) logP(x_i|y_j))
   #
    def get_conditional_entropy(arrX, arrY)
     abort "[#{__FILE__}@#{__LINE__}]: "+
@@ -55,10 +55,10 @@ module Entropy
   #
   # get the joint entropy of array (X) and array (Y)
   # 
-  # H(X,Y) = H(Y) + H(X|Y)
-  #        = H(X) + H(Y|X)
-  #
-  # i.e. H(X,Y) == H(Y,X)
+  #     H(X,Y) = H(Y) + H(X|Y)
+  #            = H(X) + H(Y|X)
+  #     
+  #     i.e. H(X,Y) == H(Y,X)
   #
    def get_joint_entropy(arrX, arrY)
     abort "[#{__FILE__}@#{__LINE__}]: "+
