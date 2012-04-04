@@ -11,7 +11,7 @@ module ReplaceMissingValues
     each_sample do |k, s|
       each_feature do |f|
         if not s.has_key? f
-          s[f] = my_value
+          s[f] = val
         end
       end
     end
