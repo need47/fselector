@@ -17,6 +17,10 @@ require "#{ROOT}/fselector/fileio.rb"
 require "#{ROOT}/fselector/util.rb"
 # entropy-related functions
 require "#{ROOT}/fselector/entropy.rb"
+# normalization for continuous data
+require "#{ROOT}/fselector/normalizer.rb"
+# discretization for continuous data
+require "#{ROOT}/fselector/discretizer.rb"
 # replace missing values
 require "#{ROOT}/fselector/replace_missing_values.rb"
 
