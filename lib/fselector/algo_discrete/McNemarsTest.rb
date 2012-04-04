@@ -16,8 +16,8 @@ module FSelector
     #
     # new()
     #
-    # @param [Boolean] correction correction Yates's continuity correction  
-    #   :yates, Yates's continuity correction
+    # @param [Boolean] correction Yates's continuity correction?  
+    #   no correction if nil, correction otherwise
     #
     def initialize(correction=nil, data=nil)
       super(data)
