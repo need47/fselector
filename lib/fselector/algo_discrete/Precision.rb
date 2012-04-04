@@ -18,7 +18,10 @@ module FSelector
       each_class do |k|
         a, b = get_A(f, k), get_B(f, k)
         
-        s = a/(a+b)
+        s = 0.0
+        if not (a+b).zero?
+          s = a/(a+b)
+        end
         
         set_feature_score(f, k, s)
       end

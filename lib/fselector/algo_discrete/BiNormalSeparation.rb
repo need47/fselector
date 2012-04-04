@@ -7,8 +7,8 @@ module FSelector
 #
 #     BNS = |F'(tpr) - F'(fpr)|
 #      
-#     where F' is normal inverse cumulative distribution function
-#     R executable is required to calculate qnorm, i.e. F'(x)
+#     where F'(x) is normal inverse cumulative distribution function
+#     R equivalent: qnorm
 # 
 # ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974) and [Rubystats](http://rubystats.rubyforge.org)
 #
@@ -25,8 +25,11 @@ module FSelector
       each_class do |k|
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
         
-        tpr, fpr = a/(a+c), b/(b+d)
-        s = (@nd.get_icdf(tpr) - @nd.get_icdf(fpr)).abs
+        s = 0.0
+        if not (a+c).zero? and not (b+d).zero?
+          tpr, fpr = a/(a+c), b/(b+d)
+          s = (@nd.get_icdf(tpr) - @nd.get_icdf(fpr)).abs
+        end
         
         set_feature_score(f, k, s)
       end

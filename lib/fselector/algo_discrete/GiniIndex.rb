@@ -22,11 +22,12 @@ module FSelector
       
       each_class do |k|
         a, b = get_A(f, k), get_B(f, k)
-        s += (a/(a+b))**2
+        s += (a/(a+b))**2 if not (a+b).zero?
       end
       
       # note: we've intentionally negated it
       s = s-1
+      s = -0.5 if s.zero? # Gini(max) = 0.5
       
       set_feature_score(f, :BEST, s)
     end # calc_contribution

@@ -31,7 +31,10 @@ module FSelector
       each_class do |k|
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
         
-        s = (d/(b+d))**(@k) - (c/(a+c))**(@k)
+        s = 0.0
+        if not (b+d).zero? and not (a+c).zero?
+          s = (d/(b+d))**(@k) - (c/(a+c))**(@k)
+        end
         
         set_feature_score(f, k, s)
       end

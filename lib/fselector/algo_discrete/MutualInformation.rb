@@ -25,7 +25,10 @@ module FSelector
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
         n = a+b+c+d
         
-        s = Math.log2(a*n/(a+b)/(a+c))
+        s = 0.0
+        if not ((a+b)*(a+c)).zero?
+          s = Math.log2(a*n/(a+b)/(a+c))
+        end
         
         set_feature_score(f, k, s)
       end

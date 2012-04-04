@@ -41,10 +41,7 @@ module FSelector
     def get_A(f, k)
       @A ||= calc_A
       a = @A[k][f]
-      
-      # add 0.5 to avoid any ZERO in denominator or numerator
-      a+=0.5 if a.zero?
-      
+            
       a 
     end # get_A
 
@@ -78,9 +75,6 @@ module FSelector
     def get_B(f, k)
       @B ||= calc_B
       b = @B[k][f]
-          
-      # add 0.5 to avoid any ZERO in denominator or numerator
-      b+=0.5 if b.zero?
       
       b
     end # get_B
@@ -116,9 +110,6 @@ module FSelector
       @C ||= calc_C
       c = @C[k][f]
       
-      # add 0.5 to avoid any ZERO in denominator or numerator
-      c+=0.5 if c.zero?
-      
       c
     end # get_C
     
@@ -152,9 +143,6 @@ module FSelector
     def get_D(f, k)
       @D ||= calc_D
       d = @D[k][f]
-      
-      # add 0.5 to avoid any ZERO in denominator or numerator
-      d+=0.5 if d.zero?
       
       d
     end # get_D

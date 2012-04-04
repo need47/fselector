@@ -23,9 +23,11 @@ module FSelector
     def calc_contribution(f)
       each_class do |k|
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
-        n = a+b+c+d
-      
-        s = (a*d-b*c) / Math.sqrt((a+b)*(a+c)*(b+d)*(c+d))
+        
+        s = 0.0
+        if not ((a+b)*(a+c)*(b+d)*(c+d)).zero?     
+          s = (a*d-b*c) / Math.sqrt((a+b)*(a+c)*(b+d)*(c+d))
+        end
         
         set_feature_score(f, k, s)
       end

@@ -44,12 +44,16 @@ module FSelector
             "Chi-squared approximation may be incorrect"
         end
         
-        if not @correction
-          s = n * ((a*d-b*c)**2) /
-            (a+b) / (c+d) / (a+c) / (b+d)
-        else
-          s = n * (((a*d-b*c).abs - n/2))**2 /
-            (a+b) / (c+d) / (a+c) / (b+d)
+        s = 0.0
+        if not (a+b).zero? and not (c+d).zero? and 
+           not (a+c).zero? and not (b+d).zero?
+          if not @correction
+            s = n * ((a*d-b*c)**2) /
+               (a+b) / (c+d) / (a+c) / (b+d)
+          else
+            s = n * (((a*d-b*c).abs - n/2))**2 /
+               (a+b) / (c+d) / (a+c) / (b+d)
+          end
         end
         
         set_feature_score(f, k, s)
