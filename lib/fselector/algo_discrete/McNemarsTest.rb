@@ -2,10 +2,10 @@
 # FSelector: a Ruby gem for feature selection and ranking
 #
 module FSelector
-# McNemar's test (MN), based on Chi-Squared test
+# McNemar's test (MNT), based on Chi-Squared test
 #
 #                 (B-C)^2
-#     MN(f, c) = ---------
+#     MNT(f, c) = ---------
 #                  B+C
 #
 # suitable for large samples and B+C >= 25
