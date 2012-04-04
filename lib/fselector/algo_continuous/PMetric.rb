@@ -34,7 +34,11 @@ module FSelector
       end
       
       # calc
-      s = (s1.ave-s2.ave).abs / (s1.sd+s2.sd)
+      s = 0.0
+      dd = s1.sd+s2.sd
+      if not dd.zero?
+        s = (s1.ave-s2.ave).abs / dd
+      end
       
       set_feature_score(f, :BEST, s)      
     end # calc_contribution

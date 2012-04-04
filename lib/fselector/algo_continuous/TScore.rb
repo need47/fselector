@@ -35,7 +35,14 @@ module FSelector
       
       # calc
       n1, n2 = s1.size, s2.size
-      s = (s1.ave-s2.ave).abs / Math.sqrt( (n1*s1.var+n2*s2.var) / (n1+n2) )
+      if not (n1+n2).zero?
+        dd = Math.sqrt( (n1*s1.var+n2*s2.var) / (n1+n2) )
+      end
+      
+      s = 0.0
+      if not dd.zero?
+        s = (s1.ave-s2.ave).abs / dd
+      end
       
       set_feature_score(f, :BEST, s)
     end # calc_contribution
