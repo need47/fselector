@@ -21,5 +21,10 @@ r3 = FSelector::Relief_c.new # Relief_c is for continuous feature
 r3.data_from_csv('test/iris.csv')
 r3.discretize_by_ChiMerge!(4.60)
 
+puts "  test Multi-Interval Discretization (MID)"
+r3 = FSelector::Relief_c.new # Relief_c is for continuous feature
+r3.data_from_csv('test/iris.csv')
+r3.discretize_by_MID!
+
 
 puts "<============< #{File.basename(__FILE__)}"
