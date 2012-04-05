@@ -259,7 +259,6 @@ module Discretizer
     q = 0.0
     
     each_class do |k|
-      ck1 = 
       ek1 = r1*(cs1[k]+cs2[k])/n
       ek2 = r2*(cs1[k]+cs2[k])/n
       
