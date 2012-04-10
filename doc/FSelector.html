@@ -73,7 +73,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/fselector.rb<span class="defines">,<br />
-  lib/fselector/ensemble.rb,<br /> lib/fselector/algo_base/base.rb,<br /> lib/fselector/algo_base/base_CFS.rb,<br /> lib/fselector/algo_discrete/Power.rb,<br /> lib/fselector/algo_discrete/GMean.rb,<br /> lib/fselector/algo_discrete/CFS_d.rb,<br /> lib/fselector/algo_discrete/Random.rb,<br /> lib/fselector/algo_base/base_Relief.rb,<br /> lib/fselector/algo_continuous/CFS_c.rb,<br /> lib/fselector/algo_continuous/TScore.rb,<br /> lib/fselector/algo_discrete/Accuracy.rb,<br /> lib/fselector/algo_discrete/Relief_d.rb,<br /> lib/fselector/algo_base/base_ReliefF.rb,<br /> lib/fselector/algo_base/base_discrete.rb,<br /> lib/fselector/algo_discrete/ReliefF_d.rb,<br /> lib/fselector/algo_discrete/F1Measure.rb,<br /> lib/fselector/algo_continuous/PMetric.rb,<br /> lib/fselector/algo_discrete/Precision.rb,<br /> lib/fselector/algo_discrete/OddsRatio.rb,<br /> lib/fselector/algo_discrete/GiniIndex.rb,<br /> lib/fselector/algo_continuous/Relief_c.rb,<br /> lib/fselector/algo_discrete/Sensitivity.rb,<br /> lib/fselector/algo_discrete/Specificity.rb,<br /> lib/fselector/algo_continuous/ReliefF_c.rb,<br /> lib/fselector/algo_base/base_continuous.rb,<br /> lib/fselector/algo_discrete/McNemarsTest.rb,<br /> lib/fselector/algo_discrete/ChiSquaredTest.rb,<br /> lib/fselector/algo_discrete/GSSCoefficient.rb,<br /> lib/fselector/algo_discrete/InformationGain.rb,<br /> lib/fselector/algo_discrete/AccuracyBalanced.rb,<br /> lib/fselector/algo_discrete/FishersExactTest.rb,<br /> lib/fselector/algo_discrete/ProbabilityRatio.rb,<br /> lib/fselector/algo_discrete/DocumentFrequency.rb,<br /> lib/fselector/algo_discrete/MutualInformation.rb,<br /> lib/fselector/algo_discrete/BiNormalSeparation.rb,<br /> lib/fselector/algo_discrete/OddsRatioNumerator.rb,<br /> lib/fselector/algo_discrete/SymmetricalUncertainty.rb,<br /> lib/fselector/algo_discrete/CorrelationCoefficient.rb,<br /> lib/fselector/algo_discrete/FastCorrelationBasedFilter.rb,<br /> lib/fselector/algo_discrete/MatthewsCorrelationCoefficient.rb</span>
+  lib/fselector/ensemble.rb,<br /> lib/fselector/algo_base/base.rb,<br /> lib/fselector/algo_base/base_CFS.rb,<br /> lib/fselector/algo_discrete/Power.rb,<br /> lib/fselector/algo_discrete/CFS_d.rb,<br /> lib/fselector/algo_discrete/GMean.rb,<br /> lib/fselector/algo_discrete/Random.rb,<br /> lib/fselector/algo_continuous/CFS_c.rb,<br /> lib/fselector/algo_base/base_Relief.rb,<br /> lib/fselector/algo_base/base_ReliefF.rb,<br /> lib/fselector/algo_continuous/TScore.rb,<br /> lib/fselector/algo_discrete/Relief_d.rb,<br /> lib/fselector/algo_discrete/Accuracy.rb,<br /> lib/fselector/algo_discrete/F1Measure.rb,<br /> lib/fselector/algo_continuous/PMetric.rb,<br /> lib/fselector/algo_discrete/GiniIndex.rb,<br /> lib/fselector/algo_discrete/ReliefF_d.rb,<br /> lib/fselector/algo_base/base_discrete.rb,<br /> lib/fselector/algo_discrete/Precision.rb,<br /> lib/fselector/algo_discrete/OddsRatio.rb,<br /> lib/fselector/algo_continuous/Relief_c.rb,<br /> lib/fselector/algo_base/base_continuous.rb,<br /> lib/fselector/algo_discrete/Specificity.rb,<br /> lib/fselector/algo_continuous/ReliefF_c.rb,<br /> lib/fselector/algo_discrete/Sensitivity.rb,<br /> lib/fselector/algo_discrete/McNemarsTest.rb,<br /> lib/fselector/algo_discrete/ChiSquaredTest.rb,<br /> lib/fselector/algo_discrete/GSSCoefficient.rb,<br /> lib/fselector/algo_discrete/InformationGain.rb,<br /> lib/fselector/algo_discrete/AccuracyBalanced.rb,<br /> lib/fselector/algo_discrete/ProbabilityRatio.rb,<br /> lib/fselector/algo_discrete/FishersExactTest.rb,<br /> lib/fselector/algo_discrete/DocumentFrequency.rb,<br /> lib/fselector/algo_discrete/MutualInformation.rb,<br /> lib/fselector/algo_discrete/BiNormalSeparation.rb,<br /> lib/fselector/algo_discrete/OddsRatioNumerator.rb,<br /> lib/fselector/algo_discrete/CorrelationCoefficient.rb,<br /> lib/fselector/algo_discrete/SymmetricalUncertainty.rb,<br /> lib/fselector/algo_discrete/FastCorrelationBasedFilter.rb,<br /> lib/fselector/algo_discrete/MatthewsCorrelationCoefficient.rb</span>
 </dd>
   
 </dl>
@@ -194,6 +194,21 @@
         </dt>
         <dd><pre class="code"><span class='const'>PMetric</span></pre></dd>
       
+        <dt id="GI-constant" class="">GI =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::GI instead of FSelector::GiniIndex</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>GiniIndex</span></pre></dd>
+      
         <dt id="Odd-constant" class="">Odd =
           <div class="docstring">
   <div class="discussion">
@@ -209,10 +224,10 @@
         </dt>
         <dd><pre class="code"><span class='const'>OddsRatio</span></pre></dd>
       
-        <dt id="GI-constant" class="">GI =
+        <dt id="SP-constant" class="">SP =
           <div class="docstring">
   <div class="discussion">
-    <p>shortcut so that you can use FSelector::GI instead of FSelector::GiniIndex</p>
+    <p>shortcut so that you can use FSelector::SP instead of FSelector::Specificity</p>
 
 
   </div>
@@ -222,7 +237,7 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='const'>GiniIndex</span></pre></dd>
+        <dd><pre class="code"><span class='const'>Specificity</span></pre></dd>
       
         <dt id="SN-constant" class="">SN =
           <div class="docstring">
@@ -253,21 +268,6 @@
 </div>
         </dt>
         <dd><pre class="code"><span class='const'>Sensitivity</span></pre></dd>
-      
-        <dt id="SP-constant" class="">SP =
-          <div class="docstring">
-  <div class="discussion">
-    <p>shortcut so that you can use FSelector::SP instead of FSelector::Specificity</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-        </dt>
-        <dd><pre class="code"><span class='const'>Specificity</span></pre></dd>
       
         <dt id="MNT-constant" class="">MNT =
           <div class="docstring">
@@ -344,21 +344,6 @@
         </dt>
         <dd><pre class="code"><span class='const'>AccuracyBalanced</span></pre></dd>
       
-        <dt id="FET-constant" class="">FET =
-          <div class="docstring">
-  <div class="discussion">
-    <p>shortcut so that you can use FSelector::FET instead of FSelector::FishersExactTest</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-        </dt>
-        <dd><pre class="code"><span class='const'>FishersExactTest</span></pre></dd>
-      
         <dt id="PR-constant" class="">PR =
           <div class="docstring">
   <div class="discussion">
@@ -373,6 +358,21 @@
 </div>
         </dt>
         <dd><pre class="code"><span class='const'>ProbabilityRatio</span></pre></dd>
+      
+        <dt id="FET-constant" class="">FET =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::FET instead of FSelector::FishersExactTest</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>FishersExactTest</span></pre></dd>
       
         <dt id="DF-constant" class="">DF =
           <div class="docstring">
@@ -434,21 +434,6 @@
         </dt>
         <dd><pre class="code"><span class='const'>OddsRatioNumerator</span></pre></dd>
       
-        <dt id="SU-constant" class="">SU =
-          <div class="docstring">
-  <div class="discussion">
-    <p>shortcut so that you can use FSelector::SU instead of FSelector::SymmetricalUncertainty</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-        </dt>
-        <dd><pre class="code"><span class='const'>SymmetricalUncertainty</span></pre></dd>
-      
         <dt id="CC-constant" class="">CC =
           <div class="docstring">
   <div class="discussion">
@@ -463,6 +448,21 @@
 </div>
         </dt>
         <dd><pre class="code"><span class='const'>CorrelationCoefficient</span></pre></dd>
+      
+        <dt id="SU-constant" class="">SU =
+          <div class="docstring">
+  <div class="discussion">
+    <p>shortcut so that you can use FSelector::SU instead of FSelector::SymmetricalUncertainty</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>SymmetricalUncertainty</span></pre></dd>
       
         <dt id="FCBF-constant" class="">FCBF =
           <div class="docstring">
@@ -523,7 +523,7 @@
 </div>
     
     <div id="footer">
-  Generated on Wed Apr  4 16:38:07 2012 by 
+  Generated on Tue Apr 10 18:03:00 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

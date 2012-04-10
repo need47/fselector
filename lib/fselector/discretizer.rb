@@ -61,16 +61,14 @@ module Discretizer
   #
   # discretize by ChiMerge algorithm
   #
-  # @param [Float] alpha confidence level, 
-  #   supported alpha values (up to 30 degree of freedom) are:  
-  #   0.995, 0.975, 0.75, 0.5, 0.25, 0.2, 0.1, 0.05, 0.025, 0.02, 0.01, 0.005, 0.002, 0.001
+  # chi-squared values and associated p values are calculated via the
+  # ChiSquareCalculator module
+  #
+  # @param [Float] alpha confidence level
   # @note data structure will be altered
   #
   # ref: [ChiMerge: Discretization of Numberic Attributes](http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf)
-  #
-  # chi-squared values and associated p values can be looked up at
-  # [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_distribution)  
-  # degrees of freedom: one less than the number of classes
+  # and [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_distribution)
   #    
   def discretize_by_ChiMerge!(alpha=0.10)
     df = get_classes.size-1

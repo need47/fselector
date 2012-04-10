@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: ChiSquareCalculator
+  
+    &mdash; FSelector Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (C)</a> &raquo; 
+    
+    
+    <span class="title">ChiSquareCalculator</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: ChiSquareCalculator
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="Discretizer.html" title="Discretizer (module)">Discretizer</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/fselector/chisq_calc.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Chi-Square Calculator</p>
+
+<p>This module is adpated from the on-line <a href="http://www.swogstat.org/stat/public/chisq_calculator.htm">Chi-square Calculator</a></p>
+
+<p>The functions for calculating normal and chi-square probabilities 
+and critical values were adapted by John Walker from C implementations 
+written by Gary Perlman of Wang Institute, Tyngsboro, MA 01879. The 
+original C code is in the public domain.</p>
+
+<p>chisq2pval(chisq, df) -- calculate p-value from given 
+                  chi-square value (chisq) and degree of freedom (df)
+pval2chisq(pval, df) -- chi-square value from given
+                  p-value (pvalue) and degree of freedom (df)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="BIGX-constant" class="">BIGX =
+          <div class="docstring">
+  <div class="discussion">
+    <p>module constants</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='float'>20.0</span></pre></dd>
+      
+        <dt id="LOG_SQRT_PI-constant" class="">LOG_SQRT_PI =
+          <div class="docstring">
+  <div class="discussion">
+    <p>max value to represent exp(x)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='float'>0.5723649429247000870717135</span></pre></dd>
+      
+        <dt id="I_SQRT_PI-constant" class="">I_SQRT_PI =
+          <div class="docstring">
+  <div class="discussion">
+    <p>log(sqrt(pi))</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='float'>0.5641895835477562869480795</span></pre></dd>
+      
+        <dt id="Z_MAX-constant" class="">Z_MAX =
+          <div class="docstring">
+  <div class="discussion">
+    <p>1 / sqrt(pi)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='float'>6.0</span></pre></dd>
+      
+        <dt id="CHI_EPSILON-constant" class="">CHI_EPSILON =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Maximum meaningful z value</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='float'>0.000001</span></pre></dd>
+      
+        <dt id="CHI_MAX-constant" class="">CHI_MAX =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Accuracy of critchi approximation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='float'>99999.0</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#critchi-instance_method" title="#critchi (instance method)">- <strong>critchi</strong>(p, df) </a>
+    
+
+    
+      (also: #pval2chisq)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>CRITCHI  --  Compute critical chi-square value to
+produce given p.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pochisq-instance_method" title="#pochisq (instance method)">- <strong>pochisq</strong>(x, df) </a>
+    
+
+    
+      (also: #chisq2pval)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>POCHISQ  --  probability of chi-square value.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="critchi-instance_method">
+  
+    - <strong>critchi</strong>(p, df) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='pval2chisq-instance_method'>pval2chisq</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>CRITCHI  --  Compute critical chi-square value to
+produce given p.  We just do a bisection
+search for a value within CHI_EPSILON,
+relying on the monotonicity of pochisq()</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/chisq_calc.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_critchi'>critchi</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_df'>df</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_minchisq'>minchisq</span> <span class='op'>=</span> <span class='float'>0.0</span>
+  <span class='id identifier rubyid_maxchisq'>maxchisq</span> <span class='op'>=</span> <span class='const'>CHI_MAX</span>
+  
+  <span class='id identifier rubyid_chisqval'>chisqval</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span> <span class='op'>&lt;=</span> <span class='float'>0.0</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_maxchisq'>maxchisq</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span> <span class='op'>&gt;=</span> <span class='float'>1.0</span>
+      <span class='kw'>return</span> <span class='float'>0.0</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_chisqval'>chisqval</span> <span class='op'>=</span> <span class='id identifier rubyid_df'>df</span> <span class='op'>/</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_sqrt'>sqrt</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='semicolon'>;</span>    <span class='comment'># fair first value
+</span>
+  <span class='kw'>while</span> <span class='lparen'>(</span><span class='id identifier rubyid_maxchisq'>maxchisq</span> <span class='op'>-</span> <span class='id identifier rubyid_minchisq'>minchisq</span><span class='rparen'>)</span> <span class='op'>&gt;</span> <span class='const'>CHI_EPSILON</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_pochisq'>pochisq</span><span class='lparen'>(</span><span class='id identifier rubyid_chisqval'>chisqval</span><span class='comma'>,</span> <span class='id identifier rubyid_df'>df</span><span class='rparen'>)</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_p'>p</span>
+      <span class='id identifier rubyid_maxchisq'>maxchisq</span> <span class='op'>=</span> <span class='id identifier rubyid_chisqval'>chisqval</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_minchisq'>minchisq</span> <span class='op'>=</span> <span class='id identifier rubyid_chisqval'>chisqval</span>
+    <span class='kw'>end</span>
+    
+    <span class='id identifier rubyid_chisqval'>chisqval</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_maxchisq'>maxchisq</span> <span class='op'>+</span> <span class='id identifier rubyid_minchisq'>minchisq</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='float'>0.5</span>
+   <span class='kw'>end</span>
+   
+   <span class='kw'>return</span> <span class='id identifier rubyid_chisqval'>chisqval</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="pochisq-instance_method">
+  
+    - <strong>pochisq</strong>(x, df) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='chisq2pval-instance_method'>chisq2pval</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>POCHISQ  --  probability of chi-square value</p>
+
+<p>Adapted from:</p>
+
+<p>Hill, I. D. and Pike, M. C.  Algorithm 299</p>
+
+<p>Collected Algorithms for the CACM 1967 p. 243</p>
+
+<p>Updated for rounding errors based on remark in</p>
+
+<p>ACM TOMS June 1985, page 185</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/chisq_calc.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pochisq'>pochisq</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_df'>df</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_e'>e</span><span class='comma'>,</span> <span class='id identifier rubyid_c'>c</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span>
+  
+  <span class='id identifier rubyid_even'>even</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='comment'># True if df is an even number
+</span>  
+  <span class='kw'>if</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>&lt;=</span> <span class='float'>0.0</span> <span class='kw'>or</span> <span class='id identifier rubyid_df'>df</span> <span class='op'>&lt;</span> <span class='int'>1</span>
+    <span class='kw'>return</span> <span class='float'>1.0</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_a'>a</span> <span class='op'>=</span> <span class='float'>0.5</span> <span class='op'>*</span> <span class='id identifier rubyid_x'>x</span>
+  <span class='id identifier rubyid_even'>even</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_df'>df</span> <span class='op'>&amp;</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_df'>df</span> <span class='op'>&gt;</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='id identifier rubyid_ex'>ex</span><span class='lparen'>(</span><span class='op'>-</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='id identifier rubyid_even'>even</span> <span class='op'>?</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='float'>2.0</span> <span class='op'>*</span> <span class='id identifier rubyid_poz'>poz</span><span class='lparen'>(</span><span class='op'>-</span><span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_sqrt'>sqrt</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_df'>df</span> <span class='op'>&gt;</span> <span class='int'>2</span>
+    <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='float'>0.5</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_df'>df</span> <span class='op'>-</span> <span class='float'>1.0</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_even'>even</span> <span class='op'>?</span> <span class='float'>1.0</span> <span class='op'>:</span> <span class='float'>0.5</span>
+    
+    <span class='kw'>if</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>&gt;</span> <span class='const'>BIGX</span>
+      <span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='id identifier rubyid_even'>even</span> <span class='op'>?</span> <span class='float'>0.0</span> <span class='op'>:</span> <span class='const'>LOG_SQRT_PI</span>
+      <span class='id identifier rubyid_c'>c</span> <span class='op'>=</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
+      
+      <span class='kw'>while</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_x'>x</span>
+        <span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='id identifier rubyid_s'>s</span> <span class='op'>+=</span> <span class='id identifier rubyid_ex'>ex</span><span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span> <span class='op'>*</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>-</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>-</span> <span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_z'>z</span> <span class='op'>+=</span> <span class='float'>1.0</span>
+      <span class='kw'>end</span>
+      
+      <span class='kw'>return</span> <span class='id identifier rubyid_s'>s</span> 
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='id identifier rubyid_even'>even</span> <span class='op'>?</span> <span class='float'>1.0</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='const'>I_SQRT_PI</span> <span class='op'>/</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_sqrt'>sqrt</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_c'>c</span> <span class='op'>=</span> <span class='float'>0.0</span>
+      
+      <span class='kw'>while</span> <span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span> <span class='op'>/</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_c'>c</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>+</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='id identifier rubyid_z'>z</span> <span class='op'>+=</span> <span class='float'>1.0</span>
+      <span class='kw'>end</span>
+      
+      <span class='kw'>return</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>*</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>+</span> <span class='id identifier rubyid_s'>s</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_s'>s</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Tue Apr 10 18:03:01 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.5 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
