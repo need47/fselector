@@ -17,6 +17,8 @@ require "#{ROOT}/fselector/fileio.rb"
 require "#{ROOT}/fselector/util.rb"
 # entropy-related functions
 require "#{ROOT}/fselector/entropy.rb"
+# chi-square calculator
+require "#{ROOT}/fselector/chisq_calc.rb"
 # normalization for continuous data
 require "#{ROOT}/fselector/normalizer.rb"
 # discretization for continuous data
