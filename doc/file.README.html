@@ -148,24 +148,24 @@ TScore                          TS          continuous
 
 <p><strong>4. availabe normalization and discretization algorithms for continuous feature</strong></p>
 
-<pre class="code ruby"><code>algorithm          note
------------------------------------------------------------------
-log                normalize by logarithmic transformation
-min_max            normalize by scaling into [min, max]
-zscore             normalize by converting into zscore
-equal_width        discretize by equal width among intervals
-equal_frequency    discretize by equal frequency among intervals
-ChiMerge           discretize by ChiMerge method
-MID                discretize by Multi-Interval Discretization
+<pre class="code ruby"><code>algorithm                         note
+-------------------------------------------------------------------------------
+normalize_by_log!                 normalize by logarithmic transformation
+normalize_by_min_max!             normalize by scaling into [min, max]
+normalize_by_zscore!              normalize by converting into zscore
+discretize_by_equal_width!        discretize by equal width among intervals
+discretize_by_equal_frequency!    discretize by equal frequency among intervals
+discretize_by_ChiMerge!           discretize by ChiMerge method
+discretize_by_MID!                discretize by Multi-Interval Discretization
 </code></pre>
 
 <p><strong>5. availabe algorithms for replacing missing feature values</strong></p>
 
-<pre class="code ruby"><code>algorithm          note                                  feature_type                     
---------------------------------------------------------------------------------------
-fixed_value        replace with a fixed value            discrete, continuous
-mean_value         replace with mean feature value       continuous
-most_seen_value    replace with most seen feature value  discrete
+<pre class="code ruby"><code>algorithm                        note                                  feature_type                     
+-------------------------------------------------------------------------------------------
+replace_with_fixed_value!        replace with a fixed value            discrete, continuous
+replace_with_mean_value!         replace with mean feature value       continuous
+replace_with_most_seen_value!    replace with most seen feature value  discrete
 </code></pre>
 
 <h2>Installing</h2>
@@ -290,7 +290,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Wed Apr 11 17:33:19 2012 by 
+  Generated on Wed Apr 11 17:41:40 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

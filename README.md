@@ -90,23 +90,23 @@ Feature List
  
 **4. availabe normalization and discretization algorithms for continuous feature**
     
-    algorithm          note
-    -----------------------------------------------------------------
-    log                normalize by logarithmic transformation
-    min_max            normalize by scaling into [min, max]
-    zscore             normalize by converting into zscore
-    equal_width        discretize by equal width among intervals
-    equal_frequency    discretize by equal frequency among intervals
-    ChiMerge           discretize by ChiMerge method
-    MID                discretize by Multi-Interval Discretization
+    algorithm                         note
+    -------------------------------------------------------------------------------
+    normalize_by_log!                 normalize by logarithmic transformation
+    normalize_by_min_max!             normalize by scaling into [min, max]
+    normalize_by_zscore!              normalize by converting into zscore
+    discretize_by_equal_width!        discretize by equal width among intervals
+    discretize_by_equal_frequency!    discretize by equal frequency among intervals
+    discretize_by_ChiMerge!           discretize by ChiMerge method
+    discretize_by_MID!                discretize by Multi-Interval Discretization
     
 **5. availabe algorithms for replacing missing feature values**
     
-    algorithm          note                                  feature_type                     
-    --------------------------------------------------------------------------------------
-    fixed_value        replace with a fixed value            discrete, continuous
-    mean_value         replace with mean feature value       continuous
-    most_seen_value    replace with most seen feature value  discrete
+    algorithm                        note                                  feature_type                     
+    -------------------------------------------------------------------------------------------
+    replace_with_fixed_value!        replace with a fixed value            discrete, continuous
+    replace_with_mean_value!         replace with mean feature value       continuous
+    replace_with_most_seen_value!    replace with most seen feature value  discrete
 
 Installing
 ----------
