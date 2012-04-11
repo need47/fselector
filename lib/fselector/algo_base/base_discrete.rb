@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-#  base ranking alogrithm for handling discrete feature
+#  base alogrithm for handling discrete feature
 #
 #     2 x 2 contingency table
 #     

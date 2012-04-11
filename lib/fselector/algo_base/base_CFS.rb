@@ -3,19 +3,16 @@
 #
 module FSelector
 #
-# base class for Correlation-based Feature Selection (CFS) algorithm, see specialized
-# versions for discrete feature (CFS\_d) and continuous feature (CFS\_c), respectively
+# base class for Correlation-based Feature Selection (CFS) algorithm, see specialized 
+# versions for discrete feature (CFS\_d) and continuous feature (CFS\_c), respectively.
 #
-# @note for simplicity, we use *sequential forward search* for optimal feature subset,
-# the original CFS that uses *best first search* only produces slightly better results
-# but demands much more computational resources
+# @note for simplicity, we use *sequential forward search* for optimal feature subset, 
+#   the original CFS that uses *best first search* only produces slightly better results 
+#   but demands much more computational resources
 #
 # ref: [Feature Selection for Discrete and Numeric Class Machine Learning](http://www.cs.waikato.ac.nz/ml/publications/1999/99MH-Feature-Select.pdf)
 #
   class BaseCFS < Base
-    # undefine superclass methods
-    undef :select_feature_by_score!
-    undef :select_feature_by_rank!
     
     private
     

@@ -14,7 +14,7 @@ module FSelector
 # ref: [Using Information Gain to Analyze and Fine Tune the Performance of Supply Chain Trading Agents](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.141.7895)
 #
   class InformationGain < BaseDiscrete
-    # include entropy module
+    # include Entropy module
     include Entropy
 
     private

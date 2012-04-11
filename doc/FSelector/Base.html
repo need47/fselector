@@ -98,7 +98,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>base ranking algorithm</p>
+    <p>base class</p>
 
 
   </div>
@@ -207,7 +207,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get class labels.</p>
+    <span class="summary_desc"><div class='inline'><p>get class labels for all samples as an array.</p>
 </div></span>
   
 </li>
@@ -229,7 +229,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get classes.</p>
+    <span class="summary_desc"><div class='inline'><p>get (uniq) classes labels as an array.</p>
 </div></span>
   
 </li>
@@ -339,7 +339,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get unique features.</p>
+    <span class="summary_desc"><div class='inline'><p>get (unique) features as an array.</p>
 </div></span>
   
 </li>
@@ -361,7 +361,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get non-data information.</p>
+    <span class="summary_desc"><div class='inline'><p>get non-data information for a given key.</p>
 </div></span>
   
 </li>
@@ -817,7 +817,7 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>get class labels</p>
+    <p>get class labels for all samples as an array</p>
 
 
   </div>
@@ -871,7 +871,7 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>get classes</p>
+    <p>get (uniq) classes labels as an array</p>
 
 
   </div>
@@ -1118,8 +1118,6 @@
   <div class="discussion">
     <p>get feature values</p>
 
-<p>values for the specific class (ck)</p>
-
 
   </div>
 </div>
@@ -1174,7 +1172,8 @@ if mv==nil, include otherwise</p>
       
         &mdash;
         <div class='inline'><p>class of interest.
-return feature values for all classes, otherwise return feature</p>
+return feature values for all classes, otherwise return feature
+values for the specific class (ck)</p>
 </div>
       
     </li>
@@ -1250,7 +1249,7 @@ return feature values for all classes, otherwise return feature</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>get unique features</p>
+    <p>get (unique) features as an array</p>
 
 
   </div>
@@ -1288,7 +1287,7 @@ return feature values for all classes, otherwise return feature</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>get non-data information</p>
+    <p>get non-data information for a given key</p>
 
 
   </div>
@@ -1367,7 +1366,9 @@ return feature values for all classes, otherwise return feature</p>
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>derived class must implement its own get_subset()</p>
+    <div class='inline'><p>derived class must implement its own get<em>subset(), 
+and data structure will be altered. For now, only the algorithms of 
+CFS</em>c, CFS_d and FCBF implement such function</p>
 </div>
   </div>
 
@@ -1402,8 +1403,6 @@ return feature values for all classes, otherwise return feature</p>
       <pre class="lines">
 
 
-256
-257
 258
 259
 260
@@ -1420,10 +1419,12 @@ return feature values for all classes, otherwise return feature</p>
 271
 272
 273
-274</pre>
+274
+275
+276</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 256</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 258</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature!'>select_feature!</span>
   <span class='id identifier rubyid_subset'>subset</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_subset'>get_feature_subset</span>
@@ -1532,8 +1533,6 @@ return feature values for all classes, otherwise return feature</p>
       <pre class="lines">
 
 
-318
-319
 320
 321
 322
@@ -1550,10 +1549,12 @@ return feature values for all classes, otherwise return feature</p>
 333
 334
 335
-336</pre>
+336
+337
+338</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 318</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 320</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature_by_rank!'>select_feature_by_rank!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_ranks'>my_ranks</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># user ranks or internal ranks
@@ -1662,8 +1663,6 @@ return feature values for all classes, otherwise return feature</p>
       <pre class="lines">
 
 
-287
-288
 289
 290
 291
@@ -1680,10 +1679,12 @@ return feature values for all classes, otherwise return feature</p>
 302
 303
 304
-305</pre>
+305
+306
+307</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 287</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 289</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature_by_score!'>select_feature_by_score!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_scores'>my_scores</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># user scores or internal scores
@@ -1904,7 +1905,7 @@ return feature values for all classes, otherwise return feature</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Apr 10 18:03:01 2012 by 
+  Generated on Wed Apr 11 17:33:20 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

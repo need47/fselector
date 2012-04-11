@@ -3,7 +3,7 @@
 #
 module FSelector
   #
-  # base ranking algorithm
+  # base class
   #
   class Base
     # include FileIO
@@ -76,13 +76,13 @@ module FSelector
     end
     
     
-    # get classes
+    # get (uniq) classes labels as an array
     def get_classes
       @classes ||= @data.keys
     end
     
     
-    # get class labels
+    # get class labels for all samples as an array
     def get_class_labels
       if not @cv
         @cv = []
@@ -107,7 +107,7 @@ module FSelector
     end
 
     
-    # get unique features
+    # get (unique) features as an array
     def get_features
       @features ||= @data.map { |x| x[1].map { |y| y.keys } }.flatten.uniq
     end
@@ -122,7 +122,7 @@ module FSelector
     #   if mv==nil, include otherwise
     # @param [Symbol] ck class of interest.
     #   return feature values for all classes, otherwise return feature
-    # values for the specific class (ck)
+    #   values for the specific class (ck)
     #
     def get_feature_values(f, mv=nil, ck=nil)
       @fvs ||= {}
@@ -180,7 +180,7 @@ module FSelector
     end
     
     
-    # get non-data information
+    # get non-data information for a given key
     def get_opt(key)
       @opts.has_key?(key) ? @opts[key] : nil
     end
@@ -251,7 +251,9 @@ module FSelector
     # reconstruct data with selected features
     #
     # @return [Hash] data after feature selection
-    # @note derived class must implement its own get_subset()
+    # @note derived class must implement its own get_subset(), 
+    #   and data structure will be altered. For now, only the algorithms of 
+    #   CFS_c, CFS_d and FCBF implement such function
     #
     def select_feature!
       subset = get_feature_subset
@@ -337,7 +339,8 @@ module FSelector
     
     private
     
-    # clear variables when data structure is altered
+    # clear variables when data structure is altered, 
+    # except @opts (non-data information)
     def clear_vars
       @classes, @features, @fvs = nil, nil, nil
       @scores, @ranks, @sz = nil, nil, nil

@@ -3,12 +3,13 @@
 #
 module FSelector
 #
-# Fast Correlation-Based Filter for feature with discrete data (FCBF)
+# Fast Correlation-Based Filter for feature with discrete data (FCBF), 
+# for FCBF, use **select\_feature!** for feature selection
 #
 # ref: [Feature Selection for High-Dimensional Data: A Fast Correlation-Based Filter Solution](http://www.hpl.hp.com/conferences/icml2003/papers/144.pdf)
 #
   class FastCorrelationBasedFilter < BaseDiscrete
-    # include Entropy
+    # include Entropy module
     include Entropy
     
     #

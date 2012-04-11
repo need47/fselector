@@ -9,13 +9,11 @@
 # original C code is in the public domain.
 #
 # chisq2pval(chisq, df) -- calculate p-value from given 
-#                   chi-square value (chisq) and degree of freedom (df)
+#                   chi-square value (chisq) and degree of freedom (df)  
 # pval2chisq(pval, df) -- chi-square value from given
 #                   p-value (pvalue) and degree of freedom (df)
 #
 module ChiSquareCalculator
-  #
-  # module constants
   BIGX = 20.0 # max value to represent exp(x)
   LOG_SQRT_PI = 0.5723649429247000870717135 # log(sqrt(pi))
   I_SQRT_PI = 0.5641895835477562869480795 # 1 / sqrt(pi)
@@ -23,7 +21,6 @@ module ChiSquareCalculator
   CHI_EPSILON = 0.000001 # Accuracy of critchi approximation
   CHI_MAX = 99999.0 # Maximum chi-square value
   
-  #
   #
   # POCHISQ  --  probability of chi-square value
   #
@@ -37,6 +34,9 @@ module ChiSquareCalculator
   #
   #   ACM TOMS June 1985, page 185
   #
+  # @param [Float] x chi-square value
+  # @param [Integer] df degree of freedom
+  # @return [Float] p-value
   def pochisq(x, df)
     a, y, s = nil, nil, nil
     e, c, z = nil, nil, nil
@@ -99,6 +99,9 @@ module ChiSquareCalculator
   # search for a value within CHI_EPSILON,
   # relying on the monotonicity of pochisq()
   #
+  # @param [Float] p p-value
+  # @param [Integer] df degree of freedom
+  # @return [Float] chi-square value
   def critchi(p, df)
     minchisq = 0.0
     maxchisq = CHI_MAX

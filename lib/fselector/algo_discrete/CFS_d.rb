@@ -3,7 +3,8 @@
 #
 module FSelector
 #
-# Correlation-based Feature Selection (CFS) algorithm for discrete feature (CFS_d)
+# Correlation-based Feature Selection (CFS) algorithm for discrete feature (CFS\_d). 
+# For CFS\_d, use **select\_feature!** for feature selection
 #
 # ref: [Feature Selection for Discrete and Numeric Class Machine Learning](http://www.cs.waikato.ac.nz/ml/publications/1999/99MH-Feature-Select.pdf)
 #

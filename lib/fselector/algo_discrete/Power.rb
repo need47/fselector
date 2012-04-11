@@ -15,9 +15,10 @@ module FSelector
 #
   class Power < BaseDiscrete    
     #
-    # new()
+    # initialize from existing data structure
     # 
     # @param [Integer] k power
+    # @param [Hash] data existing data structure
     #
     def initialize(k=5, data=nil)
       super(data)

@@ -93,7 +93,7 @@ written by Gary Perlman of Wang Institute, Tyngsboro, MA 01879. The
 original C code is in the public domain.</p>
 
 <p>chisq2pval(chisq, df) -- calculate p-value from given 
-                  chi-square value (chisq) and degree of freedom (df)
+                  chi-square value (chisq) and degree of freedom (df)<br>
 pval2chisq(pval, df) -- chi-square value from given
                   p-value (pvalue) and degree of freedom (df)</p>
 
@@ -111,7 +111,7 @@ pval2chisq(pval, df) -- chi-square value from given
         <dt id="BIGX-constant" class="">BIGX =
           <div class="docstring">
   <div class="discussion">
-    <p>module constants</p>
+    <p>max value to represent exp(x)</p>
 
 
   </div>
@@ -126,7 +126,7 @@ pval2chisq(pval, df) -- chi-square value from given
         <dt id="LOG_SQRT_PI-constant" class="">LOG_SQRT_PI =
           <div class="docstring">
   <div class="discussion">
-    <p>max value to represent exp(x)</p>
+    <p>log(sqrt(pi))</p>
 
 
   </div>
@@ -141,7 +141,7 @@ pval2chisq(pval, df) -- chi-square value from given
         <dt id="I_SQRT_PI-constant" class="">I_SQRT_PI =
           <div class="docstring">
   <div class="discussion">
-    <p>log(sqrt(pi))</p>
+    <p>1 / sqrt(pi)</p>
 
 
   </div>
@@ -156,7 +156,7 @@ pval2chisq(pval, df) -- chi-square value from given
         <dt id="Z_MAX-constant" class="">Z_MAX =
           <div class="docstring">
   <div class="discussion">
-    <p>1 / sqrt(pi)</p>
+    <p>Maximum meaningful z value</p>
 
 
   </div>
@@ -171,7 +171,7 @@ pval2chisq(pval, df) -- chi-square value from given
         <dt id="CHI_EPSILON-constant" class="">CHI_EPSILON =
           <div class="docstring">
   <div class="discussion">
-    <p>Maximum meaningful z value</p>
+    <p>Accuracy of critchi approximation</p>
 
 
   </div>
@@ -186,7 +186,7 @@ pval2chisq(pval, df) -- chi-square value from given
         <dt id="CHI_MAX-constant" class="">CHI_MAX =
           <div class="docstring">
   <div class="discussion">
-    <p>Accuracy of critchi approximation</p>
+    <p>Maximum chi-square value</p>
 
 
   </div>
@@ -218,7 +218,7 @@ pval2chisq(pval, df) -- chi-square value from given
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#critchi-instance_method" title="#critchi (instance method)">- <strong>critchi</strong>(p, df) </a>
+      <a href="#critchi-instance_method" title="#critchi (instance method)">- (Float) <strong>critchi</strong>(p, df) </a>
     
 
     
@@ -243,7 +243,7 @@ produce given p.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pochisq-instance_method" title="#pochisq (instance method)">- <strong>pochisq</strong>(x, df) </a>
+      <a href="#pochisq-instance_method" title="#pochisq (instance method)">- (Float) <strong>pochisq</strong>(x, df) </a>
     
 
     
@@ -276,7 +276,7 @@ produce given p.</p>
       <div class="method_details first">
   <p class="signature first" id="critchi-instance_method">
   
-    - <strong>critchi</strong>(p, df) 
+    - (<tt>Float</tt>) <strong>critchi</strong>(p, df) 
   
 
   
@@ -295,7 +295,58 @@ relying on the monotonicity of pochisq()</p>
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>p</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>p-value</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>df</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>degree of freedom</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>chi-square value</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -303,9 +354,6 @@ relying on the monotonicity of pochisq()</p>
       <pre class="lines">
 
 
-102
-103
-104
 105
 106
 107
@@ -330,10 +378,13 @@ relying on the monotonicity of pochisq()</p>
 126
 127
 128
-129</pre>
+129
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/chisq_calc.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/chisq_calc.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_critchi'>critchi</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_df'>df</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_minchisq'>minchisq</span> <span class='op'>=</span> <span class='float'>0.0</span>
@@ -371,7 +422,7 @@ relying on the monotonicity of pochisq()</p>
       <div class="method_details ">
   <p class="signature " id="pochisq-instance_method">
   
-    - <strong>pochisq</strong>(x, df) 
+    - (<tt>Float</tt>) <strong>pochisq</strong>(x, df) 
   
 
   
@@ -397,7 +448,58 @@ relying on the monotonicity of pochisq()</p>
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>x</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>chi-square value</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>df</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>degree of freedom</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>p-value</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -521,7 +623,7 @@ relying on the monotonicity of pochisq()</p>
 </div>
     
     <div id="footer">
-  Generated on Tue Apr 10 18:03:01 2012 by 
+  Generated on Wed Apr 11 17:33:20 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

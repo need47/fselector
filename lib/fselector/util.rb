@@ -35,6 +35,10 @@ class Array
   
   
   # scale to [min, max]
+  #
+  # @param [Float] min lower bound
+  # @param [Float] max upper bound
+  # @return [Array<Float>] scaled numbers
   def to_scale(min=0.0, max=1.0)
     if (min >= max)
       abort "[#{__FILE__}@#{__LINE__}]: "+
@@ -54,9 +58,11 @@ class Array
   end
   
   
-  # convert to zscore
+  # convert to z-score
   #
   # ref: [Wikipedia](http://en.wikipedia.org/wiki/Standard_score)
+  #
+  # @return [Array<Float>] converted z-scores
   def to_zscore
     ave = self.ave
     sd = self.sd
@@ -72,11 +78,14 @@ class Array
   end
   
   
-  # pearson's correlation coefficient
+  # pearson's correlation coefficient, 
   # two vectors must be of the same length
+  #
+  # @param [Array] v the second array
+  # @return [Float] pearson's r
   def pearson_r(v)
     sm, vm = self.ave, v.ave
-    a, b, c = 00, 0.0, 0.0
+    a, b, c = 0.0, 0.0, 0.0
     
     self.each_with_index do |s, i|
       a += (s-sm)*(v[i]-vm)

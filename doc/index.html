@@ -63,8 +63,8 @@
 <strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br>
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
-<strong>Latest Version</strong>: 0.4.1<br>
-<strong>Release Date</strong>: April 10 2012</p>
+<strong>Latest Version</strong>: 0.4.2<br>
+<strong>Release Date</strong>: April 11 2012</p>
 
 <h2>Synopsis</h2>
 
@@ -96,7 +96,7 @@ and random forest. See below for a list of FSelector&#39;s features.</p>
 
 <p><strong>2. available feature selection/ranking algorithms</strong></p>
 
-<pre class="code ruby"><code>algorithm                       alias       feature type
+<pre class="code ruby"><code>algorithm                       alias       feature_type
 --------------------------------------------------------
 Accuracy                        Acc         discrete
 AccuracyBalanced                Acc2        discrete
@@ -134,6 +134,10 @@ ReliefF_c                       ReliefF_c   continuous
 TScore                          TS          continuous
 </code></pre>
 
+<p><strong>feature selection interace:</strong><br>
+    - for the algorithms of CFS_d, FCBF and CFS_c, use select_feature!<br>
+    - for other algorithms, use either select_feature_by_rank! or select_feature_by_score!</p>
+
 <p><strong>3. feature selection approaches</strong></p>
 
 <ul>
@@ -157,7 +161,7 @@ MID                discretize by Multi-Interval Discretization
 
 <p><strong>5. availabe algorithms for replacing missing feature values</strong></p>
 
-<pre class="code ruby"><code>algorithm          note                                  feature type                     
+<pre class="code ruby"><code>algorithm          note                                  feature_type                     
 --------------------------------------------------------------------------------------
 fixed_value        replace with a fixed value            discrete, continuous
 mean_value         replace with mean feature value       continuous
@@ -286,7 +290,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Tue Apr 10 18:03:00 2012 by 
+  Generated on Wed Apr 11 17:33:19 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

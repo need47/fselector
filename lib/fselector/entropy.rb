@@ -7,6 +7,8 @@ module Entropy
   #
   #     H(X) = -1 * sigma_i (P(x_i) logP(x_i))
   #
+  # @param [Array] arrX array of interest
+  # @return [Float] H(X)
    def get_marginal_entropy(arrX)
     h = 0.0
     n = arrX.size.to_f
@@ -27,6 +29,10 @@ module Entropy
   #     
   #     where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) logP(x_i|y_j))
   #
+  # @param [Array] arrX the first array
+  # @param [Array] arrY the second array
+  # @return [Float] H(X|Y)
+  # @note arrX and arrY must be of same length
    def get_conditional_entropy(arrX, arrY)
     abort "[#{__FILE__}@#{__LINE__}]: "+
           "array must be of same length" if not arrX.size == arrY.size
@@ -60,6 +66,10 @@ module Entropy
   #     
   #     i.e. H(X,Y) == H(Y,X)
   #
+  # @param [Array] arrX the first array
+  # @param [Array] arrY the second array
+  # @return [Float] H(X,Y)
+  # @note arrX and arrY must be of same length
    def get_joint_entropy(arrX, arrY)
     abort "[#{__FILE__}@#{__LINE__}]: "+
         "array must be of same length" if not arrX.size == arrY.size

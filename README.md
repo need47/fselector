@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.4.1  
-**Release Date**: April 10 2012
+**Latest Version**: 0.4.2  
+**Release Date**: April 11 2012
 
 Synopsis
 --------
@@ -41,7 +41,7 @@ Feature List
 
 **2. available feature selection/ranking algorithms**
     
-    algorithm                       alias       feature type
+    algorithm                       alias       feature_type
     --------------------------------------------------------
     Accuracy                        Acc         discrete
     AccuracyBalanced                Acc2        discrete
@@ -77,6 +77,10 @@ Feature List
     Relief_c                        Relief_c    continuous
     ReliefF_c                       ReliefF_c   continuous
     TScore                          TS          continuous
+    
+  **feature selection interace:**   
+    - for the algorithms of CFS\_d, FCBF and CFS\_c, use select\_feature!  
+    - for other algorithms, use either select\_feature\_by\_rank! or select\_feature\_by\_score!
 
 **3. feature selection approaches**
 
@@ -98,7 +102,7 @@ Feature List
     
 **5. availabe algorithms for replacing missing feature values**
     
-    algorithm          note                                  feature type                     
+    algorithm          note                                  feature_type                     
     --------------------------------------------------------------------------------------
     fixed_value        replace with a fixed value            discrete, continuous
     mean_value         replace with mean feature value       continuous
