@@ -19,7 +19,14 @@ r2.discretize_by_equal_frequency!(2)
 puts "  test ChiMerge discretization"
 r3 = FSelector::Relief_c.new # Relief_c is for continuous feature
 r3.data_from_csv('test/iris.csv')
-r3.discretize_by_ChiMerge!(4.60)
+r3.discretize_by_ChiMerge!(0.10)
+
+# note our implementation of Chi2 algo is  
+# NOT the exactly same as the original one
+puts "  test Chi2 discretization"
+r3 = FSelector::Relief_c.new # Relief_c is for continuous feature
+r3.data_from_csv('test/iris.csv')
+r3.discretize_by_Chi2!(0.05)
 
 puts "  test Multi-Interval Discretization (MID)"
 r3 = FSelector::Relief_c.new # Relief_c is for continuous feature

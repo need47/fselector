@@ -22,8 +22,8 @@ module Discretizer
       fmin, fmax = fvs.min, fvs.max
       delta = (fmax-fmin)/n_interval
       
-      (n_interval-1).times do |i|
-        f2bs[f] << fmin+(i+1)*delta
+      n_interval.times do |i|
+        f2bs[f] << fmin + i*delta
        end
     end
     
@@ -47,8 +47,8 @@ module Discretizer
       # number of samples in each interval
       ns = (fvs.size.to_f/n_interval).round
       fvs.each_with_index do |v, i|
-        if (i+1)%ns == 0 and (i+1)<fvs.size
-          f2bs[f] << (v+fvs[i+1])/2.0
+        if i%ns == 0
+          f2bs[f] << v
         end
       end
     end
@@ -61,14 +61,16 @@ module Discretizer
   #
   # discretize by ChiMerge algorithm
   #
-  # chi-squared values and associated p values are calculated via the
-  # ChiSquareCalculator module
-  #
-  # @param [Float] alpha confidence level
+  # @param [Float] alpha confidence level, 
+  #   supported alpha values (up to 30 degree of freedom) are:  
+  #   0.995, 0.975, 0.75, 0.5, 0.25, 0.2, 0.1, 0.05, 0.025, 0.02, 0.01, 0.005, 0.002, 0.001
   # @note data structure will be altered
   #
   # ref: [ChiMerge: Discretization of Numberic Attributes](http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf)
-  # and [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_distribution)
+  #
+  # chi-squared values and associated p values can be looked up at
+  # [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_distribution)  
+  # degrees of freedom: one less than the number of classes
   #    
   def discretize_by_ChiMerge!(alpha=0.10)
     df = get_classes.size-1
@@ -95,12 +97,8 @@ module Discretizer
       # 1b. initialize counts for each interval
       each_sample do |k, s|
         next if not s.has_key? f
-        bs.each_with_index do |b, i|
-          if s[f] <= b
-            cs[i][k] += 1.0
-            break
-          end
-        end
+        i = bs.rindex { |x| s[f] >= x }
+        cs[i][k] += 1.0
       end
       
       # 1c. initialize chi-squared values between two adjacent intervals
@@ -157,6 +155,141 @@ module Discretizer
   
   
   #
+  # discretize by Chi2 algorithm
+  #
+  # @note our implementation of Chi2 algo is  
+  # **NOT** the exactly same as the original one and Chi2  
+  # does some feature reduction if one feature has only one interval
+  #
+  # ref: [Chi2: Feature Selection and Discretization of Numeric Attributes](http://sci2s.ugr.es/keel/pdf/specific/congreso/liu1995.pdf)
+  #
+  def discretize_by_Chi2!(delta=0.05)
+    df = get_classes.size-1
+    
+    try_levels = [
+      0.5, 0.25, 0.2, 0.1, 
+      0.05, 0.025, 0.02, 0.01, 
+      0.005, 0.002, 0.001,
+      0.0001, 0.00001, 0.000001]
+    
+    #
+    # Phase 1
+    #
+    
+    sig_level = 0.5
+    sig_level0 = nil
+    inconsis_rate = chi2_get_inconsistency_rate
+    
+    # f2chisq = {
+      # :'sepal-length' => 50.6,
+      # :'sepal-width' => 40.6,
+      # :'petal-length' => 10.6,
+      # :'petal-width' => 10.6,
+    # }
+ 
+    # f2bs = {
+      # :'sepal-length' => [4.4],
+      # :'sepal-width' => [2.0],
+      # :'petal-length' => [1.0, 3.0, 5.0],
+      # :'petal-width' => [0.1, 1.0, 1.7],
+    # }
+    
+    while true
+      chisq = pval2chisq(sig_level, df)
+      
+      f2bs = {} # cut ponts
+      each_feature do |f|
+        #f = :"sepal-length"
+        #chisq = f2chisq[f]
+        bs, cs, qs = chi2_init(f)
+        chi2_merge(bs, cs, qs, chisq)
+        
+        f2bs[f] = bs
+      end
+      
+      # pp f2bs      
+      # pp chi2_get_inconsistency_rate(f2bs)
+      # discretize_at_cutpoints!(f2bs)
+      # puts get_features.join(',')+','+'iris.train'
+      # each_sample do |k, s|
+        # each_feature do |f|
+          # print "#{s[f]},"
+        # end
+        # puts "#{k}"
+      # end
+      # abort
+      
+      inconsis_rate = chi2_get_inconsistency_rate(f2bs)
+      
+      if inconsis_rate < delta
+        sig_level0 = sig_level
+        sig_level = chi2_decrease_sig_level(sig_level, try_levels)
+        
+        break if not sig_level # we've tried every level
+      else # data inconsistency
+        break
+      end     
+      
+    end
+    
+    #
+    # Phase 2
+    #
+    
+    mergeble_fs = []
+    f2sig_level = {}
+    
+    each_feature do |f|
+      mergeble_fs << f
+      f2sig_level[f] = sig_level0
+    end
+    
+    f2bs = {} # cut ponts
+    
+    while not mergeble_fs.empty?
+      mergeble_fs.each do |f|
+        #pp f
+        bs, cs, qs = chi2_init(f)
+        chisq_now = pval2chisq(f2sig_level[f], df)
+        chi2_merge(bs, cs, qs, chisq_now)
+        
+        # backup
+        bs_bak = nil
+        if f2bs.has_key? f
+          bs_bak = f2bs[f]
+        end
+        f2bs[f] = bs
+        
+        inconsis_rate = chi2_get_inconsistency_rate(f2bs)
+        
+        if (inconsis_rate < delta)
+          # try next level
+          next_level = chi2_decrease_sig_level(f2sig_level[f], try_levels)
+          
+          if not next_level # we've tried all levels
+            mergeble_fs.delete(f)
+          else
+            f2bs[f] = bs # record cut points for this level
+            f2sig_level[f] = next_level
+          end
+        else
+          f2bs[f] = bs_bak if bs_bak # restore last cut points
+          mergeble_fs.delete(f) # not mergeble
+        end
+      end
+    end
+    
+    # if there is only one interval, remove this feature
+    each_sample do |k, s|
+      s.delete_if { |f, v| f2bs[f].size <= 1 }
+    end
+    
+    # discretize according to each feature's boundaries
+    discretize_at_cutpoints!(f2bs)
+  end
+  
+  
+  #
   # discretize by Multi-Interval Discretization (MID) algorithm
   #
   # @note no missing feature values allowed and data structure will be altered
@@ -184,7 +317,7 @@ module Discretizer
         # two examples of different classes in the sequence of sorted examples
         # see orginal reference
         if i < n-1 and cv[i] != cv[i+1]
-          bs << (v+fv[i+1])/2.0
+          bs << v
         end
       end
       bs.uniq! # remove duplicates
@@ -193,10 +326,8 @@ module Discretizer
       cp = []
       partition(cv, fv, bs, cp)
       
-      # add the rightmost boundary for convenience
-      cp << fv.max+1.0
       # record cut points for feature (f)
-      f2cp[f] = cp      
+      f2cp[f] = cp.sort # sorted cut points
     end
     
     # discretize based on cut points
@@ -205,19 +336,21 @@ module Discretizer
   
   private
   
+  #
   # get index from sorted cut points
   #
-  # min -- | -- | -- | ... max |
-  #       cp1  cp2  cp3       cpn(=max+1)
-  #      1    2    3   ...   n
+  # cp1 -- cp2 ... cpn # cp1 is the min  
   #
-  def get_index(v, cut_points)  
-    cut_points.each_with_index do |cp, i|
-      return i+1 if v <= cp
-    end
-    
-    # v > cut_points.max
-    return cut_points.size+1
+  # [cp1, cp2) -> 1  
+  # [cp2, cp3) -> 2  
+  # ...  
+  # [cpn, ) -> n
+  #
+  def get_index(v, cut_points)
+    i = cut_points.rindex { |x| v >= x }
+    i ? i+1 : 0
+    #i = cut_points.index { |x| v <= x }
+    #i ? i+1 : cut_points.size+1
   end # get_index
   
 
@@ -257,6 +390,184 @@ module Discretizer
     clear_vars
   end
   
+  #
+  # Chi2: initialization
+  #
+  def chi2_init(f)
+  # for intialization
+    hzero = {}
+    each_class do |k|
+      hzero[k] = 0.0
+    end
+
+    # 1a. initialize boundaries
+    bs, cs, qs = [], [], []
+    fvs = get_feature_values(f).uniq.sort
+    fvs.each do |v|
+      bs << v
+      cs << hzero.dup
+    end
+
+    # 1b. initialize counts for each interval
+     each_sample do |k, s|
+      next if not s.has_key? f
+      i = bs.rindex { |x| s[f] >= x }
+      cs[i][k] += 1.0
+    end
+    
+    # 1c. initialize chi-squared values between two adjacent intervals
+    cs.each_with_index do |c, i|
+      if i+1 < cs.size
+        qs[i] = chi2_calc(c, cs[i+1])
+      end
+    end
+
+    [bs, cs, qs]
+  end
+  
+  #
+  # Chi2: merge two adjacent intervals
+  #
+  def chi2_merge(bs, cs, qs, chisq)
+    
+    until qs.empty? or qs.min > chisq
+      qs.each_with_index do |q, i|
+        next if q != qs.min # nothing to do
+        
+        # update cs for merged two intervals
+        cm = {}
+        each_class do |k|
+          cm[k] = cs[i][k]+cs[i+1][k]
+        end
+        
+        # update qs if necessary
+        # before merged intervals
+        if i-1 >= 0
+          qs[i-1] = chi2_calc(cs[i-1], cm)
+        end
+        # after merged intervals
+        if i+1 < qs.size
+          qs[i+1] = chi2_calc(cm, cs[i+2])
+        end
+        
+        # merge
+        bs.delete_at(i+1)
+        cs.delete_at(i); cs.delete_at(i);cs.insert(i, cm)
+        qs.delete_at(i)
+        
+        # note bs.size == cs.size == bs.size+1
+        #cs.each_with_index do |c, i|
+        #  puts "#{bs[i]} | #{c.values.join(' ')} | #{qs[i]}"
+        #end
+        #puts
+            
+        # break out
+        break
+      end
+    end
+  end
+  
+  
+  #
+  # Chi2: calc the chi-squared value of two adjacent intervals
+  #
+  def chi2_calc(cs1, cs2)
+    
+    r1 = cs1.values.sum
+    r2 = cs2.values.sum
+    n = r1+r2
+    
+    q = 0.0
+    
+    each_class do |k|
+      ck = cs1[k]+cs2[k]
+      
+      ek1 = r1*ck/n
+      ek2 = r2*ck/n
+      
+      #
+      # we can't implement exactly the same as illustrated
+      # in the literature, but the following best reproduces
+      # the results as in Table 1
+      #
+      #ek1 = 0.1 if r1.zero? or ck.zero?
+      #ek2 = 0.1 if r2.zero? or ck.zero?
+      
+      if ek1.zero? and ek2.zero?
+        q += 0.10
+      elsif ek1.zero?
+        q += 0.05 + 
+            (cs2[k]-ek2)**2/ek2
+      elsif ek2.zero?
+        q += (cs1[k]-ek1)**2/ek1 + 
+             0.05
+      else
+        q += (cs1[k]-ek1)**2/ek1+
+             (cs2[k]-ek2)**2/ek2
+      end
+    end
+    
+    q
+  end # chi2_calc
+  
+  
+  # try next sig level
+  def chi2_decrease_sig_level(sig_level, try_levels)
+    next_level = nil
+    try_levels.each do |t|
+      if t < sig_level
+        next_level = t
+        break
+      end
+    end
+    
+    next_level
+  end
+  
+  
+  # get the inconsistency rate of data
+  def chi2_get_inconsistency_rate(f2bs=nil)
+    # work on a discretized data copy
+    dt = {}
+    get_data.each do |k, ss|
+      dt[k] ||= []
+      
+      ss.each do |s|
+        my_s = {}
+        
+        s.each do |f, v|
+          if f2bs and f2bs.has_key? f
+            my_s[f] = get_index(v, f2bs[f])
+          else
+            my_s[f] = v
+          end
+        end
+        
+        dt[k] << my_s if not my_s.empty?
+      end
+    end
+    
+    # get unique instances (except class label)
+    inst_u = dt.values.flatten.uniq
+    inst_u_cnt = {} # occurrences for each unique instance in each class
+    ks = dt.keys
+    
+    # count
+    inst_u.each_with_index do |inst, idx|
+      inst_u_cnt[idx] = [] # record for all classes
+      ks.each do |k|
+        inst_u_cnt[idx] << dt[k].count(inst)
+      end
+    end
+   
+    # inconsistency rate
+    inconsis = 0.0
+    inst_u_cnt.each do |idx, cnts|
+      inconsis += cnts.sum-cnts.max
+    end
+    
+    inconsis/get_sample_size
+  end
   
   #
   # Multi-Interval Discretization main algorithm
