@@ -3,12 +3,12 @@
 #
 module ReplaceMissingValues
   #
-  # replace missing feature value with a fixed value, 
+  # replace missing feature value by a fixed value, 
   # applicable for both discrete and continuous feature
   #
   # @note data structure will be altered
   #
-  def replace_with_fixed_value!(val)
+  def replace_by_fixed_value!(val)
     each_sample do |k, s|
       each_feature do |f|
         if not s.has_key? f
@@ -19,16 +19,16 @@ module ReplaceMissingValues
     
     # clear variables
     clear_vars
-  end # replace_fixed_value
+  end # replace_by_fixed_value
   
   
   #
-  # replace missing feature value with mean feature value, 
+  # replace missing feature value by mean feature value, 
   # applicable only to continuous feature
   #
   # @note data structure will be altered
   #
-  def replace_with_mean_value!
+  def replace_by_mean_value!
     each_sample do |k, s|
       each_feature do |f|
         fv = get_feature_values(f)
@@ -43,16 +43,16 @@ module ReplaceMissingValues
     
     # clear variables
     clear_vars
-  end # replace_with_mean_value!
+  end # replace_by_mean_value!
   
   
   #
-  # replace missing feature value with most seen feature value, 
+  # replace missing feature value by most seen feature value, 
   # applicable only to discrete feature
   #
   # @note data structure will be altered
   #
-  def replace_with_most_seen_value!
+  def replace_by_most_seen_value!
     each_sample do |k, s|
       each_feature do |f|
         fv = get_feature_values(f)
@@ -75,7 +75,7 @@ module ReplaceMissingValues
     
     # clear variables
     clear_vars
-  end # replace_with_mean_value!
+  end # replace_by_mean_value!
   
   
 end # ReplaceMissingValues

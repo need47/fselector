@@ -16,7 +16,7 @@ module FSelector
     
     # replace missing values with most seen feature value
     def handle_missing_values
-      replace_with_most_seen_value!
+      replace_by_most_seen_value!
     end
     
         

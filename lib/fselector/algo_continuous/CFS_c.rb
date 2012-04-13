@@ -18,7 +18,7 @@ module FSelector
     
     # replace missing values with mean feature value
     def handle_missing_values
-      replace_with_mean_value!
+      replace_by_mean_value!
     end
     
         
