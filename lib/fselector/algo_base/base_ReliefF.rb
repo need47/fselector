@@ -4,7 +4,7 @@
 module FSelector
 #
 # base class for extended Relief algorithm (ReliefF), see specialized versions for
-# discrete feature (ReliefF_d) and continuous feature (ReliefF_c), respectively
+# discrete feature (ReliefF\_d) and continuous feature (ReliefF\_c), respectively
 #
 # @note applicable to multi-class problem with missing data
 #

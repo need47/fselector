@@ -61,9 +61,7 @@ module Discretizer
   #
   # discretize by ChiMerge algorithm
   #
-  # @param [Float] alpha confidence level, 
-  #   supported alpha values (up to 30 degree of freedom) are:  
-  #   0.995, 0.975, 0.75, 0.5, 0.25, 0.2, 0.1, 0.05, 0.025, 0.02, 0.01, 0.005, 0.002, 0.001
+  # @param [Float] alpha confidence level
   # @note data structure will be altered
   #
   # ref: [ChiMerge: Discretization of Numberic Attributes](http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf)
@@ -157,9 +155,9 @@ module Discretizer
   #
   # discretize by Chi2 algorithm
   #
-  # @note our implementation of Chi2 algo is  
-  # **NOT** the exactly same as the original one and Chi2  
-  # does some feature reduction if one feature has only one interval
+  # @note our implementation of Chi2 algo is **NOT** 
+  #   the exactly same as the original one and Chi2 
+  #   does some feature reduction if one feature has only one interval
   #
   # ref: [Chi2: Feature Selection and Discretization of Numeric Attributes](http://sci2s.ugr.es/keel/pdf/specific/congreso/liu1995.pdf)
   #

@@ -109,7 +109,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#replace_with_fixed_value%21-instance_method" title="#replace_with_fixed_value! (instance method)">- <strong>replace_with_fixed_value!</strong>(val) </a>
+      <a href="#replace_by_fixed_value%21-instance_method" title="#replace_by_fixed_value! (instance method)">- <strong>replace_by_fixed_value!</strong>(val) </a>
     
 
     
@@ -122,7 +122,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>replace missing feature value with a fixed value, 
+    <span class="summary_desc"><div class='inline'><p>replace missing feature value by a fixed value, 
 applicable for both discrete and continuous feature.</p>
 </div></span>
   
@@ -132,7 +132,7 @@ applicable for both discrete and continuous feature.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#replace_with_mean_value%21-instance_method" title="#replace_with_mean_value! (instance method)">- <strong>replace_with_mean_value!</strong> </a>
+      <a href="#replace_by_mean_value%21-instance_method" title="#replace_by_mean_value! (instance method)">- <strong>replace_by_mean_value!</strong> </a>
     
 
     
@@ -145,7 +145,7 @@ applicable for both discrete and continuous feature.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>replace missing feature value with mean feature value, 
+    <span class="summary_desc"><div class='inline'><p>replace missing feature value by mean feature value, 
 applicable only to continuous feature.</p>
 </div></span>
   
@@ -155,7 +155,7 @@ applicable only to continuous feature.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#replace_with_most_seen_value%21-instance_method" title="#replace_with_most_seen_value! (instance method)">- <strong>replace_with_most_seen_value!</strong> </a>
+      <a href="#replace_by_most_seen_value%21-instance_method" title="#replace_by_most_seen_value! (instance method)">- <strong>replace_by_most_seen_value!</strong> </a>
     
 
     
@@ -168,7 +168,7 @@ applicable only to continuous feature.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>replace missing feature value with most seen feature value, 
+    <span class="summary_desc"><div class='inline'><p>replace missing feature value by most seen feature value, 
 applicable only to discrete feature.</p>
 </div></span>
   
@@ -185,9 +185,9 @@ applicable only to discrete feature.</p>
     
     
       <div class="method_details first">
-  <p class="signature first" id="replace_with_fixed_value!-instance_method">
+  <p class="signature first" id="replace_by_fixed_value!-instance_method">
   
-    - <strong>replace_with_fixed_value!</strong>(val) 
+    - <strong>replace_by_fixed_value!</strong>(val) 
   
 
   
@@ -200,7 +200,7 @@ applicable only to discrete feature.</p>
 </div>
   </div>
 
-<p>replace missing feature value with a fixed value, 
+<p>replace missing feature value by a fixed value, 
 applicable for both discrete and continuous feature</p>
 
 
@@ -231,7 +231,7 @@ applicable for both discrete and continuous feature</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 11</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_replace_with_fixed_value!'>replace_with_fixed_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_fixed_value!'>replace_by_fixed_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
     <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
       <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
@@ -249,9 +249,9 @@ applicable for both discrete and continuous feature</p>
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="replace_with_mean_value!-instance_method">
+  <p class="signature " id="replace_by_mean_value!-instance_method">
   
-    - <strong>replace_with_mean_value!</strong> 
+    - <strong>replace_by_mean_value!</strong> 
   
 
   
@@ -264,7 +264,7 @@ applicable for both discrete and continuous feature</p>
 </div>
   </div>
 
-<p>replace missing feature value with mean feature value, 
+<p>replace missing feature value by mean feature value, 
 applicable only to continuous feature</p>
 
 
@@ -299,7 +299,7 @@ applicable only to continuous feature</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 31</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_replace_with_mean_value!'>replace_with_mean_value!</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_mean_value!'>replace_by_mean_value!</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
     <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
       <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
@@ -321,9 +321,9 @@ applicable only to continuous feature</p>
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="replace_with_most_seen_value!-instance_method">
+  <p class="signature " id="replace_by_most_seen_value!-instance_method">
   
-    - <strong>replace_with_most_seen_value!</strong> 
+    - <strong>replace_by_most_seen_value!</strong> 
   
 
   
@@ -336,7 +336,7 @@ applicable only to continuous feature</p>
 </div>
   </div>
 
-<p>replace missing feature value with most seen feature value, 
+<p>replace missing feature value by most seen feature value, 
 applicable only to discrete feature</p>
 
 
@@ -379,7 +379,7 @@ applicable only to discrete feature</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 55</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_replace_with_most_seen_value!'>replace_with_most_seen_value!</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_most_seen_value!'>replace_by_most_seen_value!</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
     <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
       <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
@@ -413,7 +413,7 @@ applicable only to discrete feature</p>
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 11 17:41:41 2012 by 
+  Generated on Fri Apr 13 17:04:23 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

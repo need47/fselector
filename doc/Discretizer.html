@@ -122,6 +122,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#discretize_by_Chi2%21-instance_method" title="#discretize_by_Chi2! (instance method)">- <strong>discretize_by_Chi2!</strong>(delta = 0.05) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>discretize by Chi2 algorithm.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#discretize_by_ChiMerge%21-instance_method" title="#discretize_by_ChiMerge! (instance method)">- <strong>discretize_by_ChiMerge!</strong>(alpha = 0.10) </a>
     
 
@@ -237,7 +259,298 @@
     
     
       <div class="method_details first">
-  <p class="signature first" id="discretize_by_ChiMerge!-instance_method">
+  <p class="signature first" id="discretize_by_Chi2!-instance_method">
+  
+    - <strong>discretize_by_Chi2!</strong>(delta = 0.05) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>our implementation of Chi2 algo is <strong>NOT</strong> 
+the exactly same as the original one and Chi2 
+does some feature reduction if one feature has only one interval</p>
+</div>
+  </div>
+
+<p>discretize by Chi2 algorithm</p>
+
+<p>ref: <a href="http://sci2s.ugr.es/keel/pdf/specific/congreso/liu1995.pdf">Chi2: Feature Selection and Discretization of Numeric Attributes</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_Chi2!'>discretize_by_Chi2!</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.05</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
+  
+  <span class='id identifier rubyid_try_levels'>try_levels</span> <span class='op'>=</span> <span class='lbracket'>[</span>
+    <span class='float'>0.5</span><span class='comma'>,</span> <span class='float'>0.25</span><span class='comma'>,</span> <span class='float'>0.2</span><span class='comma'>,</span> <span class='float'>0.1</span><span class='comma'>,</span> 
+    <span class='float'>0.05</span><span class='comma'>,</span> <span class='float'>0.025</span><span class='comma'>,</span> <span class='float'>0.02</span><span class='comma'>,</span> <span class='float'>0.01</span><span class='comma'>,</span> 
+    <span class='float'>0.005</span><span class='comma'>,</span> <span class='float'>0.002</span><span class='comma'>,</span> <span class='float'>0.001</span><span class='comma'>,</span>
+    <span class='float'>0.0001</span><span class='comma'>,</span> <span class='float'>0.00001</span><span class='comma'>,</span> <span class='float'>0.000001</span><span class='rbracket'>]</span>
+  
+  <span class='comment'>#
+</span>  <span class='comment'># Phase 1
+</span>  <span class='comment'>#
+</span>  
+  <span class='id identifier rubyid_sig_level'>sig_level</span> <span class='op'>=</span> <span class='float'>0.5</span>
+  <span class='id identifier rubyid_sig_level0'>sig_level0</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_inconsis_rate'>inconsis_rate</span> <span class='op'>=</span> <span class='id identifier rubyid_chi2_get_inconsistency_rate'>chi2_get_inconsistency_rate</span>
+  
+  <span class='comment'># f2chisq = {
+</span>    <span class='comment'># :'sepal-length' =&gt; 50.6,
+</span>    <span class='comment'># :'sepal-width' =&gt; 40.6,
+</span>    <span class='comment'># :'petal-length' =&gt; 10.6,
+</span>    <span class='comment'># :'petal-width' =&gt; 10.6,
+</span>  <span class='comment'># }
+</span> 
+  <span class='comment'># f2bs = {
+</span>    <span class='comment'># :'sepal-length' =&gt; [4.4],
+</span>    <span class='comment'># :'sepal-width' =&gt; [2.0],
+</span>    <span class='comment'># :'petal-length' =&gt; [1.0, 3.0, 5.0],
+</span>    <span class='comment'># :'petal-width' =&gt; [0.1, 1.0, 1.7],
+</span>  <span class='comment'># }
+</span>  
+  <span class='kw'>while</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_chisq'>chisq</span> <span class='op'>=</span> <span class='id identifier rubyid_pval2chisq'>pval2chisq</span><span class='lparen'>(</span><span class='id identifier rubyid_sig_level'>sig_level</span><span class='comma'>,</span> <span class='id identifier rubyid_df'>df</span><span class='rparen'>)</span>
+    
+    <span class='id identifier rubyid_f2bs'>f2bs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'># cut ponts
+</span>    <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+      <span class='comment'>#f = :&quot;sepal-length&quot;
+</span>      <span class='comment'>#chisq = f2chisq[f]
+</span>      <span class='id identifier rubyid_bs'>bs</span><span class='comma'>,</span> <span class='id identifier rubyid_cs'>cs</span><span class='comma'>,</span> <span class='id identifier rubyid_qs'>qs</span> <span class='op'>=</span> <span class='id identifier rubyid_chi2_init'>chi2_init</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_chi2_merge'>chi2_merge</span><span class='lparen'>(</span><span class='id identifier rubyid_bs'>bs</span><span class='comma'>,</span> <span class='id identifier rubyid_cs'>cs</span><span class='comma'>,</span> <span class='id identifier rubyid_qs'>qs</span><span class='comma'>,</span> <span class='id identifier rubyid_chisq'>chisq</span><span class='rparen'>)</span>
+      
+      <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_bs'>bs</span>
+    <span class='kw'>end</span>
+    
+    <span class='comment'># pp f2bs      
+</span>    <span class='comment'># pp chi2_get_inconsistency_rate(f2bs)
+</span>    <span class='comment'># discretize_at_cutpoints!(f2bs)
+</span>    <span class='comment'># puts get_features.join(',')+','+'iris.train'
+</span>    <span class='comment'># each_sample do |k, s|
+</span>      <span class='comment'># each_feature do |f|
+</span>        <span class='comment'># print &quot;#{s[f]},&quot;
+</span>      <span class='comment'># end
+</span>      <span class='comment'># puts &quot;#{k}&quot;
+</span>    <span class='comment'># end
+</span>    <span class='comment'># abort
+</span>    
+    <span class='id identifier rubyid_inconsis_rate'>inconsis_rate</span> <span class='op'>=</span> <span class='id identifier rubyid_chi2_get_inconsistency_rate'>chi2_get_inconsistency_rate</span><span class='lparen'>(</span><span class='id identifier rubyid_f2bs'>f2bs</span><span class='rparen'>)</span>
+    
+    <span class='kw'>if</span> <span class='id identifier rubyid_inconsis_rate'>inconsis_rate</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_delta'>delta</span>
+      <span class='id identifier rubyid_sig_level0'>sig_level0</span> <span class='op'>=</span> <span class='id identifier rubyid_sig_level'>sig_level</span>
+      <span class='id identifier rubyid_sig_level'>sig_level</span> <span class='op'>=</span> <span class='id identifier rubyid_chi2_decrease_sig_level'>chi2_decrease_sig_level</span><span class='lparen'>(</span><span class='id identifier rubyid_sig_level'>sig_level</span><span class='comma'>,</span> <span class='id identifier rubyid_try_levels'>try_levels</span><span class='rparen'>)</span>
+      
+      <span class='kw'>break</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_sig_level'>sig_level</span> <span class='comment'># we've tried every level
+</span>    <span class='kw'>else</span> <span class='comment'># data inconsistency
+</span>      <span class='kw'>break</span>
+    <span class='kw'>end</span>     
+    
+  <span class='kw'>end</span>
+  
+  <span class='comment'>#
+</span>  <span class='comment'># Phase 2
+</span>  <span class='comment'>#
+</span>  
+  <span class='id identifier rubyid_mergeble_fs'>mergeble_fs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_f2sig_level'>f2sig_level</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='id identifier rubyid_mergeble_fs'>mergeble_fs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_f'>f</span>
+    <span class='id identifier rubyid_f2sig_level'>f2sig_level</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_sig_level0'>sig_level0</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_f2bs'>f2bs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'># cut ponts
+</span>  
+  <span class='kw'>while</span> <span class='kw'>not</span> <span class='id identifier rubyid_mergeble_fs'>mergeble_fs</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_mergeble_fs'>mergeble_fs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+      <span class='comment'>#pp f
+</span>      <span class='id identifier rubyid_bs'>bs</span><span class='comma'>,</span> <span class='id identifier rubyid_cs'>cs</span><span class='comma'>,</span> <span class='id identifier rubyid_qs'>qs</span> <span class='op'>=</span> <span class='id identifier rubyid_chi2_init'>chi2_init</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_chisq_now'>chisq_now</span> <span class='op'>=</span> <span class='id identifier rubyid_pval2chisq'>pval2chisq</span><span class='lparen'>(</span><span class='id identifier rubyid_f2sig_level'>f2sig_level</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_df'>df</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_chi2_merge'>chi2_merge</span><span class='lparen'>(</span><span class='id identifier rubyid_bs'>bs</span><span class='comma'>,</span> <span class='id identifier rubyid_cs'>cs</span><span class='comma'>,</span> <span class='id identifier rubyid_qs'>qs</span><span class='comma'>,</span> <span class='id identifier rubyid_chisq_now'>chisq_now</span><span class='rparen'>)</span>
+      
+      <span class='comment'># backup
+</span>      <span class='id identifier rubyid_bs_bak'>bs_bak</span> <span class='op'>=</span> <span class='kw'>nil</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_f2bs'>f2bs</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
+        <span class='id identifier rubyid_bs_bak'>bs_bak</span> <span class='op'>=</span> <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_bs'>bs</span>
+      
+      <span class='id identifier rubyid_inconsis_rate'>inconsis_rate</span> <span class='op'>=</span> <span class='id identifier rubyid_chi2_get_inconsistency_rate'>chi2_get_inconsistency_rate</span><span class='lparen'>(</span><span class='id identifier rubyid_f2bs'>f2bs</span><span class='rparen'>)</span>
+      
+      <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_inconsis_rate'>inconsis_rate</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_delta'>delta</span><span class='rparen'>)</span>
+        <span class='comment'># try next level
+</span>        <span class='id identifier rubyid_next_level'>next_level</span> <span class='op'>=</span> <span class='id identifier rubyid_chi2_decrease_sig_level'>chi2_decrease_sig_level</span><span class='lparen'>(</span><span class='id identifier rubyid_f2sig_level'>f2sig_level</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_try_levels'>try_levels</span><span class='rparen'>)</span>
+        
+        <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_next_level'>next_level</span> <span class='comment'># we've tried all levels
+</span>          <span class='id identifier rubyid_mergeble_fs'>mergeble_fs</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+        <span class='kw'>else</span>
+          <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_bs'>bs</span> <span class='comment'># record cut points for this level
+</span>          <span class='id identifier rubyid_f2sig_level'>f2sig_level</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_next_level'>next_level</span>
+        <span class='kw'>end</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_bs_bak'>bs_bak</span> <span class='kw'>if</span> <span class='id identifier rubyid_bs_bak'>bs_bak</span> <span class='comment'># restore last cut points
+</span>        <span class='id identifier rubyid_mergeble_fs'>mergeble_fs</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span> <span class='comment'># not mergeble
+</span>      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># if there is only one interval, remove this feature
+</span>  <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&lt;=</span> <span class='int'>1</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># discretize according to each feature's boundaries
+</span>  <span class='id identifier rubyid_discretize_at_cutpoints!'>discretize_at_cutpoints!</span><span class='lparen'>(</span><span class='id identifier rubyid_f2bs'>f2bs</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="discretize_by_ChiMerge!-instance_method">
   
     - <strong>discretize_by_ChiMerge!</strong>(alpha = 0.10) 
   
@@ -254,11 +567,11 @@
 
 <p>discretize by ChiMerge algorithm</p>
 
-<p>chi-squared values and associated p values are calculated via the
-ChiSquareCalculator module</p>
+<p>ref: <a href="http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf">ChiMerge: Discretization of Numberic Attributes</a></p>
 
-<p>ref: <a href="http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf">ChiMerge: Discretization of Numberic Attributes</a>
-and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a></p>
+<p>chi-squared values and associated p values can be looked up at
+<a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a><br>
+degrees of freedom: one less than the number of classes</p>
 
 
   </div>
@@ -372,11 +685,7 @@ and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a
 149
 150
 151
-152
-153
-154
-155
-156</pre>
+152</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 73</span>
@@ -406,12 +715,8 @@ and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a
     <span class='comment'># 1b. initialize counts for each interval
 </span>    <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
       <span class='kw'>next</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
-      <span class='id identifier rubyid_bs'>bs</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_b'>b</span>
-          <span class='id identifier rubyid_cs'>cs</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='float'>1.0</span>
-          <span class='kw'>break</span>
-        <span class='kw'>end</span>
-      <span class='kw'>end</span>
+      <span class='id identifier rubyid_i'>i</span> <span class='op'>=</span> <span class='id identifier rubyid_bs'>bs</span><span class='period'>.</span><span class='id identifier rubyid_rindex'>rindex</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_x'>x</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_cs'>cs</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='float'>1.0</span>
     <span class='kw'>end</span>
     
     <span class='comment'># 1c. initialize chi-squared values between two adjacent intervals
@@ -552,8 +857,8 @@ and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a
     <span class='comment'># number of samples in each interval
 </span>    <span class='id identifier rubyid_ns'>ns</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='op'>/</span><span class='id identifier rubyid_n_interval'>n_interval</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span>
     <span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
-      <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span><span class='op'>%</span><span class='id identifier rubyid_ns'>ns</span> <span class='op'>==</span> <span class='int'>0</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span><span class='op'>&lt;</span><span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
-        <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='op'>+</span><span class='id identifier rubyid_fvs'>fvs</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='op'>+</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='op'>/</span><span class='float'>2.0</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span><span class='op'>%</span><span class='id identifier rubyid_ns'>ns</span> <span class='op'>==</span> <span class='int'>0</span>
+        <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -647,8 +952,8 @@ and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a
     <span class='id identifier rubyid_fmin'>fmin</span><span class='comma'>,</span> <span class='id identifier rubyid_fmax'>fmax</span> <span class='op'>=</span> <span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
     <span class='id identifier rubyid_delta'>delta</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_fmax'>fmax</span><span class='op'>-</span><span class='id identifier rubyid_fmin'>fmin</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_n_interval'>n_interval</span>
     
-    <span class='lparen'>(</span><span class='id identifier rubyid_n_interval'>n_interval</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
-      <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_fmin'>fmin</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span><span class='op'>*</span><span class='id identifier rubyid_delta'>delta</span>
+    <span class='id identifier rubyid_n_interval'>n_interval</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+      <span class='id identifier rubyid_f2bs'>f2bs</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_fmin'>fmin</span> <span class='op'>+</span> <span class='id identifier rubyid_i'>i</span><span class='op'>*</span><span class='id identifier rubyid_delta'>delta</span>
      <span class='kw'>end</span>
   <span class='kw'>end</span>
   
@@ -692,48 +997,46 @@ and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a
       <pre class="lines">
 
 
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204</pre>
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 166</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 297</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_MID!'>discretize_by_MID!</span>
   <span class='comment'># determine the final boundaries
@@ -756,7 +1059,7 @@ and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a
 </span>      <span class='comment'># two examples of different classes in the sequence of sorted examples
 </span>      <span class='comment'># see orginal reference
 </span>      <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_n'>n</span><span class='op'>-</span><span class='int'>1</span> <span class='kw'>and</span> <span class='id identifier rubyid_cv'>cv</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='id identifier rubyid_cv'>cv</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='op'>+</span><span class='int'>1</span><span class='rbracket'>]</span>
-        <span class='id identifier rubyid_bs'>bs</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='op'>+</span><span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='op'>+</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='op'>/</span><span class='float'>2.0</span>
+        <span class='id identifier rubyid_bs'>bs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_bs'>bs</span><span class='period'>.</span><span class='id identifier rubyid_uniq!'>uniq!</span> <span class='comment'># remove duplicates
@@ -765,11 +1068,9 @@ and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a
 </span>    <span class='id identifier rubyid_cp'>cp</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_partition'>partition</span><span class='lparen'>(</span><span class='id identifier rubyid_cv'>cv</span><span class='comma'>,</span> <span class='id identifier rubyid_fv'>fv</span><span class='comma'>,</span> <span class='id identifier rubyid_bs'>bs</span><span class='comma'>,</span> <span class='id identifier rubyid_cp'>cp</span><span class='rparen'>)</span>
     
-    <span class='comment'># add the rightmost boundary for convenience
-</span>    <span class='id identifier rubyid_cp'>cp</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span><span class='op'>+</span><span class='float'>1.0</span>
     <span class='comment'># record cut points for feature (f)
-</span>    <span class='id identifier rubyid_f2cp'>f2cp</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_cp'>cp</span>      
-  <span class='kw'>end</span>
+</span>    <span class='id identifier rubyid_f2cp'>f2cp</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_cp'>cp</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='comment'># sorted cut points
+</span>  <span class='kw'>end</span>
   
   <span class='comment'># discretize based on cut points
 </span>  <span class='id identifier rubyid_discretize_at_cutpoints!'>discretize_at_cutpoints!</span><span class='lparen'>(</span><span class='id identifier rubyid_f2cp'>f2cp</span><span class='rparen'>)</span>
@@ -784,7 +1085,7 @@ and <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 11 17:41:41 2012 by 
+  Generated on Fri Apr 13 17:04:22 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

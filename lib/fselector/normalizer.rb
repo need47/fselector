@@ -33,6 +33,8 @@ module Normalizer
    
    
    # by z-score
+   #
+   # ref: [Wikipedia](http://en.wikipedia.org/wiki/Zscore)
    def normalize_by_zscore!
      # first determine mean and sd for each feature
      f2mean_sd = {}

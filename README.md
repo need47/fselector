@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.4.2  
-**Release Date**: April 11 2012
+**Latest Version**: 0.5.0  
+**Release Date**: April 13 2012
 
 Synopsis
 --------
@@ -41,42 +41,42 @@ Feature List
 
 **2. available feature selection/ranking algorithms**
     
-    algorithm                       alias       feature_type
-    --------------------------------------------------------
-    Accuracy                        Acc         discrete
-    AccuracyBalanced                Acc2        discrete
-    BiNormalSeparation              BNS         discrete
-    CFS_d                           CFS_d       discrete
-    ChiSquaredTest                  CHI         discrete
-    CorrelationCoefficient          CC          discrete
-    DocumentFrequency               DF          discrete
-    F1Measure                       F1          discrete
-    FishersExactTest                FET         discrete
-    FastCorrelationBasedFilter      FCBF        discrete
-    GiniIndex                       GI          discrete
-    GMean                           GM          discrete
-    GSSCoefficient                  GSS         discrete
-    InformationGain                 IG          discrete
-    MatthewsCorrelationCoefficient  MCC, PHI    discrete
-    McNemarsTest                    MNT         discrete
-    OddsRatio                       OR          discrete
-    OddsRatioNumerator              ORN         discrete
-    PhiCoefficient                  Phi         discrete
-    Power                           Power       discrete
-    Precision                       Precision   discrete
-    ProbabilityRatio                PR          discrete
-    Random                          Random      discrete
-    Recall                          Recall      discrete
-    Relief_d                        Relief_d    discrete
-    ReliefF_d                       ReliefF_d   discrete
-    Sensitivity                     SN, Recall  discrete
-    Specificity                     SP          discrete
-    SymmetricalUncertainty          SU          discrete
-    CFS_c                           CFS_c       continuous
-    PMetric                         PM          continuous
-    Relief_c                        Relief_c    continuous
-    ReliefF_c                       ReliefF_c   continuous
-    TScore                          TS          continuous
+    algorithm                         alias       feature_type
+    ----------------------------------------------------------
+    Accuracy                          Acc         discrete
+    AccuracyBalanced                  Acc2        discrete
+    BiNormalSeparation                BNS         discrete
+    CFS_d                             CFS_d       discrete
+    ChiSquaredTest                    CHI         discrete
+    CorrelationCoefficient            CC          discrete
+    DocumentFrequency                 DF          discrete
+    F1Measure                         F1          discrete
+    FishersExactTest                  FET         discrete
+    FastCorrelationBasedFilter        FCBF        discrete
+    GiniIndex                         GI          discrete
+    GMean                             GM          discrete
+    GSSCoefficient                    GSS         discrete
+    InformationGain                   IG          discrete
+    MatthewsCorrelationCoefficient    MCC, PHI    discrete
+    McNemarsTest                      MNT         discrete
+    OddsRatio                         OR          discrete
+    OddsRatioNumerator                ORN         discrete
+    PhiCoefficient                    Phi         discrete
+    Power                             Power       discrete
+    Precision                         Precision   discrete
+    ProbabilityRatio                  PR          discrete
+    Random                            Random      discrete
+    Recall                            Recall      discrete
+    Relief_d                          Relief_d    discrete
+    ReliefF_d                         ReliefF_d   discrete
+    Sensitivity                       SN, Recall  discrete
+    Specificity                       SP          discrete
+    SymmetricalUncertainty            SU          discrete
+    CFS_c                             CFS_c       continuous
+    PMetric                           PM          continuous
+    Relief_c                          Relief_c    continuous
+    ReliefF_c                         ReliefF_c   continuous
+    TScore                            TS          continuous
     
   **feature selection interace:**   
     - for the algorithms of CFS\_d, FCBF and CFS\_c, use select\_feature!  
@@ -97,16 +97,17 @@ Feature List
     normalize_by_zscore!              normalize by converting into zscore
     discretize_by_equal_width!        discretize by equal width among intervals
     discretize_by_equal_frequency!    discretize by equal frequency among intervals
-    discretize_by_ChiMerge!           discretize by ChiMerge method
+    discretize_by_ChiMerge!           discretize by ChiMerge algorithm
+    discretize_by_Chi2!               discretize by Chi2 algorithm
     discretize_by_MID!                discretize by Multi-Interval Discretization
     
 **5. availabe algorithms for replacing missing feature values**
     
-    algorithm                        note                                  feature_type                     
+    algorithm                         note                                feature_type                     
     -------------------------------------------------------------------------------------------
-    replace_with_fixed_value!        replace with a fixed value            discrete, continuous
-    replace_with_mean_value!         replace with mean feature value       continuous
-    replace_with_most_seen_value!    replace with most seen feature value  discrete
+    replace_by_fixed_value!           replace by a fixed value            discrete, continuous
+    replace_by_mean_value!            replace by mean feature value       continuous
+    replace_by_most_seen_value!       replace by most seen feature value  discrete
 
 Installing
 ----------
