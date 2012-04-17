@@ -165,6 +165,13 @@ module FSelector
     end
     
     
+    # get a copy of data, 
+    # by use of the standard Marshal library
+    def get_data_copy
+      Marshal.load(Marshal.dump(@data)) if @data
+    end
+    
+    
     # set data
     def set_data(data)
       if data and data.class == Hash
