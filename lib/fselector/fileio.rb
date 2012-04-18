@@ -1,8 +1,23 @@
 #
-# read and write various file formats
+# read and write various file formats, 
+# the internal data structure looks like:  
+#      
+#     data = {
+#     
+#       :c1 => [                             # class c1
+#         {:f1=>1, :f2=>2}                   # sample 2
+#       ],
+#       
+#       :c2 => [                             # class c2
+#         {:f1=>1, :f3=>3},                  # sample 1
+#         {:f2=>2}                           # sample 3
+#       ]
+#       
+#     }
+#     
+#     where :c1 and :c2 are class labels; :f1, :f2, and :f3 are features
 #
-# @note class labels and features are treated as symbols,
-#       e.g. length => :length
+# @note class labels and features are treated as symbols
 #
 module FileIO
   #

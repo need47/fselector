@@ -38,23 +38,6 @@ Feature List
  - libsvm
  - weka ARFF
  - random data (for test purpose)
- 
-  **note for delevelpers:** internal data structure looks like:  
-  
-     data = {
-     
-       :c1 => [                             # class c1
-         {:f1=>1, :f2=>2}                   # sample 2
-       ],
-       
-       :c2 => [                             # class c2
-         {:f1=>1, :f3=>3},                  # sample 1
-         {:f2=>2}                           # sample 3
-       ]
-       
-     }
-     
-     where :c1 and :c2 are class labels; :f1, :f2, and :f3 are features
 
 **2. available feature selection/ranking algorithms**
     
