@@ -43,7 +43,7 @@ module FSelector
   end # class
   
   
-  # shortcut so that you can use FSelector::BetweenWithinClassesSumOfSquare instead of FSelector::BetweenWithinSumOfSquare
+  # shortcut so that you can use FSelector::BSS_WSS instead of FSelector::BetweenWithinClassesSumOfSquare
   BSS_WSS = BetweenWithinClassesSumOfSquare
   
   
