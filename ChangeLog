@@ -1,6 +1,7 @@
 2012-04-19	Tiejun Cheng	<need47@gmail.com>
 
   * add new algorithm BetweenWithinClassesSumOfSquare (BSS_WSS) for continuous feature
+  * add new algorithm WilcoxonRankSum (WRS) for continuous feature
 
 2012-04-18	Tiejun Cheng	<need47@gmail.com>
 

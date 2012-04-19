@@ -41,8 +41,8 @@ Feature List
 
 **2. available feature selection/ranking algorithms**
     
-    algorithm                         alias       feature_type
-    ----------------------------------------------------------
+    algorithm                         alias       feature_type  applicability
+    --------------------------------------------------------------------------------------
     Accuracy                          Acc         discrete
     AccuracyBalanced                  Acc2        discrete
     BiNormalSeparation                BNS         discrete
@@ -67,17 +67,18 @@ Feature List
     ProbabilityRatio                  PR          discrete
     Random                            Random      discrete
     Recall                            Recall      discrete
-    Relief_d                          Relief_d    discrete
+    Relief_d                          Relief_d    discrete      two-class, no missing data
     ReliefF_d                         ReliefF_d   discrete
     Sensitivity                       SN, Recall  discrete
     Specificity                       SP          discrete
     SymmetricalUncertainty            SU          discrete
     BetweenWithinClassesSumOfSquare   BSS_WSS     continuous
     CFS_c                             CFS_c       continuous
-    PMetric                           PM          continuous
-    Relief_c                          Relief_c    continuous
+    PMetric                           PM          continuous    two-class
+    Relief_c                          Relief_c    continuous    two-class, no missing data
     ReliefF_c                         ReliefF_c   continuous
-    TScore                            TS          continuous
+    TScore                            TS          continuous    two-class
+    WilcoxonRankSum                   WRS         continuous    two-class
     
   **note for feature selection interace:**   
     - for the algorithms of CFS\_d, FCBF and CFS\_c, use select\_feature!  

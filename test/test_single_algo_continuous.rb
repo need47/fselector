@@ -20,8 +20,14 @@ r2.select_feature_by_rank!('<=3')
 
 # BetweenWithinClassesSumOfSquare (BSS_WSS)
 puts "  test BSS_WSS ..."
-r2 = FSelector::BSS_WSS.new
-r2.data_from_random(100, 2, 10, 0, true)
-r2.select_feature_by_rank!('<=3')
+r3 = FSelector::BSS_WSS.new
+r3.data_from_random(100, 2, 10, 0, true)
+r3.select_feature_by_rank!('<=3')
+
+# WilcoxonRankSum (WRS)
+puts "  test WRS ..."
+r4 = FSelector::WRS.new
+r4.data_from_random(100, 2, 10, 0, false)
+r4.select_feature_by_rank!('<=3')
 
 puts "<============< #{File.basename(__FILE__)}"
