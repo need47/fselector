@@ -4,8 +4,6 @@
 module Discretizer
   # include Entropy module
   include Entropy
-  # include ChiSquareCalculator module
-  include ChiSquareCalculator
     
   # discretize by equal-width intervals
   #
@@ -335,6 +333,19 @@ module Discretizer
   private
   
   #
+  # get the Chi-square value from p-value
+  #
+  # @param [Float] pval p-value
+  # @param [Integer] df degree of freedom
+  # @return [Float] Chi-square vlaue
+  #
+  def pval2chisq(pval, df)
+    R.eval "chisq <- qchisq(#{1-pval}, #{df})"
+    R.chisq
+  end
+  
+  
+  #
   # get index from sorted cut points
   #
   # cp1 -- cp2 ... cpn # cp1 is the min  
@@ -388,6 +399,7 @@ module Discretizer
     clear_vars
   end
   
+  
   #
   # Chi2: initialization
   #
@@ -422,6 +434,7 @@ module Discretizer
 
     [bs, cs, qs]
   end
+  
   
   #
   # Chi2: merge two adjacent intervals
