@@ -13,14 +13,11 @@ module FSelector
 # ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974) and [Rubystats](http://rubystats.rubyforge.org)
 #
   class BiNormalSeparation < BaseDiscrete
-    # include Ruby statistics libraries
-    include Rubystats
         
     private
     
     # calculate contribution of each feature (f) for each class (k)
     def calc_contribution(f)
-      @nd ||= Rubystats::NormalDistribution.new
       
       each_class do |k|
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
@@ -28,7 +25,9 @@ module FSelector
         s = 0.0
         if not (a+c).zero? and not (b+d).zero?
           tpr, fpr = a/(a+c), b/(b+d)
-          s = (@nd.get_icdf(tpr) - @nd.get_icdf(fpr)).abs
+          
+          R.eval "rv <- qnorm(#{tpr}) - qnorm(#{fpr})"
+          s = R.rv.abs
         end
         
         set_feature_score(f, k, s)
