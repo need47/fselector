@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.5.0  
-**Release Date**: April 13 2012
+**Latest Version**: 0.6.0  
+**Release Date**: April 19 2012
 
 Synopsis
 --------
@@ -25,9 +25,9 @@ missing feature values with certain criterion. FSelector acts on a
 full-feature data set in either CSV, LibSVM or WEKA file format and 
 outputs a reduced data set with only selected subset of features, which 
 can later be used as the input for various machine learning softwares 
-including LibSVM and WEKA. FSelector, itself, does not implement 
-any of the machine learning algorithms such as support vector machines 
-and random forest. See below for a list of FSelector's features.
+such as LibSVM and WEKA. FSelector, as a collection of filter methods, 
+does not implement any classifier like support vector machines or 
+random forest. See below for a list of FSelector's features.
 
 Feature List
 ------------
@@ -78,7 +78,7 @@ Feature List
     ReliefF_c                         ReliefF_c   continuous
     TScore                            TS          continuous
     
-  **feature selection interace:**   
+  **note for feature selection interace:**   
     - for the algorithms of CFS\_d, FCBF and CFS\_c, use select\_feature!  
     - for other algorithms, use either select\_feature\_by\_rank! or select\_feature\_by\_score!
 
@@ -115,6 +115,12 @@ Installing
 To install FSelector, use the following command:
 
     $ gem install fselector
+    
+  **note:** Start from version 0.5.0, FSelector uses the RinRuby gem (http://rinruby.ddahl.org) 
+  as a seemless bridge to access the statistical routines in the R package (http://www.r-project.org),  
+  which   will greatly expand the inclusion of algorithms to FSelector, especially for those relying 
+  on statistical test. To this end, please pre-install the R package. RinRuby should be auto-installed 
+  with FSelector.
 	
 Usage
 -----
@@ -222,6 +228,11 @@ Usage
     puts '# features (after): ' + r2.get_features.size.to_s
 
 **4. see more examples test_*.rb under the test/ directory**
+
+Change Log
+----------
+A {file:ChangeLog} is available from version 0.5.0 and upward to refelect 
+what's new and what's changed 
 
 Copyright
 ---------
