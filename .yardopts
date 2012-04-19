@@ -3,4 +3,4 @@
 --default-return ""
 --title "FSelector Documentation"
 --no-private
---files README.md,LICENSE lib
+--files README.md,ChangeLog,LICENSE lib
