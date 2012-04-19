@@ -1,3 +1,7 @@
+2012-04-19	Tiejun Cheng	<need47@gmail.com>
+
+  * add new algorithm BetweenWithinClassesSumOfSquare (BSS_WSS) for continuous feature
+
 2012-04-18	Tiejun Cheng	<need47@gmail.com>
 
   * require the RinRuby gem (http://rinruby.ddahl.org) to access the 

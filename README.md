@@ -72,6 +72,7 @@ Feature List
     Sensitivity                       SN, Recall  discrete
     Specificity                       SP          discrete
     SymmetricalUncertainty            SU          discrete
+    BetweenWithinClassesSumOfSquare   BSS_WSS     continuous
     CFS_c                             CFS_c       continuous
     PMetric                           PM          continuous
     Relief_c                          Relief_c    continuous

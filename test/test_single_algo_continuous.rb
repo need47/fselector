@@ -18,4 +18,10 @@ r2 = FSelector::TS.new
 r2.data_from_random(100, 2, 10, 0, true)
 r2.select_feature_by_rank!('<=3')
 
+# BetweenWithinClassesSumOfSquare (BSS_WSS)
+puts "  test BSS_WSS ..."
+r2 = FSelector::BSS_WSS.new
+r2.data_from_random(100, 2, 10, 0, true)
+r2.select_feature_by_rank!('<=3')
+
 puts "<============< #{File.basename(__FILE__)}"
