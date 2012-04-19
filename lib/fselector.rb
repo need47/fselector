@@ -1,9 +1,12 @@
+# access to the statistical routines in R package
+require 'rinruby'
+
 #
 # FSelector: a Ruby gem for feature selection and ranking
 #
 module FSelector
   # module version
-  VERSION = '0.5.0'
+  VERSION = '0.6.0'
 end
 
 ROOT = File.expand_path(File.dirname(__FILE__))
@@ -17,8 +20,6 @@ require "#{ROOT}/fselector/fileio.rb"
 require "#{ROOT}/fselector/util.rb"
 # entropy-related functions
 require "#{ROOT}/fselector/entropy.rb"
-# chi-square calculator
-require "#{ROOT}/fselector/chisq_calc.rb"
 # normalization for continuous data
 require "#{ROOT}/fselector/normalizer.rb"
 # discretization for continuous data
