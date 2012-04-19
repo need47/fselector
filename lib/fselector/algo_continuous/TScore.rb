@@ -24,14 +24,10 @@ module FSelector
               "suitable only for two-class problem with continuous feature"
       end
       
-      # collect data for class 1 and 2, respectively
-      s1, s2 = [], []      
+      # collect data for class 1 and 2, respectively   
       k1, k2 = get_classes
-           
-      each_sample do |k, ss|
-        s1 << ss[f] if k == k1 and ss.has_key? f
-        s2 << ss[f] if k == k2 and ss.has_key? f
-      end
+      s1 = get_feature_values(f, nil, k1)
+      s2 = get_feature_values(f, nil, k2)
       
       # calc
       n1, n2 = s1.size, s2.size
