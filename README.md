@@ -119,9 +119,9 @@ To install FSelector, use the following command:
   **note:** Start from version 0.5.0, FSelector uses the RinRuby gem (http://rinruby.ddahl.org) 
   as a seemless bridge to access the statistical routines in the R package (http://www.r-project.org),  
   which   will greatly expand the inclusion of algorithms to FSelector, especially for those relying 
-  on statistical test. To this end, please pre-install the R package. RinRuby should be auto-installed 
-  with FSelector.
-	
+  on statistical test. To this end, please pre-install the R package. RinRuby should have been 
+  auto-installed with FSelector.
+  
 Usage
 -----
 
