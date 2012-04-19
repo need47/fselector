@@ -69,7 +69,7 @@
   
     
       <dt class="r1">Includes:</dt>
-      <dd class="r1"><span class='object_link'><a href="ChiSquareCalculator.html" title="ChiSquareCalculator (module)">ChiSquareCalculator</a></span>, <span class='object_link'><a href="Entropy.html" title="Entropy (module)">Entropy</a></span></dd>
+      <dd class="r1"><span class='object_link'><a href="Entropy.html" title="Entropy (module)">Entropy</a></span></dd>
       
     
   
@@ -96,16 +96,7 @@
   
 
 </div>
-  <h2>Constant Summary</h2>
-  
 
-
-
-  <h2>Constant Summary</h2>
-  
-  <h3 class="inherited">Constants included
-     from <span class='object_link'><a href="ChiSquareCalculator.html" title="ChiSquareCalculator (module)">ChiSquareCalculator</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ChiSquareCalculator.html#BIGX-constant" title="ChiSquareCalculator::BIGX (constant)">ChiSquareCalculator::BIGX</a></span>, <span class='object_link'><a href="ChiSquareCalculator.html#CHI_EPSILON-constant" title="ChiSquareCalculator::CHI_EPSILON (constant)">ChiSquareCalculator::CHI_EPSILON</a></span>, <span class='object_link'><a href="ChiSquareCalculator.html#CHI_MAX-constant" title="ChiSquareCalculator::CHI_MAX (constant)">ChiSquareCalculator::CHI_MAX</a></span>, <span class='object_link'><a href="ChiSquareCalculator.html#I_SQRT_PI-constant" title="ChiSquareCalculator::I_SQRT_PI (constant)">ChiSquareCalculator::I_SQRT_PI</a></span>, <span class='object_link'><a href="ChiSquareCalculator.html#LOG_SQRT_PI-constant" title="ChiSquareCalculator::LOG_SQRT_PI (constant)">ChiSquareCalculator::LOG_SQRT_PI</a></span>, <span class='object_link'><a href="ChiSquareCalculator.html#Z_MAX-constant" title="ChiSquareCalculator::Z_MAX (constant)">ChiSquareCalculator::Z_MAX</a></span></p>
 
 
 
@@ -240,16 +231,6 @@
   
   
   
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="ChiSquareCalculator.html" title="ChiSquareCalculator (module)">ChiSquareCalculator</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ChiSquareCalculator.html#critchi-instance_method" title="ChiSquareCalculator#critchi (method)">#critchi</a></span>, <span class='object_link'><a href="ChiSquareCalculator.html#pochisq-instance_method" title="ChiSquareCalculator#pochisq (method)">#pochisq</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span></p>
 
@@ -292,6 +273,8 @@ does some feature reduction if one feature has only one interval</p>
       <pre class="lines">
 
 
+162
+163
 164
 165
 166
@@ -413,12 +396,10 @@ does some feature reduction if one feature has only one interval</p>
 282
 283
 284
-285
-286
-287</pre>
+285</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 162</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_Chi2!'>discretize_by_Chi2!</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.05</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
@@ -606,6 +587,8 @@ degrees of freedom: one less than the number of classes</p>
       <pre class="lines">
 
 
+71
+72
 73
 74
 75
@@ -683,12 +666,10 @@ degrees of freedom: one less than the number of classes</p>
 147
 148
 149
-150
-151
-152</pre>
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='id identifier rubyid_alpha'>alpha</span><span class='op'>=</span><span class='float'>0.10</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
@@ -824,6 +805,8 @@ degrees of freedom: one less than the number of classes</p>
       <pre class="lines">
 
 
+38
+39
 40
 41
 42
@@ -840,12 +823,10 @@ degrees of freedom: one less than the number of classes</p>
 53
 54
 55
-56
-57
-58</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_equal_frequency!'>discretize_by_equal_frequency!</span><span class='lparen'>(</span><span class='id identifier rubyid_n_interval'>n_interval</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>&lt;</span> <span class='int'>1</span> <span class='comment'># at least one interval
@@ -920,6 +901,8 @@ degrees of freedom: one less than the number of classes</p>
       <pre class="lines">
 
 
+13
+14
 15
 16
 17
@@ -935,12 +918,10 @@ degrees of freedom: one less than the number of classes</p>
 27
 28
 29
-30
-31
-32</pre>
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_equal_width!'>discretize_by_equal_width!</span><span class='lparen'>(</span><span class='id identifier rubyid_n_interval'>n_interval</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>&lt;</span> <span class='int'>1</span> <span class='comment'># at least one interval
@@ -997,6 +978,8 @@ degrees of freedom: one less than the number of classes</p>
       <pre class="lines">
 
 
+295
+296
 297
 298
 299
@@ -1031,12 +1014,10 @@ degrees of freedom: one less than the number of classes</p>
 328
 329
 330
-331
-332
-333</pre>
+331</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 297</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 295</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_MID!'>discretize_by_MID!</span>
   <span class='comment'># determine the final boundaries
@@ -1085,7 +1066,7 @@ degrees of freedom: one less than the number of classes</p>
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 13 17:04:22 2012 by 
+  Generated on Thu Apr 19 11:00:56 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
