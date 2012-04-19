@@ -55,7 +55,7 @@ module FileIO
         if ncategory == 1
           feats[f] = 1
         elsif ncategory > 1
-          feats[f] = rand(ncategory)
+          feats[f] = rand(ncategory)+1
         else
           feats[f] = rand
         end
