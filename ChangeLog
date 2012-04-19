@@ -4,5 +4,4 @@
     statistical routines in the R package (http://www.r-project.org/)
     
   * because of RinRuby (and thus R), removed the following modules or implementations:
-    RubyStats (FishersExactTest.calculate, get_icdf)
-    ChiSquareCalculator
+    RubyStats (FishersExactTest.calculate, get_icdf) and ChiSquareCalculator
