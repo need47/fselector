@@ -11,24 +11,22 @@ module FSelector
 #     
 #     for FET, the smaller, the better, but we intentionally negate it
 #     so that the larger is always the better (consistent with other algorithms)
+#     R equivalent: fisher.test
 #
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Fisher's_exact_test) and [Rubystats](http://rubystats.rubyforge.org)
 #
   class FishersExactTest < BaseDiscrete
-    # include Ruby statistics libraries
-    include Rubystats
         
     private
         
     # calculate contribution of each feature (f) for each class (k)
-    def calc_contribution(f)
-      @fet ||= Rubystats::FishersExactTest.new
-      
+    def calc_contribution(f)     
       each_class do |k|
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
         
-        # note: we've intentionally negated it
-        s = -1 * @fet.calculate(a, b, c, d)[:twotail]
+        # note: intentionally negated it
+        R.eval "rv <- fisher.test(matrix(c(#{a}, #{b}, #{c}, #{d}), nrow=2))$p.value"
+        s = -1.0 * R.rv
         
         set_feature_score(f, k, s)
       end
