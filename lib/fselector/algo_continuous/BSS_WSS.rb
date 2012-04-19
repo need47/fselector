@@ -9,8 +9,6 @@ module FSelector
 #     BSS_WSS(f) = ----------------------------------------------
 #                     sigma_i sigma_k I(yi=k)(x_ij - xbar_kj)2
 #
-# @note BSS_WSS applicable only to two-class problems
-#
 # ref: [Comparison of Discrimination Methods for the Classification of Tumors Using Gene Expression Data](http://amstat.tandfonline.com/doi/abs/10.1198/016214502753479248)
 #
   class BetweenWithinClassesSumOfSquare < BaseContinuous
