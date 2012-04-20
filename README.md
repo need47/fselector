@@ -74,6 +74,7 @@ Feature List
     SymmetricalUncertainty            SU          discrete
     BetweenWithinClassesSumOfSquare   BSS_WSS     continuous
     CFS_c                             CFS_c       continuous
+    FTest                             FT          continuous
     PMetric                           PM          continuous    two-class
     Relief_c                          Relief_c    continuous    two-class, no missing data
     ReliefF_c                         ReliefF_c   continuous
