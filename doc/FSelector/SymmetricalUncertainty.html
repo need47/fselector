@@ -108,10 +108,10 @@
 SU(c,f) = 2 * ------------- = ---------------
                H(c) + H(f)      H(c) + H(f)
 
-where H(c) = -1 * sigma_i (P(ci) logP(ci))
+where H(c) = -1 * sigma_i (P(ci) log2 P(ci))
       H(c|f) = sigma_j (P(fj)*H(c|fj))
-      H(c|fj) = -1 * sigma_k (P(ck|fj) logP(ck|fj))
-      H(f) = -1 * sigma_i (P(fi) logP(fi))
+      H(c|fj) = -1 * sigma_k (P(ck|fj) log2 P(ck|fj))
+      H(f) = -1 * sigma_i (P(fi) log2 P(fi))
 </code></pre>
 
 <p>ref: <a href="http://en.wikipedia.org/wiki/Symmetric_uncertainty">Wikipedia</a></p>
@@ -190,7 +190,7 @@ where H(c) = -1 * sigma_i (P(ci) logP(ci))
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 20 10:28:28 2012 by 
+  Generated on Fri Apr 20 15:45:33 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

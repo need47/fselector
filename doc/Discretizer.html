@@ -252,8 +252,8 @@
   <div class="note notetag">
     <strong>Note:</strong> 
     <div class='inline'><p>our implementation of Chi2 algo is <strong>NOT</strong> 
-the exactly same as the original one and Chi2 
-does some feature reduction if one feature has only one interval</p>
+the exactly same as the original one, and Chi2 
+does some feature reduction if a feature has only one interval</p>
 </div>
   </div>
 
@@ -265,7 +265,28 @@ does some feature reduction if one feature has only one interval</p>
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>delta</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0.05</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>data inconsistency rate upper bound</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -273,7 +294,6 @@ does some feature reduction if one feature has only one interval</p>
       <pre class="lines">
 
 
-162
 163
 164
 165
@@ -396,10 +416,11 @@ does some feature reduction if one feature has only one interval</p>
 282
 283
 284
-285</pre>
+285
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_Chi2!'>discretize_by_Chi2!</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.05</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
@@ -958,7 +979,7 @@ degrees of freedom: one less than the number of classes</p>
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>no missing feature values allowed and data structure will be altered</p>
+    <div class='inline'><p>no missing feature value is allowed, and data structure will be altered</p>
 </div>
   </div>
 
@@ -978,7 +999,6 @@ degrees of freedom: one less than the number of classes</p>
       <pre class="lines">
 
 
-295
 296
 297
 298
@@ -1014,10 +1034,11 @@ degrees of freedom: one less than the number of classes</p>
 328
 329
 330
-331</pre>
+331
+332</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 295</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_MID!'>discretize_by_MID!</span>
   <span class='comment'># determine the final boundaries
@@ -1066,7 +1087,7 @@ degrees of freedom: one less than the number of classes</p>
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 20 10:28:26 2012 by 
+  Generated on Fri Apr 20 15:45:31 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

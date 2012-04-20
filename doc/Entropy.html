@@ -201,7 +201,7 @@
 
 <pre class="code ruby"><code>H(X|Y) = sigma_j (P(y_j) * H(C|y_j))
 
-where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) logP(x_i|y_j))
+where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
 </code></pre>
 
 
@@ -441,7 +441,7 @@ i.e. H(X,Y) == H(Y,X)
   <div class="discussion">
     <p>get the marginal entropy of array (X)</p>
 
-<pre class="code ruby"><code>H(X) = -1 * sigma_i (P(x_i) logP(x_i))
+<pre class="code ruby"><code>H(X) = -1 * sigma_i (P(x_i) log2 P(x_i))
 </code></pre>
 
 
@@ -528,7 +528,7 @@ i.e. H(X,Y) == H(Y,X)
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 20 10:28:26 2012 by 
+  Generated on Fri Apr 20 15:45:31 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

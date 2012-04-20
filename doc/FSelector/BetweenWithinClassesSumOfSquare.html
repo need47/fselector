@@ -100,9 +100,15 @@
   <div class="discussion">
     <p>between-within classes sum of squares (BSS/WSS) for continous feature</p>
 
-<pre class="code ruby"><code>              sigma_i sigma_k I(yi=k)(xbar_kj - xbar_xj)2
+<pre class="code ruby"><code>              sigma_i sigma_k I(y_i=k)(xbar_k - xbar)^2
 BSS_WSS(f) = ----------------------------------------------
-                sigma_i sigma_k I(yi=k)(x_ij - xbar_kj)2
+                sigma_i sigma_k I(y_i=k)(x_i - xbar_k)^2
+
+where I(y_i=k) is a indicator function with value of 0 or 1
+      xbar_k is the sample mean of class k
+      xbar is the overall sample mean
+      x_i is the value of sample i
+      y_i is the class label of sample i
 </code></pre>
 
 <p>ref: <a href="http://amstat.tandfonline.com/doi/abs/10.1198/016214502753479248">Comparison of Discrimination Methods for the Classification of Tumors Using Gene Expression Data</a></p>
@@ -201,7 +207,7 @@ BSS_WSS(f) = ----------------------------------------------
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 20 10:28:27 2012 by 
+  Generated on Fri Apr 20 15:45:32 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

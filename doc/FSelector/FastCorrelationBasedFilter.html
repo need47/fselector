@@ -131,7 +131,7 @@ for FCBF, use <strong>select_feature!</strong> for feature selection</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (FastCorrelationBasedFilter) <strong>initialize</strong>(delta = nil, data = nil) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (FastCorrelationBasedFilter) <strong>initialize</strong>(delta = 0.0, data = nil) </a>
     
 
     
@@ -206,7 +206,7 @@ for FCBF, use <strong>select_feature!</strong> for feature selection</p>
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="FSelector::FastCorrelationBasedFilter (class)">FastCorrelationBasedFilter</a></span></tt>) <strong>initialize</strong>(delta = nil, data = nil) 
+    - (<tt><span class='object_link'><a href="" title="FSelector::FastCorrelationBasedFilter (class)">FastCorrelationBasedFilter</a></span></tt>) <strong>initialize</strong>(delta = 0.0, data = nil) 
   
 
   
@@ -229,14 +229,11 @@ for FCBF, use <strong>select_feature!</strong> for feature selection</p>
         <span class='type'>(<tt>Float</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
+        <em class="default">(defaults to: <tt>0.0</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>predefined threshold.
-if not provided, use 1/sqrt(alpha*m) where
-alpha is confidence level and m is sample size
-respectively.</p>
+        <div class='inline'><p>predefined threshold</p>
 </div>
       
     </li>
@@ -250,15 +247,15 @@ respectively.</p>
       <pre class="lines">
 
 
-23
-24
-25
-26</pre>
+20
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/FastCorrelationBasedFilter.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/FastCorrelationBasedFilter.rb', line 20</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='ivar'>@delta</span> <span class='op'>=</span> <span class='id identifier rubyid_delta'>delta</span> <span class='op'>||</span> <span class='float'>0.0</span>
 <span class='kw'>end</span></pre>
@@ -273,7 +270,7 @@ respectively.</p>
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 20 10:28:28 2012 by 
+  Generated on Fri Apr 20 15:45:33 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

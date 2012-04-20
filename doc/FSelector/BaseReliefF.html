@@ -136,7 +136,7 @@ discrete feature (ReliefF_d) and continuous feature (ReliefF_c), respectively</p
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (BaseReliefF) <strong>initialize</strong>(m = nil, k = nil, data = nil) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (BaseReliefF) <strong>initialize</strong>(m = 30, k = 10, data = nil) </a>
     
 
     
@@ -196,7 +196,7 @@ discrete feature (ReliefF_d) and continuous feature (ReliefF_c), respectively</p
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="FSelector::BaseReliefF (class)">BaseReliefF</a></span></tt>) <strong>initialize</strong>(m = nil, k = nil, data = nil) 
+    - (<tt><span class='object_link'><a href="" title="FSelector::BaseReliefF (class)">BaseReliefF</a></span></tt>) <strong>initialize</strong>(m = 30, k = 10, data = nil) 
   
 
   
@@ -219,7 +219,7 @@ discrete feature (ReliefF_d) and continuous feature (ReliefF_c), respectively</p
         <span class='type'>(<tt>Integer</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
+        <em class="default">(defaults to: <tt>30</tt>)</em>
       
       
         &mdash;
@@ -238,11 +238,11 @@ the number of training samples</p>
         <span class='type'>(<tt>Integer</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
+        <em class="default">(defaults to: <tt>10</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>number of k-nearest neighbor</p>
+        <div class='inline'><p>number of k-nearest neighbors</p>
 </div>
       
     </li>
@@ -282,10 +282,10 @@ the number of training samples</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base_ReliefF.rb', line 23</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='op'>=</span><span class='int'>30</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>=</span><span class='int'>10</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
-  <span class='ivar'>@m</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span> <span class='op'>||</span> <span class='int'>30</span><span class='rparen'>)</span> <span class='comment'># default 30
-</span>  <span class='ivar'>@k</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span> <span class='op'>||</span> <span class='int'>10</span><span class='rparen'>)</span> <span class='comment'># default 10
+  <span class='ivar'>@m</span> <span class='op'>=</span> <span class='id identifier rubyid_m'>m</span> <span class='op'>||</span> <span class='int'>30</span> <span class='comment'># default 30
+</span>  <span class='ivar'>@k</span> <span class='op'>=</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>||</span> <span class='int'>10</span> <span class='comment'># default 10
 </span><span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -298,7 +298,7 @@ the number of training samples</p>
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 20 10:28:27 2012 by 
+  Generated on Fri Apr 20 15:45:32 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

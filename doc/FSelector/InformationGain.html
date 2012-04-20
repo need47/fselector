@@ -106,9 +106,9 @@
 
 <pre class="code ruby"><code>IG(c,f) = H(c) - H(c|f)
 
-where H(c) = -1 * sigma_i (P(ci) logP(ci))
+where H(c) = -1 * sigma_i (P(ci) log2 P(ci))
       H(c|f) = sigma_j (P(fj)*H(c|fj))
-      H(c|fj) = -1 * sigma_k (P(ck|fj) logP(ck|fj))
+      H(c|fj) = -1 * sigma_k (P(ck|fj) log2 P(ck|fj))
 </code></pre>
 
 <p>ref: <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.141.7895">Using Information Gain to Analyze and Fine Tune the Performance of Supply Chain Trading Agents</a></p>
@@ -187,7 +187,7 @@ where H(c) = -1 * sigma_i (P(ci) logP(ci))
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 20 10:28:27 2012 by 
+  Generated on Fri Apr 20 15:45:33 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
