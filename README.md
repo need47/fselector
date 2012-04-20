@@ -3,13 +3,13 @@ FSelector: a Ruby gem for feature selection and ranking
 
 **Home** [https://rubygems.org/gems/fselector](https://rubygems.org/gems/fselector)  
 **Source Code**: [https://github.com/need47/fselector](https://github.com/need47/fselector)  
-**Documentation** [http://rubydoc.info/github/need47/fselector/master/frames](http://rubydoc.info/github/need47/fselector/master/frames)  
+**Documentation** [http://rubydoc.info/gems/fselector/frames](http://rubydoc.info/gems/fselector/frames)  
 **Author**: Tiejun Cheng  
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.6.0  
-**Release Date**: April 19 2012
+**Latest Version**: 0.7.0  
+**Release Date**: April 20 2012
 
 Synopsis
 --------
@@ -122,7 +122,7 @@ To install FSelector, use the following command:
   as a seemless bridge to access the statistical routines in the R package (http://www.r-project.org), 
   which will greatly expand the inclusion of algorithms to FSelector, especially for those relying 
   on statistical test. To this end, please pre-install the R package. RinRuby should have been 
-  auto-installed with FSelector.
+  auto-installed with FSelector via the above command.
   
 Usage
 -----

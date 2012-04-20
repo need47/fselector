@@ -58,13 +58,13 @@
 
 <p><strong>Home</strong> <a href="https://rubygems.org/gems/fselector">https://rubygems.org/gems/fselector</a><br>
 <strong>Source Code</strong>: <a href="https://github.com/need47/fselector">https://github.com/need47/fselector</a><br>
-<strong>Documentation</strong> <a href="http://rubydoc.info/github/need47/fselector/master/frames">http://rubydoc.info/github/need47/fselector/master/frames</a><br>
+<strong>Documentation</strong> <a href="http://rubydoc.info/gems/fselector/frames">http://rubydoc.info/gems/fselector/frames</a><br>
 <strong>Author</strong>: Tiejun Cheng<br>
 <strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br>
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
-<strong>Latest Version</strong>: 0.6.0<br>
-<strong>Release Date</strong>: April 19 2012</p>
+<strong>Latest Version</strong>: 0.7.0<br>
+<strong>Release Date</strong>: April 20 2012</p>
 
 <h2>Synopsis</h2>
 
@@ -96,8 +96,8 @@ random forest. See below for a list of FSelector&#39;s features.</p>
 
 <p><strong>2. available feature selection/ranking algorithms</strong></p>
 
-<pre class="code ruby"><code>algorithm                         alias       feature_type
-----------------------------------------------------------
+<pre class="code ruby"><code>algorithm                         alias       feature_type  applicability
+--------------------------------------------------------------------------------------
 Accuracy                          Acc         discrete
 AccuracyBalanced                  Acc2        discrete
 BiNormalSeparation                BNS         discrete
@@ -122,16 +122,18 @@ Precision                         Precision   discrete
 ProbabilityRatio                  PR          discrete
 Random                            Random      discrete
 Recall                            Recall      discrete
-Relief_d                          Relief_d    discrete
+Relief_d                          Relief_d    discrete      two-class, no missing data
 ReliefF_d                         ReliefF_d   discrete
 Sensitivity                       SN, Recall  discrete
 Specificity                       SP          discrete
 SymmetricalUncertainty            SU          discrete
+BetweenWithinClassesSumOfSquare   BSS_WSS     continuous
 CFS_c                             CFS_c       continuous
-PMetric                           PM          continuous
-Relief_c                          Relief_c    continuous
+PMetric                           PM          continuous    two-class
+Relief_c                          Relief_c    continuous    two-class, no missing data
 ReliefF_c                         ReliefF_c   continuous
-TScore                            TS          continuous
+TScore                            TS          continuous    two-class
+WilcoxonRankSum                   WRS         continuous    two-class
 </code></pre>
 
 <p><strong>note for feature selection interace:</strong><br>
@@ -180,7 +182,7 @@ replace_by_most_seen_value!       replace by most seen feature value  discrete
   as a seemless bridge to access the statistical routines in the R package (<a href="http://www.r-project.org">http://www.r-project.org</a>), 
   which will greatly expand the inclusion of algorithms to FSelector, especially for those relying 
   on statistical test. To this end, please pre-install the R package. RinRuby should have been 
-  auto-installed with FSelector.</p>
+  auto-installed with FSelector by the above command.</p>
 
 <h2>Usage</h2>
 
@@ -302,7 +304,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Thu Apr 19 11:07:47 2012 by 
+  Generated on Fri Apr 20 10:28:26 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

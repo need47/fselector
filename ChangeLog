@@ -1,3 +1,7 @@
+2012-04-20	Tiejun Cheng	<need47@gmail.com>
+
+  * update to version 0.7.0
+
 2012-04-19	Tiejun Cheng	<need47@gmail.com>
 
   * add new algorithm BetweenWithinClassesSumOfSquare (BSS_WSS) for continuous feature
