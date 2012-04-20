@@ -9,6 +9,8 @@ module FSelector
 #     SP  = ------- = -----
 #            TN+FP     B+D
 #
+# ref: [Wikipedia](http://en.wikipedia.org/wiki/Sensitivity_and_specificity)
+#
   class Specificity < BaseDiscrete
     
     private

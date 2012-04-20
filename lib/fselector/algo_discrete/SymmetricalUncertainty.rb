@@ -9,10 +9,10 @@ module FSelector
 #     SU(c,f) = 2 * ------------- = ---------------
 #                    H(c) + H(f)      H(c) + H(f)
 #     
-#     where H(c) = -1 * sigma_i (P(ci) logP(ci))
+#     where H(c) = -1 * sigma_i (P(ci) log2 P(ci))
 #           H(c|f) = sigma_j (P(fj)*H(c|fj))
-#           H(c|fj) = -1 * sigma_k (P(ck|fj) logP(ck|fj))
-#           H(f) = -1 * sigma_i (P(fi) logP(fi))
+#           H(c|fj) = -1 * sigma_k (P(ck|fj) log2 P(ck|fj))
+#           H(f) = -1 * sigma_i (P(fi) log2 P(fi))
 #
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Symmetric_uncertainty)
 #

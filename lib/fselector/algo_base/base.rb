@@ -19,7 +19,7 @@ module FSelector
     
     
     #
-    # iterator for each class
+    # iterator for each class, a block must be given
     #
     #     e.g.
     #     self.each_class do |k|
@@ -37,7 +37,7 @@ module FSelector
     
     
     #
-    # iterator for each feature
+    # iterator for each feature, a block must be given
     #
     #     e.g.
     #     self.each_feature do |f|
@@ -55,12 +55,12 @@ module FSelector
     
     
     #
-    # iterator for each sample with class label
+    # iterator for each sample with class label, a block must be given
     #
     #     e.g.
     #     self.each_sample do |k, s|
     #       print k
-    #       s.each { |f, v| ' '+v }
+    #       s.each { |f, v| print " #{v}" }
     #       puts
     #     end
     #
@@ -119,7 +119,7 @@ module FSelector
     # @param [Symbol] f feature of interest
     # @param [Symbol] mv including missing feature values?
     #   don't include missing feature values (recorded as nils)
-    #   if mv==nil, include otherwise
+    #   if nil, include otherwise
     # @param [Symbol] ck class of interest.
     #   return feature values for all classes, otherwise return feature
     #   values for the specific class (ck)
@@ -166,7 +166,7 @@ module FSelector
     
     
     # get a copy of data, 
-    # by use of the standard Marshal library
+    # by means of the standard Marshal library
     def get_data_copy
       Marshal.load(Marshal.dump(@data)) if @data
     end
@@ -208,7 +208,7 @@ module FSelector
     # get scores of all features for all classes
     #
     # @return [Hash] \{ feature => 
-    #                \{ class_1 => score_1, class_2 => score_2, :BEST => score_best } }
+    #                \{ class\_1 => score\_1, class\_2 => score\_2, :BEST => score\_best } }
     #
     def get_feature_scores
       return @scores if @scores # already done
@@ -258,9 +258,9 @@ module FSelector
     # reconstruct data with selected features
     #
     # @return [Hash] data after feature selection
-    # @note derived class must implement its own get_subset(), 
+    # @note derived class must implement its own get\_subset(), 
     #   and data structure will be altered. For now, only the algorithms of 
-    #   CFS_c, CFS_d and FCBF implement such function
+    #   CFS\_c, CFS\_d and FCBF implemented such functions
     #
     def select_feature!
       subset = get_feature_subset

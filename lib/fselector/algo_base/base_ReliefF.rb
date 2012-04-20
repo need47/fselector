@@ -17,13 +17,13 @@ module FSelector
     # @param [Integer] m number of samples to be used 
     #   for estimating feature contribution. max can be
     #   the number of training samples
-    # @param [Integer] k number of k-nearest neighbor
+    # @param [Integer] k number of k-nearest neighbors
     # @param [Hash] data existing data structure
     #
-    def initialize(m=nil, k=nil, data=nil)
+    def initialize(m=30, k=10, data=nil)
       super(data)
-      @m = (m || 30) # default 30
-      @k = (k || 10) # default 10
+      @m = m || 30 # default 30
+      @k = k || 10 # default 10
     end
     
     private

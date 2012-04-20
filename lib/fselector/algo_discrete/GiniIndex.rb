@@ -5,7 +5,7 @@ module FSelector
 #
 # Gini Index (GI), generalized for multi-class problem
 #
-#     GI(f) = 1 - sigma(c)(P(c|f)^2)
+#     GI(f) = 1 - sigma_c (P(c|f)^2)
 #
 # for GI, the smaller, the better, but we intentionally negate it
 # so that the larger is always the better (consistent with other algorithms)

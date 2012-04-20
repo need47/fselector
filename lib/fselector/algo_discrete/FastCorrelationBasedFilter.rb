@@ -15,19 +15,12 @@ module FSelector
     #
     # initialize from an existing data structure
     #
-    # @param [Float] delta predefined threshold.
-    #   if not provided, use 1/sqrt(alpha*m) where
-    #   alpha is confidence level and m is sample size
-    #   respectively.
+    # @param [Float] delta predefined threshold
     #
-    def initialize(delta=nil, data=nil)
+    def initialize(delta=0.0, data=nil)
       super(data)
       @delta = delta || 0.0
     end
-    
-    # undefine superclass methods
-    undef :select_feature_by_score!
-    undef :select_feature_by_rank!
     
     private
     

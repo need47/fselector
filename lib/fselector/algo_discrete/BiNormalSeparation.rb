@@ -10,7 +10,7 @@ module FSelector
 #     where F'(x) is normal inverse cumulative distribution function
 #     R equivalent: qnorm
 # 
-# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974) and [Rubystats](http://rubystats.rubyforge.org)
+# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
   class BiNormalSeparation < BaseDiscrete
         

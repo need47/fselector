@@ -385,7 +385,7 @@ module FileIO
   # @param [Symbol] format sparse or regular ARFF  
   #   :sparse => sparse ARFF, otherwise regular ARFF
   #
-  def data_to_weka(fname=:stdout, format=nil)
+  def data_to_weka(fname=:stdout, format=:sparse)
     if fname == :stdout
       ofs = $stdout
     else
@@ -443,7 +443,7 @@ module FileIO
         end
         ofs.print "#{get_features.size} #{k}"
         ofs.puts "}"
-      else
+      else # regular ARFF
         each_feature do |f|
           if s.has_key? f
             ofs.print "#{s[f]},"

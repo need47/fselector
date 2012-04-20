@@ -22,7 +22,7 @@ module FSelector
     #
     def initialize(k=5, data=nil)
       super(data)
-      @k = k
+      @k = k || 5
     end
     
     private

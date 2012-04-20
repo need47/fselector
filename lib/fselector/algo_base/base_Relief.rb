@@ -19,9 +19,9 @@ module FSelector
     #   the number of training samples
     # @param [Hash] data existing data structure
     #
-    def initialize(m=nil, data=nil)
+    def initialize(m=30, data=nil)
       super(data)
-      @m = (m || 30) # default 30
+      @m = m || 30 # default 30
     end
     
     private

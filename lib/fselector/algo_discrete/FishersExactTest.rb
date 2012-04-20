@@ -13,7 +13,7 @@ module FSelector
 #     so that the larger is always the better (consistent with other algorithms)
 #     R equivalent: fisher.test
 #
-# ref: [Wikipedia](http://en.wikipedia.org/wiki/Fisher's_exact_test) and [Rubystats](http://rubystats.rubyforge.org)
+# ref: [Wikipedia](http://en.wikipedia.org/wiki/Fisher\'s_exact_test)
 #
   class FishersExactTest < BaseDiscrete
         

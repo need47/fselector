@@ -153,9 +153,10 @@ module Discretizer
   #
   # discretize by Chi2 algorithm
   #
+  # @param [Float] delta data inconsistency rate upper bound
   # @note our implementation of Chi2 algo is **NOT** 
-  #   the exactly same as the original one and Chi2 
-  #   does some feature reduction if one feature has only one interval
+  #   the exactly same as the original one, and Chi2 
+  #   does some feature reduction if a feature has only one interval
   #
   # ref: [Chi2: Feature Selection and Discretization of Numeric Attributes](http://sci2s.ugr.es/keel/pdf/specific/congreso/liu1995.pdf)
   #
@@ -288,7 +289,7 @@ module Discretizer
   #
   # discretize by Multi-Interval Discretization (MID) algorithm
   #
-  # @note no missing feature values allowed and data structure will be altered
+  # @note no missing feature value is allowed, and data structure will be altered
   # 
   # ref: [Multi-Interval Discretization of Continuous-Valued Attributes for Classification Learning](http://www.ijcai.org/Past%20Proceedings/IJCAI-93-VOL2/PDF/022.pdf)
   #

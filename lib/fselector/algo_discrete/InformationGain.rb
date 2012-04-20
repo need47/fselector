@@ -7,9 +7,9 @@ module FSelector
 #
 #     IG(c,f) = H(c) - H(c|f)
 #     
-#     where H(c) = -1 * sigma_i (P(ci) logP(ci))
+#     where H(c) = -1 * sigma_i (P(ci) log2 P(ci))
 #           H(c|f) = sigma_j (P(fj)*H(c|fj))
-#           H(c|fj) = -1 * sigma_k (P(ck|fj) logP(ck|fj))
+#           H(c|fj) = -1 * sigma_k (P(ck|fj) log2 P(ck|fj))
 #
 # ref: [Using Information Gain to Analyze and Fine Tune the Performance of Supply Chain Trading Agents](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.141.7895)
 #

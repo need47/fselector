@@ -58,9 +58,9 @@ module FSelector
     # @param [Method] by_what by what criterion that ensemble
     #   score should be obtained from those of individual algorithms  
     #   allowed values are:  
-    #   receiver.method(:by\_min) # by min rank  
-    #   receiver.method(:by\_max) # by max rank  
-    #   receiver.method(:by\_ave) # by ave rank
+    #   - method(:by\_min) # by min score  
+    #   - method(:by\_max) # by max score  
+    #   - method(:by\_ave) # by ave score
     # @param [Integer] norm normalization  
     #   :min\_max, score scaled to [0, 1]  
     #   :zscore, score converted to zscore
@@ -96,9 +96,9 @@ module FSelector
     # @param [Method] by_what by what criterion that ensemble
     #   rank should be obtained from those of individual algorithms  
     #   allowed values are:  
-    #   method(:by\_min) # by min rank  
-    #   method(:by\_max) # by max rank  
-    #   method(:by\_ave) # by ave rank
+    #   - method(:by\_min) # by min rank  
+    #   - method(:by\_max) # by max rank  
+    #   - method(:by\_ave) # by ave rank
     #
     def ensemble_by_rank(by_what=method(:by_min))
       ranks = {}

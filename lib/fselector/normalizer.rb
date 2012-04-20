@@ -6,7 +6,12 @@ module Normalizer
    def normalize_by_log!(base=10)
      each_sample do |k, s|
        s.keys.each do |f|
-         s[f] = Math.log(s[f], base) if s[f] > 0.0
+         if s[f] > 0.0
+           s[f] = Math.log(s[f], base) 
+         else
+           abort "[#{__FILE__}@#{__LINE__}]: "+
+              "feature value must be positive"
+         end
        end
      end
    end

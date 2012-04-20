@@ -5,7 +5,7 @@ module Entropy
   #
   # get the marginal entropy of array (X)
   #
-  #     H(X) = -1 * sigma_i (P(x_i) logP(x_i))
+  #     H(X) = -1 * sigma_i (P(x_i) log2 P(x_i))
   #
   # @param [Array] arrX array of interest
   # @return [Float] H(X)
@@ -27,7 +27,7 @@ module Entropy
   #
   #     H(X|Y) = sigma_j (P(y_j) * H(C|y_j))
   #     
-  #     where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) logP(x_i|y_j))
+  #     where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
   #
   # @param [Array] arrX the first array
   # @param [Array] arrY the second array
