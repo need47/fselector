@@ -1,3 +1,7 @@
+2012-04-23	version 0.8.1
+
+  * correct a bug in the example in the README file because discretize\_by\_ChiMerge!() now takes confidence alpha value as argument instead of chi-square value
+  
 2012-04-23	version 0.8.0
 
   * add new algorithm FTest (FT) for continuous feature
