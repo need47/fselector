@@ -63,7 +63,7 @@
 <strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br>
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
-<strong>Latest Version</strong>: 0.8.0<br>
+<strong>Latest Version</strong>: 0.8.1<br>
 <strong>Release Date</strong>: April 23 2012</p>
 
 <h2>Synopsis</h2>
@@ -273,9 +273,8 @@ replace_by_most_seen_value!       replace by most seen feature value  discrete
 <span class='comment'># read the Iris data set (under the test/ directory)
 </span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_data_from_csv'>data_from_csv</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>test/iris.csv</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 
-<span class='comment'># discretization by ChiMerge algorithm
-</span><span class='comment'># chi-squared value = 4.60 for a three-class problem at alpha=0.10
-</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='float'>4.60</span><span class='rparen'>)</span>
+<span class='comment'># discretization by ChiMerge algorithm at alpha=0.10
+</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='float'>0.10</span><span class='rparen'>)</span>
 
 <span class='comment'># apply Fast Correlation-Based Filter (FCBF) algorithm for discrete feature
 </span><span class='comment'># initialize with discretized data from r1
@@ -306,7 +305,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Mon Apr 23 10:20:26 2012 by 
+  Generated on Mon Apr 23 10:42:26 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

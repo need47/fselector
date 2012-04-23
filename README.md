@@ -8,7 +8,7 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.8.0  
+**Latest Version**: 0.8.1  
 **Release Date**: April 23 2012
 
 Synopsis
@@ -214,9 +214,8 @@ Usage
     # read the Iris data set (under the test/ directory)
     r1.data_from_csv('test/iris.csv')
         
-    # discretization by ChiMerge algorithm
-    # chi-squared value = 4.60 for a three-class problem at alpha=0.10
-    r1.discretize_by_ChiMerge!(4.60)
+    # discretization by ChiMerge algorithm at alpha=0.10
+    r1.discretize_by_ChiMerge!(0.10)
     
     # apply Fast Correlation-Based Filter (FCBF) algorithm for discrete feature
     # initialize with discretized data from r1
