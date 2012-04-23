@@ -349,18 +349,36 @@ module Discretizer
   #
   # get index from sorted cut points
   #
-  # cp1 -- cp2 ... cpn # cp1 is the min  
+  # cp1 -- cp2 ... cpn   
+  #
+  # if cut points are drawn from single data point, then  
   #
   # [cp1, cp2) -> 1  
   # [cp2, cp3) -> 2  
   # ...  
-  # [cpn, ) -> n
+  # [cpn, ) -> n  
+  # 
+  # if cut points are drawn from the mean of two adjacent data points, then  
+  # 
+  # (, cp1) -> 1  
+  # (cp1, cp2) -> 2  
+  # ...  
+  # (cpn, ) -> n+1
   #
-  def get_index(v, cut_points)
-    i = cut_points.rindex { |x| v >= x }
-    i ? i+1 : 0
-    #i = cut_points.index { |x| v <= x }
-    #i ? i+1 : cut_points.size+1
+  # @param [Float] v continuous data to be discretized
+  # @param [Array<Float>] cut_points cutting points
+  # @param [Boolean] mid_point true if cutting points are drawn from the mean of
+  #   two adjacent data points, false if drawn from single data point
+  # @return [Integer] discretized index for v
+  #
+  def get_index(v, cut_points, mid_point=false)
+    if mid_point
+      i = cut_points.index { |x| v < x }
+      return i ? i+1 : cut_points.size+1
+    else
+      i = cut_points.rindex { |x| v >= x }
+      return i ? i+1 : 0
+    end
   end # get_index
   
 
@@ -387,12 +405,15 @@ module Discretizer
   #
   # discretize data at given cut points
   #
+  # @param [Hash] f2cp cutting points for each feature
+  # @param [Boolean] mid_point true if cutting points are drawn from the mean of
+  #   two adjacent data points, false if drawn from single data point 
   # @note data structure will be altered
   #
-  def discretize_at_cutpoints!(f2cp)
+  def discretize_at_cutpoints!(f2cp, mid_point=false)
     each_sample do |k, s|
       s.keys.each do |f|
-        s[f] = get_index(s[f], f2cp[f])
+        s[f] = get_index(s[f], f2cp[f], mid_point)
       end
     end
     
