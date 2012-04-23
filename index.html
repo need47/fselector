@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Fselector : a Ruby gem for feature selection and ranking" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Fselector</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/need47/fselector">Fork Me on GitHub</a>
+
+          <h1 id="project_title">Fselector</h1>
+          <h2 id="project_tagline">a Ruby gem for feature selection and ranking</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/need47/fselector/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/need47/fselector/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>FSelector: a Ruby gem for feature selection and ranking</h1>
+
+<p><strong>Home</strong> <a href="https://rubygems.org/gems/fselector">https://rubygems.org/gems/fselector</a><br><strong>Source Code</strong>: <a href="https://github.com/need47/fselector">https://github.com/need47/fselector</a><br><strong>Documentation</strong> <a href="http://rubydoc.info/gems/fselector/frames">http://rubydoc.info/gems/fselector/frames</a><br><strong>Author</strong>: Tiejun Cheng<br><strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br><strong>Copyright</strong>: 2012<br><strong>License</strong>: MIT License<br><strong>Latest Version</strong>: 0.8.1<br><strong>Release Date</strong>: April 23 2012</p>
+
+<h2>Synopsis</h2>
+
+<p>FSelector is a Ruby gem that aims to integrate various feature 
+selection/ranking algorithms and related functions into one single 
+package. Welcome to contact me (<a href="mailto:need47@gmail.com">need47@gmail.com</a>) if you'd like to 
+contribute your own algorithms or report a bug. FSelector allows user 
+to perform feature selection by using either a single algorithm or an 
+ensemble of multiple algorithms, and other common tasks including 
+normalization and discretization on continuous data, as well as replace 
+missing feature values with certain criterion. FSelector acts on a 
+full-feature data set in either CSV, LibSVM or WEKA file format and 
+outputs a reduced data set with only selected subset of features, which 
+can later be used as the input for various machine learning softwares 
+such as LibSVM and WEKA. FSelector, as a collection of filter methods, 
+does not implement any classifier like support vector machines or 
+random forest. See below for a list of FSelector's features and 
+{file:ChangeLog} for updates.</p>
+
+<h2>Feature List</h2>
+
+<p><strong>1. supported input/output file types</strong></p>
+
+<ul>
+<li>csv</li>
+<li>libsvm</li>
+<li>weka ARFF</li>
+<li>random data (for test purpose)</li>
+</ul><p><strong>2. available feature selection/ranking algorithms</strong></p>
+
+<pre><code>algorithm                         alias       feature_type  applicability
+--------------------------------------------------------------------------------------
+Accuracy                          Acc         discrete
+AccuracyBalanced                  Acc2        discrete
+BiNormalSeparation                BNS         discrete
+CFS_d                             CFS_d       discrete
+ChiSquaredTest                    CHI         discrete
+CorrelationCoefficient            CC          discrete
+DocumentFrequency                 DF          discrete
+F1Measure                         F1          discrete
+FishersExactTest                  FET         discrete
+FastCorrelationBasedFilter        FCBF        discrete
+GiniIndex                         GI          discrete
+GMean                             GM          discrete
+GSSCoefficient                    GSS         discrete
+InformationGain                   IG          discrete
+MatthewsCorrelationCoefficient    MCC, PHI    discrete
+McNemarsTest                      MNT         discrete
+OddsRatio                         OR          discrete
+OddsRatioNumerator                ORN         discrete
+PhiCoefficient                    Phi         discrete
+Power                             Power       discrete
+Precision                         Precision   discrete
+ProbabilityRatio                  PR          discrete
+Random                            Random      discrete
+Recall                            Recall      discrete
+Relief_d                          Relief_d    discrete      two-class, no missing data
+ReliefF_d                         ReliefF_d   discrete
+Sensitivity                       SN, Recall  discrete
+Specificity                       SP          discrete
+SymmetricalUncertainty            SU          discrete
+BetweenWithinClassesSumOfSquare   BSS_WSS     continuous
+CFS_c                             CFS_c       continuous
+FTest                             FT          continuous
+PMetric                           PM          continuous    two-class
+Relief_c                          Relief_c    continuous    two-class, no missing data
+ReliefF_c                         ReliefF_c   continuous
+TScore                            TS          continuous    two-class
+WilcoxonRankSum                   WRS         continuous    two-class
+</code></pre>
+
+<p><strong>note for feature selection interace:</strong><br>
+    - for the algorithms of CFS_d, FCBF and CFS_c, use select_feature!<br>
+    - for other algorithms, use either select_feature_by_rank! or select_feature_by_score!</p>
+
+<p><strong>3. feature selection approaches</strong></p>
+
+<ul>
+<li>by a single algorithm</li>
+<li>by multiple algorithms in a tandem manner</li>
+<li>by multiple algorithms in a consensus manner</li>
+</ul><p><strong>4. availabe normalization and discretization algorithms for continuous feature</strong></p>
+
+<pre><code>algorithm                         note
+-------------------------------------------------------------------------------
+normalize_by_log!                 normalize by logarithmic transformation
+normalize_by_min_max!             normalize by scaling into [min, max]
+normalize_by_zscore!              normalize by converting into zscore
+discretize_by_equal_width!        discretize by equal width among intervals
+discretize_by_equal_frequency!    discretize by equal frequency among intervals
+discretize_by_ChiMerge!           discretize by ChiMerge algorithm
+discretize_by_Chi2!               discretize by Chi2 algorithm
+discretize_by_MID!                discretize by Multi-Interval Discretization
+</code></pre>
+
+<p><strong>5. availabe algorithms for replacing missing feature values</strong></p>
+
+<pre><code>algorithm                         note                                feature_type                     
+-------------------------------------------------------------------------------------------
+replace_by_fixed_value!           replace by a fixed value            discrete, continuous
+replace_by_mean_value!            replace by mean feature value       continuous
+replace_by_most_seen_value!       replace by most seen feature value  discrete
+</code></pre>
+
+<h2>Installing</h2>
+
+<p>To install FSelector, use the following command:</p>
+
+<pre><code>$ gem install fselector
+</code></pre>
+
+<p><strong>note:</strong> Start from version 0.5.0, FSelector uses the RinRuby gem (<a href="http://rinruby.ddahl.org">http://rinruby.ddahl.org</a>) 
+  as a seemless bridge to access the statistical routines in the R package (<a href="http://www.r-project.org">http://www.r-project.org</a>), 
+  which will greatly expand the inclusion of algorithms to FSelector, especially for those relying 
+  on statistical test. To this end, please pre-install the R package. RinRuby should have been 
+  auto-installed with FSelector via the above command.</p>
+
+<h2>Usage</h2>
+
+<p><strong>1. feature selection by a single algorithm</strong></p>
+
+<pre><code>require 'fselector'
+
+# use InformationGain as a feature ranking algorithm
+r1 = FSelector::InformationGain.new
+
+# read from random data (or csv, libsvm, weka ARFF file)
+# no. of samples: 100
+# no. of classes: 2
+# no. of features: 15
+# no. of possible values for each feature: 3
+# allow missing values: true
+r1.data_from_random(100, 2, 15, 3, true)
+
+# number of features before feature selection
+puts "# features (before): "+ r1.get_features.size.to_s
+
+# select the top-ranked features with scores &gt;0.01
+r1.select_feature_by_score!('&gt;0.01')
+
+# number of features after feature selection
+puts "# features (after): "+ r1.get_features.size.to_s
+
+# you can also use multiple alogirithms in a tandem manner
+# e.g. use the ChiSquaredTest with Yates' continuity correction
+# initialize from r1's data
+r2 = FSelector::ChiSquaredTest.new(:yates_continuity_correction, r1.get_data)
+
+# number of features before feature selection
+puts "# features (before): "+ r2.get_features.size.to_s
+
+# select the top-ranked 3 features
+r2.select_feature_by_rank!('&lt;=3')
+
+# number of features after feature selection
+puts "# features (after): "+ r2.get_features.size.to_s
+
+# save data to standard ouput as a weka ARFF file (sparse format)
+# with selected features only
+r2.data_to_weka(:stdout, :sparse)
+</code></pre>
+
+<p><strong>2. feature selection by an ensemble of multiple algorithms</strong></p>
+
+<pre><code>require 'fselector'
+
+# use both Information and ChiSquaredTest
+r1 = FSelector::InformationGain.new
+r2 = FSelector::ChiSquaredTest.new
+
+# ensemble ranker
+re = FSelector::Ensemble.new(r1, r2)
+
+# read random data
+re.data_from_random(100, 2, 15, 3, true)
+
+# number of features before feature selection
+puts '# features (before): ' + re.get_features.size.to_s
+
+# based on the min feature rank among
+# ensemble feature selection algorithms
+re.ensemble_by_rank(re.method(:by_min))
+
+# select the top-ranked 3 features
+re.select_feature_by_rank!('&lt;=3')
+
+# number of features after feature selection
+puts '# features (after): ' + re.get_features.size.to_s
+</code></pre>
+
+<p><strong>3. normalization and discretization before feature selection</strong></p>
+
+<p>In addition to the algorithms designed for continuous feature, one
+ can apply those deisgned for discrete feature after (optionally
+ normalization and) discretization</p>
+
+<pre><code>require 'fselector'
+
+# for continuous feature
+r1 = FSelector::Relief_c.new
+
+# read the Iris data set (under the test/ directory)
+r1.data_from_csv('test/iris.csv')
+
+# discretization by ChiMerge algorithm at alpha=0.10
+r1.discretize_by_ChiMerge!(0.10)
+
+# apply Fast Correlation-Based Filter (FCBF) algorithm for discrete feature
+# initialize with discretized data from r1
+r2 = FSelector::FCBF.new(0.0, r1.get_data)
+
+# number of features before feature selection
+puts '# features (before): ' + r2.get_features.size.to_s
+
+# feature selection
+r2.select_feature!
+
+# number of features after feature selection
+puts '# features (after): ' + r2.get_features.size.to_s
+</code></pre>
+
+<p><strong>4. see more examples test_*.rb under the test/ directory</strong></p>
+
+<h2>Change Log</h2>
+
+<p>A {file:ChangeLog} is available from version 0.5.0 and upward to refelect 
+what's new and what's changed </p>
+
+<h2>Copyright</h2>
+
+<p>FSelector © 2012 by <a href="mailto:need47@gmail.com">Tiejun Cheng</a>.
+FSelector is licensed under the MIT license. Please see the {file:LICENSE} for
+more information.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Fselector maintained by <a href="https://github.com/need47">need47</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
