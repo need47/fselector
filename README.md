@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.7.0  
-**Release Date**: April 20 2012
+**Latest Version**: 0.8.0  
+**Release Date**: April 23 2012
 
 Synopsis
 --------
@@ -27,7 +27,8 @@ outputs a reduced data set with only selected subset of features, which
 can later be used as the input for various machine learning softwares 
 such as LibSVM and WEKA. FSelector, as a collection of filter methods, 
 does not implement any classifier like support vector machines or 
-random forest. See below for a list of FSelector's features.
+random forest. See below for a list of FSelector's features and 
+{file:ChangeLog} for updates.
 
 Feature List
 ------------

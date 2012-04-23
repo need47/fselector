@@ -1,6 +1,7 @@
-2012-04-21	Tiejun Cheng	<need47@gmail.com>
+2012-04-23	version 0.8.0
 
   * add new algorithm FTest (FT) for continuous feature
+  * add .yardoc_opts to gem to use the MarkDown documentation syntax
   
 2012-04-20	Tiejun Cheng	<need47@gmail.com>
 
