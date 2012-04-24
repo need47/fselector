@@ -270,12 +270,7 @@ module FSelector
       
       each_sample do |k, s|
         my_data[k] ||= []
-        my_s = {}
-        
-        s.each do |f, v|
-          my_s[f] = v if subset.include? f
-        end
-        
+        my_s = s.select { |f, v| subset.include? f }        
         my_data[k] << my_s if not my_s.empty?
       end
       
@@ -287,7 +282,7 @@ module FSelector
     # reconstruct data with feature scores satisfying cutoff
     #
     # @param [String] criterion 
-    #   valid criterion can be '>0.5', '>= 0.4', '==2', '<=1' or '<0.2'
+    #   valid criterion can be '>0.5', '>=0.4', '==2', '<=1' or '<0.2'
     # @param [Hash] my_scores
     #   user customized feature scores
     # @return [Hash] data after feature selection
@@ -301,12 +296,7 @@ module FSelector
       
       each_sample do |k, s|
         my_data[k] ||= []
-        my_s = {}
-        
-        s.each do |f, v|
-          my_s[f] = v if eval("#{scores[f][:BEST]} #{criterion}")
-        end
-        
+        my_s = s.select { |f, v| eval("#{scores[f][:BEST]} #{criterion}") }       
         my_data[k] << my_s if not my_s.empty?
       end
           
@@ -318,7 +308,7 @@ module FSelector
     # reconstruct data by rank
     #
     # @param [String] criterion 
-    #   valid criterion can be '>11', '>= 10', '==1', '<=10' or '<20'
+    #   valid criterion can be '>11', '>=10', '==1', '<=10' or '<20'
     # @param [Hash] my_ranks
     #   user customized feature ranks
     # @return [Hash] data after feature selection
@@ -332,12 +322,7 @@ module FSelector
       
       each_sample do |k, s|
         my_data[k] ||= []
-        my_s = {}
-        
-        s.each do |f,v|
-          my_s[f] = v if eval("#{ranks[f]} #{criterion}")
-        end
-        
+        my_s = s.select { |f, v| eval("#{ranks[f]} #{criterion}") }        
         my_data[k] << my_s if not my_s.empty?
       end
       
