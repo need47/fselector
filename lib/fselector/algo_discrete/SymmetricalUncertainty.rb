@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# Symmetrical Uncertainty for feature with discrete data (SU)
+# Symmetrical Uncertainty (SU) for discrete feature
 #
 #                      IG(c|f)       H(c) - H(c|f)
 #     SU(c,f) = 2 * ------------- = ---------------

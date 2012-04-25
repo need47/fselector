@@ -79,7 +79,11 @@ module Entropy
   
   
   #
-  # get the symmetrical uncertainty of arrar (X) and array (Y)
+  # get the symmetrical uncertainty of array (X) and array (Y)
+  #
+  # @param [Array] arrX the first array
+  # @param [Array] arrY the second array
+  # @return [Float] SU(X,Y)
   #
   def get_symmetrical_uncertainty(arrX, arrY)
     abort "[#{__FILE__}@#{__LINE__}]: "+
