@@ -78,6 +78,22 @@ module Entropy
   end # get_joint_entropy
   
   
+  #
+  # get the symmetrical uncertainty of arrar (X) and array (Y)
+  #
+  def get_symmetrical_uncertainty(arrX, arrY)
+    abort "[#{__FILE__}@#{__LINE__}]: "+
+        "array must be of same length" if not arrX.size == arrY.size
+    
+    hx = get_marginal_entropy(arrX)
+    hxy = get_conditional_entropy(arrX, arrY)
+    hy = get_marginal_entropy(arrY)
+    
+    su = 0.0
+    su = 2*(hx-hxy)/(hx+hy) if not (hx+hy).zero?
+  end
+  
+  
 end # module
 
 

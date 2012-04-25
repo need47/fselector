@@ -27,11 +27,7 @@ module FSelector
       cv = get_class_labels
       fv = get_feature_values(f, :include_missing_values)
       
-      hc = get_marginal_entropy(cv)
-      hcf = get_conditional_entropy(cv, fv)
-      hf = get_marginal_entropy(fv)
-      
-      s =  2*(hc-hcf)/(hc+hf)
+      s = get_symmetrical_uncertainty(cv, fv)
      
       set_feature_score(f, :BEST, s)      
     end # calc_contribution
