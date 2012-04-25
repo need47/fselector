@@ -3,8 +3,8 @@
 #
 module FSelector
 #
-# Fast Correlation-Based Filter for feature with discrete data (FCBF), 
-# for FCBF, use **select\_feature!** for feature selection
+# Fast Correlation-Based Filter (FCBF) for discrete feature, 
+# use **select\_feature!** for feature selection
 #
 # ref: [Feature Selection for High-Dimensional Data: A Fast Correlation-Based Filter Solution](http://www.hpl.hp.com/conferences/icml2003/papers/144.pdf)
 #

@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# Information Gain for feature with discrete data (IG)
+# Information Gain (IG) for discrete feature
 #
 #     IG(c,f) = H(c) - H(c|f)
 #     
