@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: FSelector::ChiSquaredTest
+  Class: FSelector::LasVegasIncremental
   
     &mdash; FSelector Documentation
   
@@ -33,10 +33,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../_index.html">Index (C)</a> &raquo; 
+    <a href="../_index.html">Index (L)</a> &raquo; 
     <span class='title'><span class='object_link'><a href="../FSelector.html" title="FSelector (module)">FSelector</a></span></span>
      &raquo; 
-    <span class="title">ChiSquaredTest</span>
+    <span class="title">LasVegasIncremental</span>
   
   
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -56,7 +56,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Class: FSelector::ChiSquaredTest
+    <div id="content"><h1>Class: FSelector::LasVegasIncremental
   
   
   
@@ -75,7 +75,7 @@
           
             <li class="next"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></li>
           
-            <li class="next">FSelector::ChiSquaredTest</li>
+            <li class="next">FSelector::LasVegasIncremental</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -91,28 +91,17 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/fselector/algo_discrete/ChiSquaredTest.rb</dd>
+    <dd class="r2 last">lib/fselector/algo_discrete/LasVegasIncremental.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Chi-Squared test (CHI)</p>
+    <p>Las Vegas Incremental (LVI) for discrete feature, 
+use <strong>select_feature!</strong> for feature selection</p>
 
-<pre class="code ruby"><code>             N * ( P(f,c) * P(f',c') - P(f,c') * P(f',c) )^2
- CHI(f,c) = -------------------------------------------------
-                      P(f) * P(f') * P(c) * P(c')
-
-                   N * (A*D - B*C)^2
-          = -------------------------------
-             (A+B) * (C+D) * (A+C) * (B+D)
-</code></pre>
-
-<p>suitable for large samples and
-none of the values of (A, B, C, D) &lt; 5</p>
-
-<p>ref: <a href="http://en.wikipedia.org/wiki/Chi-squared_test">Wikipedia</a> and <a href="http://pubs.acs.org/doi/abs/10.1021/ci049875d">A Comparative Study on Feature Selection Methods for Drug Discovery</a></p>
+<p>ref: <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.8218">Incremental Feature Selection</a></p>
 
 
   </div>
@@ -138,7 +127,7 @@ none of the values of (A, B, C, D) &lt; 5</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (ChiSquaredTest) <strong>initialize</strong>(correction = nil, data = nil) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (LasVegasIncremental) <strong>initialize</strong>(max_iter = 100, portion = 0.10, data = nil) </a>
     
 
     
@@ -153,7 +142,7 @@ none of the values of (A, B, C, D) &lt; 5</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>new().</p>
+    <span class="summary_desc"><div class='inline'><p>initialize from existing data structure.</p>
 </div></span>
   
 </li>
@@ -203,13 +192,13 @@ none of the values of (A, B, C, D) &lt; 5</p>
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="FSelector::ChiSquaredTest (class)">ChiSquaredTest</a></span></tt>) <strong>initialize</strong>(correction = nil, data = nil) 
+    - (<tt><span class='object_link'><a href="" title="FSelector::LasVegasIncremental (class)">LasVegasIncremental</a></span></tt>) <strong>initialize</strong>(max_iter = 100, portion = 0.10, data = nil) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>new()</p>
+    <p>initialize from existing data structure</p>
 
 
   </div>
@@ -220,18 +209,34 @@ none of the values of (A, B, C, D) &lt; 5</p>
   
     <li>
       
-        <span class='name'>correction</span>
+        <span class='name'>max_iter</span>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>100</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>maximum number of iterations</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>Yates&#39;s continuity correction?<br>
-no correction if nil, correction otherwise</p>
+        <div class='inline'><p>existing data structure</p>
 </div>
       
     </li>
@@ -245,17 +250,19 @@ no correction if nil, correction otherwise</p>
       <pre class="lines">
 
 
-28
-29
-30
-31</pre>
+18
+19
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/ChiSquaredTest.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/LasVegasIncremental.rb', line 18</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_max_iter'>max_iter</span><span class='op'>=</span><span class='int'>100</span><span class='comma'>,</span> <span class='id identifier rubyid_portion'>portion</span><span class='op'>=</span><span class='float'>0.10</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
-  <span class='ivar'>@correction</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span> <span class='op'>||</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='ivar'>@max_iter</span> <span class='op'>=</span> <span class='id identifier rubyid_max_iter'>max_iter</span> <span class='op'>||</span> <span class='int'>100</span>
+  <span class='ivar'>@portion</span> <span class='op'>=</span> <span class='id identifier rubyid_portion'>portion</span> <span class='op'>||</span> <span class='float'>0.10</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

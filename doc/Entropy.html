@@ -172,6 +172,28 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_symmetrical_uncertainty-instance_method" title="#get_symmetrical_uncertainty (instance method)">- (Float) <strong>get_symmetrical_uncertainty</strong>(arrX, arrY) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>get the symmetrical uncertainty of array (X) and array (Y).</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -523,12 +545,117 @@ i.e. H(X,Y) == H(Y,X)
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="get_symmetrical_uncertainty-instance_method">
+  
+    - (<tt>Float</tt>) <strong>get_symmetrical_uncertainty</strong>(arrX, arrY) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>get the symmetrical uncertainty of array (X) and array (Y)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>arrX</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the first array</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>arrY</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the second array</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>SU(X,Y)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_symmetrical_uncertainty'>get_symmetrical_uncertainty</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>array must be of same length</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+  
+  <span class='id identifier rubyid_hx'>hx</span> <span class='op'>=</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_hxy'>hxy</span> <span class='op'>=</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_hy'>hy</span> <span class='op'>=</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_su'>su</span> <span class='op'>=</span> <span class='float'>0.0</span>
+  <span class='id identifier rubyid_su'>su</span> <span class='op'>=</span> <span class='int'>2</span><span class='op'>*</span><span class='lparen'>(</span><span class='id identifier rubyid_hx'>hx</span><span class='op'>-</span><span class='id identifier rubyid_hxy'>hxy</span><span class='rparen'>)</span><span class='op'>/</span><span class='lparen'>(</span><span class='id identifier rubyid_hx'>hx</span><span class='op'>+</span><span class='id identifier rubyid_hy'>hy</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='lparen'>(</span><span class='id identifier rubyid_hx'>hx</span><span class='op'>+</span><span class='id identifier rubyid_hy'>hy</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Mon Apr 23 10:48:11 2012 by 
+  Generated on Wed Apr 25 15:13:38 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

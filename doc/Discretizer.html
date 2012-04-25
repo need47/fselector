@@ -220,6 +220,28 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#discretize_by_TID%21-instance_method" title="#discretize_by_TID! (instance method)">- <strong>discretize_by_TID!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>discretize by Three-Interval Discretization (TID) algorithm.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -232,7 +254,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -294,6 +316,10 @@ does some feature reduction if a feature has only one interval</p>
       <pre class="lines">
 
 
+159
+160
+161
+162
 163
 164
 165
@@ -413,14 +439,10 @@ does some feature reduction if a feature has only one interval</p>
 279
 280
 281
-282
-283
-284
-285
-286</pre>
+282</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_Chi2!'>discretize_by_Chi2!</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.05</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
@@ -571,10 +593,6 @@ does some feature reduction if a feature has only one interval</p>
 
 <p>ref: <a href="http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf">ChiMerge: Discretization of Numberic Attributes</a></p>
 
-<p>chi-squared values and associated p values can be looked up at
-<a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia</a><br>
-degrees of freedom: one less than the number of classes</p>
-
 
   </div>
 </div>
@@ -608,6 +626,10 @@ degrees of freedom: one less than the number of classes</p>
       <pre class="lines">
 
 
+67
+68
+69
+70
 71
 72
 73
@@ -683,14 +705,10 @@ degrees of freedom: one less than the number of classes</p>
 143
 144
 145
-146
-147
-148
-149
-150</pre>
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='id identifier rubyid_alpha'>alpha</span><span class='op'>=</span><span class='float'>0.10</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
@@ -999,6 +1017,10 @@ degrees of freedom: one less than the number of classes</p>
       <pre class="lines">
 
 
+292
+293
+294
+295
 296
 297
 298
@@ -1031,14 +1053,10 @@ degrees of freedom: one less than the number of classes</p>
 325
 326
 327
-328
-329
-330
-331
-332</pre>
+328</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 296</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 292</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_MID!'>discretize_by_MID!</span>
   <span class='comment'># determine the final boundaries
@@ -1049,7 +1067,7 @@ degrees of freedom: one less than the number of classes</p>
 </span>    <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
     
     <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_cv'>cv</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
-    <span class='comment'># sort cv and fv according ascending order of fv
+    <span class='comment'># sort cv and fv according to ascending order of fv
 </span>    <span class='id identifier rubyid_sis'>sis</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span><span class='id identifier rubyid_j'>j</span><span class='op'>|</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_j'>j</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
     <span class='id identifier rubyid_cv'>cv</span> <span class='op'>=</span> <span class='id identifier rubyid_cv'>cv</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_sis'>sis</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_sis'>sis</span><span class='rparen'>)</span>
@@ -1082,12 +1100,187 @@ degrees of freedom: one less than the number of classes</p>
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="discretize_by_TID!-instance_method">
+  
+    - <strong>discretize_by_TID!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>no missing feature value is allowed, and data structure will be altered</p>
+</div>
+  </div>
+
+<p>discretize by Three-Interval Discretization (TID) algorithm</p>
+
+<p>ref: <a href="http://www.sciencedirect.com/science/article/pii/S0933365704000193">Filter versus wrapper gene selection approaches in DNA microarray domains</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 338</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_TID!'>discretize_by_TID!</span>
+  <span class='comment'># cut points for each feature
+</span>  <span class='id identifier rubyid_f2cp'>f2cp</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='id identifier rubyid_cv'>cv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_class_labels'>get_class_labels</span>
+    <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+    
+    <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_cv'>cv</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='comment'># sort cv and fv according to ascending order of fv
+</span>    <span class='id identifier rubyid_sis'>sis</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span><span class='id identifier rubyid_j'>j</span><span class='op'>|</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_j'>j</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_cv'>cv</span> <span class='op'>=</span> <span class='id identifier rubyid_cv'>cv</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_sis'>sis</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_sis'>sis</span><span class='rparen'>)</span>
+    
+    <span class='comment'># get initial boundaries
+</span>    <span class='id identifier rubyid_bs'>bs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_fv_u'>fv_u</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+    <span class='id identifier rubyid_fv_u'>fv_u</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+      <span class='comment'># cut points are the mean of two adjacent data points
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_fv_u'>fv_u</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
+        <span class='id identifier rubyid_bs'>bs</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='op'>+</span><span class='id identifier rubyid_fv_u'>fv_u</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='op'>+</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='op'>/</span><span class='float'>2.0</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    
+    <span class='comment'># test each pair cut point
+</span>    <span class='id identifier rubyid_s_best'>s_best</span><span class='comma'>,</span> <span class='id identifier rubyid_h1_best'>h1_best</span><span class='comma'>,</span> <span class='id identifier rubyid_h2_best'>h2_best</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span>
+    
+    <span class='id identifier rubyid_bs'>bs</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_h1'>h1</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>        
+      <span class='id identifier rubyid_bs'>bs</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_h2'>h2</span><span class='comma'>,</span> <span class='id identifier rubyid_j'>j</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_j'>j</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_i'>i</span>
+        
+        <span class='id identifier rubyid_n_h1'>n_h1</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_h1'>h1</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+        <span class='id identifier rubyid_n_h1_h2'>n_h1_h2</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_h1'>h1</span> <span class='kw'>and</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_h2'>h2</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+        <span class='id identifier rubyid_n_h2'>n_h2</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_h2'>h2</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+        
+        <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='float'>0.0</span>
+        
+        <span class='id identifier rubyid_each_class'>each_class</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
+          <span class='id identifier rubyid_n_h1_k'>n_h1_k</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_h1'>h1</span> <span class='kw'>and</span> <span class='id identifier rubyid_cv'>cv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_k'>k</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+          <span class='id identifier rubyid_n_h1_h2_k'>n_h1_h2_k</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_h1'>h1</span> <span class='kw'>and</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_h2'>h2</span> <span class='kw'>and</span> <span class='id identifier rubyid_cv'>cv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_k'>k</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+          <span class='id identifier rubyid_n_h2_k'>n_h2_k</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_fv'>fv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_h2'>h2</span> <span class='kw'>and</span> <span class='id identifier rubyid_cv'>cv</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_k'>k</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+          
+          <span class='id identifier rubyid_s'>s</span> <span class='op'>+=</span> <span class='id identifier rubyid_n_h1_k'>n_h1_k</span> <span class='op'>*</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log2'>log2</span><span class='lparen'>(</span><span class='id identifier rubyid_n_h1_k'>n_h1_k</span><span class='op'>/</span><span class='id identifier rubyid_n_h1'>n_h1</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_n_h1_k'>n_h1_k</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+          <span class='id identifier rubyid_s'>s</span> <span class='op'>+=</span> <span class='id identifier rubyid_n_h1_h2_k'>n_h1_h2_k</span> <span class='op'>*</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log2'>log2</span><span class='lparen'>(</span><span class='id identifier rubyid_n_h1_h2_k'>n_h1_h2_k</span><span class='op'>/</span><span class='id identifier rubyid_n_h1_h2'>n_h1_h2</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_n_h1_h2_k'>n_h1_h2_k</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+          <span class='id identifier rubyid_s'>s</span> <span class='op'>+=</span> <span class='id identifier rubyid_n_h2_k'>n_h2_k</span> <span class='op'>*</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log2'>log2</span><span class='lparen'>(</span><span class='id identifier rubyid_n_h2_k'>n_h2_k</span><span class='op'>/</span><span class='id identifier rubyid_n_h2'>n_h2</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_n_h2_k'>n_h2_k</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+          
+          <span class='comment'>#pp [s_best, s, h1, h2] + [n_h1, n_h1_k] + [n_h1_h2, n_h1_h2_k] + [n_h2, n_h2_k]
+</span>        <span class='kw'>end</span>
+        
+        <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_s_best'>s_best</span> <span class='kw'>or</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_s_best'>s_best</span>
+          <span class='id identifier rubyid_s_best'>s_best</span><span class='comma'>,</span> <span class='id identifier rubyid_h1_best'>h1_best</span><span class='comma'>,</span> <span class='id identifier rubyid_h2_best'>h2_best</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_h1'>h1</span><span class='comma'>,</span> <span class='id identifier rubyid_h2'>h2</span>
+          <span class='comment'>#pp [s_best, h1_best, h2_best]
+</span>        <span class='kw'>end</span>
+        
+        <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_s_best'>s_best</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span> <span class='comment'># allow early temination at maximum value 0.0
+</span>      <span class='kw'>end</span>
+      
+      <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_s_best'>s_best</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span> <span class='comment'># allow early temination at maximum value 0.0
+</span>    <span class='kw'>end</span>
+    
+    <span class='comment'>#pp [s_best, h1_best, h2_best]
+</span>    <span class='id identifier rubyid_f2cp'>f2cp</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_h1_best'>h1_best</span><span class='comma'>,</span> <span class='id identifier rubyid_h2_best'>h2_best</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># discretize based on cut points
+</span>  <span class='id identifier rubyid_discretize_at_cutpoints!'>discretize_at_cutpoints!</span><span class='lparen'>(</span><span class='id identifier rubyid_f2cp'>f2cp</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Mon Apr 23 10:48:12 2012 by 
+  Generated on Wed Apr 25 15:13:38 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

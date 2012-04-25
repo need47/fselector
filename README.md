@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.8.1  
-**Release Date**: April 23 2012
+**Latest Version**: 0.9.0  
+**Release Date**: April 25 2012
 
 Synopsis
 --------
@@ -58,6 +58,8 @@ Feature List
     GMean                             GM          discrete
     GSSCoefficient                    GSS         discrete
     InformationGain                   IG          discrete
+    LasVegasFilter                    LVF         discrete
+    LasVegasIncremental               LVI         discrete
     MatthewsCorrelationCoefficient    MCC, PHI    discrete
     McNemarsTest                      MNT         discrete
     OddsRatio                         OR          discrete
@@ -104,6 +106,7 @@ Feature List
     discretize_by_ChiMerge!           discretize by ChiMerge algorithm
     discretize_by_Chi2!               discretize by Chi2 algorithm
     discretize_by_MID!                discretize by Multi-Interval Discretization
+    discretize_by_TID!                discretize by Three-Interval Discretization
     
 **5. availabe algorithms for replacing missing feature values**
     

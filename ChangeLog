@@ -1,3 +1,9 @@
+2012-04-25	version 0.9.0
+
+  * add new discretization algorithm (Three-Interval Discretization, TID)
+  * add new algorithm Las Vegas Filter (LVF) for discrete feature
+  * add new algorithm Las Vegas Incremental (LVI) for discrete feature
+  
 2012-04-23	version 0.8.1
 
   * correct a bug in the example in the README file because discretize\_by\_ChiMerge!() now takes confidence alpha value as argument instead of chi-square value
