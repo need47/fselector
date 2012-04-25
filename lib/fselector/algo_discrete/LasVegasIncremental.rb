@@ -13,6 +13,7 @@ module FSelector
     # initialize from existing data structure
     # 
     # @param [Integer] max_iter maximum number of iterations
+    # @param [Float] portion percentage of data used by LVF
     # @param [Hash] data existing data structure
     #
     def initialize(max_iter=100, portion=0.10, data=nil)
