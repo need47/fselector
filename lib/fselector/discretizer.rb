@@ -63,10 +63,6 @@ module Discretizer
   # @note data structure will be altered
   #
   # ref: [ChiMerge: Discretization of Numberic Attributes](http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf)
-  #
-  # chi-squared values and associated p values can be looked up at
-  # [Wikipedia](http://en.wikipedia.org/wiki/Chi-squared_distribution)  
-  # degrees of freedom: one less than the number of classes
   #    
   def discretize_by_ChiMerge!(alpha=0.10)
     df = get_classes.size-1
@@ -302,7 +298,7 @@ module Discretizer
       fv = get_feature_values(f)
       
       n = cv.size
-      # sort cv and fv according ascending order of fv
+      # sort cv and fv according to ascending order of fv
       sis = (0...n).to_a.sort { |i,j| fv[i] <=> fv[j] }
       cv = cv.values_at(*sis)
       fv = fv.values_at(*sis)
@@ -330,6 +326,82 @@ module Discretizer
     # discretize based on cut points
     discretize_at_cutpoints!(f2cp)
   end # discretize_by_MID!
+  
+  
+  #
+  # discretize by Three-Interval Discretization (TID) algorithm
+  #
+  # @note no missing feature value is allowed, and data structure will be altered
+  # 
+  # ref: [Filter versus wrapper gene selection approaches in DNA microarray domains](http://www.sciencedirect.com/science/article/pii/S0933365704000193)
+  #
+  def discretize_by_TID!
+    # cut points for each feature
+    f2cp = {}
+    
+    each_feature do |f|
+      cv = get_class_labels
+      fv = get_feature_values(f)
+      
+      n = cv.size
+      # sort cv and fv according to ascending order of fv
+      sis = (0...n).to_a.sort { |i,j| fv[i] <=> fv[j] }
+      cv = cv.values_at(*sis)
+      fv = fv.values_at(*sis)
+      
+      # get initial boundaries
+      bs = []
+      fv_u = fv.uniq
+      fv_u.each_with_index do |v, i|
+        # cut points are the mean of two adjacent data points
+        if i < fv_u.size-1
+          bs << (v+fv_u[i+1])/2.0
+        end
+      end
+      
+      # test each pair cut point
+      s_best, h1_best, h2_best = nil, nil, nil
+      
+      bs.each_with_index do |h1, i|        
+        bs.each_with_index do |h2, j|
+          next if j <= i
+          
+          n_h1 = (0...n).to_a.select { |x| fv[x] < h1 }.size.to_f
+          n_h1_h2 = (0...n).to_a.select { |x| fv[x] > h1 and fv[x] < h2 }.size.to_f
+          n_h2 = (0...n).to_a.select { |x| fv[x] > h2 }.size.to_f
+          
+          s = 0.0
+          
+          each_class do |k|
+            n_h1_k = (0...n).to_a.select { |x| fv[x] < h1 and cv[x] == k }.size.to_f
+            n_h1_h2_k = (0...n).to_a.select { |x| fv[x] > h1 and fv[x] < h2 and cv[x] == k }.size.to_f
+            n_h2_k = (0...n).to_a.select { |x| fv[x] > h2 and cv[x] == k }.size.to_f
+            
+            s += n_h1_k * Math.log2(n_h1_k/n_h1) if not n_h1_k.zero?
+            s += n_h1_h2_k * Math.log2(n_h1_h2_k/n_h1_h2) if not n_h1_h2_k.zero?
+            s += n_h2_k * Math.log2(n_h2_k/n_h2) if not n_h2_k.zero?
+            
+            #pp [s_best, s, h1, h2] + [n_h1, n_h1_k] + [n_h1_h2, n_h1_h2_k] + [n_h2, n_h2_k]
+          end
+          
+          if not s_best or s > s_best
+            s_best, h1_best, h2_best = s, h1, h2
+            #pp [s_best, h1_best, h2_best]
+          end
+          
+          break if s_best.zero? # allow early temination at maximum value 0.0
+        end
+        
+        break if s_best.zero? # allow early temination at maximum value 0.0
+      end
+      
+      #pp [s_best, h1_best, h2_best]
+      f2cp[f] = [h1_best, h2_best]
+    end
+    
+    # discretize based on cut points
+    discretize_at_cutpoints!(f2cp, true)
+  end # discretize_by_TID!
   
   private
   
@@ -366,8 +438,8 @@ module Discretizer
   # (cpn, ) -> n+1
   #
   # @param [Float] v continuous data to be discretized
-  # @param [Array<Float>] cut_points cutting points
-  # @param [Boolean] mid_point true if cutting points are drawn from the mean of
+  # @param [Array<Float>] cut_points cut points
+  # @param [Boolean] mid_point true if cut points are drawn from the mean of
   #   two adjacent data points, false if drawn from single data point
   # @return [Integer] discretized index for v
   #
@@ -405,8 +477,8 @@ module Discretizer
   #
   # discretize data at given cut points
   #
-  # @param [Hash] f2cp cutting points for each feature
-  # @param [Boolean] mid_point true if cutting points are drawn from the mean of
+  # @param [Hash] f2cp cut points for each feature
+  # @param [Boolean] mid_point true if cut points are drawn from the mean of
   #   two adjacent data points, false if drawn from single data point 
   # @note data structure will be altered
   #
@@ -599,7 +671,7 @@ module Discretizer
       inconsis += cnts.sum-cnts.max
     end
     
-    inconsis/get_sample_size
+    inconsis/dt.values.flatten.size # inconsis / num_of_sample
   end
   
   #
