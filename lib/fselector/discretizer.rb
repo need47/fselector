@@ -1,15 +1,19 @@
 #
-# discretize continous feature
+# discretize continuous feature
 #
 module Discretizer
   # include Entropy module
   include Entropy
-    
+  # include Consistency module
+  include Consistency
+
+  #    
   # discretize by equal-width intervals
   #
   # @param [Integer] n_interval
   #        desired number of intervals
   # @note data structure will be altered
+  #
   def discretize_by_equal_width!(n_interval)
     n_interval = 1 if n_interval < 1 # at least one interval
     
@@ -27,14 +31,16 @@ module Discretizer
     
     # then discretize based on cut points
     discretize_at_cutpoints!(f2bs)
-  end # discretize_equal_width!
+  end # discretize_by_equal_width!
   
   
+  #
   # discretize by equal-frequency intervals
   #
   # @param [Integer] n_interval
   #        desired number of intervals
   # @note data structure will be altered
+  #
   def discretize_by_equal_frequency!(n_interval)
     n_interval = 1 if n_interval < 1 # at least one interval
     
@@ -53,7 +59,7 @@ module Discretizer
     
     # then discretize based on cut points
     discretize_at_cutpoints!(f2bs)
-  end # discretize_equal_frequency!
+  end # discretize_by_equal_frequency!
   
   
   #
@@ -126,12 +132,6 @@ module Discretizer
           cs.delete_at(i);cs.delete_at(i);cs.insert(i, cm)
           qs.delete_at(i)
           
-          # note bs.size == cs.size+1 == bs.size+2
-          #cs.each_with_index do |c, i|
-          #  puts "#{bs[i]} | #{c.values.join(' ')} | #{qs[i]}"
-          #end
-          #puts
-          
           # break out
           break
         end
@@ -143,42 +143,32 @@ module Discretizer
     
     # discretize according to each feature's boundaries
     discretize_at_cutpoints!(f2bs)
-  end # discretize_ChiMerge!
+  end # discretize_by_ChiMerge!
   
   
   #
   # discretize by Chi2 algorithm
   #
-  # @param [Float] delta data inconsistency rate upper bound
-  # @note our implementation of Chi2 algo is **NOT** 
-  #   the exactly same as the original one, and Chi2 
-  #   does some feature reduction if a feature has only one interval
+  # @param [Float] delta upper bound of data inconsistency rate 
+  # @note Chi2 does some feature reduction if a feature has only one interval. 
+  #   Using delta==0.02 reproduces exactly the same results as that of 
+  #   the original Chi2 algorithm
   #
   # ref: [Chi2: Feature Selection and Discretization of Numeric Attributes](http://sci2s.ugr.es/keel/pdf/specific/congreso/liu1995.pdf)
   #
-  def discretize_by_Chi2!(delta=0.05)
+  def discretize_by_Chi2!(delta=0.02)
+    # degree of freedom equals one less than number of classes     
     df = get_classes.size-1
-    
-    try_levels = [
-      0.5, 0.25, 0.2, 0.1, 
-      0.05, 0.025, 0.02, 0.01, 
-      0.005, 0.002, 0.001,
-      0.0001, 0.00001, 0.000001]
-    
+        
     #
     # Phase 1
     #
     
     sig_level = 0.5
-    sig_level0 = nil
-    inconsis_rate = chi2_get_inconsistency_rate
+    sig_level0 = sig_level
     
-    # f2chisq = {
-      # :'sepal-length' => 50.6,
-      # :'sepal-width' => 40.6,
-      # :'petal-length' => 10.6,
-      # :'petal-width' => 10.6,
-    # }
+    inst_cnt = get_instance_count
+    inconsis_rate = get_IR_by_count(inst_cnt)
  
     # f2bs = {
       # :'sepal-length' => [4.4],
@@ -189,46 +179,34 @@ module Discretizer
     
     while true
       chisq = pval2chisq(sig_level, df)
-      
       f2bs = {} # cut ponts
+      
       each_feature do |f|
-        #f = :"sepal-length"
-        #chisq = f2chisq[f]
         bs, cs, qs = chi2_init(f)
         chi2_merge(bs, cs, qs, chisq)
         
         f2bs[f] = bs
       end
       
-      # pp f2bs      
-      # pp chi2_get_inconsistency_rate(f2bs)
-      # discretize_at_cutpoints!(f2bs)
-      # puts get_features.join(',')+','+'iris.train'
-      # each_sample do |k, s|
-        # each_feature do |f|
-          # print "#{s[f]},"
-        # end
-        # puts "#{k}"
-      # end
-      # abort
+      inconsis_rate = chi2_get_inconsistency_rate(inst_cnt, f2bs)
       
-      inconsis_rate = chi2_get_inconsistency_rate(f2bs)
-      
-      if inconsis_rate < delta
+      if inconsis_rate <= delta
+        sig_level -= 0.1
         sig_level0 = sig_level
-        sig_level = chi2_decrease_sig_level(sig_level, try_levels)
         
-        break if not sig_level # we've tried every level
+        break if sig_level0 <= 0.2 # phase 1 stop at level == 0.2
       else # data inconsistency
         break
-      end     
-      
+      end 
     end
     
     #
     # Phase 2
     #
     
+    try_levels = [0.1, 0.01, 0.001, 1e-4, 
+                  1e-5, 1e-6, 1e-7, 1e-8, 
+                  1e-9, 1e-10, 1e-11, 1e-12]           
     mergeble_fs = []
     f2sig_level = {}
     
@@ -253,33 +231,35 @@ module Discretizer
         end
         f2bs[f] = bs
         
-        inconsis_rate = chi2_get_inconsistency_rate(f2bs)
+        inconsis_rate = chi2_get_inconsistency_rate(inst_cnt, f2bs)
         
-        if (inconsis_rate < delta)
+        if (inconsis_rate <= delta)
           # try next level
           next_level = chi2_decrease_sig_level(f2sig_level[f], try_levels)
+          f2sig_level[f] = next_level
           
           if not next_level # we've tried all levels
             mergeble_fs.delete(f)
           else
             f2bs[f] = bs # record cut points for this level
-            f2sig_level[f] = next_level
           end
-        else
+        else # cause more inconsistency
           f2bs[f] = bs_bak if bs_bak # restore last cut points
           mergeble_fs.delete(f) # not mergeble
         end
       end
     end
+    #pp f2bs
+    #pp f2sig_level;abort
     
     # if there is only one interval, remove this feature
     each_sample do |k, s|
       s.delete_if { |f, v| f2bs[f].size <= 1 }
     end
     
-    # discretize according to each feature's boundaries
+    # discretize according to each feature's cut points
     discretize_at_cutpoints!(f2bs)
-  end
+  end # discretize_by_Chi2!
   
   
   #
@@ -294,10 +274,12 @@ module Discretizer
     f2cp = {} # cut points for each feature
     each_feature do |f|
       cv = get_class_labels
-      # we assume no missing feature values 
       fv = get_feature_values(f)
       
       n = cv.size
+      abort "[#{__FILE__}@#{__LINE__}]: "+
+              "missing feature value is not allowed!" if n != fv.size
+      
       # sort cv and fv according to ascending order of fv
       sis = (0...n).to_a.sort { |i,j| fv[i] <=> fv[j] }
       cv = cv.values_at(*sis)
@@ -344,6 +326,9 @@ module Discretizer
       fv = get_feature_values(f)
       
       n = cv.size
+      abort "[#{__FILE__}@#{__LINE__}]: "+
+              "missing feature value is not allowed!" if n != fv.size
+      
       # sort cv and fv according to ascending order of fv
       sis = (0...n).to_a.sort { |i,j| fv[i] <=> fv[j] }
       cv = cv.values_at(*sis)
@@ -491,7 +476,7 @@ module Discretizer
     
     # clear vars
     clear_vars
-  end
+  end # discretize_at_cutpoints!
   
   
   #
@@ -527,7 +512,7 @@ module Discretizer
     end
 
     [bs, cs, qs]
-  end
+  end # chi2_init
   
   
   #
@@ -570,7 +555,7 @@ module Discretizer
         break
       end
     end
-  end
+  end # chi2_merge
   
   
   #
@@ -618,61 +603,40 @@ module Discretizer
   
   # try next sig level
   def chi2_decrease_sig_level(sig_level, try_levels)
-    next_level = nil
-    try_levels.each do |t|
-      if t < sig_level
-        next_level = t
-        break
-      end
-    end
+    idx = try_levels.index { |x| x < sig_level }
     
-    next_level
-  end
+    idx ? try_levels[idx] : nil
+  end # chi2_decrease_sig_level
   
   
+  #
   # get the inconsistency rate of data
-  def chi2_get_inconsistency_rate(f2bs=nil)
-    # work on a discretized data copy
-    dt = {}
-    get_data.each do |k, ss|
-      dt[k] ||= []
-      
-      ss.each do |s|
-        my_s = {}
-        
-        s.each do |f, v|
-          if f2bs and f2bs.has_key? f
-            my_s[f] = get_index(v, f2bs[f])
-          else
-            my_s[f] = v
-          end
+  #
+  # @param [Hash] inst_cnt unique instance count for each class, 
+  #   see module Consistency
+  # @param [Hash] f2bs cut point for feature
+  # @return [Float] inconsistency rate for discretized data
+  #
+  def chi2_get_inconsistency_rate(inst_cnt, f2bs)
+    # build a new instance count Hash table
+    inst_cnt_new = {}
+    
+    inst_cnt.each do |key, hcnt|
+      key_new = key.dup
+      f2bs.keys.each do |f|
+        if key_new =~ /#{f}:(.*?)\|/
+          v = $1.to_f
+          key_new.gsub!(/#{f}:.*?\|/, "#{f}:#{get_index(v, f2bs[f])}|")
         end
-        
-        dt[k] << my_s if not my_s.empty?
       end
+      
+      hcnt_new = inst_cnt_new[key_new] ||= Hash.new(0)
+      inst_cnt_new[key_new] = hcnt_new.merge(hcnt) { |kk, v1, v2| v1+v2 }
     end
     
-    # get unique instances (except class label)
-    inst_u = dt.values.flatten.uniq
-    inst_u_cnt = {} # occurrences for each unique instance in each class
-    ks = dt.keys
-    
-    # count
-    inst_u.each_with_index do |inst, idx|
-      inst_u_cnt[idx] = [] # record for all classes
-      ks.each do |k|
-        inst_u_cnt[idx] << dt[k].count(inst)
-      end
-    end
-   
-    # inconsistency rate
-    inconsis = 0.0
-    inst_u_cnt.each do |idx, cnts|
-      inconsis += cnts.sum-cnts.max
-    end
-    
-    inconsis/dt.values.flatten.size # inconsis / num_of_sample
-  end
+    get_IR_by_count(inst_cnt_new)
+  end # chi2_get_inconsistency_rate
+  
   
   #
   # Multi-Interval Discretization main algorithm
@@ -722,7 +686,7 @@ module Discretizer
         ent_best = ent_try
         ent1_best, ent2_best = ent1_try, ent2_try
       end
-    end
+    end    
     
     # to cut or not to cut?
     #
@@ -744,7 +708,7 @@ module Discretizer
         partition(cv2_best, fv2_best, bs2_best, cp)
       end
     end
-  end
+  end # partition
   
   
   # binarily split based on a cut point
@@ -770,7 +734,7 @@ module Discretizer
     
     # return subset
     [cv1, cv2, fv1, fv2, bs1, bs2]
-  end
+  end # binary_split
   
   
 end # module
