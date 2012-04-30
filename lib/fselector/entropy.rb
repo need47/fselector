@@ -1,20 +1,22 @@
 #
 # entropy-related functions for discrete data
 #
+# ref: [Wikipedia](http://en.wikipedia.org/wiki/Mutual_information)
+#
 module Entropy
   #
-  # get the marginal entropy of array (X)
+  # get the marginal entropy of vector (X)
   #
   #     H(X) = -1 * sigma_i (P(x_i) log2 P(x_i))
   #
-  # @param [Array] arrX array of interest
+  # @param [Array] vecX vector of interest
   # @return [Float] H(X)
-   def get_marginal_entropy(arrX)
+   def get_marginal_entropy(vecX)
     h = 0.0
-    n = arrX.size.to_f
+    n = vecX.size.to_f
 
-    arrX.uniq.each do |x_i|
-      p = arrX.count(x_i)/n
+    vecX.uniq.each do |x_i|
+      p = vecX.count(x_i)/n
       h += -1.0 * (p * Math.log2(p))
     end
 
@@ -23,28 +25,28 @@ module Entropy
   
   
   #
-  # get the conditional entropy of array (X) given another array (Y)
+  # get the conditional entropy of vector (X) given another vector (Y)
   #
-  #     H(X|Y) = sigma_j (P(y_j) * H(C|y_j))
+  #     H(X|Y) = sigma_j (P(y_j) * H(X|y_j))
   #     
   #     where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
   #
-  # @param [Array] arrX the first array
-  # @param [Array] arrY the second array
+  # @param [Array] vecX the first vector
+  # @param [Array] vecY the second vector
   # @return [Float] H(X|Y)
-  # @note arrX and arrY must be of same length
-   def get_conditional_entropy(arrX, arrY)
+  # @note vecX and vecY must be of same length
+   def get_conditional_entropy(vecX, vecY)
     abort "[#{__FILE__}@#{__LINE__}]: "+
-          "array must be of same length" if not arrX.size == arrY.size
+          "vector must be of same length" if not vecX.size == vecY.size
 
     hxy = 0.0
-    n = arrX.size.to_f
+    n = vecX.size.to_f
 
-    arrY.uniq.each do |y_j|
-      p1 = arrY.count(y_j)/n
+    vecY.uniq.each do |y_j|
+      p1 = vecY.count(y_j)/n
 
-      indices = (0...n).to_a.select { |k| arrY[k] == y_j }
-      xvs = arrX.values_at(*indices)
+      indices = (0...n).to_a.select { |k| vecY[k] == y_j }
+      xvs = vecX.values_at(*indices)
       m = xvs.size.to_f
 
       xvs.uniq.each do |x_i|
@@ -59,97 +61,65 @@ module Entropy
   
   
   #
-  # get the joint entropy of array (X) and array (Y)
+  # get the joint entropy of vector (X) and vector (Y)
   # 
   #     H(X,Y) = H(Y) + H(X|Y)
   #            = H(X) + H(Y|X)
   #     
   #     i.e. H(X,Y) == H(Y,X)
   #
-  # @param [Array] arrX the first array
-  # @param [Array] arrY the second array
+  # @param [Array] vecX the first vector
+  # @param [Array] vecY the second vector
   # @return [Float] H(X,Y)
-  # @note arrX and arrY must be of same length
-   def get_joint_entropy(arrX, arrY)
-    abort "[#{__FILE__}@#{__LINE__}]: "+
-        "array must be of same length" if not arrX.size == arrY.size
-
-    get_marginal_entropy(arrY) + get_conditional_entropy(arrX, arrY)
+  # @note vecX and vecY must be of same length
+  #
+   def get_joint_entropy(vecX, vecY)
+    get_marginal_entropy(vecY) + get_conditional_entropy(vecX, vecY)
   end # get_joint_entropy
   
   
   #
-  # get the symmetrical uncertainty of array (X) and array (Y)
+  # get the information gain of vector (X) given another vector (Y)
+  # 
+  #     IG(X;Y) = H(X) - H(X|Y)
+  #             = H(Y) - H(Y|X) = IG(Y;X)
   #
-  # @param [Array] arrX the first array
-  # @param [Array] arrY the second array
-  # @return [Float] SU(X,Y)
+  # @param [Array] vecX the first vector
+  # @param [Array] vecY the second vector
+  # @return [Float] IG(X;Y)
+  # @note vecX and vecY must be of same length
   #
-  def get_symmetrical_uncertainty(arrX, arrY)
-    abort "[#{__FILE__}@#{__LINE__}]: "+
-        "array must be of same length" if not arrX.size == arrY.size
-    
-    hx = get_marginal_entropy(arrX)
-    hxy = get_conditional_entropy(arrX, arrY)
-    hy = get_marginal_entropy(arrY)
+   def get_information_gain(vecX, vecY)
+    get_marginal_entropy(vecX) - get_conditional_entropy(vecX, vecY)
+  end # get_joint_entropy
+  
+  
+  #
+  # get the symmetrical uncertainty of vector (X) and vector (Y)
+  #
+  #                      IG(X;Y)
+  #     SU(X;Y) = 2 * -------------
+  #                     H(X) + H(Y)
+  #
+  #                    H(X) - H(X|Y)         H(Y) - H(Y|X)
+  #             = 2 * --------------- = 2 * --------------- = SU(Y;X)
+  #                     H(X) + H(Y)           H(X) + H(Y)
+  #
+  # @param [Array] vecX the first vector
+  # @param [Array] vecY the second vector
+  # @return [Float] SU(X;Y)
+  # @note vecX and vecY must be of same length
+  #
+  def get_symmetrical_uncertainty(vecX, vecY)  
+    hx = get_marginal_entropy(vecX)
+    hxy = get_conditional_entropy(vecX, vecY)
+    hy = get_marginal_entropy(vecY)
     
     su = 0.0
     su = 2*(hx-hxy)/(hx+hy) if not (hx+hy).zero?
+    
+    su
   end
   
   
 end # module
-
-
-=begin
-
-class Test
-  include Entropy
-end
-
-labels = ['A', 'B', 'C']
-arrX, arrY = [], []
-#40.times { arrX << labels[rand(labels.size)] }
-#40.times { arrY << labels[rand(labels.size)] }
-
-data = {
-  :c1 => [
-    {:f1 => 1},{:f1 => 1},{:f1 => 1},{:f1 => 1},{:f1 => 1},
-    {:f1 => 0}
-  ],
-  :c2 => [
-    {:f1 => 1},
-    {:f1 => 1},
-    {:f1 => 1},
-    {:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},
-    {:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},
-    {:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},
-    {:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0},{:f1 => 0}
-  ]
-}
-
-data.each do |c, ss|
-  ss.each do |s|
-    arrX << c
-  arrY << s[:f1]
-  end
-end
-
-puts arrX.join(',')
-puts arrY.join(',')
-
-t = Test.new
-hx = t.get_marginal_entropy(arrX)
-hy = t.get_marginal_entropy(arrY)
-hxy = t.get_conditional_entropy(arrX, arrY)
-hyx = t.get_conditional_entropy(arrY, arrX)
-ig1 = hx-hxy
-ig2 = hy-hyx
-hx_y = t.get_joint_entropy(arrX, arrY)
-hy_x = t.get_joint_entropy(arrY, arrX)
-
-puts
-puts [hx, hxy, hy, hyx, ig1, ig2, ig1-ig2 ].join(',')
-puts [hx_y, hy_x, hx_y-hy_x].join(',')
-
-=end
