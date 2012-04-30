@@ -3,11 +3,11 @@
 #
 module FSelector
 #
-# t-score (TS) based on Student's t-test for continous feature
+# t-score (TS) based on Student's t-test for continuous feature
 # 
-#                            |u1 - u2|
-#     TS(f) = --------------------------------------------
-#              sqrt((n1*sigma1^2 + n_2*sigma2^2)/(n1+n2))
+#                      |u1 - u2|
+#     TS = -------------------------------------
+#           sqrt((n1*sd1^2 + n2*sd2^2)/(n1+n2))
 #
 # @note TS applicable only to two-class problems
 #
@@ -31,8 +31,10 @@ module FSelector
       
       # calc
       n1, n2 = s1.size, s2.size
-      if not (n1+n2).zero?
-        dd = Math.sqrt( (n1*s1.var+n2*s2.var) / (n1+n2) )
+      x = n1+n2
+      
+      if not x.zero?
+        dd = Math.sqrt( (n1*s1.var+n2*s2.var) / x )
       end
       
       s = 0.0

@@ -1,6 +1,6 @@
 #
 # test ReliefF algorithm
-# for selecting continous feature (use randomly generated data) and 
+# for selecting continuous feature (use randomly generated data) and 
 # for selecting discrete feature (use randomly generated data)
 #
 # note ReliefF algorithm applicable to multi-class problem 
@@ -10,7 +10,7 @@ require 'fselector'
 
 puts "\n>============> #{File.basename(__FILE__)}"
 
-puts "  test for continous feature"
+puts "  test for continuous feature"
 
 r1 = FSelector::ReliefF_c.new # ReliefF_c is for continuous feature
 

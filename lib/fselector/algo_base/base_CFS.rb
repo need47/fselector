@@ -59,7 +59,7 @@ module FSelector
     
     
     # handle missing values
-    # CFS replaces missing values with the mean for continous features and
+    # CFS replaces missing values with the mean for continuous features and
     # the most seen value for discrete features
     def handle_missing_values
       abort "[#{__FILE__}@#{__LINE__}]: "+
@@ -104,8 +104,8 @@ module FSelector
 	    
 	    if not @f2idx
 	      @f2idx = {}
-	      fvs = get_features
-		    fvs.each_with_index { |f, idx| @f2idx[f] = idx }
+	      fs = get_features
+		    fs.each_with_index { |_f, idx| @f2idx[_f] = idx }
 	    end
 	    
 	    if @f2idx[f] > @f2idx[s]

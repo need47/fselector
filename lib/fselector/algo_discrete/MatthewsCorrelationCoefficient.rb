@@ -9,9 +9,9 @@ module FSelector
 #     MCC = ---------------------------------------------- = PHI = sqrt(CHI/N)
 #            sqrt((tp+fp) * (tp+fn) * (tn+fp) * (tn+fn) )
 #     
-#                          A*D - B*C
+#                         A*D - B*C
 #         = -------------------------------------
-#           sqrt((A+B) * (A+C) * (B+D) * (C+D))
+#            sqrt((A+B) * (A+C) * (B+D) * (C+D))
 #
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Matthews_correlation_coefficient)
 #
@@ -25,9 +25,9 @@ module FSelector
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
         
         s = 0.0
-        if not ((a+b)*(a+c)*(b+d)*(c+d)).zero?     
-          s = (a*d-b*c) / Math.sqrt((a+b)*(a+c)*(b+d)*(c+d))
-        end
+        x = (a+b)*(a+c)*(b+d)*(c+d)
+        
+        s = (a*d-b*c) / Math.sqrt(x) if not x.zero?
         
         set_feature_score(f, k, s)
       end

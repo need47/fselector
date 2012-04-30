@@ -20,14 +20,14 @@ module FSelector
 #
   class ChiSquaredTest < BaseDiscrete
     #
-    # new()
+    # initialize from an existing data structure
     #
-    # @param [Boolean] correction Yates's continuity correction?  
-    #   no correction if nil, correction otherwise
+    # @param [Boolean] correction use Yates's continuity correction if :yates, 
+    #   no correction otherwise
     #
-    def initialize(correction=nil, data=nil)
+    def initialize(correction=:yates, data=nil)
       super(data)
-      @correction = (correction || false)
+      @correction = (correction==:yates) ? true : false
     end
      
     
@@ -45,14 +45,13 @@ module FSelector
         end
         
         s = 0.0
-        if not (a+b).zero? and not (c+d).zero? and 
-           not (a+c).zero? and not (b+d).zero?
+        x = (a+b)*(c+d)*(a+c)*(b+d)
+        
+        if not x.zero?
           if not @correction
-            s = n * ((a*d-b*c)**2) /
-               (a+b) / (c+d) / (a+c) / (b+d)
+            s = n * ((a*d-b*c)**2) / x
           else
-            s = n * (((a*d-b*c).abs - n/2))**2 /
-               (a+b) / (c+d) / (a+c) / (b+d)
+            s = n * (((a*d-b*c).abs - n/2))**2 / x
           end
         end
         

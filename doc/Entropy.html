@@ -71,7 +71,7 @@
   
   
     <dt class="r1">Included in:</dt>
-    <dd class="r1"><span class='object_link'><a href="Discretizer.html" title="Discretizer (module)">Discretizer</a></span>, <span class='object_link'><a href="FSelector/CFS_d.html" title="FSelector::CFS_d (class)">FSelector::CFS_d</a></span>, <span class='object_link'><a href="FSelector/FastCorrelationBasedFilter.html" title="FSelector::FastCorrelationBasedFilter (class)">FSelector::FastCorrelationBasedFilter</a></span>, <span class='object_link'><a href="FSelector/InformationGain.html" title="FSelector::InformationGain (class)">FSelector::InformationGain</a></span>, <span class='object_link'><a href="FSelector/SymmetricalUncertainty.html" title="FSelector::SymmetricalUncertainty (class)">FSelector::SymmetricalUncertainty</a></span></dd>
+    <dd class="r1"><span class='object_link'><a href="Discretizer.html" title="Discretizer (module)">Discretizer</a></span>, <span class='object_link'><a href="FSelector/CFS_d.html" title="FSelector::CFS_d (class)">FSelector::CFS_d</a></span>, <span class='object_link'><a href="FSelector/FastCorrelationBasedFilter.html" title="FSelector::FastCorrelationBasedFilter (class)">FSelector::FastCorrelationBasedFilter</a></span>, <span class='object_link'><a href="FSelector/INTERACT.html" title="FSelector::INTERACT (class)">FSelector::INTERACT</a></span>, <span class='object_link'><a href="FSelector/InformationGain.html" title="FSelector::InformationGain (class)">FSelector::InformationGain</a></span>, <span class='object_link'><a href="FSelector/SymmetricalUncertainty.html" title="FSelector::SymmetricalUncertainty (class)">FSelector::SymmetricalUncertainty</a></span></dd>
     
   
   
@@ -84,6 +84,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>entropy-related functions for discrete data</p>
+
+<p>ref: <a href="http://en.wikipedia.org/wiki/Mutual_information">Wikipedia</a></p>
 
 
   </div>
@@ -109,7 +111,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_conditional_entropy-instance_method" title="#get_conditional_entropy (instance method)">- (Float) <strong>get_conditional_entropy</strong>(arrX, arrY) </a>
+      <a href="#get_conditional_entropy-instance_method" title="#get_conditional_entropy (instance method)">- (Float) <strong>get_conditional_entropy</strong>(vecX, vecY) </a>
     
 
     
@@ -122,7 +124,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get the conditional entropy of array (X) given another array (Y).</p>
+    <span class="summary_desc"><div class='inline'><p>get the conditional entropy of vector (X) given another vector (Y).</p>
 </div></span>
   
 </li>
@@ -131,7 +133,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_joint_entropy-instance_method" title="#get_joint_entropy (instance method)">- (Float) <strong>get_joint_entropy</strong>(arrX, arrY) </a>
+      <a href="#get_information_gain-instance_method" title="#get_information_gain (instance method)">- (Float) <strong>get_information_gain</strong>(vecX, vecY) </a>
     
 
     
@@ -144,7 +146,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get the joint entropy of array (X) and array (Y).</p>
+    <span class="summary_desc"><div class='inline'><p>get the information gain of vector (X) given another vector (Y).</p>
 </div></span>
   
 </li>
@@ -153,7 +155,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_marginal_entropy-instance_method" title="#get_marginal_entropy (instance method)">- (Float) <strong>get_marginal_entropy</strong>(arrX) </a>
+      <a href="#get_joint_entropy-instance_method" title="#get_joint_entropy (instance method)">- (Float) <strong>get_joint_entropy</strong>(vecX, vecY) </a>
     
 
     
@@ -166,7 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get the marginal entropy of array (X).</p>
+    <span class="summary_desc"><div class='inline'><p>get the joint entropy of vector (X) and vector (Y).</p>
 </div></span>
   
 </li>
@@ -175,7 +177,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_symmetrical_uncertainty-instance_method" title="#get_symmetrical_uncertainty (instance method)">- (Float) <strong>get_symmetrical_uncertainty</strong>(arrX, arrY) </a>
+      <a href="#get_marginal_entropy-instance_method" title="#get_marginal_entropy (instance method)">- (Float) <strong>get_marginal_entropy</strong>(vecX) </a>
     
 
     
@@ -188,7 +190,29 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get the symmetrical uncertainty of array (X) and array (Y).</p>
+    <span class="summary_desc"><div class='inline'><p>get the marginal entropy of vector (X).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_symmetrical_uncertainty-instance_method" title="#get_symmetrical_uncertainty (instance method)">- (Float) <strong>get_symmetrical_uncertainty</strong>(vecX, vecY) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>get the symmetrical uncertainty of vector (X) and vector (Y).</p>
 </div></span>
   
 </li>
@@ -206,7 +230,7 @@
       <div class="method_details first">
   <p class="signature first" id="get_conditional_entropy-instance_method">
   
-    - (<tt>Float</tt>) <strong>get_conditional_entropy</strong>(arrX, arrY) 
+    - (<tt>Float</tt>) <strong>get_conditional_entropy</strong>(vecX, vecY) 
   
 
   
@@ -215,13 +239,13 @@
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>arrX and arrY must be of same length</p>
+    <div class='inline'><p>vecX and vecY must be of same length</p>
 </div>
   </div>
 
-<p>get the conditional entropy of array (X) given another array (Y)</p>
+<p>get the conditional entropy of vector (X) given another vector (Y)</p>
 
-<pre class="code ruby"><code>H(X|Y) = sigma_j (P(y_j) * H(C|y_j))
+<pre class="code ruby"><code>H(X|Y) = sigma_j (P(y_j) * H(X|y_j))
 
 where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
 </code></pre>
@@ -235,7 +259,7 @@ where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
   
     <li>
       
-        <span class='name'>arrX</span>
+        <span class='name'>vecX</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
@@ -243,14 +267,14 @@ where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
       
       
         &mdash;
-        <div class='inline'><p>the first array</p>
+        <div class='inline'><p>the first vector</p>
 </div>
       
     </li>
   
     <li>
       
-        <span class='name'>arrY</span>
+        <span class='name'>vecY</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
@@ -258,7 +282,7 @@ where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
       
       
         &mdash;
-        <div class='inline'><p>the second array</p>
+        <div class='inline'><p>the second vector</p>
 </div>
       
     </li>
@@ -289,8 +313,6 @@ where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
       <pre class="lines">
 
 
-36
-37
 38
 39
 40
@@ -311,23 +333,25 @@ where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
 55
 56
 57
-58</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 38</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='comma'>,</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
-        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>array must be of same length</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vector must be of same length</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_vecX'>vecX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
 
   <span class='id identifier rubyid_hxy'>hxy</span> <span class='op'>=</span> <span class='float'>0.0</span>
-  <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+  <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_vecX'>vecX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
 
-  <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_y_j'>y_j</span><span class='op'>|</span>
-    <span class='id identifier rubyid_p1'>p1</span> <span class='op'>=</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_y_j'>y_j</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_n'>n</span>
+  <span class='id identifier rubyid_vecY'>vecY</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_y_j'>y_j</span><span class='op'>|</span>
+    <span class='id identifier rubyid_p1'>p1</span> <span class='op'>=</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_y_j'>y_j</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_n'>n</span>
 
-    <span class='id identifier rubyid_indices'>indices</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_y_j'>y_j</span> <span class='rbrace'>}</span>
-    <span class='id identifier rubyid_xvs'>xvs</span> <span class='op'>=</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_indices'>indices</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_indices'>indices</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_y_j'>y_j</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_xvs'>xvs</span> <span class='op'>=</span> <span class='id identifier rubyid_vecX'>vecX</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_indices'>indices</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_m'>m</span> <span class='op'>=</span> <span class='id identifier rubyid_xvs'>xvs</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
 
     <span class='id identifier rubyid_xvs'>xvs</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x_i'>x_i</span><span class='op'>|</span>
@@ -345,9 +369,9 @@ where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="get_joint_entropy-instance_method">
+  <p class="signature " id="get_information_gain-instance_method">
   
-    - (<tt>Float</tt>) <strong>get_joint_entropy</strong>(arrX, arrY) 
+    - (<tt>Float</tt>) <strong>get_information_gain</strong>(vecX, vecY) 
   
 
   
@@ -356,11 +380,111 @@ where H(X|y_j) = -1 * sigma_i (P(x_i|y_j) log2 P(x_i|y_j))
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>arrX and arrY must be of same length</p>
+    <div class='inline'><p>vecX and vecY must be of same length</p>
 </div>
   </div>
 
-<p>get the joint entropy of array (X) and array (Y)</p>
+<p>get the information gain of vector (X) given another vector (Y)</p>
+
+<pre class="code ruby"><code>IG(X;Y) = H(X) - H(X|Y)
+        = H(Y) - H(Y|X) = IG(Y;X)
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>vecX</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the first vector</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>vecY</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the second vector</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>IG(X;Y)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_information_gain'>get_information_gain</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='comma'>,</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='comma'>,</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_joint_entropy-instance_method">
+  
+    - (<tt>Float</tt>) <strong>get_joint_entropy</strong>(vecX, vecY) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>vecX and vecY must be of same length</p>
+</div>
+  </div>
+
+<p>get the joint entropy of vector (X) and vector (Y)</p>
 
 <pre class="code ruby"><code>H(X,Y) = H(Y) + H(X|Y)
        = H(X) + H(Y|X)
@@ -377,7 +501,7 @@ i.e. H(X,Y) == H(Y,X)
   
     <li>
       
-        <span class='name'>arrX</span>
+        <span class='name'>vecX</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
@@ -385,14 +509,14 @@ i.e. H(X,Y) == H(Y,X)
       
       
         &mdash;
-        <div class='inline'><p>the first array</p>
+        <div class='inline'><p>the first vector</p>
 </div>
       
     </li>
   
     <li>
       
-        <span class='name'>arrY</span>
+        <span class='name'>vecY</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
@@ -400,7 +524,7 @@ i.e. H(X,Y) == H(Y,X)
       
       
         &mdash;
-        <div class='inline'><p>the second array</p>
+        <div class='inline'><p>the second vector</p>
 </div>
       
     </li>
@@ -431,21 +555,15 @@ i.e. H(X,Y) == H(Y,X)
       <pre class="lines">
 
 
-73
-74
-75
 76
 77
 78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 76</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_joint_entropy'>get_joint_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>array must be of same length</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
-
-  <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_joint_entropy'>get_joint_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='comma'>,</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='comma'>,</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -455,13 +573,13 @@ i.e. H(X,Y) == H(Y,X)
       <div class="method_details ">
   <p class="signature " id="get_marginal_entropy-instance_method">
   
-    - (<tt>Float</tt>) <strong>get_marginal_entropy</strong>(arrX) 
+    - (<tt>Float</tt>) <strong>get_marginal_entropy</strong>(vecX) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>get the marginal entropy of array (X)</p>
+    <p>get the marginal entropy of vector (X)</p>
 
 <pre class="code ruby"><code>H(X) = -1 * sigma_i (P(x_i) log2 P(x_i))
 </code></pre>
@@ -475,7 +593,7 @@ i.e. H(X,Y) == H(Y,X)
   
     <li>
       
-        <span class='name'>arrX</span>
+        <span class='name'>vecX</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
@@ -483,7 +601,7 @@ i.e. H(X,Y) == H(Y,X)
       
       
         &mdash;
-        <div class='inline'><p>array of interest</p>
+        <div class='inline'><p>vector of interest</p>
 </div>
       
     </li>
@@ -514,8 +632,6 @@ i.e. H(X,Y) == H(Y,X)
       <pre class="lines">
 
 
-12
-13
 14
 15
 16
@@ -524,17 +640,19 @@ i.e. H(X,Y) == H(Y,X)
 19
 20
 21
-22</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 14</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_h'>h</span> <span class='op'>=</span> <span class='float'>0.0</span>
-  <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+  <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_vecX'>vecX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
 
-  <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x_i'>x_i</span><span class='op'>|</span>
-    <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_x_i'>x_i</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_n'>n</span>
+  <span class='id identifier rubyid_vecX'>vecX</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x_i'>x_i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='id identifier rubyid_vecX'>vecX</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_x_i'>x_i</span><span class='rparen'>)</span><span class='op'>/</span><span class='id identifier rubyid_n'>n</span>
     <span class='id identifier rubyid_h'>h</span> <span class='op'>+=</span> <span class='op'>-</span><span class='float'>1.0</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span> <span class='op'>*</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_log2'>log2</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
@@ -548,13 +666,29 @@ i.e. H(X,Y) == H(Y,X)
       <div class="method_details ">
   <p class="signature " id="get_symmetrical_uncertainty-instance_method">
   
-    - (<tt>Float</tt>) <strong>get_symmetrical_uncertainty</strong>(arrX, arrY) 
+    - (<tt>Float</tt>) <strong>get_symmetrical_uncertainty</strong>(vecX, vecY) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>get the symmetrical uncertainty of array (X) and array (Y)</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>vecX and vecY must be of same length</p>
+</div>
+  </div>
+
+<p>get the symmetrical uncertainty of vector (X) and vector (Y)</p>
+
+<pre class="code ruby"><code>                 IG(X;Y)
+SU(X;Y) = 2 * -------------
+                H(X) + H(Y)
+
+               H(X) - H(X|Y)         H(Y) - H(Y|X)
+        = 2 * --------------- = 2 * --------------- = SU(Y;X)
+                H(X) + H(Y)           H(X) + H(Y)
+</code></pre>
 
 
   </div>
@@ -565,7 +699,7 @@ i.e. H(X,Y) == H(Y,X)
   
     <li>
       
-        <span class='name'>arrX</span>
+        <span class='name'>vecX</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
@@ -573,14 +707,14 @@ i.e. H(X,Y) == H(Y,X)
       
       
         &mdash;
-        <div class='inline'><p>the first array</p>
+        <div class='inline'><p>the first vector</p>
 </div>
       
     </li>
   
     <li>
       
-        <span class='name'>arrY</span>
+        <span class='name'>vecY</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
@@ -588,7 +722,7 @@ i.e. H(X,Y) == H(Y,X)
       
       
         &mdash;
-        <div class='inline'><p>the second array</p>
+        <div class='inline'><p>the second vector</p>
 </div>
       
     </li>
@@ -606,7 +740,7 @@ i.e. H(X,Y) == H(Y,X)
       
       
         &mdash;
-        <div class='inline'><p>SU(X,Y)</p>
+        <div class='inline'><p>SU(X;Y)</p>
 </div>
       
     </li>
@@ -619,31 +753,29 @@ i.e. H(X,Y) == H(Y,X)
       <pre class="lines">
 
 
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98</pre>
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/entropy.rb', line 113</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_symmetrical_uncertainty'>get_symmetrical_uncertainty</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>array must be of same length</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_arrX'>arrX</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
-  
-  <span class='id identifier rubyid_hx'>hx</span> <span class='op'>=</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_hxy'>hxy</span> <span class='op'>=</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrX'>arrX</span><span class='comma'>,</span> <span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_hy'>hy</span> <span class='op'>=</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_arrY'>arrY</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_symmetrical_uncertainty'>get_symmetrical_uncertainty</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='comma'>,</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span>  
+  <span class='id identifier rubyid_hx'>hx</span> <span class='op'>=</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_hxy'>hxy</span> <span class='op'>=</span> <span class='id identifier rubyid_get_conditional_entropy'>get_conditional_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecX'>vecX</span><span class='comma'>,</span> <span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_hy'>hy</span> <span class='op'>=</span> <span class='id identifier rubyid_get_marginal_entropy'>get_marginal_entropy</span><span class='lparen'>(</span><span class='id identifier rubyid_vecY'>vecY</span><span class='rparen'>)</span>
   
   <span class='id identifier rubyid_su'>su</span> <span class='op'>=</span> <span class='float'>0.0</span>
   <span class='id identifier rubyid_su'>su</span> <span class='op'>=</span> <span class='int'>2</span><span class='op'>*</span><span class='lparen'>(</span><span class='id identifier rubyid_hx'>hx</span><span class='op'>-</span><span class='id identifier rubyid_hxy'>hxy</span><span class='rparen'>)</span><span class='op'>/</span><span class='lparen'>(</span><span class='id identifier rubyid_hx'>hx</span><span class='op'>+</span><span class='id identifier rubyid_hy'>hy</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='lparen'>(</span><span class='id identifier rubyid_hx'>hx</span><span class='op'>+</span><span class='id identifier rubyid_hy'>hy</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+  
+  <span class='id identifier rubyid_su'>su</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -655,7 +787,7 @@ i.e. H(X,Y) == H(Y,X)
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:38 2012 by 
+  Generated on Mon Apr 30 16:18:37 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

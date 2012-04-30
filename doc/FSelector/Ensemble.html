@@ -291,7 +291,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>new().</p>
+    <span class="summary_desc"><div class='inline'><p>initialize from multiple algorithms.</p>
 </div></span>
   
 </li>
@@ -364,7 +364,7 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>new()</p>
+    <p>initialize from multiple algorithms</p>
 
 
   </div>
@@ -375,7 +375,7 @@
   
     <li>
       
-        <span class='name'>rankers</span>
+        <span class='name'>algos</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>)</span>
@@ -383,7 +383,7 @@
       
       
         &mdash;
-        <div class='inline'><p>multiple feature ranking algorithms</p>
+        <div class='inline'><p>multiple feature selection algorithms</p>
 </div>
       
     </li>
@@ -397,17 +397,17 @@
       <pre class="lines">
 
 
-10
-11
 12
 13
 14
 15
 16
-17</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_algos'>algos</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
@@ -452,12 +452,12 @@
       <pre class="lines">
 
 
-126
-127
-128</pre>
+128
+129
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_by_ave'>by_ave</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
@@ -490,12 +490,12 @@
       <pre class="lines">
 
 
-138
-139
-140</pre>
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_by_max'>by_max</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
@@ -528,12 +528,12 @@
       <pre class="lines">
 
 
-132
-133
-134</pre>
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_by_min'>by_min</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
@@ -592,8 +592,6 @@ allowed values are:<br>
       <pre class="lines">
 
 
-103
-104
 105
 106
 107
@@ -611,10 +609,12 @@ allowed values are:<br>
 119
 120
 121
-122</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_rank'>ensemble_by_rank</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span><span class='op'>=</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:by_min</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -717,8 +717,6 @@ allowed values are:<br>
       <pre class="lines">
 
 
-71
-72
 73
 74
 75
@@ -737,10 +735,12 @@ allowed values are:<br>
 88
 89
 90
-91</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_score'>ensemble_by_score</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span><span class='op'>=</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:by_max</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_norm'>norm</span><span class='op'>=</span><span class='symbol'>:min_max</span><span class='rparen'>)</span>
   <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
@@ -791,15 +791,15 @@ allowed values are:<br>
       <pre class="lines">
 
 
-48
-49
 50
 51
 52
-53</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
   <span class='kw'>return</span> <span class='ivar'>@ranks</span> <span class='kw'>if</span> <span class='ivar'>@ranks</span>
@@ -835,15 +835,15 @@ allowed values are:<br>
       <pre class="lines">
 
 
-37
-38
 39
 40
 41
-42</pre>
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
   <span class='kw'>return</span> <span class='ivar'>@scores</span> <span class='kw'>if</span> <span class='ivar'>@scores</span>
@@ -886,16 +886,16 @@ allowed values are:<br>
       <pre class="lines">
 
 
-25
-26
 27
 28
 29
 30
-31</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='kw'>super</span>
@@ -914,7 +914,7 @@ allowed values are:<br>
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:38 2012 by 
+  Generated on Mon Apr 30 16:18:37 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

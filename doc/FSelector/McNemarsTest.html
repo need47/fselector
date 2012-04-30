@@ -133,7 +133,7 @@ MNT(f, c) = ---------
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (McNemarsTest) <strong>initialize</strong>(correction = nil, data = nil) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (McNemarsTest) <strong>initialize</strong>(correction = :yates, data = nil) </a>
     
 
     
@@ -148,7 +148,7 @@ MNT(f, c) = ---------
   
 
   
-    <span class="summary_desc"><div class='inline'><p>new().</p>
+    <span class="summary_desc"><div class='inline'><p>intialize from an existing data structure.</p>
 </div></span>
   
 </li>
@@ -198,13 +198,13 @@ MNT(f, c) = ---------
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="FSelector::McNemarsTest (class)">McNemarsTest</a></span></tt>) <strong>initialize</strong>(correction = nil, data = nil) 
+    - (<tt><span class='object_link'><a href="" title="FSelector::McNemarsTest (class)">McNemarsTest</a></span></tt>) <strong>initialize</strong>(correction = :yates, data = nil) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>new()</p>
+    <p>intialize from an existing data structure</p>
 
 
   </div>
@@ -221,12 +221,12 @@ MNT(f, c) = ---------
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
+        <em class="default">(defaults to: <tt>:yates</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>Yates&#39;s continuity correction?<br>
-no correction if nil, correction otherwise</p>
+        <div class='inline'><p>use Yates&#39;s continuity correction if :yates, 
+no correction otherwise</p>
 </div>
       
     </li>
@@ -240,15 +240,15 @@ no correction if nil, correction otherwise</p>
       <pre class="lines">
 
 
-22
 23
 24
-25</pre>
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/McNemarsTest.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/McNemarsTest.rb', line 23</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span><span class='op'>=</span><span class='symbol'>:yates</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='ivar'>@correction</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span><span class='op'>==</span><span class='symbol'>:yates</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
@@ -263,7 +263,7 @@ no correction if nil, correction otherwise</p>
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:40 2012 by 
+  Generated on Mon Apr 30 16:18:38 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

@@ -21,9 +21,9 @@ module FSelector
         a, c = get_A(f, k), get_C(f, k)
         
         s =0.0
-        if not (a+c).zero?
-          s = a/(a+c)
-        end
+        x = a+c
+        
+        s = a/x if not x.zero?
         
         set_feature_score(f, k, s)
       end

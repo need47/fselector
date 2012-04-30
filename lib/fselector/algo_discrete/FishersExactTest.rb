@@ -5,11 +5,11 @@ module FSelector
 #
 # (two-sided) Fisher's Exact Test (FET)
 # 
-#          (A+B)! * (C+D)! * (A+C)! * (B+D)!  
-#     p =  -----------------------------------
+#             (A+B)! * (C+D)! * (A+C)! * (B+D)!  
+#     FET =  -----------------------------------
 #                  A! * B! * C! * D!
 #     
-#     for FET, the smaller, the better, but we intentionally negate it
+#     for FET (p-value), the smaller, the better, but we intentionally negate it
 #     so that the larger is always the better (consistent with other algorithms)
 #     R equivalent: fisher.test
 #

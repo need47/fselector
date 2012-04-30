@@ -4,7 +4,7 @@
 module ReplaceMissingValues
   #
   # replace missing feature value by a fixed value, 
-  # applicable for both discrete and continuous feature
+  # applicable to both discrete and continuous feature
   #
   # @note data structure will be altered
   #

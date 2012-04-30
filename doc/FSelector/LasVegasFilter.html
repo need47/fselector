@@ -87,11 +87,15 @@
     
   
     
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span></dd>
+      
+    
   
   
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/fselector/algo_discrete/LasVegasFilter.rb</dd>
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/fselector/algo_discrete/LasVegasFilter.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -149,7 +153,7 @@ use <strong>select_feature!</strong> for feature selection</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>initialize from existing data structure.</p>
+    <span class="summary_desc"><div class='inline'><p>initialize from an existing data structure.</p>
 </div></span>
   
 </li>
@@ -158,6 +162,16 @@ use <strong>select_feature!</strong> for feature selection</p>
     </ul>
   
 
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Consistency.html#get_IR-instance_method" title="Consistency#get_IR (method)">#get_IR</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_count-instance_method" title="Consistency#get_IR_by_count (method)">#get_IR_by_count</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_feature-instance_method" title="Consistency#get_IR_by_feature (method)">#get_IR_by_feature</a></span>, <span class='object_link'><a href="../Consistency.html#get_instance_count-instance_method" title="Consistency#get_instance_count (method)">#get_instance_count</a></span></p>
 
   
   
@@ -205,7 +219,7 @@ use <strong>select_feature!</strong> for feature selection</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>initialize from existing data structure</p>
+    <p>initialize from an existing data structure</p>
 
 
   </div>
@@ -231,23 +245,6 @@ use <strong>select_feature!</strong> for feature selection</p>
       
     </li>
   
-    <li>
-      
-        <span class='name'>data</span>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>existing data structure</p>
-</div>
-      
-    </li>
-  
 </ul>
 
 
@@ -257,13 +254,13 @@ use <strong>select_feature!</strong> for feature selection</p>
       <pre class="lines">
 
 
-20
-21
 22
-23</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/LasVegasFilter.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/LasVegasFilter.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_max_iter'>max_iter</span><span class='op'>=</span><span class='int'>100</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -280,7 +277,7 @@ use <strong>select_feature!</strong> for feature selection</p>
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:40 2012 by 
+  Generated on Mon Apr 30 16:18:38 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

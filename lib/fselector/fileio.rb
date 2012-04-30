@@ -21,7 +21,7 @@
 #
 module FileIO
   #
-  # read from random data (for test)
+  # read from random data (read only, for test purpose)
   #
   # @param [Integer] nsample number of total samples
   # @param [Integer] nclass number of classes
@@ -203,7 +203,7 @@ module FileIO
       else # data rows
         label, *fvs = ln.chomp.split(/,/)
         label = label.to_sym
-        data[label] = [] if not data.has_key? label
+        data[label] ||= []
         
         fs = {}
         fvs.each_with_index do |v, i|

@@ -3,11 +3,11 @@
 #
 module FSelector
 #
-# between-within classes sum of squares (BSS/WSS) for continous feature
+# between-within classes sum of squares (BSS/WSS) for continuous feature
 # 
-#                   sigma_i sigma_k I(y_i=k)(xbar_k - xbar)^2
-#     BSS_WSS(f) = ----------------------------------------------
-#                     sigma_i sigma_k I(y_i=k)(x_i - xbar_k)^2
+#                sigma_i sigma_k I(y_i=k)(xbar_k - xbar)^2
+#     BSS_WSS = ----------------------------------------------
+#                  sigma_i sigma_k I(y_i=k)(x_i - xbar_k)^2
 #
 #     where I(y_i=k) is a indicator function with value of 0 or 1
 #           xbar_k is the sample mean of class k

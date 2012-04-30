@@ -166,7 +166,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>by z-score.</p>
+    <span class="summary_desc"><div class='inline'><p>converted to z-score.</p>
 </div></span>
   
 </li>
@@ -196,7 +196,28 @@
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>base</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>base for log</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -204,10 +225,6 @@
       <pre class="lines">
 
 
-6
-7
-8
-9
 10
 11
 12
@@ -215,10 +232,14 @@
 14
 15
 16
-17</pre>
+17
+18
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_log!'>normalize_by_log!</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='op'>=</span><span class='int'>10</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
@@ -252,7 +273,45 @@
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>min</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0.0</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>lower bound</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1.0</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>upper bound</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -260,15 +319,6 @@
       <pre class="lines">
 
 
-21
-22
-23
-24
-25
-26
-27
-28
-29
 30
 31
 32
@@ -276,10 +326,19 @@
 34
 35
 36
-37</pre>
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_min_max!'>normalize_by_min_max!</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='op'>=</span><span class='float'>1.0</span><span class='rparen'>)</span>
   <span class='comment'># first determine min and max for each feature
@@ -312,7 +371,7 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>by z-score</p>
+    <p>converted to z-score</p>
 
 <p>ref: <a href="http://en.wikipedia.org/wiki/Zscore">Wikipedia</a></p>
 
@@ -328,15 +387,6 @@
       <pre class="lines">
 
 
-43
-44
-45
-46
-47
-48
-49
-50
-51
 52
 53
 54
@@ -348,10 +398,19 @@
 60
 61
 62
-63</pre>
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/normalizer.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize_by_zscore!'>normalize_by_zscore!</span>
   <span class='comment'># first determine mean and sd for each feature
@@ -384,7 +443,7 @@
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:38 2012 by 
+  Generated on Mon Apr 30 16:18:37 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

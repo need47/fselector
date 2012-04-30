@@ -2,6 +2,7 @@
 # FSelector: a Ruby gem for feature selection and ranking
 #
 module FSelector
+#
 # McNemar's test (MNT), based on Chi-Squared test
 #
 #                 (B-C)^2
@@ -14,12 +15,12 @@ module FSelector
 #
   class McNemarsTest < BaseDiscrete
     #
-    # new()
+    # intialize from an existing data structure
     #
-    # @param [Boolean] correction Yates's continuity correction?  
-    #   no correction if nil, correction otherwise
+    # @param [Boolean] correction use Yates's continuity correction if :yates, 
+    #   no correction otherwise
     #
-    def initialize(correction=nil, data=nil)
+    def initialize(correction=:yates, data=nil)
       super(data)
       @correction = (correction==:yates) ? true : false
     end
@@ -37,11 +38,13 @@ module FSelector
         end
         
         s = 0.0
-        if not (b+c).zero?
+        x = b+c
+        
+        if not x.zero?
           if not @correction
-            s = (b-c)**2 / (b+c)
+            s = (b-c)**2 / x
           else
-            s = ((b-c).abs-0.5)**2 / (b+c)
+            s = ((b-c).abs-0.5)**2 / x
           end
         end
         

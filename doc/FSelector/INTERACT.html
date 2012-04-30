@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: FSelector::LasVegasIncremental
+  Class: FSelector::INTERACT
   
     &mdash; FSelector Documentation
   
@@ -33,10 +33,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../_index.html">Index (L)</a> &raquo; 
+    <a href="../_index.html">Index (I)</a> &raquo; 
     <span class='title'><span class='object_link'><a href="../FSelector.html" title="FSelector (module)">FSelector</a></span></span>
      &raquo; 
-    <span class="title">LasVegasIncremental</span>
+    <span class="title">INTERACT</span>
   
   
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -56,7 +56,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Class: FSelector::LasVegasIncremental
+    <div id="content"><h1>Class: FSelector::INTERACT
   
   
   
@@ -75,7 +75,7 @@
           
             <li class="next"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></li>
           
-            <li class="next">FSelector::LasVegasIncremental</li>
+            <li class="next">FSelector::INTERACT</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -88,24 +88,24 @@
   
     
       <dt class="r2">Includes:</dt>
-      <dd class="r2"><span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span></dd>
+      <dd class="r2"><span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span>, <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></dd>
       
     
   
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/fselector/algo_discrete/LasVegasIncremental.rb</dd>
+    <dd class="r1 last">lib/fselector/algo_discrete/INTERACT.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Las Vegas Incremental (LVI) for discrete feature, 
+    <p>INTERACT algorithm, 
 use <strong>select_feature!</strong> for feature selection</p>
 
-<p>ref: <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.8218">Incremental Feature Selection</a></p>
+<p>ref: <a href="http://www.public.asu.edu/%7Ehuanliu/papers/ijcai07.pdf">Searching for Interacting Features</a></p>
 
 
   </div>
@@ -131,7 +131,7 @@ use <strong>select_feature!</strong> for feature selection</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (LasVegasIncremental) <strong>initialize</strong>(max_iter = 100, portion = 0.10, data = nil) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (INTERACT) <strong>initialize</strong>(delta = 0.0001, data = nil) </a>
     
 
     
@@ -173,6 +173,16 @@ use <strong>select_feature!</strong> for feature selection</p>
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="../Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -206,7 +216,7 @@ use <strong>select_feature!</strong> for feature selection</p>
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="FSelector::LasVegasIncremental (class)">LasVegasIncremental</a></span></tt>) <strong>initialize</strong>(max_iter = 100, portion = 0.10, data = nil) 
+    - (<tt><span class='object_link'><a href="" title="FSelector::INTERACT (class)">INTERACT</a></span></tt>) <strong>initialize</strong>(delta = 0.0001, data = nil) 
   
 
   
@@ -223,34 +233,17 @@ use <strong>select_feature!</strong> for feature selection</p>
   
     <li>
       
-        <span class='name'>max_iter</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>100</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>maximum number of iterations</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>portion</span>
+        <span class='name'>delta</span>
       
       
         <span class='type'>(<tt>Float</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>0.10</tt>)</em>
+        <em class="default">(defaults to: <tt>0.0001</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>percentage of data used by LVF</p>
+        <div class='inline'><p>predefined inconsistency rate threshold for a feature</p>
 </div>
       
     </li>
@@ -264,19 +257,17 @@ use <strong>select_feature!</strong> for feature selection</p>
       <pre class="lines">
 
 
-21
 22
 23
 24
 25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/LasVegasIncremental.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/INTERACT.rb', line 22</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_max_iter'>max_iter</span><span class='op'>=</span><span class='int'>100</span><span class='comma'>,</span> <span class='id identifier rubyid_portion'>portion</span><span class='op'>=</span><span class='float'>0.10</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.0001</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
-  <span class='ivar'>@max_iter</span> <span class='op'>=</span> <span class='id identifier rubyid_max_iter'>max_iter</span> <span class='op'>||</span> <span class='int'>100</span>
-  <span class='ivar'>@portion</span> <span class='op'>=</span> <span class='id identifier rubyid_portion'>portion</span> <span class='op'>||</span> <span class='float'>0.10</span>
+  <span class='ivar'>@delta</span> <span class='op'>=</span> <span class='id identifier rubyid_delta'>delta</span> <span class='op'>||</span> <span class='float'>0.0001</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -289,7 +280,7 @@ use <strong>select_feature!</strong> for feature selection</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr 30 16:18:39 2012 by 
+  Generated on Mon Apr 30 16:18:38 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

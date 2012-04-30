@@ -12,13 +12,12 @@ module FSelector
 #
   class BaseReliefF < Base    
     #
-    # new()
+    # intialize from an existing data structure
     #
     # @param [Integer] m number of samples to be used 
     #   for estimating feature contribution. max can be
     #   the number of training samples
     # @param [Integer] k number of k-nearest neighbors
-    # @param [Hash] data existing data structure
     #
     def initialize(m=30, k=10, data=nil)
       super(data)
@@ -106,21 +105,21 @@ module FSelector
       if not @f2mvp
         @f2mvp = {}
         
-        each_feature do |f|
-          @f2mvp[f] = {}
+        each_feature do |_f|
+          @f2mvp[_f] = {}
           
-          each_class do |k|
-            @f2mvp[f][k] = {}
+          each_class do |_k|
+            @f2mvp[_f][_k] = {}
             
-            fvs = get_feature_values(f).uniq
+            fvs = get_feature_values(_f).uniq
             fvs.each do |v|
               n = 0.0
               
-              get_data[k].each do |s|
-                n += 1 if s.has_key?(f) and s[f] == v
+              get_data[_k].each do |s|
+                n += 1 if s.has_key?(_f) and s[_f] == v
               end
               
-              @f2mvp[f][k][v] = n/get_data[k].size
+              @f2mvp[_f][_k][v] = n/get_data[_k].size
             end
           end
         end

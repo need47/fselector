@@ -63,8 +63,8 @@
 <strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br>
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
-<strong>Latest Version</strong>: 0.9.0<br>
-<strong>Release Date</strong>: April 25 2012</p>
+<strong>Latest Version</strong>: 1.0.0<br>
+<strong>Release Date</strong>: May 1 2012</p>
 
 <h2>Synopsis</h2>
 
@@ -92,57 +92,62 @@ random forest. See below for a list of FSelector&#39;s features and
 <li>csv</li>
 <li>libsvm</li>
 <li>weka ARFF</li>
-<li>random data (for test purpose)</li>
+<li>random data (read only, for test purpose)</li>
 </ul>
 
 <p><strong>2. available feature selection/ranking algorithms</strong></p>
 
-<pre class="code ruby"><code>algorithm                         alias       feature_type  applicability
---------------------------------------------------------------------------------------
-Accuracy                          Acc         discrete
-AccuracyBalanced                  Acc2        discrete
-BiNormalSeparation                BNS         discrete
-CFS_d                             CFS_d       discrete
-ChiSquaredTest                    CHI         discrete
-CorrelationCoefficient            CC          discrete
-DocumentFrequency                 DF          discrete
-F1Measure                         F1          discrete
-FishersExactTest                  FET         discrete
-FastCorrelationBasedFilter        FCBF        discrete
-GiniIndex                         GI          discrete
-GMean                             GM          discrete
-GSSCoefficient                    GSS         discrete
-InformationGain                   IG          discrete
-LasVegasFilter                    LVF         discrete
-LasVegasIncremental               LVI         discrete
-MatthewsCorrelationCoefficient    MCC, PHI    discrete
-McNemarsTest                      MNT         discrete
-OddsRatio                         OR          discrete
-OddsRatioNumerator                ORN         discrete
-PhiCoefficient                    Phi         discrete
-Power                             Power       discrete
-Precision                         Precision   discrete
-ProbabilityRatio                  PR          discrete
-Random                            Random      discrete
-Recall                            Recall      discrete
-Relief_d                          Relief_d    discrete      two-class, no missing data
-ReliefF_d                         ReliefF_d   discrete
-Sensitivity                       SN, Recall  discrete
-Specificity                       SP          discrete
-SymmetricalUncertainty            SU          discrete
-BetweenWithinClassesSumOfSquare   BSS_WSS     continuous
-CFS_c                             CFS_c       continuous
-FTest                             FT          continuous
-PMetric                           PM          continuous    two-class
-Relief_c                          Relief_c    continuous    two-class, no missing data
-ReliefF_c                         ReliefF_c   continuous
-TScore                            TS          continuous    two-class
-WilcoxonRankSum                   WRS         continuous    two-class
+<pre class="code ruby"><code>algorithm                         alias       algo_type   feature_type  applicability
+--------------------------------------------------------------------------------------------------
+Accuracy                          Acc         weighting   discrete
+AccuracyBalanced                  Acc2        weighting   discrete
+BiNormalSeparation                BNS         weighting   discrete
+CFS_d                             CFS_d       subset      discrete
+ChiSquaredTest                    CHI         weighting   discrete
+CorrelationCoefficient            CC          weighting   discrete
+DocumentFrequency                 DF          weighting   discrete
+F1Measure                         F1          weighting   discrete
+FishersExactTest                  FET         weighting   discrete
+FastCorrelationBasedFilter        FCBF        subset      discrete
+GiniIndex                         GI          weighting   discrete
+GMean                             GM          weighting   discrete
+GSSCoefficient                    GSS         weighting   discrete
+InformationGain                   IG          weighting   discrete
+INTERACT                          INTERACT    subset      discrete
+LasVegasFilter                    LVF         subset      discrete
+LasVegasIncremental               LVI         subset      discrete
+MatthewsCorrelationCoefficient    MCC, PHI    weighting   discrete
+McNemarsTest                      MNT         weighting   discrete
+OddsRatio                         OR          weighting   discrete
+OddsRatioNumerator                ORN         weighting   discrete
+PhiCoefficient                    Phi         weighting   discrete
+Power                             Power       weighting   discrete
+Precision                         Precision   weighting   discrete
+ProbabilityRatio                  PR          weighting   discrete
+Random                            Random      weighting   discrete
+Recall                            Recall      weighting   discrete
+Relief_d                          Relief_d    weighting   discrete      two-class, no missing data
+ReliefF_d                         ReliefF_d   weighting   discrete
+Sensitivity                       SN, Recall  weighting   discrete
+Specificity                       SP          weighting   discrete
+SymmetricalUncertainty            SU          weighting   discrete
+BetweenWithinClassesSumOfSquare   BSS_WSS     weighting   continuous
+CFS_c                             CFS_c       subset      continuous
+FTest                             FT          weighting   continuous
+PMetric                           PM          weighting   continuous    two-class
+Relief_c                          Relief_c    weighting   continuous    two-class, no missing data
+ReliefF_c                         ReliefF_c   weighting   continuous
+TScore                            TS          weighting   continuous    two-class
+WilcoxonRankSum                   WRS         weighting   continuous    two-class
 </code></pre>
 
 <p><strong>note for feature selection interace:</strong><br>
-    - for the algorithms of CFS_d, FCBF and CFS_c, use select_feature!<br>
-    - for other algorithms, use either select_feature_by_rank! or select_feature_by_score!</p>
+  there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  </p>
+
+<ul>
+<li>for weighting type: use either <strong>select_feature_by_rank!</strong> or <strong>select_feature_by_score!</strong><br></li>
+<li>for subset type: use <strong>select_feature!</strong></li>
+</ul>
 
 <p><strong>3. feature selection approaches</strong></p>
 
@@ -218,7 +223,7 @@ replace_by_most_seen_value!       replace by most seen feature value  discrete
 <span class='comment'># you can also use multiple alogirithms in a tandem manner
 </span><span class='comment'># e.g. use the ChiSquaredTest with Yates' continuity correction
 </span><span class='comment'># initialize from r1's data
-</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>ChiSquaredTest</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:yates_continuity_correction</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>ChiSquaredTest</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:yates</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
 
 <span class='comment'># number of features before feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'># features (before): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -308,7 +313,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:38 2012 by 
+  Generated on Mon Apr 30 16:18:36 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

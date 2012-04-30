@@ -98,11 +98,11 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>between-within classes sum of squares (BSS/WSS) for continous feature</p>
+    <p>between-within classes sum of squares (BSS/WSS) for continuous feature</p>
 
-<pre class="code ruby"><code>              sigma_i sigma_k I(y_i=k)(xbar_k - xbar)^2
-BSS_WSS(f) = ----------------------------------------------
-                sigma_i sigma_k I(y_i=k)(x_i - xbar_k)^2
+<pre class="code ruby"><code>           sigma_i sigma_k I(y_i=k)(xbar_k - xbar)^2
+BSS_WSS = ----------------------------------------------
+             sigma_i sigma_k I(y_i=k)(x_i - xbar_k)^2
 
 where I(y_i=k) is a indicator function with value of 0 or 1
       xbar_k is the sample mean of class k
@@ -154,8 +154,18 @@ where I(y_i=k) is a indicator function with value of 0 or 1
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Consistency.html#get_IR-instance_method" title="Consistency#get_IR (method)">#get_IR</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_count-instance_method" title="Consistency#get_IR_by_count (method)">#get_IR_by_count</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_feature-instance_method" title="Consistency#get_IR_by_feature (method)">#get_IR_by_feature</a></span>, <span class='object_link'><a href="../Consistency.html#get_instance_count-instance_method" title="Consistency#get_instance_count (method)">#get_instance_count</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="../Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="../Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
 
   
   
@@ -207,7 +217,7 @@ where I(y_i=k) is a indicator function with value of 0 or 1
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:39 2012 by 
+  Generated on Mon Apr 30 16:18:38 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

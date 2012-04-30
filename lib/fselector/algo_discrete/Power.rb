@@ -3,22 +3,21 @@
 #
 module FSelector
 #
-# Power (pow)
+# Power
 #
-#     Pow = (1-fpr)^k - (1-tpr)^k
+#     Power = (1-fpr)^k - (1-tpr)^k
 #     
-#         = (1-B/(B+D))^k - (1-A/(A+C))^k
+#           = (1-B/(B+D))^k - (1-A/(A+C))^k
 #     
-#         = (D/(B+D))^k - (C/(A+C))^k
+#           = (D/(B+D))^k - (C/(A+C))^k
 #
 # ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
   class Power < BaseDiscrete    
     #
-    # initialize from existing data structure
+    # initialize from an existing data structure
     # 
     # @param [Integer] k power
-    # @param [Hash] data existing data structure
     #
     def initialize(k=5, data=nil)
       super(data)
@@ -33,9 +32,9 @@ module FSelector
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
         
         s = 0.0
-        if not (b+d).zero? and not (a+c).zero?
-          s = (d/(b+d))**(@k) - (c/(a+c))**(@k)
-        end
+        x, y = b+d, a+c
+        
+        s = (d/x)**(@k) - (c/y)**(@k) if not x.zero? and not y.zero?
         
         set_feature_score(f, k, s)
       end

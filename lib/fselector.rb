@@ -6,7 +6,7 @@ require 'rinruby'
 #
 module FSelector
   # module version
-  VERSION = '0.9.0'
+  VERSION = '1.0.0'
 end
 
 # the root dir of FSelector
@@ -19,6 +19,8 @@ ROOT = File.expand_path(File.dirname(__FILE__))
 require "#{ROOT}/fselector/fileio.rb"
 # extend Array and String class
 require "#{ROOT}/fselector/util.rb"
+# check data consistency
+require "#{ROOT}/fselector/consistency.rb"
 # entropy-related functions
 require "#{ROOT}/fselector/entropy.rb"
 # normalization for continuous data
@@ -30,6 +32,7 @@ require "#{ROOT}/fselector/replace_missing_values.rb"
 
 #
 # base class
+#
 Dir.glob("#{ROOT}/fselector/algo_base/*").each do |f|
   require f
 end

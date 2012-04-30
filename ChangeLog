@@ -1,3 +1,10 @@
+2012-05-01	version 1.0.0
+
+  * add new algorithm INTERACT for discrete feature
+  * add Consistency module to deal with data inconsistency calculation, which bases on a Hash table and is efficient in both storage and speed
+  * update the Chi2 algorithm to try to reproduce the results of the original Chi2 algorithm
+  * update documentation whenever necessary
+  
 2012-04-25	version 0.9.0
 
   * add new discretization algorithm (Three-Interval Discretization, TID)

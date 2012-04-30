@@ -23,9 +23,10 @@ module FSelector
         n = a+b+c+d
         
         s = 0.0
-        if not ((a+b)*(c+d)*(a+c)*(b+d)).zero?  
-          s = Math.sqrt(n) * (a*d-b*c) /
-              Math.sqrt( (a+b) * (c+d) * (a+c) * (b+d) )
+        x = (a+b)*(c+d)*(a+c)*(b+d)
+        
+        if not x.zero?
+          s = Math.sqrt(n) * (a*d-b*c) / Math.sqrt(x)
         end
         
         set_feature_score(f, k, s)

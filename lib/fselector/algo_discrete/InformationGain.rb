@@ -22,7 +22,7 @@ module FSelector
     # calculate contribution of each feature (f) across all classes
     # see entropy-related functions in BaseDiscrete
     def calc_contribution(f)
-      # cache H(c)
+      # cache H(c), frequently used
       if not @hc
         cv = get_class_labels
         @hc = get_marginal_entropy(cv)

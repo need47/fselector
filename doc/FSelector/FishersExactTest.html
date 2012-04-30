@@ -100,11 +100,11 @@
   <div class="discussion">
     <p>(two-sided) Fisher&#39;s Exact Test (FET)</p>
 
-<pre class="code ruby"><code>     (A+B)! * (C+D)! * (A+C)! * (B+D)!  
-p =  -----------------------------------
+<pre class="code ruby"><code>        (A+B)! * (C+D)! * (A+C)! * (B+D)!  
+FET =  -----------------------------------
              A! * B! * C! * D!
 
-for FET, the smaller, the better, but we intentionally negate it
+for FET (p-value), the smaller, the better, but we intentionally negate it
 so that the larger is always the better (consistent with other algorithms)
 R equivalent: fisher.test
 </code></pre>
@@ -175,7 +175,7 @@ R equivalent: fisher.test
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:40 2012 by 
+  Generated on Mon Apr 30 16:18:39 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

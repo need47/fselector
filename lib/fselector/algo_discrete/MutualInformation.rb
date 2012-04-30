@@ -26,9 +26,9 @@ module FSelector
         n = a+b+c+d
         
         s = 0.0
-        if not ((a+b)*(a+c)).zero?
-          s = Math.log2(a*n/(a+b)/(a+c))
-        end
+        x = (a+b)*(a+c)
+        
+        s = Math.log2(a*n/x) if not x.zero?
         
         set_feature_score(f, k, s)
       end

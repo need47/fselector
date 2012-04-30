@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# base algorithm for handling continous feature
+# base algorithm for continuous feature
 #
   class BaseContinuous < Base
     # include normalizer

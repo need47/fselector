@@ -3,11 +3,11 @@
 #
 module FSelector
 #
-# P-Metric (PM) for continous feature
+# P-Metric (PM) for continuous feature
 #
-#                 |u1 - u2|
-#     PM(f) = -----------------
-#              sigma1 + sigma2
+#           |u1 - u2|
+#     PM = -----------
+#           sd1 + sd2
 #
 # @note PM applicable only to two-class problems
 #

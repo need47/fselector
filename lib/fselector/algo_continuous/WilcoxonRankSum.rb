@@ -3,9 +3,9 @@
 #
 module FSelector
 #
-# Wilcoxon Rank Sum (WRS) for continous feature
+# Wilcoxon Rank Sum (WRS) for continuous feature
 #
-# @note WRS applicable only to two-class problems
+# @note WRS is applicable only to two-class problems, and missing data are ignored
 #
 # for WRS (p-value), the smaller, the better, but we intentionally negate it
 # so that the larger is always the better (consistent with other algorithms).

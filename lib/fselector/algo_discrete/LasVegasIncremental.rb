@@ -8,13 +8,15 @@ module FSelector
 #
 # ref: [Incremental Feature Selection](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.8218)
 #
-  class LasVegasIncremental < BaseDiscrete    
+  class LasVegasIncremental < BaseDiscrete
+    # include Consistency module
+    include Consistency
+    
     #
-    # initialize from existing data structure
+    # initialize from an existing data structure
     # 
     # @param [Integer] max_iter maximum number of iterations
     # @param [Float] portion percentage of data used by LVF
-    # @param [Hash] data existing data structure
     #
     def initialize(max_iter=100, portion=0.10, data=nil)
       super(data)
@@ -22,31 +24,36 @@ module FSelector
       @portion = portion || 0.10
     end
     
-    private
+    private    
     
     # Las Vegas Incremental (LVI) algorithm
     def get_feature_subset
       data = get_data # working dataset
       s0, s1 = portion(data)
-      feats = get_features # initial best solution
-      j0 = check_incon_rate(data, feats)[0] # initial data inconsistency rate
+      feats = get_features
+      j0 = get_IR(data) # initial data inconsistency rate
+      
+      # instead of s0 and s1, we play with their inst_cnt Hash tables
+      inst_cnt_s0 = get_instance_count(s0)
+      inst_cnt_s1 = get_instance_count(s1)
       
       subset = feats # initial feature subset
       
       while true
-        f_try = lvf(s0, feats, j0) # keep only one equivalently good subset
+        j_s0, f_try = lvf(inst_cnt_s0, feats, j0) # keep only one equivalently good subset
         #pp f_try
+        #s = inst_cnt_s0.merge(inst_cnt_s1) { |kk, v1, v2| v1.merge(v2) {|vv,x1,x2| x1+x2 }  }
+        #pp s==get_instance_count
         
-        j_s0 = check_incon_rate(s0, f_try)[0]
-        j_s1, inconC = check_incon_rate(s1, f_try)
+        j_s1, inconC = check_incon_rate(inst_cnt_s1, f_try)
         
-        #pp [j0, j_s0, j_s1, s0.values.flatten.size, s1.values.flatten.size, f_try.size]
+        #pp [j0, j_s0, j_s1, count(inst_cnt_s0), count(inst_cnt_s1), f_try.size]
         
-        if j_s0+j_s1 <= j0 or inconC.empty?
+        if j_s0+j_s1 <= j0 # or inconC.empty?
           subset = f_try
           break
         else
-          update(s0, s1, inconC)
+          update(inst_cnt_s0, inst_cnt_s1, inconC)
         end
       end
       
@@ -73,103 +80,87 @@ module FSelector
     end
     
     # check evaluation mean J -> (0, 1]
-    def check_incon_rate(data, feats)
+    def check_incon_rate(inst_cnt, feats)
       #pp feats
       ir, inconC = 0.0, []
       
-      # create a reduced dataset within feats
-      dt = {}
-      data.each do |k, ss|
-        dt[k] ||= []
-        ss.each do |s|
-          my_s = s.select { |f,v| feats.include? f }
-          dt[k] << my_s if not my_s.empty?
-        end
-      end
-      
-      # check data inconsistency rate
-      # get unique instances (except class label)
-      inst_u = dt.values.flatten.uniq
-      inst_u_cnt = {} # occurrences for each unique instance in each class
-      ks = dt.keys
-      
-      # count
-      inst_u.each_with_index do |inst, idx|
-        inst_u_cnt[idx] = [] # record for all classes
-        ks.each do |k|
-          inst_u_cnt[idx] << dt[k].count(inst)
-        end
-      end
-     
-      # inconsistency count
-      inconsis = 0.0
-      inst_u_cnt.each do |idx, cnts|
-        diff = cnts.sum-cnts.max
-        inconsis += diff
+      # build new inst_count for feats
+      inst_cnt_new = {}
+      k2k = {} # map of key_old to key_new
+
+      inst_cnt.each do |key, hcnt|
+        key_new = feats.sort.collect { |f|
+          match_data = key.match(/#{f}:.*?\|/)
+          match_data[0] if match_data
+        }.compact.join # remove nil entry and join
+        next if key_new.empty?
         
-        if not diff.zero? # inconsistent instance
-          inconC << inst_u[idx]
+        k2k[key] = key_new
+        
+        hcnt_new = inst_cnt_new[key_new] || Hash.new(0)
+        # merge cnts
+        inst_cnt_new[key_new] = hcnt_new.merge(hcnt) { |kk, v1, v2| v1+v2 }
+      end
+
+      ir = get_IR_by_count(inst_cnt_new)
+      
+      # check inconsistency instances
+      inst_cnt.keys.each do |key|
+        next if not k2k.has_key? key
+        
+        key_new = k2k[key]
+        
+        cnt_new = inst_cnt_new[key_new].values
+        if cnt_new.sum-cnt_new.max > 0 # inconsistency
+          inconC << key
         end
       end
-      
-      # inconsistency rate
-      sz = dt.values.flatten.size # inconsis / num_of_sample
-      ir = inconsis/sz if not sz.zero?
       
       [ir, inconC]
     end
     
     
     # lvf
-    def lvf(data, feats, j0)
+    def lvf(inst_cnt, feats, j0)
       subset_best = feats
       sz_best = subset_best.size
+      j_best = j0
       
       @max_iter.times do
         # always sample a smaller feature subset than sz_best at random
         f_try = feats.sample(rand(sz_best-1)+1)
+        j_try = get_IR_by_feature(inst_cnt, f_try)
         
-        if check_incon_rate(data, f_try)[0] <= j0
+        if j_try <= j0
           subset_best = f_try
-          sz_best = f_try.size
+          sz_best = subset_best.size
+          j_best = j_try
         end
       end
       
-      subset_best
-    end
+      [j_best, subset_best]
+    end # lvf
     
     
-    # update s0, s1
-    def update(s0, s1, inconC)      
-      inconC.each do |inst|
-        s1.each do |k, sams|
-          sams.each_with_index do |sam, i|
-            if is_subset?(inst, sam)
-              s0[k] << sam
-              sams[i] = nil
-            end
-          end
-          
-          sams.compact!
-        end
+    # update inst_cnt_s0, inst_cnt_s1
+    def update(inst_cnt_s0, inst_cnt_s1, inconC)      
+      inconC.each do |inst_key|
+        hcnt_s0 = inst_cnt_s0[inst_key] ||= Hash.new(0)
+        hcnt_s1 = inst_cnt_s1[inst_key]
+        
+        inst_cnt_s0[inst_key] = hcnt_s0.merge(hcnt_s1) { |kk, v1, v2| v1+v2 }
+        # remove from inst_cnt_s0
+        inst_cnt_s1.delete(inst_key)
       end
-    end
+    end # update
     
     
-    # is Hash a is a subset of Hash b
-    def is_subset?(ha, hb)
-      ha.each do |k, v|
-        if hb.has_key? k and v == hb[k]
-          next
-        else
-          return false
-        end
-      end
-      
-      return true
-    end
+    # the number of instances
+    def count(inst_cnt)
+      inst_cnt.values.collect { |hcnt| hcnt.values.sum }.sum
+    end # count
     
-    
+        
   end # class
   
   

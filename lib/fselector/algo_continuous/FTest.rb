@@ -3,15 +3,15 @@
 #
 module FSelector
 #
-# F-test (FT) based on F-statistics for continous feature
+# F-test (FT) based on F-statistics for continuous feature
 # 
-#              between-group variability
-#     FT(f) = ---------------------------
-#              within-group variability
+#           between-group variability
+#     FT = ---------------------------
+#           within-group variability
 #
-#              sigma_k n_k*(ybar_k - ybar)^2 / (K-1)
-#           = --------------------------------------
-#              sigma_ik (y_ik - ybar_k)^2 / (N-K)
+#           sigma_k n_k*(ybar_k - ybar)^2 / (K-1)
+#        = --------------------------------------
+#           sigma_ik (y_ik - ybar_k)^2 / (N-K)
 #
 #     where n_k is the sample size of class k
 #           ybar_k is the sample mean of class k

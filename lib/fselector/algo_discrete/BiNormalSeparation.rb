@@ -7,7 +7,7 @@ module FSelector
 #
 #     BNS = |F'(tpr) - F'(fpr)|
 #      
-#     where F'(x) is normal inverse cumulative distribution function
+#     where F'(x) is the normal inverse cumulative distribution function
 #     R equivalent: qnorm
 # 
 # ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
@@ -23,8 +23,10 @@ module FSelector
         a, b, c, d = get_A(f, k), get_B(f, k), get_C(f, k), get_D(f, k)
         
         s = 0.0
-        if not (a+c).zero? and not (b+d).zero?
-          tpr, fpr = a/(a+c), b/(b+d)
+        x, y = a+c, b+d
+        
+        if not x.zero? and not y.zero?
+          tpr, fpr = a/x, b/y
           
           R.eval "rv <- qnorm(#{tpr}) - qnorm(#{fpr})"
           s = R.rv.abs

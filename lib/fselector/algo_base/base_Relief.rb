@@ -10,14 +10,16 @@ module FSelector
 #
 # ref: [The Feature Selection Problem: Traditional Methods and a New Algorithm](http://www.aaai.org/Papers/AAAI/1992/AAAI92-020.pdf)
 #
-  class BaseRelief < Base    
+  class BaseRelief < Base
+    # include ReplaceMissingValue module
+    include ReplaceMissingValues
+        
     #
-    # new()
+    # intialize from an existing data structure
     #
     # @param [Integer] m number of samples to be used 
     #   for estimating feature contribution. max can be
     #   the number of training samples
-    # @param [Hash] data existing data structure
     #
     def initialize(m=30, data=nil)
       super(data)

@@ -76,13 +76,22 @@ module FSelector
     end
     
     
-    # get (uniq) classes labels as an array
+    #
+    # get (unique) classes labels
+    #
+    # @return [Array<Symbol>] unique class labels
+    #
     def get_classes
       @classes ||= @data.keys
     end
     
     
-    # get class labels for all samples as an array
+    #
+    # get class labels for all samples
+    #
+    # @return [Array<Symbol>] class labels for all classes, 
+    #   same size as the number of samples
+    #
     def get_class_labels
       if not @cv
         @cv = []
@@ -96,7 +105,11 @@ module FSelector
     end
     
     
+    #
     # set classes
+    #
+    # @param [Array<Symbol>] classes source unique class labels
+    #
     def set_classes(classes)
       if classes and classes.class == Array
         @classes = classes
@@ -106,8 +119,11 @@ module FSelector
       end
     end
 
-    
-    # get (unique) features as an array
+    #
+    # get (unique) features
+    #
+    # @return [Array<Symbol>] unique features
+    #
     def get_features
       @features ||= @data.map { |x| x[1].map { |y| y.keys } }.flatten.uniq
     end
@@ -123,6 +139,7 @@ module FSelector
     # @param [Symbol] ck class of interest.
     #   return feature values for all classes, otherwise return feature
     #   values for the specific class (ck)
+    # @return [Hash] feature values
     #
     def get_feature_values(f, mv=nil, ck=nil)
       @fvs ||= {}
@@ -148,7 +165,11 @@ module FSelector
     end
     
     
+    #
     # set features
+    #
+    # @param [Array<Symbol>] features source unique features
+    #
     def set_features(features)
       if features and features.class == Array
         @features = features
@@ -159,20 +180,31 @@ module FSelector
     end
     
     
+    #
     # get data
+    #
+    # @return [Hash] internal data
+    #
     def get_data
       @data
     end
     
     
-    # get a copy of data, 
-    # by means of the standard Marshal library
+    #
+    # get a copy of data, by means of the standard Marshal library
+    #
+    # @return [Hash] a copy of internal data
+    #
     def get_data_copy
       Marshal.load(Marshal.dump(@data)) if @data
     end
     
     
-    # set data
+    #
+    # set data and clean relevant variables in case of data change
+    #
+    # @param [Hash] data source data structure
+    #
     def set_data(data)
       if data and data.class == Hash
         @data = data
@@ -182,8 +214,6 @@ module FSelector
         abort "[#{__FILE__}@#{__LINE__}]: "+
               "data must be a Hash object!"
       end
-      
-      data
     end
     
     
@@ -199,11 +229,16 @@ module FSelector
     end
     
     
+    #
     # number of samples
+    #
+    # @return [Integer] sample size
+    #
     def get_sample_size
       @sz ||= get_data.values.flatten.size
     end
-       
+    
+    
     #
     # get scores of all features for all classes
     #
@@ -257,10 +292,9 @@ module FSelector
     #
     # reconstruct data with selected features
     #
-    # @return [Hash] data after feature selection
-    # @note derived class must implement its own get\_subset(), 
-    #   and data structure will be altered. For now, only the algorithms of 
-    #   CFS\_c, CFS\_d and FCBF implemented such functions
+    # @note data structure will be altered. Dderived class must 
+    #   implement its own get\_subset(). This is only available for 
+    #   the feture subset selection type of algorithms
     #
     def select_feature!
       subset = get_feature_subset
@@ -279,14 +313,14 @@ module FSelector
     
     
     #
-    # reconstruct data with feature scores satisfying cutoff
+    # reconstruct data by feature score satisfying criterion
     #
     # @param [String] criterion 
-    #   valid criterion can be '>0.5', '>=0.4', '==2', '<=1' or '<0.2'
+    #   valid criterion can be '>0.5', '>=0.4', '==2.0', '<=1.0' or '<0.2'
     # @param [Hash] my_scores
     #   user customized feature scores
-    # @return [Hash] data after feature selection
-    # @note data structure will be altered
+    # @note data structure will be altered. This is only available for 
+    #   the feture weighting type of algorithms
     #
     def select_feature_by_score!(criterion, my_scores=nil)
       # user scores or internal scores
@@ -305,14 +339,14 @@ module FSelector
         
     
     #
-    # reconstruct data by rank
+    # reconstruct data by feature rank satisfying criterion
     #
     # @param [String] criterion 
     #   valid criterion can be '>11', '>=10', '==1', '<=10' or '<20'
     # @param [Hash] my_ranks
     #   user customized feature ranks
-    # @return [Hash] data after feature selection
-    # @note data structure will be altered
+    # @note data structure will be altered. This is only available for 
+    #   the feture weighting type of algorithms
     #
     def select_feature_by_rank!(criterion, my_ranks=nil)
       # user ranks or internal ranks

@@ -26,7 +26,7 @@ r3.select_feature_by_rank!('<=3')
 
 # ChiSquaredTest (CHI)
 puts "  test ChiSquaredTest ..."
-r4 = FSelector::CHI.new(:yates_continuity_correction)
+r4 = FSelector::CHI.new(:yates)
 r4.data_from_random(100, 2, 10, 3, true)
 r4.select_feature_by_rank!('<=3')
 

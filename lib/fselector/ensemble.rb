@@ -4,9 +4,11 @@
 module FSelector
   # select feature by an ensemble of ranking algorithms
   class Ensemble < Base
-    # new()
     #
-    # @param [Array] rankers multiple feature ranking algorithms
+    # initialize from multiple algorithms
+    #
+    # @param [Array] algos multiple feature selection algorithms
+    #
     def initialize(*algos)
       super(nil)
       

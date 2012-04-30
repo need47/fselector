@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 0.9.0  
-**Release Date**: April 25 2012
+**Latest Version**: 1.0.0  
+**Release Date**: May 1 2012
 
 Synopsis
 --------
@@ -38,55 +38,59 @@ Feature List
  - csv
  - libsvm
  - weka ARFF
- - random data (for test purpose)
+ - random data (read only, for test purpose)
 
 **2. available feature selection/ranking algorithms**
     
-    algorithm                         alias       feature_type  applicability
-    --------------------------------------------------------------------------------------
-    Accuracy                          Acc         discrete
-    AccuracyBalanced                  Acc2        discrete
-    BiNormalSeparation                BNS         discrete
-    CFS_d                             CFS_d       discrete
-    ChiSquaredTest                    CHI         discrete
-    CorrelationCoefficient            CC          discrete
-    DocumentFrequency                 DF          discrete
-    F1Measure                         F1          discrete
-    FishersExactTest                  FET         discrete
-    FastCorrelationBasedFilter        FCBF        discrete
-    GiniIndex                         GI          discrete
-    GMean                             GM          discrete
-    GSSCoefficient                    GSS         discrete
-    InformationGain                   IG          discrete
-    LasVegasFilter                    LVF         discrete
-    LasVegasIncremental               LVI         discrete
-    MatthewsCorrelationCoefficient    MCC, PHI    discrete
-    McNemarsTest                      MNT         discrete
-    OddsRatio                         OR          discrete
-    OddsRatioNumerator                ORN         discrete
-    PhiCoefficient                    Phi         discrete
-    Power                             Power       discrete
-    Precision                         Precision   discrete
-    ProbabilityRatio                  PR          discrete
-    Random                            Random      discrete
-    Recall                            Recall      discrete
-    Relief_d                          Relief_d    discrete      two-class, no missing data
-    ReliefF_d                         ReliefF_d   discrete
-    Sensitivity                       SN, Recall  discrete
-    Specificity                       SP          discrete
-    SymmetricalUncertainty            SU          discrete
-    BetweenWithinClassesSumOfSquare   BSS_WSS     continuous
-    CFS_c                             CFS_c       continuous
-    FTest                             FT          continuous
-    PMetric                           PM          continuous    two-class
-    Relief_c                          Relief_c    continuous    two-class, no missing data
-    ReliefF_c                         ReliefF_c   continuous
-    TScore                            TS          continuous    two-class
-    WilcoxonRankSum                   WRS         continuous    two-class
+    algorithm                         alias       algo_type   feature_type  applicability
+    --------------------------------------------------------------------------------------------------
+    Accuracy                          Acc         weighting   discrete
+    AccuracyBalanced                  Acc2        weighting   discrete
+    BiNormalSeparation                BNS         weighting   discrete
+    CFS_d                             CFS_d       subset      discrete
+    ChiSquaredTest                    CHI         weighting   discrete
+    CorrelationCoefficient            CC          weighting   discrete
+    DocumentFrequency                 DF          weighting   discrete
+    F1Measure                         F1          weighting   discrete
+    FishersExactTest                  FET         weighting   discrete
+    FastCorrelationBasedFilter        FCBF        subset      discrete
+    GiniIndex                         GI          weighting   discrete
+    GMean                             GM          weighting   discrete
+    GSSCoefficient                    GSS         weighting   discrete
+    InformationGain                   IG          weighting   discrete
+    INTERACT                          INTERACT    subset      discrete
+    LasVegasFilter                    LVF         subset      discrete
+    LasVegasIncremental               LVI         subset      discrete
+    MatthewsCorrelationCoefficient    MCC, PHI    weighting   discrete
+    McNemarsTest                      MNT         weighting   discrete
+    OddsRatio                         OR          weighting   discrete
+    OddsRatioNumerator                ORN         weighting   discrete
+    PhiCoefficient                    Phi         weighting   discrete
+    Power                             Power       weighting   discrete
+    Precision                         Precision   weighting   discrete
+    ProbabilityRatio                  PR          weighting   discrete
+    Random                            Random      weighting   discrete
+    Recall                            Recall      weighting   discrete
+    Relief_d                          Relief_d    weighting   discrete      two-class, no missing data
+    ReliefF_d                         ReliefF_d   weighting   discrete
+    Sensitivity                       SN, Recall  weighting   discrete
+    Specificity                       SP          weighting   discrete
+    SymmetricalUncertainty            SU          weighting   discrete
+    BetweenWithinClassesSumOfSquare   BSS_WSS     weighting   continuous
+    CFS_c                             CFS_c       subset      continuous
+    FTest                             FT          weighting   continuous
+    PMetric                           PM          weighting   continuous    two-class
+    Relief_c                          Relief_c    weighting   continuous    two-class, no missing data
+    ReliefF_c                         ReliefF_c   weighting   continuous
+    TScore                            TS          weighting   continuous    two-class
+    WilcoxonRankSum                   WRS         weighting   continuous    two-class
     
   **note for feature selection interace:**   
-    - for the algorithms of CFS\_d, FCBF and CFS\_c, use select\_feature!  
-    - for other algorithms, use either select\_feature\_by\_rank! or select\_feature\_by\_score!
+  there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  
+  
+  - for weighting type: use either **select\_feature\_by\_rank!** or **select\_feature\_by\_score!**  
+  - for subset type: use **select\_feature!**
+    
 
 **3. feature selection approaches**
 
@@ -159,7 +163,7 @@ Usage
     # you can also use multiple alogirithms in a tandem manner
     # e.g. use the ChiSquaredTest with Yates' continuity correction
     # initialize from r1's data
-    r2 = FSelector::ChiSquaredTest.new(:yates_continuity_correction, r1.get_data)
+    r2 = FSelector::ChiSquaredTest.new(:yates, r1.get_data)
     
     # number of features before feature selection
     puts "# features (before): "+ r2.get_features.size.to_s

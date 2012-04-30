@@ -22,7 +22,9 @@ module FSelector
       
       each_class do |k|
         a, b = get_A(f, k), get_B(f, k)
-        s += (a/(a+b))**2 if not (a+b).zero?
+        x = a+b
+        
+        s += (a/x)**2 if not x.zero?
       end
       
       # note: we've intentionally negated it

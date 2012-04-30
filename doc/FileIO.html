@@ -190,7 +190,7 @@ where :c1 and :c2 are class labels; :f1, :f2, and :f3 are features
   
 
   
-    <span class="summary_desc"><div class='inline'><p>read from random data (for test).</p>
+    <span class="summary_desc"><div class='inline'><p>read from random data (read only, for test purpose).</p>
 </div></span>
   
 </li>
@@ -457,7 +457,7 @@ INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
     <span class='kw'>else</span> <span class='comment'># data rows
 </span>      <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_fvs'>fvs</span> <span class='op'>=</span> <span class='id identifier rubyid_ln'>ln</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='id identifier rubyid_label'>label</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
-      <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='id identifier rubyid_label'>label</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_label'>label</span>
+      <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='id identifier rubyid_label'>label</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
       
       <span class='id identifier rubyid_fs'>fs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
       <span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
@@ -622,7 +622,7 @@ INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>read from random data (for test)</p>
+    <p>read from random data (read only, for test purpose)</p>
 
 
   </div>
@@ -1503,7 +1503,7 @@ and the remaing rows showing data</p>
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:38 2012 by 
+  Generated on Mon Apr 30 16:18:37 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

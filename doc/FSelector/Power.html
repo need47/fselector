@@ -98,13 +98,13 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Power (pow)</p>
+    <p>Power</p>
 
-<pre class="code ruby"><code>Pow = (1-fpr)^k - (1-tpr)^k
+<pre class="code ruby"><code>Power = (1-fpr)^k - (1-tpr)^k
 
-    = (1-B/(B+D))^k - (1-A/(A+C))^k
+      = (1-B/(B+D))^k - (1-A/(A+C))^k
 
-    = (D/(B+D))^k - (C/(A+C))^k
+      = (D/(B+D))^k - (C/(A+C))^k
 </code></pre>
 
 <p>ref: <a href="http://dl.acm.org/citation.cfm?id=944974">An extensive empirical study of feature selection metrics for text classification</a></p>
@@ -148,7 +148,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>initialize from existing data structure.</p>
+    <span class="summary_desc"><div class='inline'><p>initialize from an existing data structure.</p>
 </div></span>
   
 </li>
@@ -204,7 +204,7 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>initialize from existing data structure</p>
+    <p>initialize from an existing data structure</p>
 
 
   </div>
@@ -230,23 +230,6 @@
       
     </li>
   
-    <li>
-      
-        <span class='name'>data</span>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>existing data structure</p>
-</div>
-      
-    </li>
-  
 </ul>
 
 
@@ -256,13 +239,13 @@
       <pre class="lines">
 
 
+22
 23
 24
-25
-26</pre>
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/Power.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/Power.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='op'>=</span><span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -279,7 +262,7 @@
 </div>
     
     <div id="footer">
-  Generated on Wed Apr 25 15:13:39 2012 by 
+  Generated on Mon Apr 30 16:18:37 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

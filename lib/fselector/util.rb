@@ -81,7 +81,7 @@ class Array
   # pearson's correlation coefficient, 
   # two vectors must be of the same length
   #
-  # @param [Array] v the second array
+  # @param [Array] v the second vector
   # @return [Float] pearson's r
   def pearson_r(v)
     sm, vm = self.ave, v.ave
