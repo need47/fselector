@@ -130,7 +130,7 @@ class String
   # e.g. 'a,"b, c",d'.split_me(/,/, '"') => [a, 'b, c', d]
   #
   # @param [Regex] delim_regex regular expression for split
-  # @param [String] quote quote char such as ' and "
+  # @param [String] quote_char quote char such as ' and "
   # @return [Array<String>]
   #
   def split_me(delim_regex, quote_char="'")
