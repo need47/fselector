@@ -71,7 +71,7 @@ class Array
   end
   
   
-  # to symbol
+  # convert to symbol
   # @return [Array<Symbol>] converted symbols
   def to_sym
     self.collect { |x| x.to_sym }

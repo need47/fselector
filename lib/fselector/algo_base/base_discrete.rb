@@ -5,7 +5,7 @@ module FSelector
 #
 #  base alogrithm for discrete feature
 #
-#     2 x 2 contingency table
+#     many algos are based on the following 2 x 2 contingency table
 #     
 #           c   c'
 #         ---------

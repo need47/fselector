@@ -181,7 +181,7 @@ module FSelector
     
     
     #
-    # get data
+    # get internal data
     #
     # @return [Hash] internal data
     #
@@ -191,7 +191,7 @@ module FSelector
     
     
     #
-    # get a copy of data, by means of the standard Marshal library
+    # get a copy of internal data, by means of the standard Marshal library
     #
     # @return [Hash] a copy of internal data
     #
@@ -294,7 +294,7 @@ module FSelector
     #
     # @note data structure will be altered. Dderived class must 
     #   implement its own get\_subset(). This is only available for 
-    #   the feture subset selection type of algorithms
+    #   the feature subset selection type of algorithms
     #
     def select_feature!
       subset = get_feature_subset
@@ -320,7 +320,7 @@ module FSelector
     # @param [Hash] my_scores
     #   user customized feature scores
     # @note data structure will be altered. This is only available for 
-    #   the feture weighting type of algorithms
+    #   the feature weighting type of algorithms
     #
     def select_feature_by_score!(criterion, my_scores=nil)
       # user scores or internal scores
@@ -346,7 +346,7 @@ module FSelector
     # @param [Hash] my_ranks
     #   user customized feature ranks
     # @note data structure will be altered. This is only available for 
-    #   the feture weighting type of algorithms
+    #   the feature weighting type of algorithms
     #
     def select_feature_by_rank!(criterion, my_ranks=nil)
       # user ranks or internal ranks

@@ -283,9 +283,9 @@
     
   <div class="note notetag">
     <strong>Note:</strong> 
-    <div class='inline'><p>Chi2 does some feature reduction if a feature has only one interval. 
-Using delta==0.02 reproduces exactly the same results as that of 
-the original Chi2 algorithm</p>
+    <div class='inline'><p>Chi2 does some feature reduction if a discretized feature 
+has only one interval. Using delta==0.02 reproduces exactly 
+the same results as that of the original Chi2 algorithm</p>
 </div>
   </div>
 
@@ -326,7 +326,6 @@ the original Chi2 algorithm</p>
       <pre class="lines">
 
 
-159
 160
 161
 162
@@ -429,10 +428,11 @@ the original Chi2 algorithm</p>
 259
 260
 261
-262</pre>
+262
+263</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_Chi2!'>discretize_by_Chi2!</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.02</span><span class='rparen'>)</span>
   <span class='comment'># degree of freedom equals one less than number of classes     
@@ -582,7 +582,7 @@ the original Chi2 algorithm</p>
       
       
         &mdash;
-        <div class='inline'><p>confidence level</p>
+        <div class='inline'><p>confidence level, the smaller the less intervals</p>
 </div>
       
     </li>
@@ -669,13 +669,15 @@ the original Chi2 algorithm</p>
 143
 144
 145
-146</pre>
+146
+147</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='id identifier rubyid_alpha'>alpha</span><span class='op'>=</span><span class='float'>0.10</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
+  <span class='comment'># degree of freedom equals one less than number of classes
+</span>  <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
   <span class='id identifier rubyid_chisq'>chisq</span> <span class='op'>=</span> <span class='id identifier rubyid_pval2chisq'>pval2chisq</span><span class='lparen'>(</span><span class='id identifier rubyid_alpha'>alpha</span><span class='comma'>,</span> <span class='id identifier rubyid_df'>df</span><span class='rparen'>)</span>
   
   <span class='comment'># for intialization
@@ -975,7 +977,6 @@ the original Chi2 algorithm</p>
       <pre class="lines">
 
 
-272
 273
 274
 275
@@ -1013,10 +1014,11 @@ the original Chi2 algorithm</p>
 307
 308
 309
-310</pre>
+310
+311</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 272</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 273</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_MID!'>discretize_by_MID!</span>
   <span class='comment'># determine the final boundaries
@@ -1094,7 +1096,6 @@ the original Chi2 algorithm</p>
       <pre class="lines">
 
 
-320
 321
 322
 323
@@ -1163,10 +1164,11 @@ the original Chi2 algorithm</p>
 386
 387
 388
-389</pre>
+389
+390</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 320</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 321</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_TID!'>discretize_by_TID!</span>
   <span class='comment'># cut points for each feature
@@ -1248,7 +1250,7 @@ the original Chi2 algorithm</p>
 </div>
     
     <div id="footer">
-  Generated on Mon Apr 30 17:38:18 2012 by 
+  Generated on Tue May  1 11:26:12 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

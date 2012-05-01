@@ -7,7 +7,7 @@ module FSelector
 #
 #     GM = sqrt(Sensitivity * Specificity)
 #     
-#                      TP*TN                     A*D
+#                     TP * TN                   A * D
 #        = sqrt(------------------) = sqrt(---------------)
 #                (TP+FN) * (TN+FP)          (A+C) * (B+D)
 #

@@ -46,7 +46,7 @@ module Normalizer
   end # normalize_by_min_max!
   
   
-  # converted to z-score
+  # convert to z-score
   #
   # ref: [Wikipedia](http://en.wikipedia.org/wiki/Zscore)
   def normalize_by_zscore!

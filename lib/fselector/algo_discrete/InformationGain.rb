@@ -5,11 +5,11 @@ module FSelector
 #
 # Information Gain (IG) for discrete feature
 #
-#     IG(c,f) = H(c) - H(c|f)
+#     IG = H(C) - H(C|F)
 #     
-#     where H(c) = -1 * sigma_i (P(ci) log2 P(ci))
-#           H(c|f) = sigma_j (P(fj)*H(c|fj))
-#           H(c|fj) = -1 * sigma_k (P(ck|fj) log2 P(ck|fj))
+#     where H(C) = -1 * sigma_i (P(c_i) log2 P(c_i))
+#           H(C|F) = sigma_j (P(f_j)*H(C|f_j))
+#           H(C|f_j) = -1 * sigma_k (P(c_k|f_j) log2 P(c_k|f_j))
 #
 # ref: [Using Information Gain to Analyze and Fine Tune the Performance of Supply Chain Trading Agents](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.141.7895)
 #

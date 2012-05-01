@@ -65,12 +65,13 @@ module Discretizer
   #
   # discretize by ChiMerge algorithm
   #
-  # @param [Float] alpha confidence level
+  # @param [Float] alpha confidence level, the smaller the less intervals
   # @note data structure will be altered
   #
   # ref: [ChiMerge: Discretization of Numberic Attributes](http://sci2s.ugr.es/keel/pdf/algorithm/congreso/1992-Kerber-ChimErge-AAAI92.pdf)
   #    
   def discretize_by_ChiMerge!(alpha=0.10)
+    # degree of freedom equals one less than number of classes
     df = get_classes.size-1
     chisq = pval2chisq(alpha, df)
     
@@ -150,9 +151,9 @@ module Discretizer
   # discretize by Chi2 algorithm
   #
   # @param [Float] delta upper bound of data inconsistency rate 
-  # @note Chi2 does some feature reduction if a feature has only one interval. 
-  #   Using delta==0.02 reproduces exactly the same results as that of 
-  #   the original Chi2 algorithm
+  # @note Chi2 does some feature reduction if a discretized feature 
+  #   has only one interval. Using delta==0.02 reproduces exactly 
+  #   the same results as that of the original Chi2 algorithm
   #
   # ref: [Chi2: Feature Selection and Discretization of Numeric Attributes](http://sci2s.ugr.es/keel/pdf/specific/congreso/liu1995.pdf)
   #

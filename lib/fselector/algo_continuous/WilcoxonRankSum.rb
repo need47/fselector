@@ -7,8 +7,8 @@ module FSelector
 #
 # @note WRS is applicable only to two-class problems, and missing data are ignored
 #
-# for WRS (p-value), the smaller, the better, but we intentionally negate it
-# so that the larger is always the better (consistent with other algorithms).
+# for WRS (p-value), the smaller, the better, but we intentionally negate it 
+# so that the larger is always the better (consistent with other algorithms).  
 # R equivalent: wilcox.test
 #
 # ref: [An Efficient and Robust Statistical Modeling Approach to Discover Differentially Expressed Genes Using Genomic Expression Profiles](http://genome.cshlp.org/content/11/7/1227)

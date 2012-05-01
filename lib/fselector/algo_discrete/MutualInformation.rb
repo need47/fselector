@@ -5,7 +5,7 @@ module FSelector
 #
 # Mutual Information (MI)
 #
-#                       P(f, c)
+#                       P(f,c)
 #     MI(f,c) = log2 -------------
 #                     P(f) * P(c)
 #     

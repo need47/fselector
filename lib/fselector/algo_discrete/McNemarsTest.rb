@@ -5,9 +5,9 @@ module FSelector
 #
 # McNemar's test (MNT), based on Chi-Squared test
 #
-#                 (B-C)^2
-#     MNT(f, c) = ---------
-#                  B+C
+#            (B-C)^2
+#     MNT = ---------
+#              B+C
 #
 # suitable for large samples and B+C >= 25
 #

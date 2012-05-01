@@ -7,7 +7,7 @@ module FSelector
 #
 #     OddN(f,c) = P(f|c) * (1 - P(f|c')) =  tpr * (1-fpr)
 #     
-#                   A           B           A*D
+#                   A           B          A * D
 #               = ---- * (1 - ----) = ---------------
 #                  A+C         B+D     (A+C) * (B+D)
 #

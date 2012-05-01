@@ -6,9 +6,9 @@ module FSelector
 # Correlation Coefficient (CC), a variant of CHI, 
 # which can be viewed as a one-sided chi-squared metric
 #
-#                       sqrt(N) * (A*D - B*C)
-#     CC(f,c) = --------------------------------------
-#                sqrt( (A+B) * (C+D) * (A+C) * (B+D) )
+#                  sqrt(N) * (A*D - B*C)
+#     CC = --------------------------------------
+#           sqrt( (A+B) * (C+D) * (A+C) * (B+D) )
 #
 # ref: [Optimally Combining Positive and Negative Features for Text Categorization](http://www.site.uottawa.ca/~nat/Workshop2003/zheng.pdf)
 #
