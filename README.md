@@ -9,7 +9,7 @@ FSelector: a Ruby gem for feature selection and ranking
 **Copyright**: 2012  
 **License**: MIT License  
 **Latest Version**: 1.0.0  
-**Release Date**: May 1 2012
+**Release Date**: 2012-05-04
 
 Synopsis
 --------
