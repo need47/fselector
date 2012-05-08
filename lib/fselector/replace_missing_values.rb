@@ -103,8 +103,8 @@ module ReplaceMissingValues
   
   
   #
-  # replace missing feature value by weighted k-nearest neighbors' value 
-  # applicable to continuous feature
+  # replace missing feature value by weighted k-nearest neighbors' value, 
+  # applicable to continuous feature for any k, but to discrete feature for k==1 only
   #
   #     distance-weighted contribution (w_i), normalized to 1
   #     
@@ -156,15 +156,19 @@ module ReplaceMissingValues
         sz = knn_d.size
         val = 0.0
         knn_s.each_with_index do |s, i|
-          if not knn_d_sum.zero?
-            val += s[mv_f] * (knn_d_sum-knn_d[i]) / ((sz-1)*knn_d_sum)
-          else
-            val += s[mv_f] * 1.0 / sz
+          if sz > 1
+            if not knn_d_sum.zero?
+              val += s[mv_f] * (knn_d_sum-knn_d[i]) / ((sz-1)*knn_d_sum)
+            else
+              val += s[mv_f] * 1.0 / sz
+            end
+          else # only one nearest neighbor
+            val = s[mv_f]
           end
         end
         
         f2val[mv_f] = val
-        #pp [si, mv_f, knn_s, knn_d, val]
+        pp [si, mv_f, knn_s, knn_d, val]
       end
       
       # set value
