@@ -17,6 +17,15 @@ class Array
   alias :mean :ave # make mean as an alias of ave
   
   
+  # median
+  # @return [Float] median
+  def median
+    len = self.size
+    sorted = self.sort
+    (len % 2 == 1) ? sorted[len/2] : (sorted[len/2-1]+sorted[len/2]).to_f/2
+  end
+  
+  
   # variance
   # @return [Float] variance
   def var
@@ -78,12 +87,15 @@ class Array
   end
   
   
-  # pearson's correlation coefficient, 
+  # Pearson's correlation coefficient, 
   # two vectors must be of the same length
   #
   # @param [Array] v the second vector
-  # @return [Float] pearson's r
+  # @return [Float] Pearson's r
   def pearson_r(v)
+    abort "[#{__FILE__}@#{__LINE__}]: "+
+              "two vectors must be of the same length!" if self.size != v.size
+    
     sm, vm = self.ave, v.ave
     a, b, c = 0.0, 0.0, 0.0
     
