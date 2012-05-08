@@ -14,7 +14,7 @@ module FSelector
 #           H(C|f_j) = -1 * sigma_k (P(c_k|f_j) log2 P(c_k|f_j))
 #           H(F) = -1 * sigma_i (P(f_i) log2 P(f_i))
 #
-# ref: [Wikipedia](http://en.wikipedia.org/wiki/Symmetric_uncertainty)
+# ref: [Wikipedia](http://en.wikipedia.org/wiki/Symmetric_uncertainty) and [Robust Feature Selection Using Ensemble Feature Selection Techniques](http://dl.acm.org/citation.cfm?id=1432021)
 #
   class SymmetricalUncertainty < BaseDiscrete
     # include Entropy module
