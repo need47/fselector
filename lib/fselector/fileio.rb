@@ -57,7 +57,7 @@ module FileIO
         elsif ncategory > 1
           feats[f] = rand(ncategory)+1
         else
-          feats[f] = rand
+          feats[f] = rand.round(3) # round to 3-digit precision
         end
       end
       
