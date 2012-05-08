@@ -96,7 +96,17 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>select feature by an ensemble of ranking algorithms</p>
+    <p>feature selection by an ensemble of algorithms, 
+sharing the same interface as single algo</p>
+
+<p>for the type of weighting algorithms,  you must call one of 
+the following two functions before calling select_feature_by_score! or 
+select_feature_by_rank! for feature selection:<br>
+- ensemble_by_score()  if ensemble scores are based on those of individual algos<br>
+- ensemble_by_rank()   if ensemble ranks are based on those of individual algos</p>
+
+<p>for the type of subset selection algorithm, use
+select_feature! for feature selection (based on consensus features)</p>
 
 
   </div>
@@ -122,7 +132,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#by_ave-instance_method" title="#by_ave (instance method)">- <strong>by_ave</strong>(arr) </a>
+      <a href="#ensemble_by_rank-instance_method" title="#ensemble_by_rank (instance method)">- <strong>ensemble_by_rank</strong>(ensem_method = :by_min) </a>
     
 
     
@@ -135,7 +145,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>by average value of an array.</p>
+    <span class="summary_desc"><div class='inline'><p>ensemble ranks are made from those of individual algorithms.</p>
 </div></span>
   
 </li>
@@ -144,7 +154,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#by_max-instance_method" title="#by_max (instance method)">- <strong>by_max</strong>(arr) </a>
+      <a href="#ensemble_by_score-instance_method" title="#ensemble_by_score (instance method)">- <strong>ensemble_by_score</strong>(ensem_method = :by_max, norm_method = :by_zscore) </a>
     
 
     
@@ -157,73 +167,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>by max value of an array.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#by_min-instance_method" title="#by_min (instance method)">- <strong>by_min</strong>(arr) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>by min value of an array.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#ensemble_by_rank-instance_method" title="#ensemble_by_rank (instance method)">- <strong>ensemble_by_rank</strong>(by_what = method(:by_min)) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>ensemble based on rank.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#ensemble_by_score-instance_method" title="#ensemble_by_score (instance method)">- <strong>ensemble_by_score</strong>(by_what = method(:by_max), norm = :min_max) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>ensemble based on score.</p>
+    <span class="summary_desc"><div class='inline'><p>ensemble scores are made from those of individual algorithms.</p>
 </div></span>
   
 </li>
@@ -245,7 +189,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>reload get_feature_ranks.</p>
+    <span class="summary_desc"><div class='inline'><p>reload get_feature_ranks() for Ensemble.</p>
 </div></span>
   
 </li>
@@ -267,7 +211,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>reload get_feature_scores.</p>
+    <span class="summary_desc"><div class='inline'><p>reload get_feature_scores() for Ensemble.</p>
 </div></span>
   
 </li>
@@ -313,7 +257,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>reload set_data.</p>
+    <span class="summary_desc"><div class='inline'><p>reload set_data() for Ensemble.</p>
 </div></span>
   
 </li>
@@ -364,7 +308,15 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>initialize from multiple algorithms</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>different algorithms must be of the same type, 
+either weighting or subset selection (see <a href="../index.html" title="README">README</a>)</p>
+</div>
+  </div>
+
+<p>initialize from multiple algorithms</p>
 
 
   </div>
@@ -397,17 +349,17 @@
       <pre class="lines">
 
 
-12
-13
-14
-15
-16
-17
-18
-19</pre>
+26
+27
+28
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_algos'>algos</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
@@ -430,129 +382,15 @@
     
     
       <div class="method_details first">
-  <p class="signature first" id="by_ave-instance_method">
+  <p class="signature first" id="ensemble_by_rank-instance_method">
   
-    - <strong>by_ave</strong>(arr) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>by average value of an array</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-128
-129
-130</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 128</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_by_ave'>by_ave</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="by_max-instance_method">
-  
-    - <strong>by_max</strong>(arr) 
+    - <strong>ensemble_by_rank</strong>(ensem_method = :by_min) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>by max value of an array</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-140
-141
-142</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 140</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_by_max'>by_max</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="by_min-instance_method">
-  
-    - <strong>by_min</strong>(arr) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>by min value of an array</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-134
-135
-136</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 134</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_by_min'>by_min</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="ensemble_by_rank-instance_method">
-  
-    - <strong>ensemble_by_rank</strong>(by_what = method(:by_min)) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>ensemble based on rank</p>
+    <p>ensemble ranks are made from those of individual algorithms</p>
 
 
   </div>
@@ -563,22 +401,22 @@
   
     <li>
       
-        <span class='name'>by_what</span>
+        <span class='name'>ensem_method</span>
       
       
-        <span class='type'>(<tt>Method</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>method(:by_min)</tt>)</em>
+        <em class="default">(defaults to: <tt>:by_min</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>by what criterion that ensemble
-rank should be obtained from those of individual algorithms<br>
+        <div class='inline'><p>how the ensemble rank should 
+be derived from those of individual algorithms<br>
 allowed values are:<br>
-- method(:by_min) # by min rank<br>
-- method(:by_max) # by max rank<br>
-- method(:by_ave) # by ave rank</p>
+- :by_min # use min rank<br>
+- :by_max # use max rank<br>
+- :by_ave # use ave rank</p>
 </div>
       
     </li>
@@ -592,37 +430,49 @@ allowed values are:<br>
       <pre class="lines">
 
 
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124</pre>
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 132</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_rank'>ensemble_by_rank</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span><span class='op'>=</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:by_min</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_rank'>ensemble_by_rank</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='op'>=</span><span class='symbol'>:by_min</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='lbracket'>[</span><span class='symbol'>:by_min</span><span class='comma'>,</span> <span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='symbol'>:by_ave</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_ensem_method'>ensem_method</span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>only :by_min, :by_max and :by_ave are supported ensemble methods!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  
   <span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
        
   <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
-    <span class='id identifier rubyid_ranks'>ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_by_what'>by_what</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span>
-      <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
-    <span class='rparen'>)</span>
+    <span class='comment'># score from individual algo
+</span>    <span class='id identifier rubyid_rank_arr'>rank_arr</span> <span class='op'>=</span> <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='comment'># ensemble rank
+</span>    <span class='id identifier rubyid_ranks'>ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='comma'>,</span> <span class='id identifier rubyid_rank_arr'>rank_arr</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   
   <span class='id identifier rubyid_new_ranks'>new_ranks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -644,7 +494,7 @@ allowed values are:<br>
       <div class="method_details ">
   <p class="signature " id="ensemble_by_score-instance_method">
   
-    - <strong>ensemble_by_score</strong>(by_what = method(:by_max), norm = :min_max) 
+    - <strong>ensemble_by_score</strong>(ensem_method = :by_max, norm_method = :by_zscore) 
   
 
   
@@ -654,11 +504,11 @@ allowed values are:<br>
   <div class="note notetag">
     <strong>Note:</strong> 
     <div class='inline'><p>scores from different algos are usually incompatible with
-each other, we have to normalize it first</p>
+each other, so we need to normalize it first</p>
 </div>
   </div>
 
-<p>ensemble based on score</p>
+<p>ensemble scores are made from those of individual algorithms</p>
 
 
   </div>
@@ -669,41 +519,41 @@ each other, we have to normalize it first</p>
   
     <li>
       
-        <span class='name'>by_what</span>
+        <span class='name'>ensem_method</span>
       
       
-        <span class='type'>(<tt>Method</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>method(:by_max)</tt>)</em>
+        <em class="default">(defaults to: <tt>:by_max</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>by what criterion that ensemble
-score should be obtained from those of individual algorithms<br>
+        <div class='inline'><p>how the ensemble score should 
+be derived from those of individual algorithms<br>
 allowed values are:<br>
-- method(:by_min) # by min score<br>
-- method(:by_max) # by max score<br>
-- method(:by_ave) # by ave score</p>
+- :by_min # use min score<br>
+- :by_max # use max score<br>
+- :by_ave # use ave score</p>
 </div>
       
     </li>
   
     <li>
       
-        <span class='name'>norm</span>
+        <span class='name'>norm_method</span>
       
       
-        <span class='type'>(<tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>:min_max</tt>)</em>
+        <em class="default">(defaults to: <tt>:by_zscore</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>normalization<br>
-:min_max, score scaled to [0, 1]<br>
-:zscore, score converted to zscore</p>
+        <div class='inline'><p>score normalization method 
+:by_min_max, score scaled to [0, 1]<br>
+:by_zscore, score converted to zscore</p>
 </div>
       
     </li>
@@ -717,51 +567,61 @@ allowed values are:<br>
       <pre class="lines">
 
 
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93</pre>
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 94</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_score'>ensemble_by_score</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span><span class='op'>=</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:by_max</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_norm'>norm</span><span class='op'>=</span><span class='symbol'>:min_max</span><span class='rparen'>)</span>
-  <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_norm'>norm</span> <span class='op'>==</span> <span class='symbol'>:min_max</span>
-      <span class='id identifier rubyid_normalize_min_max!'>normalize_min_max!</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_norm'>norm</span> <span class='op'>==</span> <span class='symbol'>:zscore</span>
-      <span class='id identifier rubyid_normalize_zscore!'>normalize_zscore!</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
-    <span class='kw'>else</span>
-      <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
-          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>invalid normalizer, only :min_max and :zscore supported!</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_score'>ensemble_by_score</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='op'>=</span><span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='id identifier rubyid_norm_method'>norm_method</span><span class='op'>=</span><span class='symbol'>:by_zscore</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='lbracket'>[</span><span class='symbol'>:by_min</span><span class='comma'>,</span> <span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='symbol'>:by_ave</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_ensem_method'>ensem_method</span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>only :by_min, :by_max and :by_ave are supported ensemble methods!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='lbracket'>[</span><span class='symbol'>:by_min_max</span><span class='comma'>,</span> <span class='symbol'>:by_zscore</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_norm_method'>norm_method</span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>only :by_min_max and :by_zscore are supported normalization methods!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># normalization
+</span>  <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_norm_method'>norm_method</span><span class='comma'>,</span> <span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   
   <span class='ivar'>@scores</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   
   <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
     <span class='ivar'>@scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-    <span class='ivar'>@scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BEST</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_by_what'>by_what</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span>
-      <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BEST</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>      
+    <span class='comment'># score from individual algo
+</span>    <span class='id identifier rubyid_score_arr'>score_arr</span> <span class='op'>=</span> <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BEST</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='comment'># ensemble score
+</span>    <span class='ivar'>@scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BEST</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='comma'>,</span> <span class='id identifier rubyid_score_arr'>score_arr</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -777,7 +637,7 @@ allowed values are:<br>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>reload get_feature_ranks</p>
+    <p>reload get_feature_ranks() for Ensemble</p>
 
 
   </div>
@@ -791,21 +651,31 @@ allowed values are:<br>
       <pre class="lines">
 
 
-50
-51
-52
-53
-54
-55</pre>
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
   <span class='kw'>return</span> <span class='ivar'>@ranks</span> <span class='kw'>if</span> <span class='ivar'>@ranks</span>
   
-  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+  <span class='kw'>if</span> <span class='ivar'>@scores</span> <span class='comment'># calc ranks based on scores
+</span>    <span class='id identifier rubyid_set_ranks_from_scores'>set_ranks_from_scores</span>
+    <span class='kw'>return</span> <span class='ivar'>@ranks</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>please call one consensus ranking method first!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -821,7 +691,7 @@ allowed values are:<br>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>reload get_feature_scores</p>
+    <p>reload get_feature_scores() for Ensemble</p>
 
 
   </div>
@@ -835,15 +705,15 @@ allowed values are:<br>
       <pre class="lines">
 
 
-39
-40
-41
-42
-43
-44</pre>
+54
+55
+56
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
   <span class='kw'>return</span> <span class='ivar'>@scores</span> <span class='kw'>if</span> <span class='ivar'>@scores</span>
@@ -872,13 +742,32 @@ allowed values are:<br>
 </div>
   </div>
 
-<p>reload set_data</p>
+<p>reload set_data() for Ensemble</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>source data structure</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -886,16 +775,16 @@ allowed values are:<br>
       <pre class="lines">
 
 
-27
-28
-29
-30
-31
-32
-33</pre>
+42
+43
+44
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='kw'>super</span>
@@ -914,7 +803,7 @@ allowed values are:<br>
 </div>
     
     <div id="footer">
-  Generated on Fri May  4 12:02:57 2012 by 
+  Generated on Tue May  8 10:29:46 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

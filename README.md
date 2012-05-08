@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 1.0.0  
-**Release Date**: 2012-05-04
+**Latest Version**: 1.0.1  
+**Release Date**: 2012-05-08
 
 Synopsis
 --------
@@ -85,8 +85,8 @@ Feature List
     TScore                            TS          weighting   continuous    two-class
     WilcoxonRankSum                   WRS         weighting   continuous    two-class
     
-  **note for feature selection interace:**   
-  there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  
+  **note for feature selection interface:**   
+  there are two types of filter methods, i.e., weighting algorithms and subset selection algorithms  
   
   - for weighting type: use either **select\_feature\_by\_rank!** or **select\_feature\_by\_score!**  
   - for subset type: use **select\_feature!**
@@ -96,7 +96,7 @@ Feature List
 
  - by a single algorithm
  - by multiple algorithms in a tandem manner
- - by multiple algorithms in a consensus manner
+ - by multiple algorithms in an ensemble manner
  
 **4. availabe normalization and discretization algorithms for continuous feature**
     
@@ -183,9 +183,9 @@ Usage
 
     require 'fselector'
 	
-	# use both Information and ChiSquaredTest
+	# use both InformationGain and Relief_d
     r1 = FSelector::InformationGain.new
-    r2 = FSelector::ChiSquaredTest.new
+    r2 = FSelector::Relief_d.new
     
     # ensemble ranker
     re = FSelector::Ensemble.new(r1, r2)
@@ -193,12 +193,16 @@ Usage
     # read random data
     re.data_from_random(100, 2, 15, 3, true)
     
+    # replace missing value because Relief_d 
+    # does not allow missing value
+    re.replace_by_most_seen_value!
+    
     # number of features before feature selection
     puts '# features (before): ' + re.get_features.size.to_s
     
-    # based on the min feature rank among
-    # ensemble feature selection algorithms
-    re.ensemble_by_rank(re.method(:by_min))
+    # based on the max feature score (z-score standardized) among
+    # an ensemble of feature selection algorithms
+    re.ensemble_by_score(:by_max, :by_zscore)
     
     # select the top-ranked 3 features
     re.select_feature_by_rank!('<=3')

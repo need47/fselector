@@ -3,7 +3,7 @@
 #
 module FSelector
   #
-  # base class
+  # base class for a single feature selection algorithm
   #
   class Base
     # include FileIO
@@ -271,19 +271,8 @@ module FSelector
     def get_feature_ranks
       return @ranks if @ranks # already done
       
-      scores = get_feature_scores
-      
-      # get the ranked features
-      @ranks = {} # feature => rank
-      
-      # the larger, the better
-      sorted_features = scores.keys.sort do |x,y|
-        scores[y][:BEST] <=> scores[x][:BEST]
-      end
-      
-      sorted_features.each_with_index do |sf, si|
-        @ranks[sf] = si+1
-      end
+      # make feature ranks from feature scores
+      set_ranks_from_scores
       
       @ranks
     end
@@ -292,11 +281,12 @@ module FSelector
     #
     # reconstruct data with selected features
     #
-    # @note data structure will be altered. Dderived class must 
-    #   implement its own get\_subset(). This is only available for 
-    #   the feature subset selection type of algorithms
+    # @note data structure will be altered. Derived class must 
+    #   implement its own get\_feature_subset(). This is only available for 
+    #   the subset selection type of algorithms, see {file:README.md}
     #
     def select_feature!
+      # derived class must implement its own one
       subset = get_feature_subset
       return if subset.empty?
       
@@ -320,7 +310,7 @@ module FSelector
     # @param [Hash] my_scores
     #   user customized feature scores
     # @note data structure will be altered. This is only available for 
-    #   the feature weighting type of algorithms
+    #   the weighting type of algorithms, see {file:README.md}
     #
     def select_feature_by_score!(criterion, my_scores=nil)
       # user scores or internal scores
@@ -346,7 +336,7 @@ module FSelector
     # @param [Hash] my_ranks
     #   user customized feature ranks
     # @note data structure will be altered. This is only available for 
-    #   the feature weighting type of algorithms
+    #   the weighting type of algorithms, see {file:README.md}
     #
     def select_feature_by_rank!(criterion, my_ranks=nil)
       # user ranks or internal ranks
@@ -382,7 +372,34 @@ module FSelector
     end
     
     
-    # get subset of feature
+    #
+    # set feature ranks from feature scores
+    #
+    # @param [Hash] scores feature scores
+    # @return [Hash] feature scores
+    # @note  the larger the score, the smaller (better) its rank
+    #
+    def set_ranks_from_scores
+      # get feature scores
+      scores = get_feature_scores
+      
+      # get the ranked features
+      @ranks = {} # feature => rank
+      
+      # the larger the score, the smaller (better) its rank
+      sorted_features = scores.keys.sort do |x,y|
+        scores[y][:BEST] <=> scores[x][:BEST] # use :BEST feature score
+      end
+      
+      sorted_features.each_with_index do |sf, si|
+        @ranks[sf] = si+1
+      end
+      
+      @ranks
+    end
+    
+    
+    # get subset of feature, for the type of subset selection algorithms
     def get_feature_subset
       abort "[#{__FILE__}@#{__LINE__}]: "+
               "derived class must implement its own get_feature_subset()"

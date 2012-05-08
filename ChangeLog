@@ -1,3 +1,8 @@
+2012-05-08	version 1.0.1
+
+  * modify Ensemble module so that ensemble\_by\_score() and ensemble\_by\_rank() now take Symbol, instead of Method, as argument. This allows easier and clearer function call
+  * enable select_feature! interface in Ensemble module for the type of subset selection algorithms
+  
 2012-05-04	version 1.0.0
 
   * add new algorithm INTERACT for discrete feature

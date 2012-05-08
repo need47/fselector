@@ -6,7 +6,7 @@ require 'rinruby'
 #
 module FSelector
   # module version
-  VERSION = '1.0.0'
+  VERSION = '1.0.1'
 end
 
 # the root dir of FSelector
