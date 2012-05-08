@@ -21,4 +21,15 @@ r3 = FSelector::Relief_d.new # Relief_d is for discrete feature
 r3.data_from_random(100, 2, 10, 3, true)
 r3.replace_by_most_seen_value!
 
+puts "  test replace with median value"
+r4 = FSelector::Relief_c.new # Relief_c is for continuous feature
+r4.data_from_random(100, 2, 10, 0, true)
+r4.replace_by_median_value!
+
+puts "  test replace with knn value"
+r5 = FSelector::Relief_c.new # Relief_c is for continuous feature
+r5.data_from_random(100, 2, 10, 0, true)
+r5.replace_by_knn_value!(3)
+
+
 puts "<============< #{File.basename(__FILE__)}"
