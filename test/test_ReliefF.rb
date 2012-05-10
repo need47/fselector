@@ -10,6 +10,10 @@ require 'fselector'
 
 puts "\n>============> #{File.basename(__FILE__)}"
 
+# example 1
+#
+
+
 puts "  test for continuous feature"
 
 r1 = FSelector::ReliefF_c.new # ReliefF_c is for continuous feature
@@ -30,6 +34,10 @@ r1.select_feature_by_rank!('<=3')
 
 # number of features after feature selection
 puts '  # features (after): ' + r1.get_features.size.to_s
+
+
+# example 2
+#
 
 
 puts "\n  test for discrete feature"

@@ -6,6 +6,10 @@ require 'fselector'
 
 puts "\n>============> #{File.basename(__FILE__)}"
 
+# example 1
+#
+
+
 # use InformationGain as a feature ranking algorithm
 r1 = FSelector::InformationGain.new
 

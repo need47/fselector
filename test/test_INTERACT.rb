@@ -5,6 +5,10 @@ require 'fselector'
 
 puts "\n>============> #{File.basename(__FILE__)}"
 
+# example 1
+#
+
+
 r = FSelector::INTERACT.new
 r.data_from_csv('test/SPECT_train.csv')
 

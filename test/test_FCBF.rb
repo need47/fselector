@@ -7,6 +7,10 @@ require 'fselector'
 
 puts "\n>============> #{File.basename(__FILE__)}"
 
+# example 1
+#
+
+
 r = FSelector::FCBF.new
 r.data_from_csv('test/SPECT_train.csv')
 

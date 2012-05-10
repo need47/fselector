@@ -5,6 +5,10 @@ require 'fselector'
 
 puts "\n>============> #{File.basename(__FILE__)}"
 
+# example 1
+#
+
+
 r = FSelector::LVI.new
 r.data_from_random(100, 3, 10, 5, false)
 

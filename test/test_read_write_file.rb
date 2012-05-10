@@ -8,6 +8,10 @@ puts "\n>============> #{File.basename(__FILE__)}"
 # use InformationGain as a feature ranking algorithm
 r = FSelector::InformationGain.new
 
+# example 1
+#
+
+
 # read Iris data from CSV file
 puts "  read from CSV file"
 r.data_from_csv('test/iris.csv')
@@ -17,6 +21,11 @@ r.data_from_csv('test/iris.csv')
 # write data to LibSVM format
 puts "  write to LibSVM file"
 r.data_to_libsvm('test/iris.libsvm')
+
+
+# example 2
+#
+
 
 # read Iris data from WEKA ARFF file
 puts "  read from WEKA ARFF file"

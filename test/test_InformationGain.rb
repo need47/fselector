@@ -43,8 +43,18 @@ data2 = {
 }
 
 # two data sets give exactly the same information gain
+
+# example 1
+#
+
+
 r1 = FSelector::IG.new(data1)
 puts "  IG1(f1) = #{r1.get_feature_scores[:f1][:BEST]}" #=> 0.26503777490949343
+
+
+# example 2
+#
+
 
 r2 = FSelector::IG.new(data2) # discrete data
 puts "  IG2(f1) = #{r2.get_feature_scores[:f1][:BEST]}" #=> 0.26503777490949343
