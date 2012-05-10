@@ -1,0 +1,770 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: FSelector::BaseEnsemble
+  
+    &mdash; FSelector Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (B)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../FSelector.html" title="FSelector (module)">FSelector</a></span></span>
+     &raquo; 
+    <span class="title">BaseEnsemble</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: FSelector::BaseEnsemble
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></li>
+          
+            <li class="next">FSelector::BaseEnsemble</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/fselector/ensemble.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>ensemble feature selectors share the same feature selection 
+interface as single feature selector</p>
+</div>
+  </div>
+
+<p>feature selection by an ensemble of feature selectors</p>
+
+<p>for the type of weighting algorithms,  you must call one of 
+the following two functions before calling select_feature_by_score! or 
+select_feature_by_rank! for feature selection:<br>
+- ensemble_by_score()  if ensemble scores are based on that of individual selector<br>
+- ensemble_by_rank()   if ensemble ranks are based on that of individual selector</p>
+
+<p>for the type of subset selection algorithm, use
+select_feature! for feature selection (based on feature frequency count)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="EnsembleMultiple.html" title="FSelector::EnsembleMultiple (class)">EnsembleMultiple</a></span>, <span class='object_link'><a href="EnsembleSingle.html" title="FSelector::EnsembleSingle (class)">EnsembleSingle</a></span></p>
+</div>
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#algo_type-instance_method" title="#algo_type (instance method)">- <strong>algo_type</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>override algo_type for BaseEnsemble.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ensemble_by_rank-instance_method" title="#ensemble_by_rank (instance method)">- <strong>ensemble_by_rank</strong>(ensem_method = :by_sum) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>ensemble ranks are made from that of individual feature selector.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ensemble_by_score-instance_method" title="#ensemble_by_score (instance method)">- <strong>ensemble_by_score</strong>(ensem_method = :by_max, norm_method = :by_zscore) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>ensemble scores are made from that of individual feature selector.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_feature_ranks-instance_method" title="#get_feature_ranks (instance method)">- <strong>get_feature_ranks</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>override get_feature_ranks() for BaseEnsemble.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_feature_scores-instance_method" title="#get_feature_scores (instance method)">- <strong>get_feature_scores</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>override get_feature_scores() for BaseEnsemble.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (BaseEnsemble) <strong>initialize</strong>(data = nil) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>initialize from an existing data structure.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Base.html#each_class-instance_method" title="FSelector::Base#each_class (method)">#each_class</a></span>, <span class='object_link'><a href="Base.html#each_feature-instance_method" title="FSelector::Base#each_feature (method)">#each_feature</a></span>, <span class='object_link'><a href="Base.html#each_sample-instance_method" title="FSelector::Base#each_sample (method)">#each_sample</a></span>, <span class='object_link'><a href="Base.html#get_class_labels-instance_method" title="FSelector::Base#get_class_labels (method)">#get_class_labels</a></span>, <span class='object_link'><a href="Base.html#get_classes-instance_method" title="FSelector::Base#get_classes (method)">#get_classes</a></span>, <span class='object_link'><a href="Base.html#get_data-instance_method" title="FSelector::Base#get_data (method)">#get_data</a></span>, <span class='object_link'><a href="Base.html#get_data_copy-instance_method" title="FSelector::Base#get_data_copy (method)">#get_data_copy</a></span>, <span class='object_link'><a href="Base.html#get_feature_values-instance_method" title="FSelector::Base#get_feature_values (method)">#get_feature_values</a></span>, <span class='object_link'><a href="Base.html#get_features-instance_method" title="FSelector::Base#get_features (method)">#get_features</a></span>, <span class='object_link'><a href="Base.html#get_opt-instance_method" title="FSelector::Base#get_opt (method)">#get_opt</a></span>, <span class='object_link'><a href="Base.html#get_sample_size-instance_method" title="FSelector::Base#get_sample_size (method)">#get_sample_size</a></span>, <span class='object_link'><a href="Base.html#select_feature%21-instance_method" title="FSelector::Base#select_feature! (method)">#select_feature!</a></span>, <span class='object_link'><a href="Base.html#select_feature_by_rank%21-instance_method" title="FSelector::Base#select_feature_by_rank! (method)">#select_feature_by_rank!</a></span>, <span class='object_link'><a href="Base.html#select_feature_by_score%21-instance_method" title="FSelector::Base#select_feature_by_score! (method)">#select_feature_by_score!</a></span>, <span class='object_link'><a href="Base.html#set_classes-instance_method" title="FSelector::Base#set_classes (method)">#set_classes</a></span>, <span class='object_link'><a href="Base.html#set_data-instance_method" title="FSelector::Base#set_data (method)">#set_data</a></span>, <span class='object_link'><a href="Base.html#set_features-instance_method" title="FSelector::Base#set_features (method)">#set_features</a></span>, <span class='object_link'><a href="Base.html#set_opt-instance_method" title="FSelector::Base#set_opt (method)">#set_opt</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../ReplaceMissingValues.html" title="ReplaceMissingValues (module)">ReplaceMissingValues</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ReplaceMissingValues.html#replace_by_fixed_value%21-instance_method" title="ReplaceMissingValues#replace_by_fixed_value! (method)">#replace_by_fixed_value!</a></span>, <span class='object_link'><a href="../ReplaceMissingValues.html#replace_by_knn_value%21-instance_method" title="ReplaceMissingValues#replace_by_knn_value! (method)">#replace_by_knn_value!</a></span>, <span class='object_link'><a href="../ReplaceMissingValues.html#replace_by_mean_value%21-instance_method" title="ReplaceMissingValues#replace_by_mean_value! (method)">#replace_by_mean_value!</a></span>, <span class='object_link'><a href="../ReplaceMissingValues.html#replace_by_median_value%21-instance_method" title="ReplaceMissingValues#replace_by_median_value! (method)">#replace_by_median_value!</a></span>, <span class='object_link'><a href="../ReplaceMissingValues.html#replace_by_most_seen_value%21-instance_method" title="ReplaceMissingValues#replace_by_most_seen_value! (method)">#replace_by_most_seen_value!</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../FileIO.html" title="FileIO (module)">FileIO</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FileIO.html#data_from_csv-instance_method" title="FileIO#data_from_csv (method)">#data_from_csv</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_libsvm-instance_method" title="FileIO#data_from_libsvm (method)">#data_from_libsvm</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_random-instance_method" title="FileIO#data_from_random (method)">#data_from_random</a></span>, <span class='object_link'><a href="../FileIO.html#data_from_weka-instance_method" title="FileIO#data_from_weka (method)">#data_from_weka</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_csv-instance_method" title="FileIO#data_to_csv (method)">#data_to_csv</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_libsvm-instance_method" title="FileIO#data_to_libsvm (method)">#data_to_libsvm</a></span>, <span class='object_link'><a href="../FileIO.html#data_to_weka-instance_method" title="FileIO#data_to_weka (method)">#data_to_weka</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="FSelector::BaseEnsemble (class)">BaseEnsemble</a></span></tt>) <strong>initialize</strong>(data = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>initialize from an existing data structure</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="algo_type-instance_method">
+  
+    - <strong>algo_type</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>override algo_type for BaseEnsemble</p>
+
+<p>get the type of ensemble feature selectors at instance-level</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_algo_type'>algo_type</span>
+  <span class='ivar'>@algo_type</span> <span class='comment'># instance-level variable
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ensemble_by_rank-instance_method">
+  
+    - <strong>ensemble_by_rank</strong>(ensem_method = :by_sum) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>ensemble ranks are made from that of individual feature selector</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ensem_method</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:by_sum</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>how the ensemble rank should 
+be derived from those of individual feature selector<br>
+allowed values are:<br>
+- :by_min # use min rank<br>
+- :by_max # use max rank<br>
+- :by_ave # use ave rank<br>
+- :by_sum # use sum rank</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_rank'>ensemble_by_rank</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='op'>=</span><span class='symbol'>:by_sum</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='lbracket'>[</span><span class='symbol'>:by_min</span><span class='comma'>,</span> <span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='symbol'>:by_ave</span><span class='comma'>,</span> <span class='symbol'>:by_sum</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_ensem_method'>ensem_method</span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  only :by_min, :by_max and :by_ave are supported ensemble methods!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># get ranks from individual feature selector in ensemble
+</span>  <span class='id identifier rubyid_ensem_ranks'>ensem_ranks</span> <span class='op'>=</span> <span class='id identifier rubyid_get_ensemble_ranks'>get_ensemble_ranks</span>
+  
+  <span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='comment'># feature rank from individual feature selector
+</span>    <span class='id identifier rubyid_rank_arr'>rank_arr</span> <span class='op'>=</span> <span class='id identifier rubyid_ensem_ranks'>ensem_ranks</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_er'>er</span><span class='op'>|</span> <span class='id identifier rubyid_er'>er</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='comment'># ensemble rank
+</span>    <span class='id identifier rubyid_ranks'>ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='comma'>,</span> <span class='id identifier rubyid_rank_arr'>rank_arr</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='comment'>#pp ranks
+</span>  <span class='id identifier rubyid_new_ranks'>new_ranks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_sorted_features'>sorted_features</span> <span class='op'>=</span> <span class='id identifier rubyid_ranks'>ranks</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>|</span>
+    <span class='id identifier rubyid_ranks'>ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_ranks'>ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_y'>y</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_sorted_features'>sorted_features</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sf'>sf</span><span class='comma'>,</span> <span class='id identifier rubyid_si'>si</span><span class='op'>|</span>
+    <span class='id identifier rubyid_new_ranks'>new_ranks</span><span class='lbracket'>[</span><span class='id identifier rubyid_sf'>sf</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_si'>si</span><span class='op'>+</span><span class='int'>1</span>
+  <span class='kw'>end</span>
+  
+  <span class='ivar'>@ranks</span> <span class='op'>=</span> <span class='id identifier rubyid_new_ranks'>new_ranks</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ensemble_by_score-instance_method">
+  
+    - <strong>ensemble_by_score</strong>(ensem_method = :by_max, norm_method = :by_zscore) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>scores from different feature selectors are often incompatible 
+with each other, so we need to normalize them first</p>
+</div>
+  </div>
+
+<p>ensemble scores are made from that of individual feature selector</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ensem_method</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:by_max</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>how the ensemble score should 
+be derived from those of individual feature selector<br>
+allowed values are:<br>
+- :by_min # use min score<br>
+- :by_max # use max score<br>
+- :by_ave # use ave score<br>
+- :by_sum # use sum score</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>norm_method</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:by_zscore</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>score normalization method<br>
+- :by_min_max # score scaled to [0, 1]<br>
+- :by_zscore # score converted to zscore</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_score'>ensemble_by_score</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='op'>=</span><span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='id identifier rubyid_norm_method'>norm_method</span><span class='op'>=</span><span class='symbol'>:by_zscore</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='lbracket'>[</span><span class='symbol'>:by_min</span><span class='comma'>,</span> <span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='symbol'>:by_ave</span><span class='comma'>,</span> <span class='symbol'>:by_sum</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_ensem_method'>ensem_method</span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  only :by_min, :by_max and :by_ave are supported ensemble methods!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='lbracket'>[</span><span class='symbol'>:none</span><span class='comma'>,</span> <span class='symbol'>:by_min_max</span><span class='comma'>,</span> <span class='symbol'>:by_zscore</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_norm_method'>norm_method</span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  only :none, :by_min_max and :by_zscore are supported normalization methods!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># get score from each feature selector in the ensemble
+</span>  <span class='id identifier rubyid_ensem_scores'>ensem_scores</span> <span class='op'>=</span> <span class='id identifier rubyid_get_ensemble_scores'>get_ensemble_scores</span>
+  
+  <span class='comment'># normalization (if needed)
+</span>  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_norm_method'>norm_method</span><span class='comma'>,</span> <span class='id identifier rubyid_ensem_scores'>ensem_scores</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_norm_method'>norm_method</span> <span class='op'>==</span> <span class='symbol'>:none</span>
+  
+  <span class='id identifier rubyid_scores'>scores</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='id identifier rubyid_scores'>scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='comment'># feature score from individual feature selector
+</span>    <span class='id identifier rubyid_score_arr'>score_arr</span> <span class='op'>=</span> <span class='id identifier rubyid_ensem_scores'>ensem_scores</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_es'>es</span><span class='op'>|</span> <span class='id identifier rubyid_es'>es</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BEST</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='comment'># ensemble score
+</span>    <span class='id identifier rubyid_scores'>scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BEST</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='comma'>,</span> <span class='id identifier rubyid_score_arr'>score_arr</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'>#pp scores
+</span>  <span class='ivar'>@scores</span> <span class='op'>=</span> <span class='id identifier rubyid_scores'>scores</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_feature_ranks-instance_method">
+  
+    - <strong>get_feature_ranks</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>override get_feature_ranks() for BaseEnsemble</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
+  <span class='kw'>return</span> <span class='ivar'>@ranks</span> <span class='kw'>if</span> <span class='ivar'>@ranks</span>
+  
+  <span class='kw'>if</span> <span class='ivar'>@scores</span> <span class='comment'># calc ranks based on scores
+</span>    <span class='id identifier rubyid_set_ranks_from_scores'>set_ranks_from_scores</span>
+    <span class='kw'>return</span> <span class='ivar'>@ranks</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  please call one ensemble method first!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_feature_scores-instance_method">
+  
+    - <strong>get_feature_scores</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>override get_feature_scores() for BaseEnsemble</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
+  <span class='kw'>return</span> <span class='ivar'>@scores</span> <span class='kw'>if</span> <span class='ivar'>@scores</span>
+  
+  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  please call one ensemble method first!</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu May 10 17:11:06 2012 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.5 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

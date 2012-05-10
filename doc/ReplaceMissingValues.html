@@ -132,7 +132,30 @@ applicable to both discrete and continuous feature.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#replace_by_mean_value%21-instance_method" title="#replace_by_mean_value! (instance method)">- <strong>replace_by_mean_value!</strong> </a>
+      <a href="#replace_by_knn_value%21-instance_method" title="#replace_by_knn_value! (instance method)">- <strong>replace_by_knn_value!</strong>(k = 1) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>replace missing feature value by weighted k-nearest neighbors&#39; value, 
+applicable only to continuous feature.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#replace_by_mean_value%21-instance_method" title="#replace_by_mean_value! (instance method)">- <strong>replace_by_mean_value!</strong>(by_what = :by_column) </a>
     
 
     
@@ -146,6 +169,29 @@ applicable to both discrete and continuous feature.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>replace missing feature value by mean feature value, 
+applicable only to continuous feature.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#replace_by_median_value%21-instance_method" title="#replace_by_median_value! (instance method)">- <strong>replace_by_median_value!</strong>(by_what = :by_column) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>replace missing feature value by median feature value, 
 applicable only to continuous feature.</p>
 </div></span>
   
@@ -249,9 +295,207 @@ applicable to both discrete and continuous feature</p>
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="replace_by_knn_value!-instance_method">
+  
+    - <strong>replace_by_knn_value!</strong>(k = 1) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>data structure will be altered, and the nearest neighbors 
+are determined by Euclidean distance</p>
+</div>
+  </div>
+
+<p>replace missing feature value by weighted k-nearest neighbors&#39; value, 
+applicable only to continuous feature</p>
+
+<pre class="code ruby"><code>val = sigma_k (val_k * w_k)
+
+where w_k = (sum_d - d_k) / ((K-1) * sum_d)
+      sum_d = sigma_k (d_k)
+      K: number of d_k
+      sigma_k (w_k) = 1, normalized to 1
+</code></pre>
+
+<p>ref: <a href="http://nar.oxfordjournals.org/content/34/5/1608">Microarray missing data imputation based on a set theoretic framework and biological knowledge</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>k</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>number of nearest neighbors</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 134</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_knn_value!'>replace_by_knn_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='op'>=</span><span class='int'>1</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ki'>ki</span><span class='comma'>,</span> <span class='id identifier rubyid_si'>si</span><span class='op'>|</span>
+    <span class='comment'># potential features having missing value
+</span>    <span class='id identifier rubyid_mv_fs'>mv_fs</span> <span class='op'>=</span> <span class='id identifier rubyid_get_features'>get_features</span> <span class='op'>-</span> <span class='id identifier rubyid_si'>si</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_mv_fs'>mv_fs</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='comment'># sample si has no missing value
+</span>    
+    <span class='comment'># record object value for each feature missing value
+</span>    <span class='id identifier rubyid_f2val'>f2val</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_mv_fs'>mv_fs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mv_f'>mv_f</span><span class='op'>|</span>
+      <span class='id identifier rubyid_knn_s'>knn_s</span><span class='comma'>,</span> <span class='id identifier rubyid_knn_d'>knn_d</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+      
+      <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_kj'>kj</span><span class='comma'>,</span> <span class='id identifier rubyid_sj'>sj</span><span class='op'>|</span>
+        <span class='comment'># sample sj also has missing value of mv_f
+</span>        <span class='kw'>next</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_sj'>sj</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_mv_f'>mv_f</span>
+        
+        <span class='id identifier rubyid_d'>d</span> <span class='op'>=</span> <span class='id identifier rubyid_euclidean_distance'>euclidean_distance</span><span class='lparen'>(</span><span class='id identifier rubyid_si'>si</span><span class='comma'>,</span> <span class='id identifier rubyid_sj'>sj</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_idx'>idx</span> <span class='op'>=</span> <span class='id identifier rubyid_knn_d'>knn_d</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_di'>di</span><span class='op'>|</span> <span class='id identifier rubyid_d'>d</span><span class='op'>&lt;</span><span class='id identifier rubyid_di'>di</span> <span class='rbrace'>}</span>
+        
+        <span class='kw'>if</span> <span class='id identifier rubyid_idx'>idx</span>
+          <span class='id identifier rubyid_knn_s'>knn_s</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_sj'>sj</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_knn_d'>knn_d</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span><span class='rparen'>)</span>
+          
+          <span class='kw'>if</span> <span class='id identifier rubyid_knn_s'>knn_s</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_k'>k</span>
+            <span class='id identifier rubyid_knn_s'>knn_s</span> <span class='op'>=</span> <span class='id identifier rubyid_knn_s'>knn_s</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span>
+            <span class='id identifier rubyid_knn_d'>knn_d</span> <span class='op'>=</span> <span class='id identifier rubyid_knn_d'>knn_d</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span>
+          <span class='kw'>end</span>
+        <span class='kw'>else</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_knn_s'>knn_s</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_k'>k</span>
+            <span class='id identifier rubyid_knn_s'>knn_s</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_sj'>sj</span>
+            <span class='id identifier rubyid_knn_d'>knn_d</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_d'>d</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      
+      <span class='comment'># distance-weighted value from knn
+</span>      <span class='id identifier rubyid_knn_d_sum'>knn_d_sum</span> <span class='op'>=</span> <span class='id identifier rubyid_knn_d'>knn_d</span><span class='period'>.</span><span class='id identifier rubyid_sum'>sum</span>
+      <span class='id identifier rubyid_sz'>sz</span> <span class='op'>=</span> <span class='id identifier rubyid_knn_d'>knn_d</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+      <span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='float'>0.0</span>
+      <span class='id identifier rubyid_knn_s'>knn_s</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_sz'>sz</span> <span class='op'>&gt;</span> <span class='int'>1</span>
+          <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_knn_d_sum'>knn_d_sum</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+            <span class='id identifier rubyid_val'>val</span> <span class='op'>+=</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_mv_f'>mv_f</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_knn_d_sum'>knn_d_sum</span><span class='op'>-</span><span class='id identifier rubyid_knn_d'>knn_d</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_sz'>sz</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span><span class='op'>*</span><span class='id identifier rubyid_knn_d_sum'>knn_d_sum</span><span class='rparen'>)</span>
+          <span class='kw'>else</span>
+            <span class='id identifier rubyid_val'>val</span> <span class='op'>+=</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_mv_f'>mv_f</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='float'>1.0</span> <span class='op'>/</span> <span class='id identifier rubyid_sz'>sz</span>
+          <span class='kw'>end</span>
+        <span class='kw'>else</span> <span class='comment'># only one nearest neighbor
+</span>          <span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_mv_f'>mv_f</span><span class='rbracket'>]</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      
+      <span class='id identifier rubyid_f2val'>f2val</span><span class='lbracket'>[</span><span class='id identifier rubyid_mv_f'>mv_f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
+     <span class='comment'>#pp [si, mv_f, knn_s, knn_d, val]
+</span>    <span class='kw'>end</span>
+    
+    <span class='comment'># set value
+</span>    <span class='id identifier rubyid_f2val'>f2val</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+      <span class='id identifier rubyid_si'>si</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># clear variables
+</span>  <span class='id identifier rubyid_clear_vars'>clear_vars</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="replace_by_mean_value!-instance_method">
   
-    - <strong>replace_by_mean_value!</strong> 
+    - <strong>replace_by_mean_value!</strong>(by_what = :by_column) 
   
 
   
@@ -271,7 +515,30 @@ applicable only to continuous feature</p>
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>by_what</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:by_column</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>column or row mode<br>
+- :by_column # use the mean value of the same feature among all instance<br>
+- :by_row    # use the mean value of different features in current instance</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -279,10 +546,6 @@ applicable only to continuous feature</p>
       <pre class="lines">
 
 
-31
-32
-33
-34
 35
 36
 37
@@ -294,20 +557,127 @@ applicable only to continuous feature</p>
 43
 44
 45
-46</pre>
+46
+47
+48
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 35</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_mean_value!'>replace_by_mean_value!</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_mean_value!'>replace_by_mean_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>=</span> <span class='symbol'>:by_column</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_mean'>mean</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_mean'>mean</span> <span class='kw'>if</span> <span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>==</span> <span class='symbol'>:by_row</span>
+    
     <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
       <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
       <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_get_sample_size'>get_sample_size</span> <span class='comment'># no missing values
 </span>      
-      <span class='id identifier rubyid_mean'>mean</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span>
+      <span class='id identifier rubyid_mean'>mean</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span> <span class='kw'>if</span> <span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>==</span> <span class='symbol'>:by_column</span>
       <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
         <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_mean'>mean</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># clear variables
+</span>  <span class='id identifier rubyid_clear_vars'>clear_vars</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="replace_by_median_value!-instance_method">
+  
+    - <strong>replace_by_median_value!</strong>(by_what = :by_column) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>data structure will be altered</p>
+</div>
+  </div>
+
+<p>replace missing feature value by median feature value, 
+applicable only to continuous feature</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>by_what</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:by_column</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>column or row mode<br>
+- :by_column # use the mean value of the same feature among all instance<br>
+- :by_row    # use the mean value of different features in current instance</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_median_value!'>replace_by_median_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>=</span> <span class='symbol'>:by_column</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_median'>median</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_median'>median</span> <span class='kw'>if</span> <span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>==</span> <span class='symbol'>:by_row</span>
+    
+    <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+      <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+      <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_get_sample_size'>get_sample_size</span> <span class='comment'># no missing values
+</span>      
+      <span class='id identifier rubyid_median'>median</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_median'>median</span> <span class='kw'>if</span> <span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>==</span> <span class='symbol'>:by_column</span>
+      <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
+        <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_median'>median</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -351,33 +721,33 @@ applicable only to discrete feature</p>
       <pre class="lines">
 
 
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78</pre>
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace_by_most_seen_value!'>replace_by_most_seen_value!</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
@@ -413,7 +783,7 @@ applicable only to discrete feature</p>
 </div>
     
     <div id="footer">
-  Generated on Tue May  8 10:29:47 2012 by 
+  Generated on Thu May 10 17:11:07 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

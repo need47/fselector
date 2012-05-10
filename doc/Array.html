@@ -144,6 +144,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#median-instance_method" title="#median (instance method)">- (Float) <strong>median</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>median.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#pearson_r-instance_method" title="#pearson_r (instance method)">- (Float) <strong>pearson_r</strong>(v) </a>
     
 
@@ -157,7 +179,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>pearson&#39;s correlation coefficient, 
+    <span class="summary_desc"><div class='inline'><p>Pearson&#39;s correlation coefficient, 
 two vectors must be of the same length.</p>
 </div></span>
   
@@ -365,6 +387,65 @@ two vectors must be of the same length.</p>
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="median-instance_method">
+  
+    - (<tt>Float</tt>) <strong>median</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>median</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>median</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_median'>median</span>
+  <span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+  <span class='id identifier rubyid_sorted'>sorted</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_len'>len</span> <span class='op'>%</span> <span class='int'>2</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_sorted'>sorted</span><span class='lbracket'>[</span><span class='id identifier rubyid_len'>len</span><span class='op'>/</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='id identifier rubyid_sorted'>sorted</span><span class='lbracket'>[</span><span class='id identifier rubyid_len'>len</span><span class='op'>/</span><span class='int'>2</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='op'>+</span><span class='id identifier rubyid_sorted'>sorted</span><span class='lbracket'>[</span><span class='id identifier rubyid_len'>len</span><span class='op'>/</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='op'>/</span><span class='int'>2</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="pearson_r-instance_method">
   
     - (<tt>Float</tt>) <strong>pearson_r</strong>(v) 
@@ -373,7 +454,7 @@ two vectors must be of the same length.</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>pearson&#39;s correlation coefficient, 
+    <p>Pearson&#39;s correlation coefficient, 
 two vectors must be of the same length</p>
 
 
@@ -411,7 +492,7 @@ two vectors must be of the same length</p>
       
       
         &mdash;
-        <div class='inline'><p>pearson&#39;s r</p>
+        <div class='inline'><p>Pearson&#39;s r</p>
 </div>
       
     </li>
@@ -424,27 +505,33 @@ two vectors must be of the same length</p>
       <pre class="lines">
 
 
-86
-87
-88
-89
-90
-91
-92
-93
-94
 95
 96
 97
 98
 99
 100
-101</pre>
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pearson_r'>pearson_r</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  two vectors must be of the same length!</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+  
   <span class='id identifier rubyid_sm'>sm</span><span class='comma'>,</span> <span class='id identifier rubyid_vm'>vm</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span>
   <span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>=</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span>
   
@@ -505,12 +592,12 @@ two vectors must be of the same length</p>
       <pre class="lines">
 
 
-32
-33
-34</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sd'>sd</span>
   <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_sqrt'>sqrt</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_var'>var</span><span class='rparen'>)</span>
@@ -547,7 +634,7 @@ two vectors must be of the same length</p>
       
       
         &mdash;
-        <div class='inline'><p>sum</p>
+        <div class='inline'><p>sum, no need to use .to_f</p>
 </div>
       
     </li>
@@ -653,15 +740,6 @@ two vectors must be of the same length</p>
       <pre class="lines">
 
 
-42
-43
-44
-45
-46
-47
-48
-49
-50
 51
 52
 53
@@ -669,15 +747,24 @@ two vectors must be of the same length</p>
 55
 56
 57
-58</pre>
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_scale'>to_scale</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='op'>=</span><span class='float'>1.0</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
-          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>min must be smaller than max</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  min must be smaller than max!</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   
   <span class='id identifier rubyid_old_min'>old_min</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span>
@@ -736,12 +823,12 @@ two vectors must be of the same length</p>
       <pre class="lines">
 
 
-76
-77
-78</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_sym'>to_sym</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='rbrace'>}</span>
@@ -793,15 +880,15 @@ two vectors must be of the same length</p>
       <pre class="lines">
 
 
-66
-67
-68
-69
-70
-71</pre>
+75
+76
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_zscore'>to_zscore</span>
   <span class='id identifier rubyid_ave'>ave</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span>
@@ -854,15 +941,15 @@ two vectors must be of the same length</p>
       <pre class="lines">
 
 
-22
-23
-24
-25
-26
-27</pre>
+31
+32
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/util.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_var'>var</span>
   <span class='id identifier rubyid_u'>u</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span>
@@ -880,7 +967,7 @@ two vectors must be of the same length</p>
 </div>
     
     <div id="footer">
-  Generated on Tue May  8 10:29:46 2012 by 
+  Generated on Thu May 10 17:11:06 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
