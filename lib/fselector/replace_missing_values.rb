@@ -26,15 +26,21 @@ module ReplaceMissingValues
   # replace missing feature value by mean feature value, 
   # applicable only to continuous feature
   #
+  # @param [Symbol] by_what  
+  #   - :by_column # use the mean value of the same feature among all instance  
+  #   - :by_row    # use the mean value of different features in current instance
+  #
   # @note data structure will be altered
   #
-  def replace_by_mean_value!
+  def replace_by_mean_value!(by_what = :by_column)
     each_sample do |k, s|
+      mean = s.values.mean if by_what == :by_row
+      
       each_feature do |f|
         fv = get_feature_values(f)
         next if fv.size == get_sample_size # no missing values
         
-        mean = fv.ave
+        mean = fv.ave if by_what == :by_column
         if not s.has_key? f
           s[f] = mean
         end
@@ -50,15 +56,21 @@ module ReplaceMissingValues
   # replace missing feature value by median feature value, 
   # applicable only to continuous feature
   #
+  # @param [Symbol] by_what  
+  #   - :by_column # use the mean value of the same feature among all instance  
+  #   - :by_row    # use the mean value of different features in current instance
+  #
   # @note data structure will be altered
   #
-  def replace_by_median_value!
+  def replace_by_median_value!(by_what = :by_column)
     each_sample do |k, s|
+      median = s.values.median if by_what == :by_row
+      
       each_feature do |f|
         fv = get_feature_values(f)
         next if fv.size == get_sample_size # no missing values
         
-        median = fv.median
+        median = fv.median if by_what == :by_column
         if not s.has_key? f
           s[f] = median
         end
@@ -104,18 +116,20 @@ module ReplaceMissingValues
   
   #
   # replace missing feature value by weighted k-nearest neighbors' value, 
-  # applicable to continuous feature for any k, but to discrete feature for k==1 only
+  # applicable only to continuous feature
   #
-  #     distance-weighted contribution (w_i), normalized to 1
+  #     val = sigma_k (val_k * w_k)
   #     
-  #     w_i = (sum_d - d_i) / ((K-1) * sum_d)
-  #     sum_d = sigma_i (d_i)
-  #     K: number of d_i
-  #     sigma_i(w_i) = 1
+  #     where w_k = (sum_d - d_k) / ((K-1) * sum_d)
+  #           sum_d = sigma_k (d_k)
+  #           K: number of d_k
+  #           sigma_k (w_k) = 1, normalized to 1
   #
   # @param [Integer] k number of nearest neighbors
-  # @note data structure will be altered, and nearest neighbor 
-  #   is determined by Euclidean distance
+  # @note data structure will be altered, and the nearest neighbors 
+  #   are determined by Euclidean distance
+  #
+  # ref: [Microarray missing data imputation based on a set theoretic framework and biological knowledge](http://nar.oxfordjournals.org/content/34/5/1608)
   #
   def replace_by_knn_value!(k=1)
     each_sample do |ki, si|
@@ -168,7 +182,7 @@ module ReplaceMissingValues
         end
         
         f2val[mv_f] = val
-        pp [si, mv_f, knn_s, knn_d, val]
+       #pp [si, mv_f, knn_s, knn_d, val]
       end
       
       # set value

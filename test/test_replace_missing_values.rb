@@ -23,7 +23,7 @@ r1.replace_by_fixed_value!(0.5)
 puts "  test replace with mean value"
 r2 = FSelector::Relief_c.new # Relief_c is for continuous feature
 r2.data_from_random(100, 2, 10, 0, true)
-r2.replace_by_mean_value!
+r2.replace_by_mean_value!(:by_column)
 
 
 # example 3
@@ -43,7 +43,7 @@ r3.replace_by_most_seen_value!
 puts "  test replace with median value"
 r4 = FSelector::Relief_c.new # Relief_c is for continuous feature
 r4.data_from_random(100, 2, 10, 0, true)
-r4.replace_by_median_value!
+r4.replace_by_median_value!(:by_row)
 
 
 # example 5
