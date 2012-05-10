@@ -244,7 +244,6 @@ module FSelector
     #
     # ref: [Robust Feature Selection Using Ensemble Feature Selection Techniques](http://dl.acm.org/citation.cfm?id=1432021)
     #
-    @algo_type = :filter
     def initialize(algo, nselector=40, pdata=0.90, sampling_method=:bootstrap_sampling, data=nil)
       super(data)
       
