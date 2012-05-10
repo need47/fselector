@@ -26,9 +26,9 @@ module ReplaceMissingValues
   # replace missing feature value by mean feature value, 
   # applicable only to continuous feature
   #
-  # @param [Symbol] by_what  
-  #   - :by_column # use the mean value of the same feature among all instance  
-  #   - :by_row    # use the mean value of different features in current instance
+  # @param [Symbol] by_what column or row mode  
+  #   - :by\_column # use the mean value of the same feature among all instance  
+  #   - :by\_row    # use the mean value of different features in current instance
   #
   # @note data structure will be altered
   #
@@ -56,9 +56,9 @@ module ReplaceMissingValues
   # replace missing feature value by median feature value, 
   # applicable only to continuous feature
   #
-  # @param [Symbol] by_what  
-  #   - :by_column # use the mean value of the same feature among all instance  
-  #   - :by_row    # use the mean value of different features in current instance
+  # @param [Symbol] by_what column or row mode  
+  #   - :by\_column # use the mean value of the same feature among all instance  
+  #   - :by\_row    # use the mean value of different features in current instance
   #
   # @note data structure will be altered
   #
