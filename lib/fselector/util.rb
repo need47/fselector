@@ -3,7 +3,7 @@
 #
 class Array
   # summation
-  # @return [Float] sum
+  # @return [Float] sum, no need to use .to_f
   def sum
     self.inject(0.0) { |s, i| s+i }
   end
