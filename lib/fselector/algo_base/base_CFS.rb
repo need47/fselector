@@ -13,6 +13,11 @@ module FSelector
 # ref: [Feature Selection for Discrete and Numeric Class Machine Learning](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.30.5673)
 #
   class BaseCFS < Base
+    # initialize from an existing data structure
+    def initialize(data=nil)
+      super(data)
+    end
+    
     
     private
     
