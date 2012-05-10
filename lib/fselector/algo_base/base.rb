@@ -399,10 +399,10 @@ module FSelector
     end
     
     
-    # get subset of feature, for the type of subset selection algorithms
+    # get feature subset, for the type of subset selection algorithms
     def get_feature_subset
       abort "[#{__FILE__}@#{__LINE__}]: "+
-              "derived class must implement its own get_feature_subset()"
+              "derived subclass must implement its own get_feature_subset()"
     end
   
   
