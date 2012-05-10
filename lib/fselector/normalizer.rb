@@ -13,8 +13,8 @@ module Normalizer
         if s[f] > 0.0
           s[f] = Math.log(s[f], base) 
         else
-          abort "[#{__FILE__}@#{__LINE__}]: "+
-             "feature value must be positive"
+          abort "[#{__FILE__}@#{__LINE__}]: \n"+
+                "feature values must be positive!"
         end
       end
     end

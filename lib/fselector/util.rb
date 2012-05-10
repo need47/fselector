@@ -50,8 +50,8 @@ class Array
   # @return [Array<Float>] scaled numbers
   def to_scale(min=0.0, max=1.0)
     if (min >= max)
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-            "min must be smaller than max"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  min must be smaller than max!"
     end
     
     old_min = self.min
@@ -93,8 +93,8 @@ class Array
   # @param [Array] v the second vector
   # @return [Float] Pearson's r
   def pearson_r(v)
-    abort "[#{__FILE__}@#{__LINE__}]: "+
-              "two vectors must be of the same length!" if self.size != v.size
+    abort "[#{__FILE__}@#{__LINE__}]: \n"+
+          "  two vectors must be of the same length!" if self.size != v.size
     
     sm, vm = self.ave, v.ave
     a, b, c = 0.0, 0.0, 0.0

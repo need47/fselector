@@ -85,8 +85,8 @@ module FileIO
     if fname == :stdin
       ifs = $stdin
     elsif not File.exists? fname
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-            "File '#{fname}' does not exist!"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  File '#{fname}' does not exist!"
     else
       ifs = File.open(fname)
     end
@@ -176,8 +176,8 @@ module FileIO
     if fname == :stdin
       ifs = $stdin
     elsif not File.exists? fname
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-            "File '#{fname}' does not exist!"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  File '#{fname}' does not exist!"
     else
       ifs = File.open(fname)
     end
@@ -197,8 +197,8 @@ module FileIO
             set_opt(feats[i], t.upcase) # record data type
           end
         else
-          abort "[#{__FILE__}@#{__LINE__}]: "+
-                "the first two rows must have same number of fields"
+          abort "[#{__FILE__}@#{__LINE__}]: \n"+
+                "  the first two rows must have same number of fields"
         end
       else # data rows
         label, *fvs = ln.chomp.split(/,/)
@@ -216,9 +216,9 @@ module FileIO
           elsif ['STRING', 'NOMINAL', 'CATEGORICAL'].include? data_type
             #
           else
-            abort "[#{__FILE__}@#{__LINE__}]: "+
-                  "please specify correct data type "+
-                  "for each feature in the 2nd row"
+            abort "[#{__FILE__}@#{__LINE__}]: \n"+
+                  "  please specify correct data type "+
+                  "  for each feature in the 2nd row"
           end
           
           fs[feats[i]] = v
@@ -287,8 +287,8 @@ module FileIO
     if fname == :stdin
       ifs = $stdin
     elsif not File.exists? fname
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-            "File '#{fname}' does not exist!"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  File '#{fname}' does not exist!"
     else
       ifs = File.open(fname)
     end

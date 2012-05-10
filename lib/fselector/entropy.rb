@@ -36,8 +36,8 @@ module Entropy
   # @return [Float] H(X|Y)
   # @note vecX and vecY must be of same length
    def get_conditional_entropy(vecX, vecY)
-    abort "[#{__FILE__}@#{__LINE__}]: "+
-          "vector must be of same length" if not vecX.size == vecY.size
+    abort "[#{__FILE__}@#{__LINE__}]: \n"+
+          "  two vectors must be of same length" if not vecX.size == vecY.size
 
     hxy = 0.0
     n = vecX.size.to_f

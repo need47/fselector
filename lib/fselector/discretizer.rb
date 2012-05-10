@@ -251,7 +251,7 @@ module Discretizer
       end
     end
     #pp f2bs
-    #pp f2sig_level;abort
+    #pp f2sig_level
     
     # if there is only one interval, remove this feature
     each_sample do |k, s|
@@ -278,8 +278,8 @@ module Discretizer
       fv = get_feature_values(f)
       
       n = cv.size
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-              "missing feature value is not allowed!" if n != fv.size
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  missing feature value is not allowed!" if n != fv.size
       
       # sort cv and fv according to ascending order of fv
       sis = (0...n).to_a.sort { |i,j| fv[i] <=> fv[j] }
@@ -327,8 +327,8 @@ module Discretizer
       fv = get_feature_values(f)
       
       n = cv.size
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-              "missing feature value is not allowed!" if n != fv.size
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  missing feature value is not allowed!" if n != fv.size
       
       # sort cv and fv according to ascending order of fv
       sis = (0...n).to_a.sort { |i,j| fv[i] <=> fv[j] }
