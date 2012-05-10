@@ -201,7 +201,7 @@ select_feature! for feature selection (based on feature frequency count)</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>A new instance of EnsembleSingle.</p>
+    <span class="summary_desc"><div class='inline'><p>initialize from a single feature selection algorithm.</p>
 </div></span>
   
 </li>
@@ -262,13 +262,86 @@ select_feature! for feature selection (based on feature frequency count)</p>
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>A new instance of EnsembleSingle</p>
+    <p>initialize from a single feature selection algorithm</p>
+
+<p>ref: <a href="http://dl.acm.org/citation.cfm?id=1432021">Robust Feature Selection Using Ensemble Feature Selection Techniques</a></p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>algo</span>
+      
+      
+        <span class='type'>(<tt>Algorithm</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>feature selection algorithm</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nselector</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>40</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>number of feature selectors</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pdata</span>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0.90</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>percentage of data used by each feature selector</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sampling_method</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:bootstrap_sampling</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>only :bootstrap_sampling and 
+:random_sampling are supported</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -276,6 +349,7 @@ select_feature! for feature selection (based on feature frequency count)</p>
       <pre class="lines">
 
 
+247
 248
 249
 250
@@ -285,11 +359,10 @@ select_feature! for feature selection (based on feature frequency count)</p>
 254
 255
 256
-257
-258</pre>
+257</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 248</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 247</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_algo'>algo</span><span class='comma'>,</span> <span class='id identifier rubyid_nselector'>nselector</span><span class='op'>=</span><span class='int'>40</span><span class='comma'>,</span> <span class='id identifier rubyid_pdata'>pdata</span><span class='op'>=</span><span class='float'>0.90</span><span class='comma'>,</span> <span class='id identifier rubyid_sampling_method'>sampling_method</span><span class='op'>=</span><span class='symbol'>:bootstrap_sampling</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -354,6 +427,7 @@ select_feature! for feature selection (based on feature frequency count)</p>
       <pre class="lines">
 
 
+288
 289
 290
 291
@@ -368,11 +442,10 @@ select_feature! for feature selection (based on feature frequency count)</p>
 300
 301
 302
-303
-304</pre>
+303</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 289</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 288</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_ensemble_ranks'>get_ensemble_ranks</span>
   <span class='id identifier rubyid_ensem_ranks'>ensem_ranks</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -435,6 +508,7 @@ select_feature! for feature selection (based on feature frequency count)</p>
       <pre class="lines">
 
 
+265
 266
 267
 268
@@ -449,11 +523,10 @@ select_feature! for feature selection (based on feature frequency count)</p>
 277
 278
 279
-280
-281</pre>
+280</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 266</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 265</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_ensemble_scores'>get_ensemble_scores</span>
   <span class='id identifier rubyid_ensem_scores'>ensem_scores</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -481,7 +554,7 @@ select_feature! for feature selection (based on feature frequency count)</p>
 </div>
     
     <div id="footer">
-  Generated on Thu May 10 17:11:06 2012 by 
+  Generated on Thu May 10 17:14:40 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
