@@ -13,15 +13,18 @@ module FSelector
     # include normalizer and discretizer
     include Normalizer
     include Discretizer
-        
+    
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
+       
     private
     
     # difference beween the feature (f) of two samples
     # specialized version for continuous feature
     def diff_feature(f, s1, s2)
       if not s1.has_key?(f) or not s2.has_key?(f)
-        abort "[#{__FILE__}@#{__LINE__}]: "+
-              "Relief does not allow missing values"
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  Relief does not allow missing values"
       end
       
       nu = get_normalization_unit(f)

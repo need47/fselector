@@ -12,6 +12,8 @@ module FSelector
 #                (TP+FN) * (TN+FP)          (A+C) * (B+D)
 #
   class GMean < BaseDiscrete
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
     
     private
     

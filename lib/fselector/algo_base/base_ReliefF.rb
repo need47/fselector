@@ -10,7 +10,7 @@ module FSelector
 #
 # ref: [Estimating Attributes: Analysis and Extensions of RELIEF](http://www.springerlink.com/content/fp23jh2h0426ww45/)
 #
-  class BaseReliefF < Base    
+  class BaseReliefF < Base      
     #
     # intialize from an existing data structure
     #
@@ -94,8 +94,8 @@ module FSelector
     
     # difference beween the feature (f) of two samples
     def diff_feature(f, s1, s2, k1, k2)
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-              "derived ReliefF algo must implement its own diff_feature()"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  derived ReliefF algo must implement its own diff_feature()"
     end # diff_feature
     
     

@@ -14,6 +14,9 @@ module FSelector
     include Normalizer
     include Discretizer
     
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
+    
     private    
     
     # difference beween the feature (f) of two samples

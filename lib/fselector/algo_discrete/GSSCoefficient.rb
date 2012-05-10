@@ -16,6 +16,8 @@ module FSelector
 # ref: [A Comparative Study on Feature Selection Methods for Drug Discovery](http://pubs.acs.org/doi/abs/10.1021/ci049875d)
 #
   class GSSCoefficient < BaseDiscrete
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
     
     private
     

@@ -13,7 +13,7 @@ module FSelector
   class BaseRelief < Base
     # include ReplaceMissingValue module
     include ReplaceMissingValues
-        
+    
     #
     # intialize from an existing data structure
     #
@@ -31,8 +31,8 @@ module FSelector
     # calculate contribution of each feature (f) across all classes
     def calc_contribution(f)
       if not get_classes.size == 2
-        abort "[#{__FILE__}@#{__LINE__}]: "+
-        "Relief applicable only to two-class problems without missing data"
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  Relief applicable only to two-class problems without missing data"
       end
       
       ## use all samples if @m not provided
@@ -105,8 +105,8 @@ module FSelector
     
     # difference beween the feature (f) of two samples
     def diff_feature(f, s1, s2)
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-              "derived Relief algo must implement its own diff_feature()"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  derived Relief algo must implement its own diff_feature()"
     end # diff_feature
     
     

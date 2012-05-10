@@ -12,6 +12,8 @@ module FSelector
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Sensitivity_and_specificity)
 #
   class Specificity < BaseDiscrete
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
     
     private
     

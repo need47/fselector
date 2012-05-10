@@ -13,7 +13,10 @@ module FSelector
 #
 # ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
-  class Power < BaseDiscrete    
+  class Power < BaseDiscrete
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
+    
     #
     # initialize from an existing data structure
     # 

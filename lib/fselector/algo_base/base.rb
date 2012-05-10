@@ -11,9 +11,25 @@ module FSelector
     # include ReplaceMissingValues
     include ReplaceMissingValues
     
+    # type of feature selection algorithm, 
+    # derived class must set its own type with one of the following two:
+    # :feature_weighting # when algo generates weight for each feature 
+    # :feature_subset_selection # when algo selects a subset of features
+    @algo_type = nil
+    class << self
+      # class-level instance variable, type of feature selection algorithm
+      attr_accessor :algo_type
+    end
+    
+    # get the type of feature selection algorithm at class-level
+    def algo_type
+      self.class.algo_type
+    end
+    
+    
     # initialize from an existing data structure
     def initialize(data=nil)
-      @data = data
+      @data = data # store data
       @opts = {} # store non-data information
     end
     
@@ -28,8 +44,8 @@ module FSelector
     #
     def each_class
       if not block_given?
-        abort "[#{__FILE__}@#{__LINE__}]: "+
-              "block must be given!"
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  block must be given!"
       else
         get_classes.each { |k| yield k }
       end
@@ -46,8 +62,8 @@ module FSelector
     #
     def each_feature
       if not block_given?
-        abort "[#{__FILE__}@#{__LINE__}]: "+
-              "block must be given!"
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  block must be given!"
       else
         get_features.each { |f| yield f }
       end
@@ -66,7 +82,7 @@ module FSelector
     #
     def each_sample
       if not block_given?
-        abort "[#{__FILE__}@#{__LINE__}]: "+
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
               " block must be given!"
       else      
         get_data.each do |k, samples|
@@ -114,8 +130,8 @@ module FSelector
       if classes and classes.class == Array
         @classes = classes
       else
-        abort "[#{__FILE__}@#{__LINE__}]: "+
-              "classes must be a Array object!"
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  classes must be a Array object!"
       end
     end
 
@@ -174,8 +190,8 @@ module FSelector
       if features and features.class == Array
         @features = features
       else
-        abort "[#{__FILE__}@#{__LINE__}]: "+
-              "features must be a Array object!"
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  features must be a Array object!"
       end
     end
     
@@ -211,8 +227,8 @@ module FSelector
         # clear variables
         clear_vars
       else
-        abort "[#{__FILE__}@#{__LINE__}]: "+
-              "data must be a Hash object!"
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  data must be a Hash object!"
       end
     end
     
@@ -286,6 +302,13 @@ module FSelector
     #   the subset selection type of algorithms, see {file:README.md}
     #
     def select_feature!
+      if not self.algo_type == :feature_subset_selection
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  select_feature! is the interface for the type of feature subset selection algorithms only. \n" +
+              "  please consider select_featue_by_score! or select_feature_by_rank!, \n" +
+              "  which is the interface for the type of feature weighting algorithms"
+      end
+      
       # derived class must implement its own one
       subset = get_feature_subset
       return if subset.empty?
@@ -313,6 +336,13 @@ module FSelector
     #   the weighting type of algorithms, see {file:README.md}
     #
     def select_feature_by_score!(criterion, my_scores=nil)
+      if not self.algo_type == :feature_weighting
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  select_feature_by_score! is the interface for the type of feature weighting algorithms only. \n" +
+              "  please consider select_featue!, \n" +
+              "  which is the interface for the type of feature subset selection algorithms"
+      end
+      
       # user scores or internal scores
       scores = my_scores || get_feature_scores
       
@@ -339,6 +369,13 @@ module FSelector
     #   the weighting type of algorithms, see {file:README.md}
     #
     def select_feature_by_rank!(criterion, my_ranks=nil)
+      if not self.algo_type == :feature_weighting
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  select_feature_by_rank! is the interface for the type of feature weighting algorithms only. \n" +
+              "  please consider select_featue!, \n" +
+              "  which is the interface for the type of feature subset selection algorithms"
+      end
+      
       # user ranks or internal ranks
       ranks = my_ranks || get_feature_ranks
       
@@ -401,8 +438,8 @@ module FSelector
     
     # get feature subset, for the type of subset selection algorithms
     def get_feature_subset
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-              "derived subclass must implement its own get_feature_subset()"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  derived subclass must implement its own get_feature_subset()"
     end
   
   

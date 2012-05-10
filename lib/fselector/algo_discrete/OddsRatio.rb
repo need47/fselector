@@ -16,6 +16,8 @@ module FSelector
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Odds_ratio) and [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974) and [Optimally Combining Positive and Negative Features for Text Categorization](http://www.site.uottawa.ca/~nat/Workshop2003/zheng.pdf) 
 #
   class OddsRatio < BaseDiscrete
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
     
     private
     

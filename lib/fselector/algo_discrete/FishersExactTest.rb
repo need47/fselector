@@ -16,7 +16,9 @@ module FSelector
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Fisher\'s_exact_test)
 #
   class FishersExactTest < BaseDiscrete
-        
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
+       
     private
         
     # calculate contribution of each feature (f) for each class (k)

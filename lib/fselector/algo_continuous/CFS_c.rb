@@ -13,8 +13,10 @@ module FSelector
     include Normalizer
     include Discretizer
     
-    private
+    # this algo selects a subset of feature
+    @algo_type = :feature_subset_selection
     
+    private
     
     # replace missing values with mean feature value
     def handle_missing_values

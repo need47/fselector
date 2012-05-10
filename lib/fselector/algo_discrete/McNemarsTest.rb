@@ -14,6 +14,9 @@ module FSelector
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/McNemar%27s_test)
 #
   class McNemarsTest < BaseDiscrete
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
+    
     #
     # intialize from an existing data structure
     #

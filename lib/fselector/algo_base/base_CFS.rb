@@ -12,12 +12,11 @@ module FSelector
 #
 # ref: [Feature Selection for Discrete and Numeric Class Machine Learning](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.30.5673)
 #
-  class BaseCFS < Base
+  class BaseCFS < Base    
     # initialize from an existing data structure
     def initialize(data=nil)
       super(data)
     end
-    
     
     private
     
@@ -67,8 +66,8 @@ module FSelector
     # CFS replaces missing values with the mean for continuous features and
     # the most seen value for discrete features
     def handle_missing_values
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-             "derived CFS algo must implement its own handle_missing_values()"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  derived CFS algo must implement its own handle_missing_values()"
     end
     
     
@@ -131,15 +130,15 @@ module FSelector
 	
 	  # calc the feature-class correlation of two vectors
     def do_rcf(cv, fv)
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-             "derived CFS algo must implement its own do_rcf()"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  derived CFS algo must implement its own do_rcf()"
     end # do_rcf
     
     
     # calc the feature-class correlation of two vectors
     def do_rff(fv, sv)
-      abort "[#{__FILE__}@#{__LINE__}]: "+
-             "derived CFS algo must implement its own do_rff()"
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  derived CFS algo must implement its own do_rff()"
     end # do_rff
     
     

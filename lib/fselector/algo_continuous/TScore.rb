@@ -14,14 +14,16 @@ module FSelector
 # ref: [Filter versus wrapper gene selection approaches](http://www.sciencedirect.com/science/article/pii/S0933365704000193)
 #
   class TScore < BaseContinuous
-        
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
+     
     private    
     
     # calculate contribution of each feature (f) across all classes
     def calc_contribution(f)
       if not get_classes.size == 2
-        abort "[#{__FILE__}@#{__LINE__}]: "+
-              "suitable only for two-class problem with continuous feature"
+        abort "[#{__FILE__}@#{__LINE__}]: \n"+
+              "  suitable only for two-class problem with continuous feature"
       end
       
       # collect data for class 1 and 2, respectively   

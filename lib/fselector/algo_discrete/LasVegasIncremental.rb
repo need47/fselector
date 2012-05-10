@@ -12,6 +12,9 @@ module FSelector
     # include Consistency module
     include Consistency
     
+    # this algo selects a subset of feature
+    @algo_type = :feature_subset_selection
+    
     #
     # initialize from an existing data structure
     # 

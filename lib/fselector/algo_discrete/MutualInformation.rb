@@ -16,7 +16,9 @@ module FSelector
 # ref: [A Comparative Study on Feature Selection Methods for Drug Discovery](http://pubs.acs.org/doi/abs/10.1021/ci049875d)
 #
   class MutualInformation < BaseDiscrete
-        
+    # this algo generates weight for each feature
+    @algo_type = :feature_weighting
+       
     private
     
     # calculate contribution of each feature (f) for each class (k)
