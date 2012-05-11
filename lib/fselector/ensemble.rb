@@ -26,7 +26,7 @@ module FSelector
     end
     
     
-    # overload algo\_type for BaseEnsemble
+    # override algo\_type for BaseEnsemble
     #
     # get the type of ensemble feature selectors at instance-level
     def algo_type
@@ -35,7 +35,7 @@ module FSelector
     
     
     #
-    # overload get\_feature\_scores() for BaseEnsemble
+    # override get\_feature\_scores() for BaseEnsemble
     #
     def get_feature_scores
       return @scores if @scores
@@ -46,7 +46,7 @@ module FSelector
     
     
     #
-    # overload get\_feature\_ranks() for BaseEnsemble
+    # override get\_feature\_ranks() for BaseEnsemble
     #
     def get_feature_ranks
       return @ranks if @ranks
@@ -307,7 +307,7 @@ module FSelector
     private
     
     #
-    # overload get\_feature\_subset() for EnsembleSingle, 
+    # override get\_feature\_subset() for EnsembleSingle, 
     # select a subset of features based on frequency count
     #
     # @note only the features that occur in the ensemble 
@@ -458,7 +458,7 @@ module FSelector
     private
     
     #
-    # overload get\_feature\_subset() for EnsembleMultiple, 
+    # override get\_feature\_subset() for EnsembleMultiple, 
     # select a subset of features based on frequency count
     #
     # @note only the features that occur in the ensemble 

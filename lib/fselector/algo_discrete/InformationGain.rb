@@ -44,7 +44,7 @@ module FSelector
     end # calc_contribution 
     
     
-    # overload clear\_vars for InformationGain
+    # override clear\_vars for InformationGain
     def clear_vars
       super
       

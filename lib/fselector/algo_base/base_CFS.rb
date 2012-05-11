@@ -142,7 +142,7 @@ module FSelector
     end # do_rff
     
     
-    # overload clear\_vars for BaseCFS
+    # override clear\_vars for BaseCFS
     def clear_vars
       super
       

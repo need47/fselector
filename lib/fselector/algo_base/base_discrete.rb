@@ -172,7 +172,7 @@ module FSelector
     end # calc_D
     
     
-    # overload clear\_vars for BaseDiscrete
+    # override clear\_vars for BaseDiscrete
     def clear_vars
       super
       
