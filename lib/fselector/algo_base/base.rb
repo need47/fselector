@@ -11,13 +11,13 @@ module FSelector
     # include ReplaceMissingValues
     include ReplaceMissingValues
     
-    # type of feature selection algorithm, 
-    # derived class must set its own type with one of the following two:
-    # :feature_weighting # when algo generates weight for each feature 
-    # :feature_subset_selection # when algo selects a subset of features
-    @algo_type = nil
     class << self
-      # class-level instance variable, type of feature selection algorithm
+      # class-level instance variable, type of feature selection algorithm.
+      #
+      # derived class (except Base*** class) must set its own type with one 
+      # of the following two:  
+      # - :feature\_weighting         # when algo outputs weight for each feature  
+      # - :feature\_subset_selection  # when algo outputs a subset of features
       attr_accessor :algo_type
     end
     
@@ -35,9 +35,8 @@ module FSelector
     
     
     #
-    # iterator for each class, a block must be given
+    # iterator for each class, a block must be given. e.g. 
     #
-    #     e.g.
     #     self.each_class do |k|
     #       puts k
     #     end
@@ -53,9 +52,8 @@ module FSelector
     
     
     #
-    # iterator for each feature, a block must be given
+    # iterator for each feature, a block must be given. e.g.
     #
-    #     e.g.
     #     self.each_feature do |f|
     #       puts f
     #     end
@@ -71,9 +69,9 @@ module FSelector
     
     
     #
-    # iterator for each sample with class label, a block must be given
+    # iterator for each sample with class label, 
+    # a block must be given. e.g. 
     #
-    #     e.g.
     #     self.each_sample do |k, s|
     #       print k
     #       s.each { |f, v| print " #{v}" }
@@ -223,9 +221,9 @@ module FSelector
     #
     def set_data(data)
       if data and data.class == Hash
-        @data = data
         # clear variables
-        clear_vars
+        clear_vars if @data
+        @data = data # set new data structure
       else
         abort "[#{__FILE__}@#{__LINE__}]: \n"+
               "  data must be a Hash object!"
@@ -392,12 +390,18 @@ module FSelector
     
     private
     
-    # clear variables when data structure is altered, 
-    # except @opts (non-data information)
+    #
+    # clear variables when data structure is altered, this is 
+    # useful when data structure has changed while 
+    # you still want to use the same instance
+    #
+    # @note the variables of original data structure (@data) and 
+    #   algorithm type (@algo_type) are retained
+    #
     def clear_vars
       @classes, @features, @fvs = nil, nil, nil
       @scores, @ranks, @sz = nil, nil, nil
-      @cv, @fvs = nil, nil
+      @cv, @fvs, @opts = nil, nil, {}
     end
     
     
