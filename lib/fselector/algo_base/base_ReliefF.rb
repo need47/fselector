@@ -150,6 +150,14 @@ module FSelector
     end
     
     
+    # override clear\_vars for BaseReliefF
+    def clear_vars
+      super
+      
+      @f2mvp = nil
+    end # clear_vars
+    
+    
   end # class
   
   

@@ -142,6 +142,15 @@ module FSelector
     end # do_rff
     
     
+    # override clear\_vars for BaseCFS
+    def clear_vars
+      super
+      
+      @rcf_best, @rff_best = nil, nil
+      @f2rcf, @fs2rff, @f2idx = nil, nil, nil
+    end # clear_vars
+    
+    
   end # class
   
   

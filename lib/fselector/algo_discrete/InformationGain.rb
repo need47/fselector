@@ -17,7 +17,7 @@ module FSelector
     # include Entropy module
     include Entropy
 
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private
@@ -42,7 +42,15 @@ module FSelector
       
       set_feature_score(f, :BEST, s)      
     end # calc_contribution 
-        
+    
+    
+    # override clear\_vars for InformationGain
+    def clear_vars
+      super
+      
+      @hc = nil
+    end # clear_vars
+    
       	
   end # class 
  

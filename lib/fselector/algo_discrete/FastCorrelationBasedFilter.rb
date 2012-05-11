@@ -12,7 +12,7 @@ module FSelector
     # include Entropy module
     include Entropy
     
-    # this algo selects a subset of feature
+    # this algo outputs a subset of feature
     @algo_type = :feature_subset_selection
     
     #
@@ -119,7 +119,15 @@ module FSelector
       end
       
       fq
-    end
+    end # get_next_element
+    
+    
+    # override clear\_vars for FastCorrelationBasedFilter
+    def clear_vars
+      super
+      
+      @f2hf = nil
+    end # clear_vars
     
      
   end # class 

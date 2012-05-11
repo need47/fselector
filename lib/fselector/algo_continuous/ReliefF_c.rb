@@ -14,7 +14,7 @@ module FSelector
     include Normalizer
     include Discretizer
     
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private    
@@ -58,6 +58,14 @@ module FSelector
       
       @f2nu[fi]
     end # get_normalization_unit
+    
+    
+    # override clear\_vars for ReliefF_c
+    def clear_vars
+      super
+      
+      @f2nu = nil
+    end # clear_vars
     
     
   end # class
