@@ -13,7 +13,7 @@ module FSelector
     include Normalizer
     include Discretizer
     
-    # this algo selects a subset of feature
+    # this algo outputs a subset of feature
     @algo_type = :feature_subset_selection
     
     private
