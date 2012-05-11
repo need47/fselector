@@ -60,7 +60,7 @@ module FSelector
     end # get_normalization_unit
     
     
-    # override clear\_vars for ReliefF_c
+    # overload clear\_vars for ReliefF_c
     def clear_vars
       super
       

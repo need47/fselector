@@ -122,7 +122,7 @@ module FSelector
     end # get_next_element
     
     
-    # override clear\_vars for FastCorrelationBasedFilter
+    # overload clear\_vars for FastCorrelationBasedFilter
     def clear_vars
       super
       

@@ -150,7 +150,7 @@ module FSelector
     end
     
     
-    # override clear\_vars for BaseReliefF
+    # overload clear\_vars for BaseReliefF
     def clear_vars
       super
       
