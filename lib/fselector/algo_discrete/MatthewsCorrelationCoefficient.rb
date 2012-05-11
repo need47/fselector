@@ -16,7 +16,7 @@ module FSelector
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Matthews_correlation_coefficient)
 #
   class MatthewsCorrelationCoefficient < BaseDiscrete
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private

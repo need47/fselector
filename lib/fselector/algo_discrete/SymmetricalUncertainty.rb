@@ -20,7 +20,7 @@ module FSelector
     # include Entropy module
     include Entropy
 
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private

@@ -10,7 +10,7 @@ module FSelector
 #                  TP+FP     A+B
 #
   class Precision < BaseDiscrete
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private
