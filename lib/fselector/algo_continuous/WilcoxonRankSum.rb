@@ -14,7 +14,7 @@ module FSelector
 # ref: [An Efficient and Robust Statistical Modeling Approach to Discover Differentially Expressed Genes Using Genomic Expression Profiles](http://genome.cshlp.org/content/11/7/1227)
 #
   class WilcoxonRankSum < BaseContinuous
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private    

@@ -13,7 +13,7 @@ module FSelector
 # ref: [Optimally Combining Positive and Negative Features for Text Categorization](http://www.site.uottawa.ca/~nat/Workshop2003/zheng.pdf)
 #
   class CorrelationCoefficient < BaseDiscrete
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private

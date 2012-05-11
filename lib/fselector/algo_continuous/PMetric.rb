@@ -14,7 +14,7 @@ module FSelector
 # ref: [Filter versus wrapper gene selection approaches in DNA microarray domains](http://www.sciencedirect.com/science/article/pii/S0933365704000193)
 #
   class PMetric < BaseContinuous
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private    

@@ -18,7 +18,7 @@ module FSelector
 # ref: [Comparison of Discrimination Methods for the Classification of Tumors Using Gene Expression Data](http://amstat.tandfonline.com/doi/abs/10.1198/016214502753479248)
 #
   class BetweenWithinClassesSumOfSquare < BaseContinuous
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private    

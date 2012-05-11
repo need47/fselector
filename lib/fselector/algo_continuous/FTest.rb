@@ -23,7 +23,7 @@ module FSelector
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/F-test#Formula_and_calculation) and [Minimum redundancy feature selection from microarray gene expression data](http://penglab.janelia.org/papersall/docpdf/2004_JBCB_feasel-04-06-15.pdf)
 #
   class FTest < BaseContinuous
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
         
     private    

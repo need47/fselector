@@ -13,7 +13,7 @@ module FSelector
 # ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
   class BiNormalSeparation < BaseDiscrete
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
      
     private
