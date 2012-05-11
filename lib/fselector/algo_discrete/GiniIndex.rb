@@ -13,7 +13,7 @@ module FSelector
 # ref: [Advancing Feaure Selection Research - ASU Feature Selection Repository](http://featureselection.asu.edu/featureselection_techreport.pdf)
 #
   class GiniIndex < BaseDiscrete
-    # this algo generates weight for each feature
+    # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
     private
