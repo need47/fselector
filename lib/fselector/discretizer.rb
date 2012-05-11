@@ -11,7 +11,7 @@ module Discretizer
   # discretize by equal-width intervals
   #
   # @param [Integer] n_interval
-  #        desired number of intervals
+  #   desired number of intervals
   # @note data structure will be altered
   #
   def discretize_by_equal_width!(n_interval)
@@ -38,7 +38,7 @@ module Discretizer
   # discretize by equal-frequency intervals
   #
   # @param [Integer] n_interval
-  #        desired number of intervals
+  #   desired number of intervals
   # @note data structure will be altered
   #
   def discretize_by_equal_frequency!(n_interval)
