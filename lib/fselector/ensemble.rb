@@ -5,13 +5,13 @@ module FSelector
   #
   # feature selection by an ensemble of feature selectors
   #
-  # for the type of weighting algorithms,  you must call one of 
-  # the following two functions before calling select\_feature\_by\_score! or 
+  # for the type of feature weighting algorithms, call one of the following two 
+  # functions first before calling select\_feature\_by\_score! or  
   # select\_feature\_by\_rank! for feature selection:  
-  # - ensemble\_by\_score()  if ensemble scores are based on that of individual selector  
-  # - ensemble\_by\_rank()   if ensemble ranks are based on that of individual selector
+  # - ensemble\_by\_score()  # ensemble scores are based on that of individual selector  
+  # - ensemble\_by\_rank()   # ensemble ranks are based on that of individual selector
   #
-  # for the type of subset selection algorithm, use
+  # for the type of feature subset selection algorithms, use
   # select\_feature! for feature selection (based on feature frequency count)
   #
   # @note ensemble feature selectors share the same feature selection 
@@ -26,7 +26,7 @@ module FSelector
     end
     
     
-    # override algo\_type for BaseEnsemble
+    # overload algo\_type for BaseEnsemble
     #
     # get the type of ensemble feature selectors at instance-level
     def algo_type
@@ -35,7 +35,7 @@ module FSelector
     
     
     #
-    # override get\_feature\_scores() for BaseEnsemble
+    # overload get\_feature\_scores() for BaseEnsemble
     #
     def get_feature_scores
       return @scores if @scores
@@ -46,7 +46,7 @@ module FSelector
     
     
     #
-    # override get\_feature\_ranks() for BaseEnsemble
+    # overload get\_feature\_ranks() for BaseEnsemble
     #
     def get_feature_ranks
       return @ranks if @ranks
@@ -67,13 +67,14 @@ module FSelector
     # @param [Symbol] ensem_method how the ensemble score should 
     #   be derived from those of individual feature selector  
     #   allowed values are:  
-    #   - :by\_min # use min score  
-    #   - :by\_max # use max score  
-    #   - :by\_ave # use ave score  
-    #   - :by\_sum # use sum score
+    #   - :by\_min  # use min score  
+    #   - :by\_max  # use max score  
+    #   - :by\_ave  # use ave score  
+    #   - :by\_sum  # use sum score
     # @param [Symbol] norm_method score normalization method  
-    #   - :by\_min\_max # score scaled to [0, 1]  
-    #   - :by\_zscore # score converted to zscore
+    #   - :none          # use score as is  
+    #   - :by\_min\_max  # score scaled to [0, 1]  
+    #   - :by\_zscore    # score converted to zscore
     #
     # @note scores from different feature selectors are often incompatible 
     #   with each other, so we need to normalize them first
@@ -116,10 +117,10 @@ module FSelector
     # @param [Symbol] ensem_method how the ensemble rank should 
     #   be derived from those of individual feature selector  
     #   allowed values are:  
-    #   - :by\_min # use min rank  
-    #   - :by\_max # use max rank  
-    #   - :by\_ave # use ave rank  
-    #   - :by\_sum # use sum rank
+    #   - :by\_min  # use min rank  
+    #   - :by\_max  # use max rank  
+    #   - :by\_ave  # use ave rank  
+    #   - :by\_sum  # use sum rank
     #
     def ensemble_by_rank(ensem_method=:by_sum)
       if not [:by_min, :by_max, :by_ave, :by_sum].include? ensem_method
@@ -220,13 +221,13 @@ module FSelector
   # feature selection by an ensemble of feature selectors 
   # that created by using a single feature selection algorithm
   #
-  # for the type of weighting algorithms,  you must call one of 
-  # the following two functions before calling select\_feature\_by\_score! or 
+  # for the type of feature weighting algorithms, call one of the following two 
+  # functions first before calling select\_feature\_by\_score! or 
   # select\_feature\_by\_rank! for feature selection:  
-  # - ensemble\_by\_score()  if ensemble scores are based on that of individual selector  
-  # - ensemble\_by\_rank()   if ensemble ranks are based on that of individual selector
+  # - ensemble\_by\_score()  # ensemble scores are based on that of individual selector  
+  # - ensemble\_by\_rank()   # ensemble ranks are based on that of individual selector
   #
-  # for the type of subset selection algorithm, use
+  # for the type of feature subset selection algorithms, use
   # select\_feature! for feature selection (based on feature frequency count)
   #
   # @note ensemble feature selectors share the same feature selection 
@@ -239,8 +240,9 @@ module FSelector
     # @param [Algorithm] algo feature selection algorithm
     # @param [Integer] nselector number of feature selectors
     # @param [Float] pdata percentage of data used by each feature selector
-    # @param [Symbol] sampling_method only :bootstrap\_sampling and 
-    #   :random\_sampling are supported
+    # @param [Symbol] sampling_method sampling method  
+    #   - :bootstrap\_sampling  # random sampling with replacement   
+    #   - :random\_sampling     # random sampling without replacement
     #
     # ref: [Robust Feature Selection Using Ensemble Feature Selection Techniques](http://dl.acm.org/citation.cfm?id=1432021)
     #
@@ -270,7 +272,7 @@ module FSelector
         my_data = self.send(@sampling_method)
         
         # score from this feature selector
-        r = @algo.new
+        r = @algo
         r.set_data(my_data)
         ensem_scores << r.get_feature_scores
       end
@@ -293,7 +295,7 @@ module FSelector
         my_data = self.send(@sampling_method)
         
         # rank from this feature selector
-        r = @algo.new
+        r = @algo
         r.set_data(my_data)
         ensem_ranks << r.get_feature_ranks
       end
@@ -305,7 +307,7 @@ module FSelector
     private
     
     #
-    # override get\_feature\_subset() for EnsembleSingle, 
+    # overload get\_feature\_subset() for EnsembleSingle, 
     # select a subset of features based on frequency count
     #
     # @note only the features that occur in the ensemble 
@@ -320,7 +322,7 @@ module FSelector
         my_data = self.send(@sampling_method)
         
         # subset from this selector
-        r = @algo.new
+        r = @algo
         r.set_data(my_data)
         # note we call a private method here
         r_subset = r.send(:get_feature_subset)
@@ -379,13 +381,13 @@ module FSelector
   # feature selection by an ensemble of feature selectors 
   # that created by using multiple algorithms of the same type
   #
-  # for the type of weighting algorithms,  you must call one of 
-  # the following two functions before calling select\_feature\_by\_score! or 
+  # for the type of feature weighting algorithms, call one of the following two 
+  # functions first before calling select\_feature\_by\_score! or 
   # select\_feature\_by\_rank! for feature selection:  
-  # - ensemble\_by\_score()  if ensemble scores are based on that of individual selector  
-  # - ensemble\_by\_rank()   if ensemble ranks are based on that of individual selector
+  # - ensemble\_by\_score()  # ensemble scores are based on that of individual selector  
+  # - ensemble\_by\_rank()   # ensemble ranks are based on that of individual selector
   #
-  # for the type of subset selection algorithm, use
+  # for the type of feature subset selection algorithms, use
   # select\_feature! for feature selection (based on feature frequency count)
   #
   # @note ensemble feature selectors share the same feature selection 
@@ -423,9 +425,8 @@ module FSelector
     def get_ensemble_scores
       ensem_scores = []
       
-      @algos.each do |algo|
+      @algos.each do |r|
         # score from this feature selector
-        r = algo.new
         r.set_data(get_data) # share same data structure
         ensem_scores << r.get_feature_scores
       end
@@ -443,9 +444,8 @@ module FSelector
     def get_ensemble_ranks
       ensem_ranks = []
       
-      @algos.each do |algo|
+      @algos.each do |r|
         # rank from this feature selector
-        r = algo.new
         r.set_data(get_data)
         ensem_ranks << r.get_feature_ranks
       end
@@ -458,7 +458,7 @@ module FSelector
     private
     
     #
-    # override get\_feature\_subset() for EnsembleMultiple, 
+    # overload get\_feature\_subset() for EnsembleMultiple, 
     # select a subset of features based on frequency count
     #
     # @note only the features that occur in the ensemble 
@@ -468,9 +468,8 @@ module FSelector
       f2count = Hash.new(0)
       total_count = 0.0
       
-      @algos.each do |algo|
+      @algos.each do |r|
         # subset from this selector
-        r = algo.new
         r.set_data(get_data)
         # note we call a private method here
         r_subset = r.send(:get_feature_subset)
