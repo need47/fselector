@@ -19,28 +19,28 @@ module ReplaceMissingValues
     
     # clear variables
     clear_vars
-  end # replace_by_fixed_value
+  end # replace_by_fixed_value!
   
   
   #
   # replace missing feature value by mean feature value, 
   # applicable only to continuous feature
   #
-  # @param [Symbol] by_what column or row mode  
-  #   - :by\_column # use the mean value of the same feature among all instance  
+  # @param [Symbol] mode column or row mode  
+  #   - :by\_column # use the mean value of the same feature among all instances  
   #   - :by\_row    # use the mean value of different features in current instance
   #
   # @note data structure will be altered
   #
-  def replace_by_mean_value!(by_what = :by_column)
+  def replace_by_mean_value!(mode = :by_column)
     each_sample do |k, s|
-      mean = s.values.mean if by_what == :by_row
+      mean = s.values.mean if mode == :by_row
       
       each_feature do |f|
         fv = get_feature_values(f)
         next if fv.size == get_sample_size # no missing values
         
-        mean = fv.ave if by_what == :by_column
+        mean = fv.ave if mode == :by_column
         if not s.has_key? f
           s[f] = mean
         end
@@ -56,21 +56,21 @@ module ReplaceMissingValues
   # replace missing feature value by median feature value, 
   # applicable only to continuous feature
   #
-  # @param [Symbol] by_what column or row mode  
-  #   - :by\_column # use the mean value of the same feature among all instance  
+  # @param [Symbol] mode column or row mode  
+  #   - :by\_column # use the mean value of the same feature among all instances  
   #   - :by\_row    # use the mean value of different features in current instance
   #
   # @note data structure will be altered
   #
-  def replace_by_median_value!(by_what = :by_column)
+  def replace_by_median_value!(mode = :by_column)
     each_sample do |k, s|
-      median = s.values.median if by_what == :by_row
+      median = s.values.median if mode == :by_row
       
       each_feature do |f|
         fv = get_feature_values(f)
         next if fv.size == get_sample_size # no missing values
         
-        median = fv.median if by_what == :by_column
+        median = fv.median if mode == :by_column
         if not s.has_key? f
           s[f] = median
         end
