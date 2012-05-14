@@ -237,7 +237,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>iterator for each sample with class label, a block must be given.</p>
+    <span class="summary_desc"><div class='inline'><p>iterator for each sample with class label, 
+a block must be given.</p>
 </div></span>
   
 </li>
@@ -422,7 +423,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_opt-instance_method" title="#get_opt (instance method)">- <strong>get_opt</strong>(key) </a>
+      <a href="#get_opt-instance_method" title="#get_opt (instance method)">- (Any) <strong>get_opt</strong>(key = nil) </a>
     
 
     
@@ -692,15 +693,13 @@
 
 31
 32
-33
-34</pre>
+33</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span> <span class='comment'># store data
-</span>  <span class='ivar'>@opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'># store non-data information
 </span><span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -724,7 +723,17 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>class-level instance variable, type of feature selection algorithm</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>derived class (except for Base*** class) must set its own type with 
+one of the following two:<br>
+- :feature_weighting         # when algo outputs weight for each feature<br>
+- :feature_subset_selection  # when algo outputs a subset of features</p>
+</div>
+  </div>
+
+<p>class-level instance variable, type of feature selection algorithm.</p>
 
 
   </div>
@@ -807,10 +816,9 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>iterator for each class, a block must be given</p>
+    <p>iterator for each class, a block must be given. e.g. </p>
 
-<pre class="code ruby"><code><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_g'>g</span><span class='period'>.</span>
-<span class='id identifier rubyid_self'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_class'>each_class</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
+<pre class="code ruby"><code><span class='id identifier rubyid_each_class'>each_class</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_k'>k</span>
 <span class='kw'>end</span>
 </code></pre>
@@ -827,17 +835,17 @@
       <pre class="lines">
 
 
+43
+44
 45
 46
 47
 48
 49
-50
-51
-52</pre>
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_class'>each_class</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -861,10 +869,9 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>iterator for each feature, a block must be given</p>
+    <p>iterator for each feature, a block must be given. e.g.</p>
 
-<pre class="code ruby"><code><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_g'>g</span><span class='period'>.</span>
-<span class='id identifier rubyid_self'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+<pre class="code ruby"><code><span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_f'>f</span>
 <span class='kw'>end</span>
 </code></pre>
@@ -881,17 +888,17 @@
       <pre class="lines">
 
 
+60
+61
+62
 63
 64
 65
 66
-67
-68
-69
-70</pre>
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_feature'>each_feature</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -915,10 +922,10 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>iterator for each sample with class label, a block must be given</p>
+    <p>iterator for each sample with class label, 
+a block must be given. e.g. </p>
 
-<pre class="code ruby"><code><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_g'>g</span><span class='period'>.</span>
-<span class='id identifier rubyid_self'>self</span><span class='period'>.</span><span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+<pre class="code ruby"><code><span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
   <span class='id identifier rubyid_print'>print</span> <span class='id identifier rubyid_k'>k</span>
   <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_v'>v</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
   <span class='id identifier rubyid_puts'>puts</span>
@@ -937,19 +944,19 @@
       <pre class="lines">
 
 
+80
+81
+82
 83
 84
 85
 86
 87
 88
-89
-90
-91
-92</pre>
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_sample'>each_sample</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -1007,6 +1014,9 @@ same size as the number of samples</p>
       <pre class="lines">
 
 
+108
+109
+110
 111
 112
 113
@@ -1014,13 +1024,10 @@ same size as the number of samples</p>
 115
 116
 117
-118
-119
-120
-121</pre>
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_class_labels'>get_class_labels</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@cv</span>
@@ -1078,12 +1085,12 @@ same size as the number of samples</p>
       <pre class="lines">
 
 
-100
-101
-102</pre>
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_classes'>get_classes</span>
   <span class='ivar'>@classes</span> <span class='op'>||=</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span>
@@ -1133,12 +1140,12 @@ same size as the number of samples</p>
       <pre class="lines">
 
 
-204
-205
-206</pre>
+201
+202
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 204</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 201</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_data'>get_data</span>
   <span class='ivar'>@data</span>
@@ -1188,12 +1195,12 @@ same size as the number of samples</p>
       <pre class="lines">
 
 
-214
-215
-216</pre>
+211
+212
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 214</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 211</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_data_copy'>get_data_copy</span>
   <span class='const'>Marshal</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='const'>Marshal</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='ivar'>@data</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@data</span>
@@ -1243,17 +1250,17 @@ same size as the number of samples</p>
       <pre class="lines">
 
 
-287
-288
-289
-290
-291
-292
-293
-294</pre>
+294
+295
+296
+297
+298
+299
+300
+301</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 287</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 294</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
   <span class='kw'>return</span> <span class='ivar'>@ranks</span> <span class='kw'>if</span> <span class='ivar'>@ranks</span> <span class='comment'># already done
@@ -1309,13 +1316,6 @@ same size as the number of samples</p>
       <pre class="lines">
 
 
-264
-265
-266
-267
-268
-269
-270
 271
 272
 273
@@ -1324,10 +1324,17 @@ same size as the number of samples</p>
 276
 277
 278
-279</pre>
+279
+280
+281
+282
+283
+284
+285
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 264</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 271</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
   <span class='kw'>return</span> <span class='ivar'>@scores</span> <span class='kw'>if</span> <span class='ivar'>@scores</span> <span class='comment'># already done
@@ -1447,6 +1454,9 @@ values for the specific class (ck)</p>
       <pre class="lines">
 
 
+157
+158
+159
 160
 161
 162
@@ -1465,13 +1475,10 @@ values for the specific class (ck)</p>
 175
 176
 177
-178
-179
-180
-181</pre>
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_mv'>mv</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_ck'>ck</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@fvs</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -1540,15 +1547,15 @@ values for the specific class (ck)</p>
       <pre class="lines">
 
 
-143
-144
-145</pre>
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_features'>get_features</span>
-  <span class='ivar'>@features</span> <span class='op'>||=</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_x'>x</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_y'>y</span><span class='op'>|</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+  <span class='ivar'>@features</span> <span class='op'>||=</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_x'>x</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_y'>y</span><span class='op'>|</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1558,19 +1565,64 @@ values for the specific class (ck)</p>
       <div class="method_details ">
   <p class="signature " id="get_opt-instance_method">
   
-    - <strong>get_opt</strong>(key) 
+    - (<tt>Any</tt>) <strong>get_opt</strong>(key = nil) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>get non-data information for a given key</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>return all non-data as a Hash if key == nil</p>
+</div>
+  </div>
+
+<p>get non-data information for a given key</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>key of non-data</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>value of non-data, can be any type</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1578,15 +1630,15 @@ values for the specific class (ck)</p>
       <pre class="lines">
 
 
-237
-238
-239</pre>
+241
+242
+243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 237</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 241</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_opt'>get_opt</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='ivar'>@opts</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_opt'>get_opt</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_key'>key</span> <span class='op'>?</span> <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='ivar'>@opts</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1633,15 +1685,15 @@ values for the specific class (ck)</p>
       <pre class="lines">
 
 
-253
-254
-255</pre>
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 253</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 260</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_sample_size'>get_sample_size</span>
-  <span class='ivar'>@sz</span> <span class='op'>||=</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+  <span class='ivar'>@sz</span> <span class='op'>||=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_sz'>sz</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_sz'>sz</span><span class='op'>+</span><span class='id identifier rubyid_get_data'>get_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1680,13 +1732,6 @@ the subset selection type of algorithms, see <a href="../index.html" title="READ
       <pre class="lines">
 
 
-304
-305
-306
-307
-308
-309
-310
 311
 312
 313
@@ -1701,10 +1746,17 @@ the subset selection type of algorithms, see <a href="../index.html" title="READ
 322
 323
 324
-325</pre>
+325
+326
+327
+328
+329
+330
+331
+332</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 304</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 311</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature!'>select_feature!</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:feature_subset_selection</span>
@@ -1800,14 +1852,6 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
       <pre class="lines">
 
 
-371
-372
-373
-374
-375
-376
-377
-378
 379
 380
 381
@@ -1820,10 +1864,19 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
 388
 389
 390
-391</pre>
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 371</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 379</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature_by_rank!'>select_feature_by_rank!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_ranks'>my_ranks</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:feature_weighting</span>
@@ -1835,6 +1888,7 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
   
   <span class='comment'># user ranks or internal ranks
 </span>  <span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>=</span> <span class='id identifier rubyid_my_ranks'>my_ranks</span> <span class='op'>||</span> <span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_ranks'>ranks</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   
   <span class='id identifier rubyid_my_data'>my_data</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   
@@ -1918,13 +1972,6 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
       <pre class="lines">
 
 
-338
-339
-340
-341
-342
-343
-344
 345
 346
 347
@@ -1938,10 +1985,18 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
 355
 356
 357
-358</pre>
+358
+359
+360
+361
+362
+363
+364
+365
+366</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 338</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 345</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature_by_score!'>select_feature_by_score!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_scores'>my_scores</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:feature_weighting</span>
@@ -1953,6 +2008,7 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
   
   <span class='comment'># user scores or internal scores
 </span>  <span class='id identifier rubyid_scores'>scores</span> <span class='op'>=</span> <span class='id identifier rubyid_my_scores'>my_scores</span> <span class='op'>||</span> <span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_scores'>scores</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   
   <span class='id identifier rubyid_my_data'>my_data</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   
@@ -2011,17 +2067,17 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
       <pre class="lines">
 
 
+126
+127
+128
 129
 130
 131
 132
-133
-134
-135
-136</pre>
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_classes'>set_classes</span><span class='lparen'>(</span><span class='id identifier rubyid_classes'>classes</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_classes'>classes</span> <span class='kw'>and</span> <span class='id identifier rubyid_classes'>classes</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
@@ -2078,26 +2134,26 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
       <pre class="lines">
 
 
+221
+222
+223
 224
 225
 226
 227
 228
 229
-230
-231
-232
-233</pre>
+230</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 224</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 221</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span> <span class='kw'>and</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Hash</span>
-    <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
     <span class='comment'># clear variables
-</span>    <span class='id identifier rubyid_clear_vars'>clear_vars</span>
-  <span class='kw'>else</span>
+</span>    <span class='id identifier rubyid_clear_vars'>clear_vars</span> <span class='kw'>if</span> <span class='ivar'>@data</span>
+    <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span> <span class='comment'># set new data structure
+</span>  <span class='kw'>else</span>
     <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  data must be a Hash object!</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
@@ -2149,17 +2205,17 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
       <pre class="lines">
 
 
+186
+187
+188
 189
 190
 191
 192
-193
-194
-195
-196</pre>
+193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_features'>set_features</span><span class='lparen'>(</span><span class='id identifier rubyid_features'>features</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_features'>features</span> <span class='kw'>and</span> <span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
@@ -2189,7 +2245,41 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>key of non-data</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>value of non-data, can be any type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -2197,15 +2287,17 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
       <pre class="lines">
 
 
-243
-244
-245</pre>
+249
+250
+251
+252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 243</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 249</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_opt'>set_opt</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='ivar'>@opts</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'># store non-data information
+</span>  <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2217,7 +2309,7 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
 </div>
     
     <div id="footer">
-  Generated on Thu May 10 17:14:41 2012 by 
+  Generated on Mon May 14 17:33:08 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

@@ -64,7 +64,7 @@
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
 <strong>Latest Version</strong>: 1.1.0<br>
-<strong>Release Date</strong>: 2012-05-11</p>
+<strong>Release Date</strong>: 2012-05-15</p>
 
 <h2>Synopsis</h2>
 
@@ -142,7 +142,7 @@ WilcoxonRankSum                   WRS         weighting   continuous    two-clas
 </code></pre>
 
 <p><strong>note for feature selection interface:</strong><br>
-  there are two types of filter methods, i.e., weighting algorithms and subset selection algorithms  </p>
+  there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  </p>
 
 <ul>
 <li>for weighting type: use either <strong>select_feature_by_rank!</strong> or <strong>select_feature_by_score!</strong><br></li>
@@ -154,7 +154,7 @@ WilcoxonRankSum                   WRS         weighting   continuous    two-clas
 <ul>
 <li>by a single algorithm</li>
 <li>by multiple algorithms in a tandem manner</li>
-<li>by multiple algorithms in an ensemble manner</li>
+<li>by multiple algorithms in an ensemble manner (share same feature selection interface as single algorithm)</li>
 </ul>
 
 <p><strong>4. availabe normalization and discretization algorithms for continuous feature</strong></p>
@@ -202,7 +202,7 @@ replace_by_most_seen_value!       replace by most seen feature value     discret
 
 <pre class="code ruby"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>fselector</span><span class='tstring_end'>'</span></span>
 
-<span class='comment'># use InformationGain as a feature ranking algorithm
+<span class='comment'># use InformationGain as a feature selection algorithm
 </span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>InformationGain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
 <span class='comment'># read from random data (or csv, libsvm, weka ARFF file)
@@ -249,13 +249,13 @@ replace_by_most_seen_value!       replace by most seen feature value     discret
 </span><span class='comment'>#
 </span>
 
-<span class='comment'># creating an ensemble of feature selectors using 
+<span class='comment'># creating an ensemble of feature selectors by using 
 </span><span class='comment'># a single feature selection algorithm (INTERACT) 
 </span><span class='comment'># by instance perturbation (e.g. bootstrap sampling)
 </span>
-<span class='comment'># test for the subset selection type of algorithm
-</span><span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>INTERACT</span> <span class='comment'># no need to use .new
-</span>
+<span class='comment'># test for the type of feature subset selection algorithms
+</span><span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>INTERACT</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='float'>0.0001</span><span class='rparen'>)</span>
+
 <span class='comment'># an ensemble of 40 feature selectors with 90% data by random sampling
 </span><span class='id identifier rubyid_re'>re</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>EnsembleSingle</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='int'>40</span><span class='comma'>,</span> <span class='float'>0.90</span><span class='comma'>,</span> <span class='symbol'>:random_sampling</span><span class='rparen'>)</span>
 
@@ -276,15 +276,15 @@ replace_by_most_seen_value!       replace by most seen feature value     discret
 </span><span class='comment'>#
 </span>
 
-<span class='comment'># creating an ensemble of feature selectors using 
+<span class='comment'># creating an ensemble of feature selectors by using 
 </span><span class='comment'># two feature selection algorithms (InformationGain and Relief_d). 
 </span><span class='comment'># note: can be 2+ algorithms, as long as they are of the same type, 
-</span><span class='comment'># either weighting or subset selection
+</span><span class='comment'># either feature weighting or feature subset selection algorithms
 </span>
-<span class='comment'># test for the weighting type of algorithm 
-</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>InformationGain</span> <span class='comment'># no need to use .new
-</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>Relief_d</span>        <span class='comment'># no need to use .new
-</span>
+<span class='comment'># test for the type of feature weighting algorithms 
+</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>InformationGain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>Relief_d</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>10</span><span class='rparen'>)</span>
+
 <span class='comment'># an ensemble of two feature selectors
 </span><span class='id identifier rubyid_re'>re</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>EnsembleMultiple</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_r1'>r1</span><span class='comma'>,</span> <span class='id identifier rubyid_r2'>r2</span><span class='rparen'>)</span>
 
@@ -355,7 +355,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Thu May 10 17:14:40 2012 by 
+  Generated on Mon May 14 17:33:07 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

@@ -155,7 +155,7 @@ applicable only to continuous feature.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#replace_by_mean_value%21-instance_method" title="#replace_by_mean_value! (instance method)">- <strong>replace_by_mean_value!</strong>(by_what = :by_column) </a>
+      <a href="#replace_by_mean_value%21-instance_method" title="#replace_by_mean_value! (instance method)">- <strong>replace_by_mean_value!</strong>(mode = :by_column) </a>
     
 
     
@@ -178,7 +178,7 @@ applicable only to continuous feature.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#replace_by_median_value%21-instance_method" title="#replace_by_median_value! (instance method)">- <strong>replace_by_median_value!</strong>(by_what = :by_column) </a>
+      <a href="#replace_by_median_value%21-instance_method" title="#replace_by_median_value! (instance method)">- <strong>replace_by_median_value!</strong>(mode = :by_column) </a>
     
 
     
@@ -495,7 +495,7 @@ where w_k = (sum_d - d_k) / ((K-1) * sum_d)
       <div class="method_details ">
   <p class="signature " id="replace_by_mean_value!-instance_method">
   
-    - <strong>replace_by_mean_value!</strong>(by_what = :by_column) 
+    - <strong>replace_by_mean_value!</strong>(mode = :by_column) 
   
 
   
@@ -520,7 +520,7 @@ applicable only to continuous feature</p>
   
     <li>
       
-        <span class='name'>by_what</span>
+        <span class='name'>mode</span>
       
       
         <span class='type'>(<tt>Symbol</tt>)</span>
@@ -531,7 +531,7 @@ applicable only to continuous feature</p>
       
         &mdash;
         <div class='inline'><p>column or row mode<br>
-- :by_column # use the mean value of the same feature among all instance<br>
+- :by_column # use the mean value of the same feature among all instances<br>
 - :by_row    # use the mean value of different features in current instance</p>
 </div>
       
@@ -568,15 +568,15 @@ applicable only to continuous feature</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 35</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_mean_value!'>replace_by_mean_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>=</span> <span class='symbol'>:by_column</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_mean_value!'>replace_by_mean_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span> <span class='op'>=</span> <span class='symbol'>:by_column</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
-    <span class='id identifier rubyid_mean'>mean</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_mean'>mean</span> <span class='kw'>if</span> <span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>==</span> <span class='symbol'>:by_row</span>
+    <span class='id identifier rubyid_mean'>mean</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_mean'>mean</span> <span class='kw'>if</span> <span class='id identifier rubyid_mode'>mode</span> <span class='op'>==</span> <span class='symbol'>:by_row</span>
     
     <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
       <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
       <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_get_sample_size'>get_sample_size</span> <span class='comment'># no missing values
 </span>      
-      <span class='id identifier rubyid_mean'>mean</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span> <span class='kw'>if</span> <span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>==</span> <span class='symbol'>:by_column</span>
+      <span class='id identifier rubyid_mean'>mean</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_ave'>ave</span> <span class='kw'>if</span> <span class='id identifier rubyid_mode'>mode</span> <span class='op'>==</span> <span class='symbol'>:by_column</span>
       <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
         <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_mean'>mean</span>
       <span class='kw'>end</span>
@@ -594,7 +594,7 @@ applicable only to continuous feature</p>
       <div class="method_details ">
   <p class="signature " id="replace_by_median_value!-instance_method">
   
-    - <strong>replace_by_median_value!</strong>(by_what = :by_column) 
+    - <strong>replace_by_median_value!</strong>(mode = :by_column) 
   
 
   
@@ -619,7 +619,7 @@ applicable only to continuous feature</p>
   
     <li>
       
-        <span class='name'>by_what</span>
+        <span class='name'>mode</span>
       
       
         <span class='type'>(<tt>Symbol</tt>)</span>
@@ -630,7 +630,7 @@ applicable only to continuous feature</p>
       
         &mdash;
         <div class='inline'><p>column or row mode<br>
-- :by_column # use the mean value of the same feature among all instance<br>
+- :by_column # use the mean value of the same feature among all instances<br>
 - :by_row    # use the mean value of different features in current instance</p>
 </div>
       
@@ -667,15 +667,15 @@ applicable only to continuous feature</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/fselector/replace_missing_values.rb', line 65</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_median_value!'>replace_by_median_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>=</span> <span class='symbol'>:by_column</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_by_median_value!'>replace_by_median_value!</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span> <span class='op'>=</span> <span class='symbol'>:by_column</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
-    <span class='id identifier rubyid_median'>median</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_median'>median</span> <span class='kw'>if</span> <span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>==</span> <span class='symbol'>:by_row</span>
+    <span class='id identifier rubyid_median'>median</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_median'>median</span> <span class='kw'>if</span> <span class='id identifier rubyid_mode'>mode</span> <span class='op'>==</span> <span class='symbol'>:by_row</span>
     
     <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
       <span class='id identifier rubyid_fv'>fv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_feature_values'>get_feature_values</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
       <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_get_sample_size'>get_sample_size</span> <span class='comment'># no missing values
 </span>      
-      <span class='id identifier rubyid_median'>median</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_median'>median</span> <span class='kw'>if</span> <span class='id identifier rubyid_by_what'>by_what</span> <span class='op'>==</span> <span class='symbol'>:by_column</span>
+      <span class='id identifier rubyid_median'>median</span> <span class='op'>=</span> <span class='id identifier rubyid_fv'>fv</span><span class='period'>.</span><span class='id identifier rubyid_median'>median</span> <span class='kw'>if</span> <span class='id identifier rubyid_mode'>mode</span> <span class='op'>==</span> <span class='symbol'>:by_column</span>
       <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
         <span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_median'>median</span>
       <span class='kw'>end</span>
@@ -783,7 +783,7 @@ applicable only to discrete feature</p>
 </div>
     
     <div id="footer">
-  Generated on Thu May 10 17:14:41 2012 by 
+  Generated on Mon May 14 17:33:08 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

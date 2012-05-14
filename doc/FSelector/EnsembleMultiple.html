@@ -109,13 +109,13 @@ interface as single feature selector</p>
 <p>feature selection by an ensemble of feature selectors 
 that created by using multiple algorithms of the same type</p>
 
-<p>for the type of weighting algorithms,  you must call one of 
-the following two functions before calling select_feature_by_score! or 
+<p>for the type of feature weighting algorithms, call one of the following two 
+functions first before calling select_feature_by_score! or 
 select_feature_by_rank! for feature selection:<br>
-- ensemble_by_score()  if ensemble scores are based on that of individual selector<br>
-- ensemble_by_rank()   if ensemble ranks are based on that of individual selector</p>
+- ensemble_by_score()  # ensemble scores are based on that of individual selector<br>
+- ensemble_by_rank()   # ensemble ranks are based on that of individual selector</p>
 
-<p>for the type of subset selection algorithm, use
+<p>for the type of feature subset selection algorithms, use
 select_feature! for feature selection (based on feature frequency count)</p>
 
 
@@ -303,8 +303,6 @@ either weighting or subset selection (see <a href="../index.html" title="README"
       <pre class="lines">
 
 
-402
-403
 404
 405
 406
@@ -317,10 +315,12 @@ either weighting or subset selection (see <a href="../index.html" title="README"
 413
 414
 415
-416</pre>
+416
+417
+418</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 402</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 404</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_algos'>algos</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
@@ -389,7 +389,6 @@ either weighting or subset selection (see <a href="../index.html" title="README"
       <pre class="lines">
 
 
-443
 444
 445
 446
@@ -404,15 +403,14 @@ either weighting or subset selection (see <a href="../index.html" title="README"
 455</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 443</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 444</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_ensemble_ranks'>get_ensemble_ranks</span>
   <span class='id identifier rubyid_ensem_ranks'>ensem_ranks</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   
-  <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_algo'>algo</span><span class='op'>|</span>
+  <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
     <span class='comment'># rank from this feature selector
-</span>    <span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='id identifier rubyid_algo'>algo</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
+</span>    <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_ensem_ranks'>ensem_ranks</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_feature_ranks'>get_feature_ranks</span>
   <span class='kw'>end</span>
   
@@ -464,8 +462,6 @@ either weighting or subset selection (see <a href="../index.html" title="README"
       <pre class="lines">
 
 
-423
-424
 425
 426
 427
@@ -476,18 +472,18 @@ either weighting or subset selection (see <a href="../index.html" title="README"
 432
 433
 434
-435</pre>
+435
+436</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 423</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 425</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_ensemble_scores'>get_ensemble_scores</span>
   <span class='id identifier rubyid_ensem_scores'>ensem_scores</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   
-  <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_algo'>algo</span><span class='op'>|</span>
+  <span class='ivar'>@algos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
     <span class='comment'># score from this feature selector
-</span>    <span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='id identifier rubyid_algo'>algo</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span> <span class='comment'># share same data structure
+</span>    <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span> <span class='comment'># share same data structure
 </span>    <span class='id identifier rubyid_ensem_scores'>ensem_scores</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_feature_scores'>get_feature_scores</span>
   <span class='kw'>end</span>
   
@@ -504,7 +500,7 @@ either weighting or subset selection (see <a href="../index.html" title="README"
 </div>
     
     <div id="footer">
-  Generated on Thu May 10 17:14:40 2012 by 
+  Generated on Mon May 14 17:33:07 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

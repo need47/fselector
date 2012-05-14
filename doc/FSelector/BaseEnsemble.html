@@ -106,13 +106,13 @@ interface as single feature selector</p>
 
 <p>feature selection by an ensemble of feature selectors</p>
 
-<p>for the type of weighting algorithms,  you must call one of 
-the following two functions before calling select_feature_by_score! or 
+<p>for the type of feature weighting algorithms, call one of the following two 
+functions first before calling select_feature_by_score! or<br>
 select_feature_by_rank! for feature selection:<br>
-- ensemble_by_score()  if ensemble scores are based on that of individual selector<br>
-- ensemble_by_rank()   if ensemble ranks are based on that of individual selector</p>
+- ensemble_by_score()  # ensemble scores are based on that of individual selector<br>
+- ensemble_by_rank()   # ensemble ranks are based on that of individual selector</p>
 
-<p>for the type of subset selection algorithm, use
+<p>for the type of feature subset selection algorithms, use
 select_feature! for feature selection (based on feature frequency count)</p>
 
 
@@ -428,10 +428,10 @@ select_feature! for feature selection (based on feature frequency count)</p>
         <div class='inline'><p>how the ensemble rank should 
 be derived from those of individual feature selector<br>
 allowed values are:<br>
-- :by_min # use min rank<br>
-- :by_max # use max rank<br>
-- :by_ave # use ave rank<br>
-- :by_sum # use sum rank</p>
+- :by_min  # use min rank<br>
+- :by_max  # use max rank<br>
+- :by_ave  # use ave rank<br>
+- :by_sum  # use sum rank</p>
 </div>
       
     </li>
@@ -445,7 +445,6 @@ allowed values are:<br>
       <pre class="lines">
 
 
-124
 125
 126
 127
@@ -473,10 +472,11 @@ allowed values are:<br>
 149
 150
 151
-152</pre>
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_rank'>ensemble_by_rank</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='op'>=</span><span class='symbol'>:by_sum</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='lbracket'>[</span><span class='symbol'>:by_min</span><span class='comma'>,</span> <span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='symbol'>:by_ave</span><span class='comma'>,</span> <span class='symbol'>:by_sum</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_ensem_method'>ensem_method</span>
@@ -553,10 +553,10 @@ with each other, so we need to normalize them first</p>
         <div class='inline'><p>how the ensemble score should 
 be derived from those of individual feature selector<br>
 allowed values are:<br>
-- :by_min # use min score<br>
-- :by_max # use max score<br>
-- :by_ave # use ave score<br>
-- :by_sum # use sum score</p>
+- :by_min  # use min score<br>
+- :by_max  # use max score<br>
+- :by_ave  # use ave score<br>
+- :by_sum  # use sum score</p>
 </div>
       
     </li>
@@ -574,8 +574,9 @@ allowed values are:<br>
       
         &mdash;
         <div class='inline'><p>score normalization method<br>
-- :by_min_max # score scaled to [0, 1]<br>
-- :by_zscore # score converted to zscore</p>
+- :none          # use score as is<br>
+- :by_min_max  # score scaled to [0, 1]<br>
+- :by_zscore    # score converted to zscore</p>
 </div>
       
     </li>
@@ -589,7 +590,6 @@ allowed values are:<br>
       <pre class="lines">
 
 
-81
 82
 83
 84
@@ -618,10 +618,11 @@ allowed values are:<br>
 107
 108
 109
-110</pre>
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/ensemble.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ensemble_by_score'>ensemble_by_score</span><span class='lparen'>(</span><span class='id identifier rubyid_ensem_method'>ensem_method</span><span class='op'>=</span><span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='id identifier rubyid_norm_method'>norm_method</span><span class='op'>=</span><span class='symbol'>:by_zscore</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='lbracket'>[</span><span class='symbol'>:by_min</span><span class='comma'>,</span> <span class='symbol'>:by_max</span><span class='comma'>,</span> <span class='symbol'>:by_ave</span><span class='comma'>,</span> <span class='symbol'>:by_sum</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_ensem_method'>ensem_method</span>
@@ -761,7 +762,7 @@ allowed values are:<br>
 </div>
     
     <div id="footer">
-  Generated on Thu May 10 17:14:40 2012 by 
+  Generated on Mon May 14 17:33:07 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
