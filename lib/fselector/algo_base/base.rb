@@ -138,7 +138,7 @@ module FSelector
     # @return [Array<Symbol>] unique features
     #
     def get_features
-      @features ||= @data.map { |x| x[1].map { |y| y.keys } }.flatten.uniq
+      @features ||= @data.collect { |x| x[1].collect { |y| y.keys } }.flatten.uniq
     end
     
     
