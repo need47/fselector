@@ -27,9 +27,9 @@ module FileIO
   # @param [Integer] nclass number of classes
   # @param [Integer] nfeature number of features
   # @param [Integer] ncategory number of categories for each feature  
-  #  1 => binary feature with only on bit  
-  #  >1 => discrete feature with multiple values  
-  #  otherwise => continuous feature with vaule in the range of [0, 1)
+  #   1      # binary feature with only on bit  
+  #   >1     # discrete feature with multiple values  
+  #   other  # continuous feature with vaule in the range of [0, 1)
   # @param [true, false] allow_mv whether missing value of feature is alowed or not
   #
   def data_from_random(nsample=100, nclass=2, nfeature=10, ncategory=2, allow_mv=true)
@@ -38,7 +38,7 @@ module FileIO
     nsample.times do
       k = "c#{rand(nclass)+1}".to_sym
       
-      data[k] = [] if not data.has_key? k
+      data[k] ||= []
       
       feats = {}
       fs = (1..nfeature).to_a
@@ -77,7 +77,7 @@ module FileIO
   # ....
   #
   # @param [String] fname file to read from  
-  #   :stdin => read from standard input instead of file
+  #   :stdin  # read from standard input instead of file
   #
   def data_from_libsvm(fname=:stdin)
     data = {}
@@ -94,7 +94,7 @@ module FileIO
     ifs.each_line do |ln|
       label, *features = ln.chomp.split(/\s+/)
       label = label.to_sym
-      data[label] = [] if not data.has_key? label
+      data[label] ||= []
       
       feats = {}
       features.each do |fv|
@@ -116,7 +116,7 @@ module FileIO
   # write to libsvm
   #
   # @param [String] fname file to write  
-  #   :stdout => write to standard ouput instead of file
+  #   :stdout  # write to standard ouput instead of file
   #
   def data_to_libsvm(fname=:stdout)
     if fname == :stdout
@@ -139,8 +139,8 @@ module FileIO
     
     each_sample do |k, s|
       ofs.print "#{k2idx[k]} "
-      s.keys.sort { |x, y| x.to_s.to_i <=> y.to_s.to_i }.each do |i|
-        ofs.print " #{f2idx[i]}:#{s[i]}" if not s[i].zero? # implicit mode
+      s.keys.sort { |x, y| f2idx[x] <=> f2idx[y] }.each do |f|
+        ofs.print " #{f2idx[f]}:#{s[f]}" if not s[f].zero? # implicit mode
       end
       ofs.puts
     end
@@ -155,20 +155,20 @@ module FileIO
   #
   # file should have the format with the first two rows
   # specifying features and their data types e.g.  
-  # feat1,feat2,...,featn  
-  # data\_type1,data\_type2,...,data\_typen  
+  # feat\_name1,feat\_name2,...,feat\_namen  
+  # feat\_type1,feat\_type2,...,feat\_typen  
   # 
   # and the remaing rows showing data e.g.  
   # class\_label,feat\_value1,feat\_value2,...,feat\_value3  
   # ...  
   # 
-  # allowed data types are:  
+  # allowed feature types (case-insensitive) are:  
   # INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL
   #
   # @param [String] fname file to read from  
-  #   :stdin => read from standard input instead of file
+  #   :stdin  # read from standard input instead of file
   #
-  # @note missing values allowed
+  # @note missing values are allowed, and feature types are stored as lower-case symbols
   #
   def data_from_csv(fname=:stdin)
     data = {}
@@ -183,20 +183,17 @@ module FileIO
     end
     
     first_row, second_row = true, true
-    feats, types = [], []
+    features, types = [], []
     
     ifs.each_line do |ln|
       if first_row # first row
         first_row = false
-        *feats = ln.chomp.split(/,/).to_sym
+        features = ln.chomp.split(/,/).to_sym
       elsif second_row # second row
         second_row = false
-        *types = ln.chomp.split(/,/)
-        if types.size == feats.size
-          types.each_with_index do |t, i|
-            set_opt(feats[i], t.upcase) # record data type
-          end
-        else
+        # store feature type as lower-case symbol
+        types = ln.chomp.split(/,/).collect { |t| t.downcase.to_sym }
+        if not types.size == features.size
           abort "[#{__FILE__}@#{__LINE__}]: \n"+
                 "  the first two rows must have same number of fields"
         end
@@ -208,20 +205,20 @@ module FileIO
         fs = {}
         fvs.each_with_index do |v, i|
           next if v.empty? # missing value
-          data_type = get_opt(feats[i])
-          if data_type == 'INTEGER'
+          feat_type = types[i]
+          if feat_type == :integer
             v = v.to_i
-          elsif ['REAL', 'NUMERIC', 'CONTINUOUS'].include? data_type
+          elsif [:real, :numeric, :continuous].include? feat_type
             v = v.to_f
-          elsif ['STRING', 'NOMINAL', 'CATEGORICAL'].include? data_type
+          elsif [:string, :nominal, :categorical].include? feat_type
             #
           else
             abort "[#{__FILE__}@#{__LINE__}]: \n"+
-                  "  please specify correct data type "+
-                  "  for each feature in the 2nd row"
+                  "  please specify correct type "+
+                  "for each feature in the 2nd row"
           end
           
-          fs[feats[i]] = v
+          fs[features[i]] = v
         end
         
         data[label] << fs
@@ -232,6 +229,11 @@ module FileIO
     ifs.close if not ifs == $stdin
     
     set_data(data)
+    set_features(features)
+    # set feature type
+    features.each_with_index do |f, i|
+      set_opt(f, types[i])
+    end
   end # data_from_csv
   
   
@@ -243,7 +245,7 @@ module FileIO
   # and the remaing rows showing data
   #
   # @param [String] fname file to write  
-  #   :stdout => write to standard ouput instead of file
+  #   :stdout  # write to standard ouput instead of file
   #
   def data_to_csv(fname=:stdout)
     if fname == :stdout
@@ -254,7 +256,7 @@ module FileIO
      
     ofs.puts get_features.join(',')
     ofs.puts get_features.collect { |f| 
-      get_opt(f) || 'STRING'
+      get_opt(f) || :string
     }.join(',')
     
     each_sample do |k, s|
@@ -270,7 +272,7 @@ module FileIO
     end
     
     # close file
-    ofs.close if not ofs == $stdout    
+    ofs.close if not ofs == $stdout
   end # data_to_csv
   
   
@@ -278,7 +280,7 @@ module FileIO
   # read from WEKA ARFF file
   #
   # @param [String] fname file to read from  
-  #   :stdin => read from standard input instead of file
+  #   :stdin  # read from standard input instead of file
   # @note it's ok if string containes spaces quoted by quote_char
   #
   def data_from_weka(fname=:stdin, quote_char='"')
@@ -293,7 +295,7 @@ module FileIO
       ifs = File.open(fname)
     end
     
-    features, classes, comments = [], [], []
+    relation, features, classes, types, comments = '', [], [], [], []
     has_class, has_data = false, false
     
     ifs.each_line do |ln|
@@ -307,7 +309,6 @@ module FileIO
       # relation
       elsif ln =~ /^@RELATION/i
         tmp, relation = ln.split_me(/\s+/, quote_char)
-        set_opt('@RELATION', relation)
       # class attribute
       elsif ln =~ /^@ATTRIBUTE\s+class\s+{(.+)}/i
         has_class = true
@@ -318,13 +319,14 @@ module FileIO
         f = $1.to_sym
         features << f
         #$2.split_me(/,\s*/, quote_char) # feature nominal values
-        set_opt(f, 'NOMINAL')
+        types << :nominal
       # feature attribute (integer, real, numeric, string, date)
       elsif ln =~ /^@ATTRIBUTE/i
         tmp, v1, v2 = ln.split_me(/\s+/, quote_char)
         f = v1.to_sym
         features << f
-        set_opt(f, v2.upcase) # record feature data type
+        # store feture type as lower-case symbol
+        types << v2.downcase.to_sym
       # data header
       elsif ln =~ /^@DATA/i
         has_data = true
@@ -337,29 +339,30 @@ module FileIO
           label = label.to_sym
           
           fs = {}
-          nonzero_fi = []
+          # indices of feature with zero value
+          zero_fi = (0...features.size).to_a
+          
           feats.each do |fi_fv|
             fi, fv = fi_fv.split_me(/\s+/, quote_char)
             fi = fi.to_i             
-            add_feature_weka(fs, features[fi], fv)
-            nonzero_fi << fi
+            add_feature_weka(fs, features[fi], fv, types[fi])
+            zero_fi.delete(fi)
           end
           
           # feature with zero value
-          features.each_with_index do |f0, i|
-            add_feature_weka(fs, f0, 0) if not nonzero_fi.include?(i)
+          zero_fi.each do |zi|
+            add_feature_weka(fs, features[zi], 0, types[zi])
           end
           
           data[label] << fs
         else # regular ARFF
           feats = ln.split_me(/,\s*/, quote_char)
-          label = feats.pop.to_sym
+          label = feats.pop.to_sym          
           
           fs = {}
           feats.each_with_index do |fv, i|
-            add_feature_weka(fs, features[i], fv)
+            add_feature_weka(fs, features[i], fv, types[i])
           end
-          
           data[label] << fs if label
         end
       else
@@ -373,7 +376,11 @@ module FileIO
     set_data(data)
     set_classes(classes)
     set_features(features)
-    set_opt('COMMENTS', comments) if not comments.empty?
+    set_opt('@RELATION', relation)
+    features.each_with_index do |f, i|
+      set_opt(f, types[i])
+    end
+    set_opt(:comments, comments) if not comments.empty?
   end # data_from_weak
   
   
@@ -381,11 +388,11 @@ module FileIO
   # write to WEKA ARFF file
   #
   # @param [String] fname file to write  
-  #   :stdout => write to standard ouput instead of file
+  #   :stdout  # write to standard ouput instead of file
   # @param [Symbol] format sparse or regular ARFF  
-  #   :sparse => sparse ARFF, otherwise regular ARFF
+  #   :sparse  # sparse ARFF, otherwise regular ARFF
   #
-  def data_to_weka(fname=:stdout, format=:sparse)
+  def data_to_weka(fname=:stdout, format=nil)
     if fname == :stdout
       ofs = $stdout
     else
@@ -393,7 +400,7 @@ module FileIO
     end
     
     # comments
-    comments = get_opt('COMMENTS')
+    comments = get_opt(:comments)
     if comments
       ofs.puts comments.join("\n")
       ofs.puts
@@ -412,15 +419,15 @@ module FileIO
     # feature attribute
     each_feature do |f|
       ofs.print "@ATTRIBUTE #{f} "
-      type = get_opt(f)
+      type = get_opt(f) # feature type
       if type
-        if type == 'NOMINAL'
+        if type == :nominal
           ofs.puts "{#{get_feature_values(f).uniq.sort.join(',')}}"
         else
           ofs.puts type
         end
-      else # treat all other data types as string
-        ofs.puts "STRING"
+      else # treat all other feature types as string
+        ofs.puts :string
       end
     end
     
@@ -462,21 +469,27 @@ module FileIO
   private
   
   # handle and add each feature for WEKA format
-  def add_feature_weka(fs, f, v)
+  #
+  # @param [Hash] fs sample that stores feature and its value
+  # @param [Symbol] f feature
+  # @param [String] v feature value
+  # @param [Symbol] type feature type
+  #
+  def add_feature_weka(fs, f, v, type)
     if v == '?' # missing value
       return
-    elsif get_opt(f) == 'INTEGER'
+    elsif type == :integer
       fs[f] = v.to_i
-    elsif get_opt(f) == 'REAL' or get_opt(f) == 'NUMERIC'
+    elsif type == :real or type == :numeric
       fs[f] = v.to_f
-    elsif get_opt(f) == 'STRING' or get_opt(f) == 'NOMINAL'
+    elsif type == :string or type == :nominal
       fs[f] = v
-    elsif get_opt(f) == 'DATE' # convert into integer
+    elsif type == :date # convert into integer
       fs[f] = (DateTime.parse(v)-DateTime.new(1970,1,1)).to_i
     else
        return
     end
-  end # add_feature
+  end # add_feature_weka
      
  
 end # module
