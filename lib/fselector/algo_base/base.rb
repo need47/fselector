@@ -36,7 +36,7 @@ module FSelector
     #
     # iterator for each class, a block must be given. e.g. 
     #
-    #     self.each_class do |k|
+    #     each_class do |k|
     #       puts k
     #     end
     #
@@ -53,7 +53,7 @@ module FSelector
     #
     # iterator for each feature, a block must be given. e.g.
     #
-    #     self.each_feature do |f|
+    #     each_feature do |f|
     #       puts f
     #     end
     #
@@ -71,7 +71,7 @@ module FSelector
     # iterator for each sample with class label, 
     # a block must be given. e.g. 
     #
-    #     self.each_sample do |k, s|
+    #     each_sample do |k, s|
     #       print k
     #       s.each { |f, v| print " #{v}" }
     #       puts
@@ -239,11 +239,7 @@ module FSelector
     # @note return all non-data as a Hash if key == nil
     #
     def get_opt(key=nil)
-      if key == nil
-        @opts
-      else
-        @opts.has_key?(key) ? @opts[key] : nil
-      end
+      key ? @opts[key] : @opts
     end
     
     
@@ -262,7 +258,7 @@ module FSelector
     # @return [Integer] sample size
     #
     def get_sample_size
-      @sz ||= get_data.values.flatten.size
+      @sz ||= get_classes.inject(0) { |sz, k| sz+get_data[k].size }
     end
     
     
