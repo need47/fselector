@@ -356,6 +356,7 @@ module FSelector
       
       # user scores or internal scores
       scores = my_scores || get_feature_scores
+      return if scores.empty?
       
       my_data = {}
       
@@ -389,6 +390,7 @@ module FSelector
       
       # user ranks or internal ranks
       ranks = my_ranks || get_feature_ranks
+      return if ranks.empty?
       
       my_data = {}
       
