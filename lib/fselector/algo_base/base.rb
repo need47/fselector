@@ -14,23 +14,22 @@ module FSelector
     class << self
       # class-level instance variable, type of feature selection algorithm.
       #
-      # derived class (except Base*** class) must set its own type with one 
-      # of the following two:  
-      # - :feature\_weighting         # when algo outputs weight for each feature  
-      # - :feature\_subset_selection  # when algo outputs a subset of features
+      # @note derived class (except for Base*** class) must set its own type with 
+      #   one of the following two:  
+      #   - :feature\_weighting         # when algo outputs weight for each feature  
+      #   - :feature\_subset_selection  # when algo outputs a subset of features
       attr_accessor :algo_type
     end
     
     # get the type of feature selection algorithm at class-level
     def algo_type
       self.class.algo_type
-    end
+    end    
     
     
     # initialize from an existing data structure
     def initialize(data=nil)
       @data = data # store data
-      @opts = {} # store non-data information
     end
     
     
@@ -231,14 +230,28 @@ module FSelector
     end
     
     
+    #
     # get non-data information for a given key
-    def get_opt(key)
-      @opts.has_key?(key) ? @opts[key] : nil
+    #
+    # @param [Symbol] key key of non-data
+    # @return [Any] value of non-data, can be any type
+    #
+    # @note return all non-data as a Hash if key == nil
+    #
+    def get_opt(key=nil)
+      if key == nil
+        @opts
+      else
+        @opts.has_key?(key) ? @opts[key] : nil
+      end
     end
     
     
     # set non-data information as a key-value pair
+    # @param [Symbol] key key of non-data
+    # @param [Any] value value of non-data, can be any type
     def set_opt(key, value)
+      @opts ||= {} # store non-data information
       @opts[key] = value
     end
     
