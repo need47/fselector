@@ -376,7 +376,7 @@ module FileIO
     set_data(data)
     set_classes(classes)
     set_features(features)
-    set_opt('@RELATION', relation)
+    set_opt(:relation, relation)
     features.each_with_index do |f, i|
       set_opt(f, types[i])
     end
@@ -407,7 +407,7 @@ module FileIO
     end         
     
     # relation
-    relation = get_opt('@RELATION')
+    relation = get_opt(:relation)
     if relation
       ofs.puts "@RELATION #{relation}"
     else
