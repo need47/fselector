@@ -108,14 +108,13 @@ module FSelector
     end
     
     
+    # get the next element of fp in subset
     def get_next_element(subset, fp)
       fq = nil
       
-      subset.each_with_index do |v, i|
-        if v == fp and i+1 < subset.size
-          fq = subset[i+1]
-          break
-        end
+      idx = subset.index(fp)      
+      if idx and idx < subset.size-1
+        fq = subset[idx+1]
       end
       
       fq
