@@ -217,6 +217,7 @@ module FSelector
     # set data and clean relevant variables in case of data change
     #
     # @param [Hash] data source data structure
+    # @return [nil] to suppress console echo of data in irb
     #
     def set_data(data)
       if data and data.class == Hash
@@ -227,6 +228,8 @@ module FSelector
         abort "[#{__FILE__}@#{__LINE__}]: \n"+
               "  data must be a Hash object!"
       end
+      
+      nil # suppress console echo of data in irb
     end
     
     
