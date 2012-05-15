@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 1.0.1  
-**Release Date**: 2012-05-08
+**Latest Version**: 1.1.0  
+**Release Date**: 2012-05-15
 
 Synopsis
 --------
@@ -86,17 +86,16 @@ Feature List
     WilcoxonRankSum                   WRS         weighting   continuous    two-class
     
   **note for feature selection interface:**   
-  there are two types of filter methods, i.e., weighting algorithms and subset selection algorithms  
+  there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  
   
   - for weighting type: use either **select\_feature\_by\_rank!** or **select\_feature\_by\_score!**  
   - for subset type: use **select\_feature!**
-    
 
 **3. feature selection approaches**
 
  - by a single algorithm
  - by multiple algorithms in a tandem manner
- - by multiple algorithms in an ensemble manner
+ - by multiple algorithms in an ensemble manner (share same feature selection interface as single algorithm)
  
 **4. availabe normalization and discretization algorithms for continuous feature**
     
@@ -114,11 +113,13 @@ Feature List
     
 **5. availabe algorithms for replacing missing feature values**
     
-    algorithm                         note                                feature_type                     
-    -------------------------------------------------------------------------------------------
-    replace_by_fixed_value!           replace by a fixed value            discrete, continuous
-    replace_by_mean_value!            replace by mean feature value       continuous
-    replace_by_most_seen_value!       replace by most seen feature value  discrete
+    algorithm                         note                                   feature_type                     
+    ---------------------------------------------------------------------------------------------------------
+    replace_by_fixed_value!           replace by a fixed value               discrete, continuous
+    replace_by_mean_value!            replace by mean feature value          continuous
+    replace_by_median_value!          replace by median feature value        continuous
+    replace_by_knn_value!             replace by weighted knn feature value  continuous
+    replace_by_most_seen_value!       replace by most seen feature value     discrete
 
 Installing
 ----------
@@ -140,7 +141,7 @@ Usage
 
     require 'fselector'
 	
-    # use InformationGain as a feature ranking algorithm
+    # use InformationGain as a feature selection algorithm
     r1 = FSelector::InformationGain.new
     
     # read from random data (or csv, libsvm, weka ARFF file)
@@ -152,13 +153,13 @@ Usage
     r1.data_from_random(100, 2, 15, 3, true)
     
     # number of features before feature selection
-    puts "# features (before): "+ r1.get_features.size.to_s
+    puts "  # features (before): "+ r1.get_features.size.to_s
     
     # select the top-ranked features with scores >0.01
     r1.select_feature_by_score!('>0.01')
     
     # number of features after feature selection
-    puts "# features (after): "+ r1.get_features.size.to_s
+    puts "  # features (after): "+ r1.get_features.size.to_s
     
     # you can also use multiple alogirithms in a tandem manner
     # e.g. use the ChiSquaredTest with Yates' continuity correction
@@ -166,29 +167,65 @@ Usage
     r2 = FSelector::ChiSquaredTest.new(:yates, r1.get_data)
     
     # number of features before feature selection
-    puts "# features (before): "+ r2.get_features.size.to_s
+    puts "  # features (before): "+ r2.get_features.size.to_s
     
     # select the top-ranked 3 features
     r2.select_feature_by_rank!('<=3')
     
     # number of features after feature selection
-    puts "# features (after): "+ r2.get_features.size.to_s
+    puts "  # features (after): "+ r2.get_features.size.to_s
     
     # save data to standard ouput as a weka ARFF file (sparse format)
     # with selected features only
     r2.data_to_weka(:stdout, :sparse)
 
 	
-**2. feature selection by an ensemble of multiple algorithms**
+**2. feature selection by an ensemble of multiple feature selectors**
 
     require 'fselector'
 	
-	# use both InformationGain and Relief_d
-    r1 = FSelector::InformationGain.new
-    r2 = FSelector::Relief_d.new
+	# example 1
+	#
+	
+	
+	# creating an ensemble of feature selectors by using 
+	# a single feature selection algorithm (INTERACT) 
+	# by instance perturbation (e.g. bootstrap sampling)
+	
+	# test for the type of feature subset selection algorithms
+    r = FSelector::INTERACT.new(0.0001)
+
+    # an ensemble of 40 feature selectors with 90% data by random sampling
+    re = FSelector::EnsembleSingle.new(r, 40, 0.90, :random_sampling)
+
+    # read SPECT data set  (under the test/ directory)
+    re.data_from_csv('test/SPECT_train.csv')
+
+    # number of features before feature selection
+    puts '  # features (before): ' + re.get_features.size.to_s
+
+    # only features with above average count among ensemble are selected
+    re.select_feature!
+
+    # number of features after feature selection
+    puts '  # features before (after): ' + re.get_features.size.to_s
+
     
-    # ensemble ranker
-    re = FSelector::Ensemble.new(r1, r2)
+    # example 2
+	#
+	
+	
+	# creating an ensemble of feature selectors by using 
+	# two feature selection algorithms (InformationGain and Relief_d). 
+	# note: can be 2+ algorithms, as long as they are of the same type, 
+	# either feature weighting or feature subset selection algorithms
+	
+	# test for the type of feature weighting algorithms 
+    r1 = FSelector::InformationGain.new
+    r2 = FSelector::Relief_d.new(10)
+    
+    # an ensemble of two feature selectors
+    re = FSelector::EnsembleMultiple.new(r1, r2)
     
     # read random data
     re.data_from_random(100, 2, 15, 3, true)
@@ -198,18 +235,17 @@ Usage
     re.replace_by_most_seen_value!
     
     # number of features before feature selection
-    puts '# features (before): ' + re.get_features.size.to_s
+    puts '  # features (before): ' + re.get_features.size.to_s
     
     # based on the max feature score (z-score standardized) among
-    # an ensemble of feature selection algorithms
+    # an ensemble of feature selectors
     re.ensemble_by_score(:by_max, :by_zscore)
     
     # select the top-ranked 3 features
     re.select_feature_by_rank!('<=3')
     
     # number of features after feature selection
-    puts '# features (after): ' + re.get_features.size.to_s
-
+    puts '  # features (after): ' + re.get_features.size.to_s
     
 **3. normalization and discretization before feature selection**
 
@@ -233,13 +269,13 @@ Usage
     r2 = FSelector::FCBF.new(0.0, r1.get_data)
     
     # number of features before feature selection
-    puts '# features (before): ' + r2.get_features.size.to_s
+    puts '  # features (before): ' + r2.get_features.size.to_s
     
     # feature selection
     r2.select_feature!
     
     # number of features after feature selection
-    puts '# features (after): ' + r2.get_features.size.to_s
+    puts '  # features (after): ' + r2.get_features.size.to_s
 
 **4. see more examples test_*.rb under the test/ directory**
 

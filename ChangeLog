@@ -1,3 +1,12 @@
+2012-05-15	version 1.1.0
+
+  * add replace\_by\_median\_value! for replacing missing value with feature median value
+  * add replace\_by\_knn\_value! for replacing missing value with weighted feature value from k-nearest neighbors
+  * replace\_by\_mean\_value! and replace\_by\_median\_value! now support both column and row mode
+  * add EnsembleSingle class for ensemble feature selection by creating an ensemble of feature selectors using a single feature selection algorithm
+  * rename Ensemble to EnsembleMultiple for ensemble feature selection by creating an ensemble of feature selectors using multiple feature selection algorithms of the same type
+  * bug fix in FileIO module
+  
 2012-05-08	version 1.0.1
 
   * modify Ensemble module so that ensemble\_by\_score() and ensemble\_by\_rank() now take Symbol, instead of Method, as argument. This allows easier and clearer function call
