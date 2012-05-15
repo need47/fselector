@@ -1,5 +1,6 @@
 # access to the statistical routines in R package
 require 'rinruby'
+R.eval 'options(warn = -1)' # suppress R warnings
 
 #
 # FSelector: a Ruby gem for feature selection and ranking
