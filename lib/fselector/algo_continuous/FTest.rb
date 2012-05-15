@@ -29,36 +29,6 @@ module FSelector
     private    
     
     # calculate contribution of each feature (f) across all classes
-    def calc_contribution2(f)
-      a, b, s = 0.0, 0.0, 0.0
-      ybar = get_feature_values(f).mean
-      kz = get_classes.size.to_f
-      sz = get_sample_size.to_f
-      
-      k2ybar = {} # cache
-      each_class do |k|
-        k2ybar[k] = get_feature_values(f, nil, k).mean        
-      end
-      
-      # a
-      each_class do |k|
-        n_k = get_data[k].size.to_f
-        a += n_k * (k2ybar[k] - ybar)**2 / (kz-1)
-      end
-      
-      # b
-      each_sample do |k, s|
-        if s.has_key? f
-          y_ik = s[f]
-          b += (y_ik - k2ybar[k])**2 / (sz-kz)
-        end
-      end
-      
-      s = a/b if not b.zero?
-      
-      set_feature_score(f, :BEST, s)
-    end # calc_contribution
-    
     def calc_contribution(f)
       a, b, s = 0.0, 0.0, 0.0
       ybar = get_feature_values(f).mean
