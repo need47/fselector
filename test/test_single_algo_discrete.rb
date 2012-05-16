@@ -271,4 +271,15 @@ r24 = FSelector::JM.new
 r24.data_from_random(100, 3, 10, 3, true)
 r24.select_feature_by_rank!('<=3')
 
+
+# example 25
+#
+
+
+# KL-Divergence (KLD)
+puts "  test KL-Divergence ..."
+r25 = FSelector::KLD.new
+r25.data_from_random(100, 3, 10, 3, true)
+r25.select_feature_by_rank!('<=3')
+
 puts "<============< #{File.basename(__FILE__)}"
