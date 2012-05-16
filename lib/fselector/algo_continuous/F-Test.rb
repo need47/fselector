@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# F-test (FT) based on F-statistics for continuous feature
+# F-Test (FT) based on F-statistics for continuous feature
 # 
 #           between-group variability
 #     FT = ---------------------------
