@@ -8,8 +8,7 @@ module FSelector
 # ref: [Feature Selection for Supervised Classiﬁcation: A KolmogorovSmirnov Class Correlation-Based Filter](http://kzi.polsl.pl/~jbiesiada/Infosel/downolad/publikacje/09-Gliwice.pdf)
 #
   class KS_CCBF < BaseContinuous
-    # include Discretizer and Entropy module
-    include Discretizer
+    # include Entropy module
     include Entropy
     
     # this algo outputs a subset of feature
