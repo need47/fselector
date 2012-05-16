@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# t-score (TS) based on Student's t-test for continuous feature
+# T-Score (TS) based on Student's t-test for continuous feature
 # 
 #                      |u1 - u2|
 #     TS = -------------------------------------
