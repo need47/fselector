@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# KS-Test (KST) based on Kolmogorov-Smirnov statistical test for continuous feature
+# Kolmogorov-Smirnov Test (KST) for continuous feature
 # 
 # @note KST is applicable only to two-class problems, and missing data are ignored
 #
