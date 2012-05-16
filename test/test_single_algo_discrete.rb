@@ -260,4 +260,15 @@ r23 = FSelector::SU.new
 r23.data_from_random(100, 2, 10, 3, true)
 r23.select_feature_by_rank!('<=3')
 
+
+# example 24
+#
+
+
+# J-Measure (JM)
+puts "  test J-Measure ..."
+r24 = FSelector::JM.new
+r24.data_from_random(100, 3, 10, 3, true)
+r24.select_feature_by_rank!('<=3')
+
 puts "<============< #{File.basename(__FILE__)}"
