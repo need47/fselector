@@ -10,10 +10,6 @@ module FSelector
     include FileIO
     # include ReplaceMissingValues
     include ReplaceMissingValues
-    # include Discretizer (for continuous feature)
-    include Discretizer
-    # include Normalizer (for continuous feature)
-    include Normalizer
     
     class << self
       # class-level instance variable, type of feature selection algorithm.
