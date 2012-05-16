@@ -3,11 +3,11 @@
 #
 module FSelector
 #
-# J-Measure (JM) for continuous feature
+# J-Measure (JM) for discrete feature
 #
 #                                                 P(y_j|x_i)
 #     JM = sigma_i P(x_i) sigma_j P(y_j|x_i) log ------------
-#                                                  P(y_j)
+#                                                   P(y_j)
 #
 # ref: [Feature Extraction, Foundations and Applications](http://www.springer.com/engineering/computational+intelligence+and+complexity/book/978-3-540-35487-1)
 #
