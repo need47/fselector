@@ -11,7 +11,7 @@ puts "\n>============> #{File.basename(__FILE__)}"
 
 
 # PMetric (PM)
-puts "  test PMetric ..."
+puts "  test P-Metric ..."
 r1 = FSelector::PM.new
 r1.data_from_random(100, 2, 10, 0, false)
 r1.select_feature_by_rank!('<=3')
@@ -22,7 +22,7 @@ r1.select_feature_by_rank!('<=3')
 
 
 # TScore (TS)
-puts "  test TScore ..."
+puts "  test T-Score ..."
 r2 = FSelector::TS.new
 r2.data_from_random(100, 2, 10, 0, true)
 r2.select_feature_by_rank!('<=3')
@@ -54,11 +54,22 @@ r4.select_feature_by_rank!('<=3')
 #
 
 
-# F-Test (Ft)
-puts "  test FT ..."
+# F-Test (FT)
+puts "  test F-Test ..."
 r5 = FSelector::FT.new
 r5.data_from_random(100, 2, 10, 0, false)
 r5.select_feature_by_rank!('<=3')
+
+
+# example 6
+#
+
+
+# KS-Test (KST)
+puts "  test KS-Test ..."
+r6 = FSelector::KST.new
+r6.data_from_random(100, 2, 10, 0, false)
+r6.select_feature_by_rank!('<=3')
 
 
 puts "<============< #{File.basename(__FILE__)}"
