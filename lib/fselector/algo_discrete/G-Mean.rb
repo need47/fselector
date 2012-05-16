@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# GMean (GM)
+# G-Mean (GM)
 #
 #     GM = sqrt(Sensitivity * Specificity)
 #     
