@@ -6,7 +6,7 @@ module FSelector
 # base algorithm for continuous feature
 #
   class BaseContinuous < Base
-    # include Normalizer
+    # include module
     include Normalizer
     
     # initialize from an existing data structure

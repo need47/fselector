@@ -29,7 +29,7 @@ module FSelector
 #      P(f'|c') = D/(B+D)
 #
   class BaseDiscrete < Base
-    # include Discretizer
+    # include module
     include Discretizer
     
     # initialize from an existing data structure

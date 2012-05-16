@@ -9,7 +9,7 @@ module FSelector
 # ref: [Feature Selection for High-Dimensional Data: A Fast Correlation-Based Filter Solution](http://www.hpl.hp.com/conferences/icml2003/papers/144.pdf)
 #
   class FastCorrelationBasedFilter < BaseDiscrete
-    # include Entropy module
+    # include module
     include Entropy
     
     # this algo outputs a subset of feature

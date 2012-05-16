@@ -6,9 +6,8 @@ module FSelector
   # base class for a single feature selection algorithm
   #
   class Base
-    # include FileIO
+    # include module
     include FileIO
-    # include ReplaceMissingValues
     include ReplaceMissingValues
     
     class << self

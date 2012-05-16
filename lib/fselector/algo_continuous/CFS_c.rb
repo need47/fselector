@@ -9,7 +9,7 @@ module FSelector
 # ref: [Feature Selection for Discrete and Numeric Class Machine Learning](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.30.5673)
 #
   class CFS_c < BaseCFS
-    # include Normalizer
+    # include module
     include Normalizer
     
     # this algo outputs a subset of feature

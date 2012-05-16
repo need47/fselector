@@ -17,7 +17,7 @@ module FSelector
 # ref: [Wikipedia](http://en.wikipedia.org/wiki/Symmetric_uncertainty) and [Robust Feature Selection Using Ensemble Feature Selection Techniques](http://dl.acm.org/citation.cfm?id=1432021)
 #
   class SymmetricalUncertainty < BaseDiscrete
-    # include Entropy module
+    # include module
     include Entropy
 
     # this algo outputs weight for each feature

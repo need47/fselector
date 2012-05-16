@@ -9,9 +9,8 @@ module FSelector
 # ref: [Searching for Interacting Features](http://www.public.asu.edu/~huanliu/papers/ijcai07.pdf)
 #
   class INTERACT < BaseDiscrete
-    # include Entropy module
+    # include module
     include Entropy
-    # include Consistency module
     include Consistency
     
     # this algo outputs a subset of feature
@@ -24,13 +23,14 @@ module FSelector
     #
     def initialize(delta=0.0001, data=nil)
       super(data)
+      
       @delta = delta || 0.0001
     end
     
     private
     
     # INTERACT algorithm
-    def get_feature_subset     
+    def get_feature_subset      
       subset, f2su = get_features.dup, {}
       
       # part 1, get symmetrical uncertainty for each feature

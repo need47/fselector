@@ -8,8 +8,9 @@ module FSelector
 # ref: [Feature Selection for Supervised Classification: A KolmogorovSmirnov Class Correlation-Based Filter](http://kzi.polsl.pl/~jbiesiada/Infosel/downolad/publikacje/09-Gliwice.pdf)
 #
   class KS_CCBF < BaseContinuous
-    # include Entropy module
+    # include module
     include Entropy
+    include Discretizer
     
     # this algo outputs a subset of feature
     @algo_type = :feature_subset_selection
@@ -34,8 +35,6 @@ module FSelector
       
       # stage 1: calculate SUC coefficient
       # but let's discretize features first
-      # bring the Discretizer module to this instance
-      class << self; include Discretizer; end
       discretize_for_suc
       
       # then SUC

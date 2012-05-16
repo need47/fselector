@@ -9,9 +9,8 @@ module FSelector
 # ref: [Feature Selection for Discrete and Numeric Class Machine Learning](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.30.5673)
 #
   class CFS_d < BaseCFS
-    # include Discretizer
+    # include module
     include Discretizer
-    # include Entropy module
     include Entropy
     
     # this algo outputs a subset of feature

@@ -11,7 +11,7 @@ module FSelector
 # ref: [Review and Evaluation of Feature Selection Algorithms in Synthetic Problems](http://arxiv.org/abs/1101.2320)
 #
   class LasVegasFilter < BaseDiscrete
-    # include Consistency module
+    # include module
     include Consistency
     
     # this algo outputs a subset of feature
@@ -30,7 +30,7 @@ module FSelector
     private
     
     # Las Vegas Filter (LVF) algorithm
-    def get_feature_subset
+    def get_feature_subset  
       inst_cnt = get_instance_count      
       j0 = get_IR_by_count(inst_cnt)
       
