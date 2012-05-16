@@ -9,7 +9,10 @@ module FSelector
 #
 # ref: [The Feature Selection Problem: Traditional Methods and a New Algorithm](http://www.aaai.org/Papers/AAAI/1992/AAAI92-020.pdf)
 #
-  class Relief_c < BaseRelief    
+  class Relief_c < BaseRelief
+    # include Normalizer
+    include Normalizer
+    
     # this algo outputs weight for each feature
     @algo_type = :feature_weighting
        

@@ -10,6 +10,9 @@ module FSelector
 # ref: [Estimating Attributes: Analysis and Extensions of RELIEF](http://www.springerlink.com/content/fp23jh2h0426ww45/)
 #
   class ReliefF_c < BaseReliefF
+    # include Normalizer
+    include Normalizer
+    
     # this algo outputs weight for each feature
     @algo_type = :feature_weighting
     
