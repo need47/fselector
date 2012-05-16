@@ -30,6 +30,7 @@ module FSelector
     #
     def initialize(correction=:yates, data=nil)
       super(data)
+      
       @correction = (correction==:yates) ? true : false
     end
      

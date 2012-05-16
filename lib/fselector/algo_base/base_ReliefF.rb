@@ -21,6 +21,7 @@ module FSelector
     #
     def initialize(m=30, k=10, data=nil)
       super(data)
+      
       @m = m || 30 # default 30
       @k = k || 10 # default 10
     end

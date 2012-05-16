@@ -24,6 +24,7 @@ module FSelector
     #
     def initialize(max_iter=100, data=nil)
       super(data)
+      
       @max_iter = max_iter || 100
     end
     

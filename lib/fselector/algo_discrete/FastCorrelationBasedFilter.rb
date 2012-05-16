@@ -22,6 +22,7 @@ module FSelector
     #
     def initialize(delta=0.0, data=nil)
       super(data)
+      
       @delta = delta || 0.0
     end
     

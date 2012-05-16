@@ -23,6 +23,7 @@ module FSelector
     #
     def initialize(max_iter=100, portion=0.10, data=nil)
       super(data)
+      
       @max_iter = max_iter || 100
       @portion = portion || 0.10
     end

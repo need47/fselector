@@ -22,6 +22,7 @@ module FSelector
     #
     def initialize(seed=nil, data=nil)
       super(data)
+      
       srand(seed) if seed
     end
     
