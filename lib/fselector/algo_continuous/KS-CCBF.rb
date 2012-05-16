@@ -5,7 +5,7 @@ module FSelector
 #
 # Kolmogorov-Smirnov Class Correlation-Based Filter (KS-CCBF) for continuous feature
 #
-# ref: [Feature Selection for Supervised Classiﬁcation: A KolmogorovSmirnov Class Correlation-Based Filter](http://kzi.polsl.pl/~jbiesiada/Infosel/downolad/publikacje/09-Gliwice.pdf)
+# ref: [Feature Selection for Supervised Classification: A KolmogorovSmirnov Class Correlation-Based Filter](http://kzi.polsl.pl/~jbiesiada/Infosel/downolad/publikacje/09-Gliwice.pdf)
 #
   class KS_CCBF < BaseContinuous
     # include Entropy module
@@ -17,7 +17,7 @@ module FSelector
     #
     # initialize from an existing data structure
     # 
-    # @param [Float] lamda threshold value [0, 1] to determin feature redundancy
+    # @param [Float] lamda threshold value [0, 1] to determine feature redundancy
     #
     def initialize(lamda=0.2, data=nil)
       super(data)
@@ -34,6 +34,8 @@ module FSelector
       
       # stage 1: calculate SUC coefficient
       # but let's discretize features first
+      # bring the Discretizer module to this instance
+      class << self; include Discretizer; end
       discretize_for_suc
       
       # then SUC
