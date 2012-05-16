@@ -1,5 +1,5 @@
 #
-# test the Las Vegas Filter (LVF) algorithm
+# test the Kolmogorov-Smirnov Class Correlation-Based Filter (KS-CCBF) algorithm
 #
 require 'fselector'
 
