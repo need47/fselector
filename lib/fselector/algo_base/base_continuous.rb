@@ -6,6 +6,9 @@ module FSelector
 # base algorithm for continuous feature
 #
   class BaseContinuous < Base
+    # include Normalizer
+    include Normalizer
+    
     # initialize from an existing data structure
     def initialize(data=nil)
       super(data)
