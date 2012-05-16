@@ -29,6 +29,9 @@ module FSelector
 #      P(f'|c') = D/(B+D)
 #
   class BaseDiscrete < Base
+    # include Discretizer
+    include Discretizer
+    
     # initialize from an existing data structure
     def initialize(data=nil)
       super(data)
