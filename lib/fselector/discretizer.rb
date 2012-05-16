@@ -2,11 +2,6 @@
 # discretize continuous feature
 #
 module Discretizer
-  # include Entropy module
-  include Entropy
-  # include Consistency module
-  include Consistency
-
   #    
   # discretize by equal-width intervals
   #
@@ -158,6 +153,9 @@ module Discretizer
   # ref: [Chi2: Feature Selection and Discretization of Numeric Attributes](http://sci2s.ugr.es/keel/pdf/specific/congreso/liu1995.pdf)
   #
   def discretize_by_Chi2!(delta=0.02)
+    # bring in the Consistency module to this instance
+    class << self; include Consistency; end
+    
     # degree of freedom equals one less than number of classes     
     df = get_classes.size-1
         
@@ -271,6 +269,9 @@ module Discretizer
   # ref: [Multi-Interval Discretization of Continuous-Valued Attributes for Classification Learning](http://www.ijcai.org/Past%20Proceedings/IJCAI-93-VOL2/PDF/022.pdf)
   #
   def discretize_by_MID!
+    # bring in the Entropy module to this instance
+    class << self; include Entropy; end
+    
     # determine the final boundaries
     f2cp = {} # cut points for each feature
     each_feature do |f|
