@@ -86,7 +86,7 @@
   
     
       <dt class="r2">Includes:</dt>
-      <dd class="r2"><span class='object_link'><a href="../Discretizer.html" title="Discretizer (module)">Discretizer</a></span>, <span class='object_link'><a href="../Normalizer.html" title="Normalizer (module)">Normalizer</a></span></dd>
+      <dd class="r2"><span class='object_link'><a href="../Normalizer.html" title="Normalizer (module)">Normalizer</a></span></dd>
       
     
   
@@ -110,7 +110,7 @@
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="BetweenWithinClassesSumOfSquare.html" title="FSelector::BetweenWithinClassesSumOfSquare (class)">BetweenWithinClassesSumOfSquare</a></span>, <span class='object_link'><a href="FTest.html" title="FSelector::FTest (class)">FTest</a></span>, <span class='object_link'><a href="PMetric.html" title="FSelector::PMetric (class)">PMetric</a></span>, <span class='object_link'><a href="TScore.html" title="FSelector::TScore (class)">TScore</a></span>, <span class='object_link'><a href="WilcoxonRankSum.html" title="FSelector::WilcoxonRankSum (class)">WilcoxonRankSum</a></span></p>
+  <p class="children"><span class='object_link'><a href="BetweenWithinClassesSumOfSquare.html" title="FSelector::BetweenWithinClassesSumOfSquare (class)">BetweenWithinClassesSumOfSquare</a></span>, <span class='object_link'><a href="FTest.html" title="FSelector::FTest (class)">FTest</a></span>, <span class='object_link'><a href="KSTest.html" title="FSelector::KSTest (class)">KSTest</a></span>, <span class='object_link'><a href="KS_CCBF.html" title="FSelector::KS_CCBF (class)">KS_CCBF</a></span>, <span class='object_link'><a href="PMetric.html" title="FSelector::PMetric (class)">PMetric</a></span>, <span class='object_link'><a href="TScore.html" title="FSelector::TScore (class)">TScore</a></span>, <span class='object_link'><a href="WilcoxonRankSum.html" title="FSelector::WilcoxonRankSum (class)">WilcoxonRankSum</a></span></p>
 </div>
 
 
@@ -154,36 +154,6 @@
     </ul>
   
 
-
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Discretizer.html" title="Discretizer (module)">Discretizer</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Discretizer.html#discretize_by_Chi2%21-instance_method" title="Discretizer#discretize_by_Chi2! (method)">#discretize_by_Chi2!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_ChiMerge%21-instance_method" title="Discretizer#discretize_by_ChiMerge! (method)">#discretize_by_ChiMerge!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_MID%21-instance_method" title="Discretizer#discretize_by_MID! (method)">#discretize_by_MID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_TID%21-instance_method" title="Discretizer#discretize_by_TID! (method)">#discretize_by_TID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_frequency%21-instance_method" title="Discretizer#discretize_by_equal_frequency! (method)">#discretize_by_equal_frequency!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_width%21-instance_method" title="Discretizer#discretize_by_equal_width! (method)">#discretize_by_equal_width!</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Consistency.html#get_IR-instance_method" title="Consistency#get_IR (method)">#get_IR</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_count-instance_method" title="Consistency#get_IR_by_count (method)">#get_IR_by_count</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_feature-instance_method" title="Consistency#get_IR_by_feature (method)">#get_IR_by_feature</a></span>, <span class='object_link'><a href="../Consistency.html#get_instance_count-instance_method" title="Consistency#get_instance_count (method)">#get_instance_count</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="../Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
 
   
   
@@ -250,12 +220,12 @@
       <pre class="lines">
 
 
-15
-16
-17</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base_continuous.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base_continuous.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -271,7 +241,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue May 15 11:37:25 2012 by 
+  Generated on Mon May 21 09:38:13 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

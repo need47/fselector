@@ -75,7 +75,7 @@
   
   
     <dt class="r2">Included in:</dt>
-    <dd class="r2"><span class='object_link'><a href="FSelector/BaseContinuous.html" title="FSelector::BaseContinuous (class)">FSelector::BaseContinuous</a></span>, <span class='object_link'><a href="FSelector/CFS_c.html" title="FSelector::CFS_c (class)">FSelector::CFS_c</a></span>, <span class='object_link'><a href="FSelector/ReliefF_c.html" title="FSelector::ReliefF_c (class)">FSelector::ReliefF_c</a></span>, <span class='object_link'><a href="FSelector/Relief_c.html" title="FSelector::Relief_c (class)">FSelector::Relief_c</a></span></dd>
+    <dd class="r2"><span class='object_link'><a href="FSelector/BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">FSelector::BaseDiscrete</a></span>, <span class='object_link'><a href="FSelector/CFS_d.html" title="FSelector::CFS_d (class)">FSelector::CFS_d</a></span>, <span class='object_link'><a href="FSelector/KS_CCBF.html" title="FSelector::KS_CCBF (class)">FSelector::KS_CCBF</a></span>, <span class='object_link'><a href="FSelector/ReliefF_d.html" title="FSelector::ReliefF_d (class)">FSelector::ReliefF_d</a></span>, <span class='object_link'><a href="FSelector/Relief_d.html" title="FSelector::Relief_d (class)">FSelector::Relief_d</a></span></dd>
     
   
   
@@ -253,8 +253,8 @@
   
   
   
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="Consistency.html" title="Consistency (module)">Consistency</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Consistency.html#get_IR-instance_method" title="Consistency#get_IR (method)">#get_IR</a></span>, <span class='object_link'><a href="Consistency.html#get_IR_by_count-instance_method" title="Consistency#get_IR_by_count (method)">#get_IR_by_count</a></span>, <span class='object_link'><a href="Consistency.html#get_IR_by_feature-instance_method" title="Consistency#get_IR_by_feature (method)">#get_IR_by_feature</a></span>, <span class='object_link'><a href="Consistency.html#get_instance_count-instance_method" title="Consistency#get_instance_count (method)">#get_instance_count</a></span></p>
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
 
   
   
@@ -263,8 +263,8 @@
   
   
   
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Consistency.html" title="Consistency (module)">Consistency</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Consistency.html#get_IR-instance_method" title="Consistency#get_IR (method)">#get_IR</a></span>, <span class='object_link'><a href="Consistency.html#get_IR_by_count-instance_method" title="Consistency#get_IR_by_count (method)">#get_IR_by_count</a></span>, <span class='object_link'><a href="Consistency.html#get_IR_by_feature-instance_method" title="Consistency#get_IR_by_feature (method)">#get_IR_by_feature</a></span>, <span class='object_link'><a href="Consistency.html#get_instance_count-instance_method" title="Consistency#get_instance_count (method)">#get_instance_count</a></span></p>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -326,6 +326,7 @@ the same results as that of the original Chi2 algorithm</p>
       <pre class="lines">
 
 
+159
 160
 161
 162
@@ -428,13 +429,12 @@ the same results as that of the original Chi2 algorithm</p>
 259
 260
 261
-262
-263</pre>
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 159</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_Chi2!'>discretize_by_Chi2!</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.02</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_Chi2!'>discretize_by_Chi2!</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.02</span><span class='rparen'>)</span>    
   <span class='comment'># degree of freedom equals one less than number of classes     
 </span>  <span class='id identifier rubyid_df'>df</span> <span class='op'>=</span> <span class='id identifier rubyid_get_classes'>get_classes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>-</span><span class='int'>1</span>
       
@@ -596,6 +596,7 @@ the same results as that of the original Chi2 algorithm</p>
       <pre class="lines">
 
 
+72
 73
 74
 75
@@ -669,11 +670,10 @@ the same results as that of the original Chi2 algorithm</p>
 143
 144
 145
-146
-147</pre>
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='id identifier rubyid_alpha'>alpha</span><span class='op'>=</span><span class='float'>0.10</span><span class='rparen'>)</span>
   <span class='comment'># degree of freedom equals one less than number of classes
@@ -804,6 +804,7 @@ the same results as that of the original Chi2 algorithm</p>
       <pre class="lines">
 
 
+43
 44
 45
 46
@@ -821,11 +822,10 @@ the same results as that of the original Chi2 algorithm</p>
 58
 59
 60
-61
-62</pre>
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_equal_frequency!'>discretize_by_equal_frequency!</span><span class='lparen'>(</span><span class='id identifier rubyid_n_interval'>n_interval</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>&lt;</span> <span class='int'>1</span> <span class='comment'># at least one interval
@@ -900,6 +900,7 @@ the same results as that of the original Chi2 algorithm</p>
       <pre class="lines">
 
 
+16
 17
 18
 19
@@ -916,11 +917,10 @@ the same results as that of the original Chi2 algorithm</p>
 30
 31
 32
-33
-34</pre>
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_equal_width!'>discretize_by_equal_width!</span><span class='lparen'>(</span><span class='id identifier rubyid_n_interval'>n_interval</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_n_interval'>n_interval</span> <span class='op'>&lt;</span> <span class='int'>1</span> <span class='comment'># at least one interval
@@ -977,6 +977,7 @@ the same results as that of the original Chi2 algorithm</p>
       <pre class="lines">
 
 
+272
 273
 274
 275
@@ -1014,13 +1015,12 @@ the same results as that of the original Chi2 algorithm</p>
 307
 308
 309
-310
-311</pre>
+310</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 273</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 272</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_MID!'>discretize_by_MID!</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_MID!'>discretize_by_MID!</span>    
   <span class='comment'># determine the final boundaries
 </span>  <span class='id identifier rubyid_f2cp'>f2cp</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'># cut points for each feature
 </span>  <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
@@ -1096,6 +1096,7 @@ the same results as that of the original Chi2 algorithm</p>
       <pre class="lines">
 
 
+320
 321
 322
 323
@@ -1164,11 +1165,10 @@ the same results as that of the original Chi2 algorithm</p>
 386
 387
 388
-389
-390</pre>
+389</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 321</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/discretizer.rb', line 320</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discretize_by_TID!'>discretize_by_TID!</span>
   <span class='comment'># cut points for each feature
@@ -1250,7 +1250,7 @@ the same results as that of the original Chi2 algorithm</p>
 </div>
     
     <div id="footer">
-  Generated on Tue May 15 11:37:23 2012 by 
+  Generated on Mon May 21 09:38:11 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

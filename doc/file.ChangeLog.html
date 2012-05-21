@@ -54,7 +54,17 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><div id='filecontents'><p>2012-05-15  version 1.1.0</p>
+    <div id="content"><div id='filecontents'><p>2012-05-20  version 1.2.0</p>
+
+<ul>
+<li>add KS-Test algorithm for continuous feature</li>
+<li>add KS-CCBF algorithm for continuous feature</li>
+<li>add J-Measure algorithm for discrete feature</li>
+<li>add KL-Divergence algorithm for discrete feature</li>
+<li>include the Discretizer module for algorithms requiring data with discrete feature, which allows to deal with continuous feature after discretization. Those algorithms requiring data with continuous feature now do not include the Discretizer module</li>
+</ul>
+
+<p>2012-05-15  version 1.1.0</p>
 
 <ul>
 <li>add replace_by_median_value! for replacing missing value with feature median value</li>
@@ -126,7 +136,7 @@ RubyStats (FishersExactTest.calculate, get_icdf) and ChiSquareCalculator</p></li
 </div></div>
     
     <div id="footer">
-  Generated on Tue May 15 11:37:23 2012 by 
+  Generated on Mon May 21 09:38:10 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

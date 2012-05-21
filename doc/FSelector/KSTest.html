@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: FSelector::OddsRatio
+  Class: FSelector::KSTest
   
     &mdash; FSelector Documentation
   
@@ -33,10 +33,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../_index.html">Index (O)</a> &raquo; 
+    <a href="../_index.html">Index (K)</a> &raquo; 
     <span class='title'><span class='object_link'><a href="../FSelector.html" title="FSelector (module)">FSelector</a></span></span>
      &raquo; 
-    <span class="title">OddsRatio</span>
+    <span class="title">KSTest</span>
   
   
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -56,7 +56,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Class: FSelector::OddsRatio
+    <div id="content"><h1>Class: FSelector::KSTest
   
   
   
@@ -66,16 +66,16 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></span>
+      <span class="inheritName"><span class='object_link'><a href="BaseContinuous.html" title="FSelector::BaseContinuous (class)">BaseContinuous</a></span></span>
       
         <ul class="fullTree">
           <li>Object</li>
           
             <li class="next"><span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></li>
           
-            <li class="next"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></li>
+            <li class="next"><span class='object_link'><a href="BaseContinuous.html" title="FSelector::BaseContinuous (class)">BaseContinuous</a></span></li>
           
-            <li class="next">FSelector::OddsRatio</li>
+            <li class="next">FSelector::KSTest</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -91,25 +91,27 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/fselector/algo_discrete/OddsRatio.rb</dd>
+    <dd class="r2 last">lib/fselector/algo_continuous/KS-Test.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Odds Ratio (Odd)</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>KST is applicable only to two-class problems, and missing data are ignored</p>
+</div>
+  </div>
 
-<pre class="code ruby"><code>           P(f|c) * (1 - P(f|c'))     tpr * (1-fpr)
-Odd(f,c) = ----------------------- = ---------------
-           (1 - P(f|c)) * P(f|c')     (1-tpr) * fpr
+<p>Kolmogorov-Smirnov Test (KST) for continuous feature</p>
 
-            A*D
-         = -----
-            B*C
-</code></pre>
+<p>for KST (p-value), the smaller, the better, but we intentionally negate it 
+so that the larger is always the better (consistent with other algorithms).<br>
+R equivalent: ks.test</p>
 
-<p>ref: <a href="http://en.wikipedia.org/wiki/Odds_ratio">Wikipedia</a> and <a href="http://dl.acm.org/citation.cfm?id=944974">An extensive empirical study of feature selection metrics for text classification</a> and <a href="http://www.site.uottawa.ca/%7Enat/Workshop2003/zheng.pdf">Optimally Combining Positive and Negative Features for Text Categorization</a></p>
+<p>ref: <a href="http://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test">Wikipedia</a> and <a href="http://www.springer.com/engineering/computational+intelligence+and+complexity/book/978-3-540-35487-1">Feature Extraction, Foundations and Applications</a></p>
 
 
   </div>
@@ -132,8 +134,8 @@ Odd(f,c) = ----------------------- = ---------------
   
   <h2>Method Summary</h2>
   
-  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="BaseDiscrete.html#initialize-instance_method" title="FSelector::BaseDiscrete#initialize (method)">#initialize</a></span></p>
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="BaseContinuous.html" title="FSelector::BaseContinuous (class)">BaseContinuous</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="BaseContinuous.html#initialize-instance_method" title="FSelector::BaseContinuous#initialize (method)">#initialize</a></span></p>
 
   
   
@@ -142,28 +144,8 @@ Odd(f,c) = ----------------------- = ---------------
   
   
   
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Discretizer.html" title="Discretizer (module)">Discretizer</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Discretizer.html#discretize_by_Chi2%21-instance_method" title="Discretizer#discretize_by_Chi2! (method)">#discretize_by_Chi2!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_ChiMerge%21-instance_method" title="Discretizer#discretize_by_ChiMerge! (method)">#discretize_by_ChiMerge!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_MID%21-instance_method" title="Discretizer#discretize_by_MID! (method)">#discretize_by_MID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_TID%21-instance_method" title="Discretizer#discretize_by_TID! (method)">#discretize_by_TID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_frequency%21-instance_method" title="Discretizer#discretize_by_equal_frequency! (method)">#discretize_by_equal_frequency!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_width%21-instance_method" title="Discretizer#discretize_by_equal_width! (method)">#discretize_by_equal_width!</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="../Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Consistency.html#get_IR-instance_method" title="Consistency#get_IR (method)">#get_IR</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_count-instance_method" title="Consistency#get_IR_by_count (method)">#get_IR_by_count</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_feature-instance_method" title="Consistency#get_IR_by_feature (method)">#get_IR_by_feature</a></span>, <span class='object_link'><a href="../Consistency.html#get_instance_count-instance_method" title="Consistency#get_instance_count (method)">#get_instance_count</a></span></p>
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Normalizer.html" title="Normalizer (module)">Normalizer</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Normalizer.html#normalize_by_log%21-instance_method" title="Normalizer#normalize_by_log! (method)">#normalize_by_log!</a></span>, <span class='object_link'><a href="../Normalizer.html#normalize_by_min_max%21-instance_method" title="Normalizer#normalize_by_min_max! (method)">#normalize_by_min_max!</a></span>, <span class='object_link'><a href="../Normalizer.html#normalize_by_zscore%21-instance_method" title="Normalizer#normalize_by_zscore! (method)">#normalize_by_zscore!</a></span></p>
 
   
   
@@ -197,7 +179,7 @@ Odd(f,c) = ----------------------- = ---------------
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
-    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="BaseDiscrete.html#initialize-instance_method" title="FSelector::BaseDiscrete#initialize (method)">FSelector::BaseDiscrete</a></span></p>
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="BaseContinuous.html#initialize-instance_method" title="FSelector::BaseContinuous#initialize (method)">FSelector::BaseContinuous</a></span></p>
   
 </div>
 

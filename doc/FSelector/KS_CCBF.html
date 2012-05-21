@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: FSelector::FastCorrelationBasedFilter
+  Class: FSelector::KS_CCBF
   
     &mdash; FSelector Documentation
   
@@ -33,10 +33,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../_index.html">Index (F)</a> &raquo; 
+    <a href="../_index.html">Index (K)</a> &raquo; 
     <span class='title'><span class='object_link'><a href="../FSelector.html" title="FSelector (module)">FSelector</a></span></span>
      &raquo; 
-    <span class="title">FastCorrelationBasedFilter</span>
+    <span class="title">KS_CCBF</span>
   
   
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -56,7 +56,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Class: FSelector::FastCorrelationBasedFilter
+    <div id="content"><h1>Class: FSelector::KS_CCBF
   
   
   
@@ -66,16 +66,16 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></span>
+      <span class="inheritName"><span class='object_link'><a href="BaseContinuous.html" title="FSelector::BaseContinuous (class)">BaseContinuous</a></span></span>
       
         <ul class="fullTree">
           <li>Object</li>
           
             <li class="next"><span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></li>
           
-            <li class="next"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></li>
+            <li class="next"><span class='object_link'><a href="BaseContinuous.html" title="FSelector::BaseContinuous (class)">BaseContinuous</a></span></li>
           
-            <li class="next">FSelector::FastCorrelationBasedFilter</li>
+            <li class="next">FSelector::KS_CCBF</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -88,24 +88,23 @@
   
     
       <dt class="r2">Includes:</dt>
-      <dd class="r2"><span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></dd>
+      <dd class="r2"><span class='object_link'><a href="../Discretizer.html" title="Discretizer (module)">Discretizer</a></span>, <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></dd>
       
     
   
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/fselector/algo_discrete/FastCorrelationBasedFilter.rb</dd>
+    <dd class="r1 last">lib/fselector/algo_continuous/KS-CCBF.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Fast Correlation-Based Filter (FCBF) for discrete feature, 
-use <strong>select_feature!</strong> for feature selection</p>
+    <p>Kolmogorov-Smirnov Class Correlation-Based Filter (KS-CCBF) for continuous feature</p>
 
-<p>ref: <a href="http://www.hpl.hp.com/conferences/icml2003/papers/144.pdf">Feature Selection for High-Dimensional Data: A Fast Correlation-Based Filter Solution</a></p>
+<p>ref: <a href="http://kzi.polsl.pl/%7Ejbiesiada/Infosel/downolad/publikacje/09-Gliwice.pdf">Feature Selection for Supervised Classification: A KolmogorovSmirnov Class Correlation-Based Filter</a></p>
 
 
   </div>
@@ -131,7 +130,7 @@ use <strong>select_feature!</strong> for feature selection</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (FastCorrelationBasedFilter) <strong>initialize</strong>(delta = 0.0, data = nil) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (KS_CCBF) <strong>initialize</strong>(lamda = 0.2, data = nil) </a>
     
 
     
@@ -163,21 +162,6 @@ use <strong>select_feature!</strong> for feature selection</p>
   
   
   
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="../Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="../Discretizer.html" title="Discretizer (module)">Discretizer</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="../Discretizer.html#discretize_by_Chi2%21-instance_method" title="Discretizer#discretize_by_Chi2! (method)">#discretize_by_Chi2!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_ChiMerge%21-instance_method" title="Discretizer#discretize_by_ChiMerge! (method)">#discretize_by_ChiMerge!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_MID%21-instance_method" title="Discretizer#discretize_by_MID! (method)">#discretize_by_MID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_TID%21-instance_method" title="Discretizer#discretize_by_TID! (method)">#discretize_by_TID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_frequency%21-instance_method" title="Discretizer#discretize_by_equal_frequency! (method)">#discretize_by_equal_frequency!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_width%21-instance_method" title="Discretizer#discretize_by_equal_width! (method)">#discretize_by_equal_width!</a></span></p>
 
@@ -188,8 +172,33 @@ use <strong>select_feature!</strong> for feature selection</p>
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="../Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="../Consistency.html#get_IR-instance_method" title="Consistency#get_IR (method)">#get_IR</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_count-instance_method" title="Consistency#get_IR_by_count (method)">#get_IR_by_count</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_feature-instance_method" title="Consistency#get_IR_by_feature (method)">#get_IR_by_feature</a></span>, <span class='object_link'><a href="../Consistency.html#get_instance_count-instance_method" title="Consistency#get_instance_count (method)">#get_instance_count</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Normalizer.html" title="Normalizer (module)">Normalizer</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Normalizer.html#normalize_by_log%21-instance_method" title="Normalizer#normalize_by_log! (method)">#normalize_by_log!</a></span>, <span class='object_link'><a href="../Normalizer.html#normalize_by_min_max%21-instance_method" title="Normalizer#normalize_by_min_max! (method)">#normalize_by_min_max!</a></span>, <span class='object_link'><a href="../Normalizer.html#normalize_by_zscore%21-instance_method" title="Normalizer#normalize_by_zscore! (method)">#normalize_by_zscore!</a></span></p>
 
   
   
@@ -226,7 +235,7 @@ use <strong>select_feature!</strong> for feature selection</p>
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="FSelector::FastCorrelationBasedFilter (class)">FastCorrelationBasedFilter</a></span></tt>) <strong>initialize</strong>(delta = 0.0, data = nil) 
+    - (<tt><span class='object_link'><a href="" title="FSelector::KS_CCBF (class)">KS_CCBF</a></span></tt>) <strong>initialize</strong>(lamda = 0.2, data = nil) 
   
 
   
@@ -243,17 +252,17 @@ use <strong>select_feature!</strong> for feature selection</p>
   
     <li>
       
-        <span class='name'>delta</span>
+        <span class='name'>lamda</span>
       
       
         <span class='type'>(<tt>Float</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>0.0</tt>)</em>
+        <em class="default">(defaults to: <tt>0.2</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>predefined threshold</p>
+        <div class='inline'><p>threshold value [0, 1] to determine feature redundancy</p>
 </div>
       
     </li>
@@ -274,12 +283,12 @@ use <strong>select_feature!</strong> for feature selection</p>
 27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/FastCorrelationBasedFilter.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_continuous/KS-CCBF.rb', line 23</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_lamda'>lamda</span><span class='op'>=</span><span class='float'>0.2</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   
-  <span class='ivar'>@delta</span> <span class='op'>=</span> <span class='id identifier rubyid_delta'>delta</span> <span class='op'>||</span> <span class='float'>0.0</span>
+  <span class='ivar'>@lamda</span> <span class='op'>=</span> <span class='id identifier rubyid_lamda'>lamda</span> <span class='op'>||</span> <span class='float'>0.2</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -292,7 +301,7 @@ use <strong>select_feature!</strong> for feature selection</p>
 </div>
     
     <div id="footer">
-  Generated on Mon May 21 09:38:13 2012 by 
+  Generated on Mon May 21 09:38:12 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

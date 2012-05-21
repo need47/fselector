@@ -63,8 +63,8 @@
 <strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br>
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
-<strong>Latest Version</strong>: 1.1.0<br>
-<strong>Release Date</strong>: 2012-05-15</p>
+<strong>Latest Version</strong>: 1.2.0<br>
+<strong>Release Date</strong>: 2012-05-20</p>
 
 <h2>Synopsis</h2>
 
@@ -97,55 +97,59 @@ random forest. See below for a list of FSelector&#39;s features and
 
 <p><strong>2. available feature selection/ranking algorithms</strong></p>
 
-<pre class="code ruby"><code>algorithm                         alias       algo_type   feature_type  applicability
---------------------------------------------------------------------------------------------------
-Accuracy                          Acc         weighting   discrete
-AccuracyBalanced                  Acc2        weighting   discrete
-BiNormalSeparation                BNS         weighting   discrete
-CFS_d                             CFS_d       subset      discrete
-ChiSquaredTest                    CHI         weighting   discrete
-CorrelationCoefficient            CC          weighting   discrete
-DocumentFrequency                 DF          weighting   discrete
-F1Measure                         F1          weighting   discrete
-FishersExactTest                  FET         weighting   discrete
-FastCorrelationBasedFilter        FCBF        subset      discrete
-GiniIndex                         GI          weighting   discrete
-GMean                             GM          weighting   discrete
-GSSCoefficient                    GSS         weighting   discrete
-InformationGain                   IG          weighting   discrete
-INTERACT                          INTERACT    subset      discrete
-LasVegasFilter                    LVF         subset      discrete
-LasVegasIncremental               LVI         subset      discrete
-MatthewsCorrelationCoefficient    MCC, PHI    weighting   discrete
-McNemarsTest                      MNT         weighting   discrete
-OddsRatio                         OR          weighting   discrete
-OddsRatioNumerator                ORN         weighting   discrete
-PhiCoefficient                    Phi         weighting   discrete
-Power                             Power       weighting   discrete
-Precision                         Precision   weighting   discrete
-ProbabilityRatio                  PR          weighting   discrete
-Random                            Random      weighting   discrete
-Recall                            Recall      weighting   discrete
-Relief_d                          Relief_d    weighting   discrete      two-class, no missing data
-ReliefF_d                         ReliefF_d   weighting   discrete
-Sensitivity                       SN, Recall  weighting   discrete
-Specificity                       SP          weighting   discrete
-SymmetricalUncertainty            SU          weighting   discrete
-BetweenWithinClassesSumOfSquare   BSS_WSS     weighting   continuous
-CFS_c                             CFS_c       subset      continuous
-FTest                             FT          weighting   continuous
-PMetric                           PM          weighting   continuous    two-class
-Relief_c                          Relief_c    weighting   continuous    two-class, no missing data
-ReliefF_c                         ReliefF_c   weighting   continuous
-TScore                            TS          weighting   continuous    two-class
-WilcoxonRankSum                   WRS         weighting   continuous    two-class
+<pre class="code ruby"><code>algorithm                        shortcut    algo_type  feature_type          applicability
+--------------------------------------------------------------------------------------------------------
+Accuracy                         Acc         weighting  discrete              multi-class
+AccuracyBalanced                 Acc2        weighting  discrete              multi-class
+BiNormalSeparation               BNS         weighting  discrete              multi-class
+CFS_d                            CFS_d       subset     discrete              multi-class
+ChiSquaredTest                   CHI         weighting  discrete              multi-class
+CorrelationCoefficient           CC          weighting  discrete              multi-class
+DocumentFrequency                DF          weighting  discrete              multi-class
+F1Measure                        F1          weighting  discrete              multi-class
+FishersExactTest                 FET         weighting  discrete              multi-class
+FastCorrelationBasedFilter       FCBF        subset     discrete              multi-class
+GiniIndex                        GI          weighting  discrete              multi-class
+GMean                            GM          weighting  discrete              multi-class
+GSSCoefficient                   GSS         weighting  discrete              multi-class
+InformationGain                  IG          weighting  discrete              multi-class
+INTERACT                         INTERACT    subset     discrete              multi-class
+JMeasure                         JM          weighting  discrete              multi-class
+KLDivergence                     KLD         weighting  discrete              multi-class
+LasVegasFilter                   LVF         subset     discrete, continuous  multi-class
+LasVegasIncremental              LVI         subset     discrete, continuous  multi-class
+MatthewsCorrelationCoefficient   MCC, PHI    weighting  discrete              multi-class
+McNemarsTest                     MNT         weighting  discrete              multi-class
+OddsRatio                        OR          weighting  discrete              multi-class
+OddsRatioNumerator               ORN         weighting  discrete              multi-class
+PhiCoefficient                   PHI         weighting  discrete              multi-class
+Power                            Power       weighting  discrete              multi-class
+Precision                        Precision   weighting  discrete              multi-class
+ProbabilityRatio                 PR          weighting  discrete              multi-class
+Random                           Random      weighting  discrete              multi-class
+Recall                           Recall      weighting  discrete              multi-class
+Relief_d                         Relief_d    weighting  discrete              two-class, no missing data
+ReliefF_d                        ReliefF_d   weighting  discrete              multi-class
+Sensitivity                      SN, Recall  weighting  discrete              multi-class
+Specificity                      SP          weighting  discrete              multi-class
+SymmetricalUncertainty           SU          weighting  discrete              multi-class
+BetweenWithinClassesSumOfSquare  BSS_WSS     weighting  continuous            multi-class
+CFS_c                            CFS_c       subset     continuous            multi-class
+FTest                            FT          weighting  continuous            multi-class
+KS_CCBF                          KS_CCBF     subset     continuous            multi-class
+KSTest                           KST         weighting  continuous            two-class
+PMetric                          PM          weighting  continuous            two-class
+Relief_c                         Relief_c    weighting  continuous            two-class, no missing data
+ReliefF_c                        ReliefF_c   weighting  continuous            multi-class
+TScore                           TS          weighting  continuous            two-class
+WilcoxonRankSum                  WRS         weighting  continuous            two-class
 </code></pre>
 
 <p><strong>note for feature selection interface:</strong><br>
   there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  </p>
 
 <ul>
-<li>for weighting type: use either <strong>select_feature_by_rank!</strong> or <strong>select_feature_by_score!</strong><br></li>
+<li>for weighting type: use either <strong>select_feature_by_score!</strong> or <strong>select_feature_by_rank!</strong><br></li>
 <li>for subset type: use <strong>select_feature!</strong></li>
 </ul>
 
@@ -154,13 +158,13 @@ WilcoxonRankSum                   WRS         weighting   continuous    two-clas
 <ul>
 <li>by a single algorithm</li>
 <li>by multiple algorithms in a tandem manner</li>
-<li>by multiple algorithms in an ensemble manner (share same feature selection interface as single algorithm)</li>
+<li>by multiple algorithms in an ensemble manner (share the same feature selection interface as single algorithm)</li>
 </ul>
 
 <p><strong>4. availabe normalization and discretization algorithms for continuous feature</strong></p>
 
 <pre class="code ruby"><code>algorithm                         note
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 normalize_by_log!                 normalize by logarithmic transformation
 normalize_by_min_max!             normalize by scaling into [min, max]
 normalize_by_zscore!              normalize by converting into zscore
@@ -168,14 +172,14 @@ discretize_by_equal_width!        discretize by equal width among intervals
 discretize_by_equal_frequency!    discretize by equal frequency among intervals
 discretize_by_ChiMerge!           discretize by ChiMerge algorithm
 discretize_by_Chi2!               discretize by Chi2 algorithm
-discretize_by_MID!                discretize by Multi-Interval Discretization
-discretize_by_TID!                discretize by Three-Interval Discretization
+discretize_by_MID!                discretize by Multi-Interval Discretization algorithm
+discretize_by_TID!                discretize by Three-Interval Discretization algorithm
 </code></pre>
 
 <p><strong>5. availabe algorithms for replacing missing feature values</strong></p>
 
 <pre class="code ruby"><code>algorithm                         note                                   feature_type                     
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 replace_by_fixed_value!           replace by a fixed value               discrete, continuous
 replace_by_mean_value!            replace by mean feature value          continuous
 replace_by_median_value!          replace by median feature value        continuous
@@ -202,8 +206,8 @@ replace_by_most_seen_value!       replace by most seen feature value     discret
 
 <pre class="code ruby"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>fselector</span><span class='tstring_end'>'</span></span>
 
-<span class='comment'># use InformationGain as a feature selection algorithm
-</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>InformationGain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='comment'># use InformationGain (IG) as a feature selection algorithm
+</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>IG</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
 <span class='comment'># read from random data (or csv, libsvm, weka ARFF file)
 </span><span class='comment'># no. of samples: 100
@@ -222,10 +226,10 @@ replace_by_most_seen_value!       replace by most seen feature value     discret
 <span class='comment'># number of features after feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  # features (after): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 
-<span class='comment'># you can also use multiple alogirithms in a tandem manner
-</span><span class='comment'># e.g. use the ChiSquaredTest with Yates' continuity correction
+<span class='comment'># you can also use a second alogirithm for further feature selection
+</span><span class='comment'># e.g. use the ChiSquaredTest (CHI) with Yates' continuity correction
 </span><span class='comment'># initialize from r1's data
-</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>ChiSquaredTest</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:yates</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>CHI</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:yates</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
 
 <span class='comment'># number of features before feature selection
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  # features (before): </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -277,18 +281,18 @@ replace_by_most_seen_value!       replace by most seen feature value     discret
 </span>
 
 <span class='comment'># creating an ensemble of feature selectors by using 
-</span><span class='comment'># two feature selection algorithms (InformationGain and Relief_d). 
+</span><span class='comment'># two feature selection algorithms: InformationGain (IG) and Relief_d. 
 </span><span class='comment'># note: can be 2+ algorithms, as long as they are of the same type, 
 </span><span class='comment'># either feature weighting or feature subset selection algorithms
 </span>
 <span class='comment'># test for the type of feature weighting algorithms 
-</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>InformationGain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>IG</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 <span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>Relief_d</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>10</span><span class='rparen'>)</span>
 
 <span class='comment'># an ensemble of two feature selectors
 </span><span class='id identifier rubyid_re'>re</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>EnsembleMultiple</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_r1'>r1</span><span class='comma'>,</span> <span class='id identifier rubyid_r2'>r2</span><span class='rparen'>)</span>
 
-<span class='comment'># read random data
+<span class='comment'># read random discrete data (containing missing value)
 </span><span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_data_from_random'>data_from_random</span><span class='lparen'>(</span><span class='int'>100</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>15</span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
 
 <span class='comment'># replace missing value because Relief_d 
@@ -309,35 +313,28 @@ replace_by_most_seen_value!       replace by most seen feature value     discret
 </span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>  # features (after): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 </code></pre>
 
-<p><strong>3. normalization and discretization before feature selection</strong></p>
-
-<p>In addition to the algorithms designed for continuous feature, one
- can apply those deisgned for discrete feature after (optionally
- normalization and) discretization</p>
+<p><strong>3. feature selection after discretization</strong></p>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>fselector</span><span class='tstring_end'>'</span></span>
 
-<span class='comment'># for continuous feature
-</span><span class='id identifier rubyid_r1'>r1</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>Relief_c</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='comment'># the Information Gain (IG) algorithm requires data with discrete feature
+</span><span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>IG</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
-<span class='comment'># read the Iris data set (under the test/ directory)
-</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_data_from_csv'>data_from_csv</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>test/iris.csv</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='comment'># but the Iris data set contains continuous features (under the test/ directory)
+</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_data_from_csv'>data_from_csv</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>test/iris.csv</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 
-<span class='comment'># discretization by ChiMerge algorithm at alpha=0.10
-</span><span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='float'>0.10</span><span class='rparen'>)</span>
-
-<span class='comment'># apply Fast Correlation-Based Filter (FCBF) algorithm for discrete feature
-</span><span class='comment'># initialize with discretized data from r1
-</span><span class='id identifier rubyid_r2'>r2</span> <span class='op'>=</span> <span class='const'>FSelector</span><span class='op'>::</span><span class='const'>FCBF</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='id identifier rubyid_r1'>r1</span><span class='period'>.</span><span class='id identifier rubyid_get_data'>get_data</span><span class='rparen'>)</span>
+<span class='comment'># let's first discretize it by ChiMerge algorithm at alpha=0.10
+</span><span class='comment'># then perform feature selection as usual
+</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_discretize_by_ChiMerge!'>discretize_by_ChiMerge!</span><span class='lparen'>(</span><span class='float'>0.10</span><span class='rparen'>)</span>
 
 <span class='comment'># number of features before feature selection
-</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>  # features (before): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>  # features (before): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 
-<span class='comment'># feature selection
-</span><span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_select_feature!'>select_feature!</span>
+<span class='comment'># select the top-ranked feature
+</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_select_feature_by_rank!'>select_feature_by_rank!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&lt;=1</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 
 <span class='comment'># number of features after feature selection
-</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>  # features (after): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_r2'>r2</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>  # features (after): </span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_get_features'>get_features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 </code></pre>
 
 <p><strong>4. see more examples test_*.rb under the test/ directory</strong></p>
@@ -355,7 +352,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Tue May 15 11:37:23 2012 by 
+  Generated on Mon May 21 09:38:10 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

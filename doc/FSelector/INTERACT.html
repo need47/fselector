@@ -188,6 +188,16 @@ use <strong>select_feature!</strong> for feature selection</p>
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Discretizer.html" title="Discretizer (module)">Discretizer</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Discretizer.html#discretize_by_Chi2%21-instance_method" title="Discretizer#discretize_by_Chi2! (method)">#discretize_by_Chi2!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_ChiMerge%21-instance_method" title="Discretizer#discretize_by_ChiMerge! (method)">#discretize_by_ChiMerge!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_MID%21-instance_method" title="Discretizer#discretize_by_MID! (method)">#discretize_by_MID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_TID%21-instance_method" title="Discretizer#discretize_by_TID! (method)">#discretize_by_TID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_frequency%21-instance_method" title="Discretizer#discretize_by_equal_frequency! (method)">#discretize_by_equal_frequency!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_width%21-instance_method" title="Discretizer#discretize_by_equal_width! (method)">#discretize_by_equal_width!</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="Base.html#algo_type-instance_method" title="FSelector::Base#algo_type (method)">#algo_type</a></span>, <span class='object_link'><a href="Base.html#each_class-instance_method" title="FSelector::Base#each_class (method)">#each_class</a></span>, <span class='object_link'><a href="Base.html#each_feature-instance_method" title="FSelector::Base#each_feature (method)">#each_feature</a></span>, <span class='object_link'><a href="Base.html#each_sample-instance_method" title="FSelector::Base#each_sample (method)">#each_sample</a></span>, <span class='object_link'><a href="Base.html#get_class_labels-instance_method" title="FSelector::Base#get_class_labels (method)">#get_class_labels</a></span>, <span class='object_link'><a href="Base.html#get_classes-instance_method" title="FSelector::Base#get_classes (method)">#get_classes</a></span>, <span class='object_link'><a href="Base.html#get_data-instance_method" title="FSelector::Base#get_data (method)">#get_data</a></span>, <span class='object_link'><a href="Base.html#get_data_copy-instance_method" title="FSelector::Base#get_data_copy (method)">#get_data_copy</a></span>, <span class='object_link'><a href="Base.html#get_feature_ranks-instance_method" title="FSelector::Base#get_feature_ranks (method)">#get_feature_ranks</a></span>, <span class='object_link'><a href="Base.html#get_feature_scores-instance_method" title="FSelector::Base#get_feature_scores (method)">#get_feature_scores</a></span>, <span class='object_link'><a href="Base.html#get_feature_values-instance_method" title="FSelector::Base#get_feature_values (method)">#get_feature_values</a></span>, <span class='object_link'><a href="Base.html#get_features-instance_method" title="FSelector::Base#get_features (method)">#get_features</a></span>, <span class='object_link'><a href="Base.html#get_opt-instance_method" title="FSelector::Base#get_opt (method)">#get_opt</a></span>, <span class='object_link'><a href="Base.html#get_sample_size-instance_method" title="FSelector::Base#get_sample_size (method)">#get_sample_size</a></span>, <span class='object_link'><a href="Base.html#select_feature%21-instance_method" title="FSelector::Base#select_feature! (method)">#select_feature!</a></span>, <span class='object_link'><a href="Base.html#select_feature_by_rank%21-instance_method" title="FSelector::Base#select_feature_by_rank! (method)">#select_feature_by_rank!</a></span>, <span class='object_link'><a href="Base.html#select_feature_by_score%21-instance_method" title="FSelector::Base#select_feature_by_score! (method)">#select_feature_by_score!</a></span>, <span class='object_link'><a href="Base.html#set_classes-instance_method" title="FSelector::Base#set_classes (method)">#set_classes</a></span>, <span class='object_link'><a href="Base.html#set_data-instance_method" title="FSelector::Base#set_data (method)">#set_data</a></span>, <span class='object_link'><a href="Base.html#set_features-instance_method" title="FSelector::Base#set_features (method)">#set_features</a></span>, <span class='object_link'><a href="Base.html#set_opt-instance_method" title="FSelector::Base#set_opt (method)">#set_opt</a></span></p>
 
@@ -257,16 +267,18 @@ use <strong>select_feature!</strong> for feature selection</p>
       <pre class="lines">
 
 
+24
 25
 26
 27
 28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/INTERACT.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/INTERACT.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_delta'>delta</span><span class='op'>=</span><span class='float'>0.0001</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  
   <span class='ivar'>@delta</span> <span class='op'>=</span> <span class='id identifier rubyid_delta'>delta</span> <span class='op'>||</span> <span class='float'>0.0001</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -280,7 +292,7 @@ use <strong>select_feature!</strong> for feature selection</p>
 </div>
     
     <div id="footer">
-  Generated on Tue May 15 11:37:24 2012 by 
+  Generated on Mon May 21 09:38:12 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
