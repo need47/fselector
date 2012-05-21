@@ -7,7 +7,7 @@ R.eval 'options(warn = -1)' # suppress R warnings
 #
 module FSelector
   # module version
-  VERSION = '1.1.0'
+  VERSION = '1.2.0'
 end
 
 # the root dir of FSelector

@@ -1,3 +1,11 @@
+2012-05-20	version 1.2.0
+
+  * add KS-Test algorithm for continuous feature
+  * add KS-CCBF algorithm for continuous feature
+  * add J-Measure algorithm for discrete feature
+  * add KL-Divergence algorithm for discrete feature
+  * include the Discretizer module for algorithms requiring data with discrete feature, which allows to deal with continuous feature after discretization. Those algorithms requiring data with continuous feature now do not include the Discretizer module
+  
 2012-05-15	version 1.1.0
 
   * add replace\_by\_median\_value! for replacing missing value with feature median value

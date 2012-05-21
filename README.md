@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 1.1.0  
-**Release Date**: 2012-05-15
+**Latest Version**: 1.2.0  
+**Release Date**: 2012-05-20
 
 Synopsis
 --------
@@ -42,65 +42,69 @@ Feature List
 
 **2. available feature selection/ranking algorithms**
     
-    algorithm                         alias       algo_type   feature_type  applicability
-    --------------------------------------------------------------------------------------------------
-    Accuracy                          Acc         weighting   discrete
-    AccuracyBalanced                  Acc2        weighting   discrete
-    BiNormalSeparation                BNS         weighting   discrete
-    CFS_d                             CFS_d       subset      discrete
-    ChiSquaredTest                    CHI         weighting   discrete
-    CorrelationCoefficient            CC          weighting   discrete
-    DocumentFrequency                 DF          weighting   discrete
-    F1Measure                         F1          weighting   discrete
-    FishersExactTest                  FET         weighting   discrete
-    FastCorrelationBasedFilter        FCBF        subset      discrete
-    GiniIndex                         GI          weighting   discrete
-    GMean                             GM          weighting   discrete
-    GSSCoefficient                    GSS         weighting   discrete
-    InformationGain                   IG          weighting   discrete
-    INTERACT                          INTERACT    subset      discrete
-    LasVegasFilter                    LVF         subset      discrete
-    LasVegasIncremental               LVI         subset      discrete
-    MatthewsCorrelationCoefficient    MCC, PHI    weighting   discrete
-    McNemarsTest                      MNT         weighting   discrete
-    OddsRatio                         OR          weighting   discrete
-    OddsRatioNumerator                ORN         weighting   discrete
-    PhiCoefficient                    Phi         weighting   discrete
-    Power                             Power       weighting   discrete
-    Precision                         Precision   weighting   discrete
-    ProbabilityRatio                  PR          weighting   discrete
-    Random                            Random      weighting   discrete
-    Recall                            Recall      weighting   discrete
-    Relief_d                          Relief_d    weighting   discrete      two-class, no missing data
-    ReliefF_d                         ReliefF_d   weighting   discrete
-    Sensitivity                       SN, Recall  weighting   discrete
-    Specificity                       SP          weighting   discrete
-    SymmetricalUncertainty            SU          weighting   discrete
-    BetweenWithinClassesSumOfSquare   BSS_WSS     weighting   continuous
-    CFS_c                             CFS_c       subset      continuous
-    FTest                             FT          weighting   continuous
-    PMetric                           PM          weighting   continuous    two-class
-    Relief_c                          Relief_c    weighting   continuous    two-class, no missing data
-    ReliefF_c                         ReliefF_c   weighting   continuous
-    TScore                            TS          weighting   continuous    two-class
-    WilcoxonRankSum                   WRS         weighting   continuous    two-class
+    algorithm                        shortcut    algo_type  feature_type          applicability
+    --------------------------------------------------------------------------------------------------------
+    Accuracy                         Acc         weighting  discrete              multi-class
+    AccuracyBalanced                 Acc2        weighting  discrete              multi-class
+    BiNormalSeparation               BNS         weighting  discrete              multi-class
+    CFS_d                            CFS_d       subset     discrete              multi-class
+    ChiSquaredTest                   CHI         weighting  discrete              multi-class
+    CorrelationCoefficient           CC          weighting  discrete              multi-class
+    DocumentFrequency                DF          weighting  discrete              multi-class
+    F1Measure                        F1          weighting  discrete              multi-class
+    FishersExactTest                 FET         weighting  discrete              multi-class
+    FastCorrelationBasedFilter       FCBF        subset     discrete              multi-class
+    GiniIndex                        GI          weighting  discrete              multi-class
+    GMean                            GM          weighting  discrete              multi-class
+    GSSCoefficient                   GSS         weighting  discrete              multi-class
+    InformationGain                  IG          weighting  discrete              multi-class
+    INTERACT                         INTERACT    subset     discrete              multi-class
+    JMeasure                         JM          weighting  discrete              multi-class
+    KLDivergence                     KLD         weighting  discrete              multi-class
+    LasVegasFilter                   LVF         subset     discrete, continuous  multi-class
+    LasVegasIncremental              LVI         subset     discrete, continuous  multi-class
+    MatthewsCorrelationCoefficient   MCC, PHI    weighting  discrete              multi-class
+    McNemarsTest                     MNT         weighting  discrete              multi-class
+    OddsRatio                        OR          weighting  discrete              multi-class
+    OddsRatioNumerator               ORN         weighting  discrete              multi-class
+    PhiCoefficient                   PHI         weighting  discrete              multi-class
+    Power                            Power       weighting  discrete              multi-class
+    Precision                        Precision   weighting  discrete              multi-class
+    ProbabilityRatio                 PR          weighting  discrete              multi-class
+    Random                           Random      weighting  discrete              multi-class
+    Recall                           Recall      weighting  discrete              multi-class
+    Relief_d                         Relief_d    weighting  discrete              two-class, no missing data
+    ReliefF_d                        ReliefF_d   weighting  discrete              multi-class
+    Sensitivity                      SN, Recall  weighting  discrete              multi-class
+    Specificity                      SP          weighting  discrete              multi-class
+    SymmetricalUncertainty           SU          weighting  discrete              multi-class
+    BetweenWithinClassesSumOfSquare  BSS_WSS     weighting  continuous            multi-class
+    CFS_c                            CFS_c       subset     continuous            multi-class
+    FTest                            FT          weighting  continuous            multi-class
+    KS_CCBF                          KS_CCBF     subset     continuous            multi-class
+    KSTest                           KST         weighting  continuous            two-class
+    PMetric                          PM          weighting  continuous            two-class
+    Relief_c                         Relief_c    weighting  continuous            two-class, no missing data
+    ReliefF_c                        ReliefF_c   weighting  continuous            multi-class
+    TScore                           TS          weighting  continuous            two-class
+    WilcoxonRankSum                  WRS         weighting  continuous            two-class
     
   **note for feature selection interface:**   
   there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  
   
-  - for weighting type: use either **select\_feature\_by\_rank!** or **select\_feature\_by\_score!**  
+  - for weighting type: use either **select\_feature\_by\_score!** or **select\_feature\_by\_rank!**  
   - for subset type: use **select\_feature!**
 
 **3. feature selection approaches**
 
  - by a single algorithm
  - by multiple algorithms in a tandem manner
- - by multiple algorithms in an ensemble manner (share same feature selection interface as single algorithm)
+ - by multiple algorithms in an ensemble manner (share the same feature selection interface as single algorithm)
  
 **4. availabe normalization and discretization algorithms for continuous feature**
     
     algorithm                         note
-    -------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------
     normalize_by_log!                 normalize by logarithmic transformation
     normalize_by_min_max!             normalize by scaling into [min, max]
     normalize_by_zscore!              normalize by converting into zscore
@@ -108,13 +112,13 @@ Feature List
     discretize_by_equal_frequency!    discretize by equal frequency among intervals
     discretize_by_ChiMerge!           discretize by ChiMerge algorithm
     discretize_by_Chi2!               discretize by Chi2 algorithm
-    discretize_by_MID!                discretize by Multi-Interval Discretization
-    discretize_by_TID!                discretize by Three-Interval Discretization
+    discretize_by_MID!                discretize by Multi-Interval Discretization algorithm
+    discretize_by_TID!                discretize by Three-Interval Discretization algorithm
     
 **5. availabe algorithms for replacing missing feature values**
     
     algorithm                         note                                   feature_type                     
-    ---------------------------------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------------
     replace_by_fixed_value!           replace by a fixed value               discrete, continuous
     replace_by_mean_value!            replace by mean feature value          continuous
     replace_by_median_value!          replace by median feature value        continuous
@@ -141,8 +145,8 @@ Usage
 
     require 'fselector'
 	
-    # use InformationGain as a feature selection algorithm
-    r1 = FSelector::InformationGain.new
+    # use InformationGain (IG) as a feature selection algorithm
+    r1 = FSelector::IG.new
     
     # read from random data (or csv, libsvm, weka ARFF file)
     # no. of samples: 100
@@ -161,10 +165,10 @@ Usage
     # number of features after feature selection
     puts "  # features (after): "+ r1.get_features.size.to_s
     
-    # you can also use multiple alogirithms in a tandem manner
-    # e.g. use the ChiSquaredTest with Yates' continuity correction
+    # you can also use a second alogirithm for further feature selection
+    # e.g. use the ChiSquaredTest (CHI) with Yates' continuity correction
     # initialize from r1's data
-    r2 = FSelector::ChiSquaredTest.new(:yates, r1.get_data)
+    r2 = FSelector::CHI.new(:yates, r1.get_data)
     
     # number of features before feature selection
     puts "  # features (before): "+ r2.get_features.size.to_s
@@ -216,18 +220,18 @@ Usage
 	
 	
 	# creating an ensemble of feature selectors by using 
-	# two feature selection algorithms (InformationGain and Relief_d). 
+	# two feature selection algorithms: InformationGain (IG) and Relief_d. 
 	# note: can be 2+ algorithms, as long as they are of the same type, 
 	# either feature weighting or feature subset selection algorithms
 	
 	# test for the type of feature weighting algorithms 
-    r1 = FSelector::InformationGain.new
+    r1 = FSelector::IG.new
     r2 = FSelector::Relief_d.new(10)
     
     # an ensemble of two feature selectors
     re = FSelector::EnsembleMultiple.new(r1, r2)
     
-    # read random data
+    # read random discrete data (containing missing value)
     re.data_from_random(100, 2, 15, 3, true)
     
     # replace missing value because Relief_d 
@@ -247,35 +251,28 @@ Usage
     # number of features after feature selection
     puts '  # features (after): ' + re.get_features.size.to_s
     
-**3. normalization and discretization before feature selection**
-
- In addition to the algorithms designed for continuous feature, one
- can apply those deisgned for discrete feature after (optionally
- normalization and) discretization
+**3. feature selection after discretization**
  
     require 'fselector'
     
-    # for continuous feature
-    r1 = FSelector::Relief_c.new
+    # the Information Gain (IG) algorithm requires data with discrete feature
+    r = FSelector::IG.new
     
-    # read the Iris data set (under the test/ directory)
-    r1.data_from_csv('test/iris.csv')
+    # but the Iris data set contains continuous features (under the test/ directory)
+    r.data_from_csv('test/iris.csv')
         
-    # discretization by ChiMerge algorithm at alpha=0.10
-    r1.discretize_by_ChiMerge!(0.10)
-    
-    # apply Fast Correlation-Based Filter (FCBF) algorithm for discrete feature
-    # initialize with discretized data from r1
-    r2 = FSelector::FCBF.new(0.0, r1.get_data)
+    # let's first discretize it by ChiMerge algorithm at alpha=0.10
+    # then perform feature selection as usual
+    r.discretize_by_ChiMerge!(0.10)
     
     # number of features before feature selection
-    puts '  # features (before): ' + r2.get_features.size.to_s
+    puts '  # features (before): ' + r.get_features.size.to_s
     
-    # feature selection
-    r2.select_feature!
+    # select the top-ranked feature
+    r.select_feature_by_rank!('<=1')
     
     # number of features after feature selection
-    puts '  # features (after): ' + r2.get_features.size.to_s
+    puts '  # features (after): ' + r.get_features.size.to_s
 
 **4. see more examples test_*.rb under the test/ directory**
 
