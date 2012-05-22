@@ -193,19 +193,25 @@ module FSelector
     
     
     #
-    # get the feature type stored in @opts
+    # get the feature type stored in @types
     #
     # @param [Symbol] feature feature of interest  
     #   return all feature name-type pairs if nil, 
     #   otherwise reture the type for the feature of interest
     #
-    def get_feature_types(feature=nil)
-      name2type = get_opt(:feature_type)
-      if name2type
-        feature ? name2type[feature] : name2type
+    def get_feature_type(feature=nil)
+      if @types
+        feature ? @types[feature] : @types
       else
         nil
       end
+    end
+    
+    
+    # set feature name-type pair
+    def set_feature_type(feature, type)
+      @types ||= {}
+      @types[feature] = type
     end
     
   

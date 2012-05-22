@@ -253,11 +253,9 @@ module FileIO
     set_features(features)
     
     # feature name-type pairs
-    name2type = {}
     features.each_with_index do |f, i|
-      name2type[f] = types[i]
+      set_feature_type(f, types[i])
     end
-    set_opt(:feature_type, name2type)
   end # data_from_csv
   
   
@@ -278,7 +276,7 @@ module FileIO
     ofs.puts get_features.join(',')
     # feature types
     ofs.puts get_features.collect { |f| 
-      get_feature_types(f) || :string
+      get_feature_type(f) || :string
     }.join(',')
     
     each_sample do |k, s|
@@ -391,15 +389,12 @@ module FileIO
     set_data(data)
     set_classes(classes)
     set_features(features)
-    set_opt(:relation, relation)
-    
     # feature name-type pairs
-    name2type = {}
     features.each_with_index do |f, i|
-      name2type[f] =  types[i]
+      set_feature_type(f, types[i])
     end
-    set_opt(:feature_type, name2type)
     
+    set_opt(:relation, relation)    
     set_opt(:comments, comments) if not comments.empty?
   end # data_from_weak
   
@@ -435,7 +430,7 @@ module FileIO
     # feature attribute
     each_feature do |f|
       ofs.print "@ATTRIBUTE #{f} "
-      type = get_feature_types(f)
+      type = get_feature_type(f)
       if type
         if type == :nominal
           ofs.puts "{#{get_feature_values(f).uniq.sort.join(',')}}"
