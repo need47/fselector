@@ -208,7 +208,12 @@ module FSelector
     end
     
     
+    #
     # set feature name-type pair
+    #
+    # @param [Symbol] feature feature name
+    # @param [Symbol] type feature type
+    #
     def set_feature_type(feature, type)
       @types ||= {}
       @types[feature] = type
