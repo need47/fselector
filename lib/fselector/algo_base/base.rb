@@ -193,6 +193,23 @@ module FSelector
     
     
     #
+    # get the feature type stored in @opts
+    #
+    # @param [Symbol] feature feature of interest  
+    #   return all feature name-type pairs if nil, 
+    #   otherwise reture the type for the feature of interest
+    #
+    def get_feature_types(feature=nil)
+      name2type = get_opt(:feature_type)
+      if name2type
+        feature ? name2type[feature] : name2type
+      else
+        nil
+      end
+    end
+    
+  
+    #
     # get internal data
     #
     # @return [Hash] internal data
@@ -241,7 +258,11 @@ module FSelector
     # @note return all non-data as a Hash if key == nil
     #
     def get_opt(key=nil)
-      key ? @opts[key] : @opts
+      if @opts
+        key ? @opts[key] : @opts
+      else
+        nil
+      end
     end
     
     
