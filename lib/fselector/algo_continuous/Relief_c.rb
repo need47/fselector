@@ -47,14 +47,6 @@ module FSelector
     end # get_normalization_unit
     
     
-    # override clear\_vars for Relief_c
-    def clear_vars
-      super
-      
-      @f2nu = nil
-    end # clear_vars
-    
-    
   end # class
   
   

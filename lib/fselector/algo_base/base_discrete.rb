@@ -175,14 +175,6 @@ module FSelector
     end # calc_D
     
     
-    # override clear\_vars for BaseDiscrete
-    def clear_vars
-      super
-      
-      @A, @B, @C, @D = nil, nil, nil, nil
-    end # clear_vars
-    
-    
   end # class
 
 

@@ -404,17 +404,33 @@ module FSelector
     private
     
     #
-    # clear variables when data structure is altered, this is 
-    # useful when data structure has changed while 
-    # you still want to use the same instance
+    # clear instance variables when data structure is altered, 
+    # this is useful when data structure has changed while you 
+    # still want to use the same instance
     #
-    # @note the variables of original data structure (@data) and 
-    #   algorithm type (@algo_type) are retained
+    # @note only the instance variables used in the initialize() 
+    #   such as @data will be retained. class instance varialbe 
+    #   @algo_type will also be retained. This trick by use of 
+    #   Ruby metaprogramming avoids the repetivie overriding of 
+    #   clear_vars() in each derived subclasses
     #
     def clear_vars
-      @classes, @features, @fvs = nil, nil, nil
-      @scores, @ranks, @sz = nil, nil, nil
-      @cv, @fvs, @opts = nil, nil, {}
+      instance_var_in_new = []
+      
+      constructor = method(:initialize)
+      if constructor.respond_to? :parameters
+        constructor.parameters.each do |p|
+          instance_var_in_new << "@#{p[1]}".to_sym
+        end
+      end
+      
+      instance_variables.each do |var|
+        # retain instance vars defined in intialize()
+        # such as @data
+        next if instance_var_in_new.include? var
+        # clear this instance variable
+        instance_variable_set(var, nil)
+      end
     end
     
     

@@ -41,15 +41,7 @@ module FSelector
       s =  @hc - hcf
       
       set_feature_score(f, :BEST, s)      
-    end # calc_contribution 
-    
-    
-    # override clear\_vars for InformationGain
-    def clear_vars
-      super
-      
-      @hc = nil
-    end # clear_vars
+    end # calc_contribution
     
       	
   end # class 
