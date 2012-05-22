@@ -8,8 +8,8 @@ FSelector: a Ruby gem for feature selection and ranking
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 1.2.0  
-**Release Date**: 2012-05-20
+**Latest Version**: 1.3.0  
+**Release Date**: 2012-05-22
 
 Synopsis
 --------
@@ -38,56 +38,57 @@ Feature List
  - csv
  - libsvm
  - weka ARFF
+ - on-line dataset in one of the above three formats (read only)
  - random data (read only, for test purpose)
 
 **2. available feature selection/ranking algorithms**
     
-    algorithm                        shortcut    algo_type  feature_type          applicability
-    --------------------------------------------------------------------------------------------------------
-    Accuracy                         Acc         weighting  discrete              multi-class
-    AccuracyBalanced                 Acc2        weighting  discrete              multi-class
-    BiNormalSeparation               BNS         weighting  discrete              multi-class
-    CFS_d                            CFS_d       subset     discrete              multi-class
-    ChiSquaredTest                   CHI         weighting  discrete              multi-class
-    CorrelationCoefficient           CC          weighting  discrete              multi-class
-    DocumentFrequency                DF          weighting  discrete              multi-class
-    F1Measure                        F1          weighting  discrete              multi-class
-    FishersExactTest                 FET         weighting  discrete              multi-class
-    FastCorrelationBasedFilter       FCBF        subset     discrete              multi-class
-    GiniIndex                        GI          weighting  discrete              multi-class
-    GMean                            GM          weighting  discrete              multi-class
-    GSSCoefficient                   GSS         weighting  discrete              multi-class
-    InformationGain                  IG          weighting  discrete              multi-class
-    INTERACT                         INTERACT    subset     discrete              multi-class
-    JMeasure                         JM          weighting  discrete              multi-class
-    KLDivergence                     KLD         weighting  discrete              multi-class
-    LasVegasFilter                   LVF         subset     discrete, continuous  multi-class
-    LasVegasIncremental              LVI         subset     discrete, continuous  multi-class
-    MatthewsCorrelationCoefficient   MCC, PHI    weighting  discrete              multi-class
-    McNemarsTest                     MNT         weighting  discrete              multi-class
-    OddsRatio                        OR          weighting  discrete              multi-class
-    OddsRatioNumerator               ORN         weighting  discrete              multi-class
-    PhiCoefficient                   PHI         weighting  discrete              multi-class
-    Power                            Power       weighting  discrete              multi-class
-    Precision                        Precision   weighting  discrete              multi-class
-    ProbabilityRatio                 PR          weighting  discrete              multi-class
-    Random                           Random      weighting  discrete              multi-class
-    Recall                           Recall      weighting  discrete              multi-class
-    Relief_d                         Relief_d    weighting  discrete              two-class, no missing data
-    ReliefF_d                        ReliefF_d   weighting  discrete              multi-class
-    Sensitivity                      SN, Recall  weighting  discrete              multi-class
-    Specificity                      SP          weighting  discrete              multi-class
-    SymmetricalUncertainty           SU          weighting  discrete              multi-class
-    BetweenWithinClassesSumOfSquare  BSS_WSS     weighting  continuous            multi-class
-    CFS_c                            CFS_c       subset     continuous            multi-class
-    FTest                            FT          weighting  continuous            multi-class
-    KS_CCBF                          KS_CCBF     subset     continuous            multi-class
-    KSTest                           KST         weighting  continuous            two-class
-    PMetric                          PM          weighting  continuous            two-class
-    Relief_c                         Relief_c    weighting  continuous            two-class, no missing data
-    ReliefF_c                        ReliefF_c   weighting  continuous            multi-class
-    TScore                           TS          weighting  continuous            two-class
-    WilcoxonRankSum                  WRS         weighting  continuous            two-class
+    algorithm                        shortcut    algo_type  applicability  feature_type
+    --------------------------------------------------------------------------------------------------
+    Accuracy                         Acc         weighting  multi-class    discrete
+    AccuracyBalanced                 Acc2        weighting  multi-class    discrete
+    BiNormalSeparation               BNS         weighting  multi-class    discrete
+    CFS_d                            CFS_d       subset     multi-class    discrete
+    ChiSquaredTest                   CHI         weighting  multi-class    discrete
+    CorrelationCoefficient           CC          weighting  multi-class    discrete
+    DocumentFrequency                DF          weighting  multi-class    discrete
+    F1Measure                        F1          weighting  multi-class    discrete
+    FishersExactTest                 FET         weighting  multi-class    discrete
+    FastCorrelationBasedFilter       FCBF        subset     multi-class    discrete
+    GiniIndex                        GI          weighting  multi-class    discrete
+    GMean                            GM          weighting  multi-class    discrete
+    GSSCoefficient                   GSS         weighting  multi-class    discrete
+    InformationGain                  IG          weighting  multi-class    discrete
+    INTERACT                         INTERACT    subset     multi-class    discrete
+    JMeasure                         JM          weighting  multi-class    discrete
+    KLDivergence                     KLD         weighting  multi-class    discrete
+    MatthewsCorrelationCoefficient   MCC, PHI    weighting  multi-class    discrete
+    McNemarsTest                     MNT         weighting  multi-class    discrete
+    OddsRatio                        OR          weighting  multi-class    discrete
+    OddsRatioNumerator               ORN         weighting  multi-class    discrete
+    PhiCoefficient                   PHI         weighting  multi-class    discrete
+    Power                            Power       weighting  multi-class    discrete
+    Precision                        Precision   weighting  multi-class    discrete
+    ProbabilityRatio                 PR          weighting  multi-class    discrete
+    Recall                           Recall      weighting  multi-class    discrete
+    Relief_d                         Relief_d    weighting  two-class      discrete
+    ReliefF_d                        ReliefF_d   weighting  multi-class    discrete
+    Sensitivity                      SN, Recall  weighting  multi-class    discrete
+    Specificity                      SP          weighting  multi-class    discrete
+    SymmetricalUncertainty           SU          weighting  multi-class    discrete
+    BetweenWithinClassesSumOfSquare  BSS_WSS     weighting  multi-class    continuous
+    CFS_c                            CFS_c       subset     multi-class    continuous
+    FTest                            FT          weighting  multi-class    continuous
+    KS_CCBF                          KS_CCBF     subset     multi-class    continuous
+    KSTest                           KST         weighting  two-class      continuous
+    PMetric                          PM          weighting  two-class      continuous
+    Relief_c                         Relief_c    weighting  two-class      continuous
+    ReliefF_c                        ReliefF_c   weighting  multi-class    continuous
+    TScore                           TS          weighting  two-class      continuous
+    WilcoxonRankSum                  WRS         weighting  two-class      continuous
+    LasVegasFilter                   LVF         subset     multi-class    discrete, continuous, mixed
+    LasVegasIncremental              LVI         subset     multi-class    discrete, continuous, mixed
+    Random                           Random      weighting  multi-class    discrete, continuous, mixed
     
   **note for feature selection interface:**   
   there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  
@@ -132,7 +133,7 @@ To install FSelector, use the following command:
 
     $ gem install fselector
     
-  **note:** Start from version 0.5.0, FSelector uses the RinRuby gem (http://rinruby.ddahl.org) 
+  **note:** From version 0.5.0, FSelector uses the RinRuby gem (http://rinruby.ddahl.org) 
   as a seemless bridge to access the statistical routines in the R package (http://www.r-project.org), 
   which will greatly expand the inclusion of algorithms to FSelector, especially for those relying 
   on statistical test. To this end, please pre-install the R package. RinRuby should have been 

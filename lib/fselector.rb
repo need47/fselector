@@ -7,7 +7,7 @@ R.eval 'options(warn = -1)' # suppress R warnings
 #
 module FSelector
   # module version
-  VERSION = '1.2.0'
+  VERSION = '1.3.0'
 end
 
 # the root dir of FSelector
@@ -51,6 +51,15 @@ end
 Dir.glob("#{ROOT}/fselector/algo_continuous/*").each do |f|
   require f
 end
+
+
+#
+# algorithms for handling both discrete and continuous feature
+#
+Dir.glob("#{ROOT}/fselector/algo_both/*").each do |f|
+  require f
+end
+
 
 #
 # feature selection use an ensemble of algorithms
