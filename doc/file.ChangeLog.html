@@ -54,7 +54,16 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><div id='filecontents'><p>2012-05-20  version 1.2.0</p>
+    <div id="content"><div id='filecontents'><p>2012-05-22  version 1.3.0</p>
+
+<ul>
+<li>update clear_vars() in Base by use of Ruby metaprogramming, this trick avoids repetitive overriding it in each derived subclass</li>
+<li>re-organize LasVegasFilter, LasVegasIncremental and Random into algo_both/, since they are suitable for handling dataset with either discrete or continuous features, even with mixed type of features</li>
+<li>update data_from_csv() so that it can read CSV file flexibly</li>
+<li>add data_from_url() to read on-line dataset (in CSV, LibSVM or Weka ARFF file format) specified by a url</li>
+</ul>
+
+<p>2012-05-20  version 1.2.0</p>
 
 <ul>
 <li>add KS-Test algorithm for continuous feature</li>
@@ -136,7 +145,7 @@ RubyStats (FishersExactTest.calculate, get_icdf) and ChiSquareCalculator</p></li
 </div></div>
     
     <div id="footer">
-  Generated on Mon May 21 09:38:10 2012 by 
+  Generated on Tue May 22 18:16:13 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
