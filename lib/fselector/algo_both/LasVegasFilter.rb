@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# Las Vegas Filter (LVF) for discrete feature, 
+# Las Vegas Filter (LVF) for discrete, continuous or mixed feature, 
 # use **select\_feature!** for feature selection
 #
 # @note we only keep one of the equivalently good solutions

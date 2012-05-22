@@ -3,7 +3,8 @@
 #
 module FSelector
 #
-# Random (Rand), no pratical use but can be used as a baseline
+# Random (Rand) for discrete, continuous or mixed feature, 
+# no pratical use but can be used as a baseline
 #
 #  Rand = rand numbers within [0..1)
 #  

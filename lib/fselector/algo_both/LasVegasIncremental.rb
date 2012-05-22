@@ -3,7 +3,7 @@
 #
 module FSelector
 #
-# Las Vegas Incremental (LVI) for discrete feature, 
+# Las Vegas Incremental (LVI) for discrete, continuous or mixed feature, 
 # use **select\_feature!** for feature selection
 #
 # ref: [Incremental Feature Selection](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.8218)
