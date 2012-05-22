@@ -8,7 +8,7 @@ module FSelector
 #
 # ref: [Incremental Feature Selection](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.8218)
 #
-  class LasVegasIncremental < BaseDiscrete
+  class LasVegasIncremental < Base
     # include module
     include Consistency
     

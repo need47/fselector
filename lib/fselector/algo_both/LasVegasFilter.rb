@@ -10,7 +10,7 @@ module FSelector
 #
 # ref: [Review and Evaluation of Feature Selection Algorithms in Synthetic Problems](http://arxiv.org/abs/1101.2320)
 #
-  class LasVegasFilter < BaseDiscrete
+  class LasVegasFilter < Base
     # include module
     include Consistency
     
