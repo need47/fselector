@@ -433,7 +433,7 @@ module FSelector
     #   such as @data will be retained. class instance varialbe 
     #   @algo_type will also be retained. This trick by use of 
     #   Ruby metaprogramming avoids the repetivie overriding of 
-    #   clear_vars() in each derived subclasses
+    #   clear_vars() in each derived subclass
     #
     def clear_vars
       instance_var_in_new = []
