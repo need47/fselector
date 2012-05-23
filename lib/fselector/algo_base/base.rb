@@ -460,7 +460,11 @@ module FSelector
         # retain instance vars defined in intialize()
         # such as @data
         next if instance_var_in_new.include? var
-        # clear this instance variable
+        # retain feature types, which may be needed 
+        # by CSV and Weka ARFF file
+        next if var == :@types
+        
+        # clear all other instance variable
         instance_variable_set(var, nil)
       end
     end
