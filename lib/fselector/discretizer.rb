@@ -474,8 +474,13 @@ module Discretizer
       end
     end
     
-    # clear vars
+    # clear vars because of data change
     clear_vars
+    
+    # set all feature type as CATEGORICAL
+    each_feature do |f|
+      set_feature_type(f, :categorical)
+    end
   end # discretize_at_cutpoints!
   
   
