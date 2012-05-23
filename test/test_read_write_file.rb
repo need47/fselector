@@ -55,7 +55,7 @@ name2type = {
 }
 
 # read data (CSV file format)
-r.data_from_url(csv_url, :csv, :class_label_column=>5, :feature_name2type=>name2type)
+r.data_from_url(csv_url, :csv, :feature_name2type=>name2type)
 
 # => 150
 puts "  numboer of samples read: %d" % r.get_sample_size
