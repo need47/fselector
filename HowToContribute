@@ -1,0 +1,116 @@
+How to add your own feature selection algorithms
+------------------------------------------------
+
+**Baisc steps**
+    
+    1. Require the FSelector gem
+    
+    2. Derive a subclass from a base class (Base, BaseDiscrete, aseContinuous and so on)  
+    
+    3. Set your own feature selection algorithm with one of the following two types:  
+      :feature_weighting         # if it outputs weight for each feature
+      :feature_subset_selection  # if it outputs a subset of original feature set
+     
+    4. Depending on your algorithm type, override one of the following two interfaces:
+      calc_contribution()   # if it belongs to the type of feature weighting algorithms
+      get_feature_subset()  # if it belongs to the type of feature subset selection algorithms
+
+**Example**
+
+    require 'fselector'  # step 1
+    
+    module FSelector
+      # create a new algorithm belonging to the type of feature weighting
+      # to this end, simply override the calc_contribution() in Base class
+      class NewAlgo_Weight < Base  # step 2
+        # set the algorithm type
+        @algo_type = :feature_weighting  # step 3
+        
+        # add your own initialize() here if necessary
+        
+        private
+        
+        # the algorithm assigns feature weight randomly
+        def calc_contribution(f)  # step 4
+          s = rand
+          
+          # set the score (s) of feature (f) for class (:BEST is the best score among all classes)
+          set_feature_score(f, :BEST, s)
+        end
+      end # NewAlgo_Weight
+      
+      
+      # create a new algorithm belonging to the type of feature subset selection
+      # to this end, simly override the get_feature_subset() in Base class
+      class NewAlgo_Subset < Base  # step 2
+        # set the algorithm type
+        @algo_type = :feature_subset_selection  # step 3
+        
+        # add your own initialize() here if necessary
+        
+        private
+        
+        # the algorithm returns a random half-size subset of the orignal one
+        def get_feature_subset  # step 4
+          org_features = get_features
+          subset = org_features.sample(org_features.size/2)
+          
+          subset
+        end
+        
+      end # NewAlgo_Subset
+    end # module
+    
+ **Test your algorithms**
+       
+    require 'fselector'
+    
+    # example 1
+    
+    # use NewAlgo_Weighting
+    r1 = FSelector::NewAlgo_Weight.new
+    r1.data_from_csv('test/iris.csv')
+    r1.select_feature_by_rank!('<=1')
+    puts r1.get_features
+    
+    # example 2
+    
+    # use NewAlgo_Subset
+    r2 = FSelector::NewAlgo_Subset.new
+    r2.data_from_csv('test/iris.csv')
+    r2.select_feature!
+    puts r2.get_features
+
+How to become a contributor of FSelector on GitHub
+--------------------------------------------------
+
+**Set up your repository**
+    
+    1. Go to https://github.com/need47/fselector and click the "Fork" button
+
+    2. Clone your fork to your local machine:
+      git clone git@github.com:yourGitUserName/fselector.git
+        
+    3. Assign the original repository to a remote called "upstream":  
+      cd fselector  
+      git remote add upstream git://github.com/need47/fselector.git
+      
+    4. Get updates from the "upstream" and merge to your local repository:  
+      git fetch upstream  
+      git merge upstream/master
+    
+**Develop features**
+    
+    1. Create and checkout a feature branch to house your edits:
+      git checkout -b branchName
+      
+    2. Add your own feature selection algorithm:
+      git add yourAlgorithm.rb  
+      git commit -m "your commit message"
+    
+    3. Push your branch to GitHub:  
+      git push origin branchName
+    
+    4. Visit your forked project on GitHub and switch to your branhName branch  
+
+    5. Click the "Pull Request" button to request that your features to be merged to the "upstream" master
