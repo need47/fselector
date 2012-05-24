@@ -148,46 +148,48 @@ module FileIO
   # read from csv
   #
   # if no csv_opts supplied, we assume the CSV file in the following format:  
-  # first and second rows contain feature names and types, respectively. 
+  # first row contains feature names with last column being class name 
   # 
-  #     feat_name1,feat_name2,...,feat_namen  
-  #     feat_type1,feat_type2,...,feat_typen  
-  # 
-  # and the remaing rows containing the data with first column being the class label 
+  #     feat_name1,feat_name2,...,class_name
   #
-  #     class_label,feat_value1,feat_value2,...,feat_value3  
+  # second row contains feature types with last column being class type
+  #
+  #     feat_type1,feat_type2,...,class_type  
+  # 
+  # and the remaing rows containing feature values with last column being class label 
+  #
+  #     feat_value1,feat_value2,...,class_label  
   #     ...  
   # 
   # allowed feature types (case-insensitive) are:  
-  # INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL
+  # INTEGER, REAL, NUMERIC, CONTINUOUS, DOUBLE, FLOAT, STRING, NOMINAL, CATEGORICAL
   #
   # @param [Symbol|String|StringIO] fname data source to read from  
   #   :stdin  # read from standard input
   # @param [Hash] csv_opts named arguments for csv options     
-  #   :feature\_name\_row => 1,    # row that contains feature names  
-  #   :feature\_type\_row => 2,    # row that contains feature types  
-  #   :feature\_name2type => {},   # a user-supplied hash containing feature name-type pairs 
+  #   :feature\_name\_row => 1,    # (first) row that contains feature names  
+  #   :feature\_type\_row => 2,    # (second) row that contains feature types  
+  #   :class\_label\_column => 0   # (last) column that contains class labels  
+  #   :feature\_name2type => {},   # user-supplied hash containing feature name-type pairs 
   #                                  if no rows specify them. feature must be in the same order 
-  #                                  as it appears in the dataset  
-  #   :class\_label\_column  => 1  # column that contains class labels
+  #                                  as it appears in the dataset
   #
   # @note missing values are allowed
   #
   def data_from_csv(fname=:stdin, csv_opts = {})
     ifs = get_ifs(fname)
     
-    opts = { # default options, new opts will override old ones
+    csv_opts = { # default options, new opts will override old ones
       :feature_name_row => 1,    # first row contains feature names
       :feature_type_row => 2,    # second row contains feature types
-      :feature_name2type => {},  # user-supplied feature name-type pairs
-      :class_label_column => 1,  # first column contains class labels
-    }
-    opts.merge!(csv_opts) if csv_opts and csv_opts.class == Hash
+      :class_label_column => 0,  # last column contains class labels
+      :feature_name2type => {}   # user-supplied feature name-type pairs
+    }.merge(csv_opts) if csv_opts and csv_opts.class == Hash
     
-    feature_name_row = opts[:feature_name_row]
-    feature_type_row = opts[:feature_type_row]
-    feature_name2type = opts[:feature_name2type]
-    class_label_column = opts[:class_label_column]
+    feature_name_row = csv_opts[:feature_name_row]
+    feature_type_row = csv_opts[:feature_type_row]
+    class_label_column = csv_opts[:class_label_column]
+    feature_name2type = csv_opts[:feature_name2type]
     
     # user-supplied feature name-type pairs, this is useful 
     # when file contains no specific rows for feture names and types
@@ -203,46 +205,50 @@ module FileIO
     ifs.each_line do |ln|
       next if ln.blank?
       
-      if ifs.lineno == feature_name_row # feature names
-        features = ln.chomp.split(/,/).to_sym
-      elsif ifs.lineno == feature_type_row # second types
+      cells = ln.chomp.split(/,/)
+      
+      # feature names
+      if ifs.lineno == feature_name_row
+        class_name = cells.delete_at(class_label_column-1) # simply useless
+        features = cells.to_sym
+      # feature types
+      elsif ifs.lineno == feature_type_row
+        class_type = cells.delete_at(class_label_column-1) # simply useless
         # store feature type as lower-case symbol
-        types = ln.chomp.split(/,/).collect { |t| t.downcase.to_sym }
+        types = cells.collect { |t| t.downcase.to_sym }
       else # data rows
-        cells = ln.chomp.split(/,/)
-        
-        if class_label_column <= cells.size
-          label = cells[class_label_column-1]
-          label = label.to_sym
-          data[label] ||= []
-          
-          # remove class label
-          cells.delete_at(class_label_column-1)
+        if class_label_column <= cells.size and 
+           features.size+1 == cells.size and 
+           types.size+1 == cells.size
+          class_label = cells.delete_at(class_label_column-1).to_sym
+          data[class_label] ||= []
+          # feature values
           fvs = cells
         else
           abort "[#{__FILE__}@#{__LINE__}]: \n"+
-                "  the class label column can't found!"
+                "  invalid csv format!"
         end              
         
         fs = {}
         fvs.each_with_index do |v, i|
           next if v.empty? # missing value
-          feat_type = types[i]
-          if feat_type == :integer
+          type = types[i]
+          if type == :integer
             v = v.to_i
-          elsif [:real, :numeric, :continuous].include? feat_type
+          elsif [:real, :numeric, :continuous, :float, :double].include? type
             v = v.to_f
-          elsif [:string, :nominal, :categorical].include? feat_type
+          elsif [:string, :nominal, :categorical].include? type
             #
           else
             abort "[#{__FILE__}@#{__LINE__}]: \n"+
-                  "  invalid feature type!"
+                  "  invalid feature type '#{type}', must be one of the following: \n"+
+                  "  integer, real, numeric, float, double, continuous, categorical, string, nominal"
           end
           
           fs[features[i]] = v
         end
         
-        data[label] << fs
+        data[class_label] << fs
       end
     end
     
@@ -280,15 +286,14 @@ module FileIO
     }.join(',')
     
     each_sample do |k, s|
-      ofs.print "#{k}"
       each_feature do |f|
         if s.has_key? f
-          ofs.print ",#{s[f]}"
+          ofs.print "#{s[f]},"
         else
           ofs.print ","
         end
       end
-      ofs.puts
+      ofs.puts "#{k}"
     end
     
     # close file
@@ -333,7 +338,7 @@ module FileIO
         features << f
         #$2.split_me(/,\s*/, quote_char) # feature nominal values
         types << :nominal
-      # feature attribute (integer, real, numeric, string, date)
+      # feature attribute (categorical, integer, real, continuous, numeric, float, double, string, date)
       elsif ln =~ /^@ATTRIBUTE/i
         tmp, v1, v2 = ln.split_me(/\s+/, quote_char)
         f = v1.to_sym
@@ -554,14 +559,16 @@ module FileIO
       return
     elsif type == :integer
       fs[f] = v.to_i
-    elsif type == :real or type == :numeric
+    elsif [:real, :numeric, :float, :double, :continuous].include? type
       fs[f] = v.to_f
-    elsif type == :string or type == :nominal
+    elsif [:categorical, :string, :nominal].include? type
       fs[f] = v
     elsif type == :date # convert into integer
       fs[f] = (DateTime.parse(v)-DateTime.new(1970,1,1)).to_i
     else
-       return
+       abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  invalid feature type '#{type}', must be one of the following: \n"+
+            "  integer, real, numeric, float, double, continuous, categorical, string, nominal, date"
     end
   end # add_feature_weka
      
