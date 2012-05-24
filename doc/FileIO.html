@@ -334,20 +334,24 @@ where :c1 and :c2 are class labels; :f1, :f2, and :f3 are features
 <p>read from csv</p>
 
 <p>if no csv_opts supplied, we assume the CSV file in the following format:<br>
-first and second rows contain feature names and types, respectively. </p>
+first row contains feature names with last column being class name </p>
 
-<pre class="code ruby"><code>feat_name1,feat_name2,...,feat_namen  
-feat_type1,feat_type2,...,feat_typen  
+<pre class="code ruby"><code>feat_name1,feat_name2,...,class_name
 </code></pre>
 
-<p>and the remaing rows containing the data with first column being the class label </p>
+<p>second row contains feature types with last column being class type</p>
 
-<pre class="code ruby"><code>class_label,feat_value1,feat_value2,...,feat_value3  
+<pre class="code ruby"><code>feat_type1,feat_type2,...,class_type  
+</code></pre>
+
+<p>and the remaing rows containing feature values with last column being class label </p>
+
+<pre class="code ruby"><code>feat_value1,feat_value2,...,class_label  
 ...  
 </code></pre>
 
 <p>allowed feature types (case-insensitive) are:<br>
-INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
+INTEGER, REAL, NUMERIC, CONTINUOUS, DOUBLE, FLOAT, STRING, NOMINAL, CATEGORICAL</p>
 
 
   </div>
@@ -387,12 +391,12 @@ INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
       
         &mdash;
         <div class='inline'><p>named arguments for csv options<br>
-:feature_name_row =&gt; 1,    # row that contains feature names<br>
-:feature_type_row =&gt; 2,    # row that contains feature types<br>
-:feature_name2type =&gt; {},   # a user-supplied hash containing feature name-type pairs 
+:feature_name_row =&gt; 1,    # (first) row that contains feature names<br>
+:feature_type_row =&gt; 2,    # (second) row that contains feature types<br>
+:class_label_column =&gt; 0   # (last) column that contains class labels<br>
+:feature_name2type =&gt; {},   # user-supplied hash containing feature name-type pairs 
                                if no rows specify them. feature must be in the same order 
-                               as it appears in the dataset<br>
-:class_label_column  =&gt; 1  # column that contains class labels</p>
+                               as it appears in the dataset</p>
 </div>
       
     </li>
@@ -406,9 +410,6 @@ INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
       <pre class="lines">
 
 
-176
-177
-178
 179
 180
 181
@@ -489,26 +490,31 @@ INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
 256
 257
 258
-259</pre>
+259
+260
+261
+262
+263
+264
+265</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_data_from_csv'>data_from_csv</span><span class='lparen'>(</span><span class='id identifier rubyid_fname'>fname</span><span class='op'>=</span><span class='symbol'>:stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ifs'>ifs</span> <span class='op'>=</span> <span class='id identifier rubyid_get_ifs'>get_ifs</span><span class='lparen'>(</span><span class='id identifier rubyid_fname'>fname</span><span class='rparen'>)</span>
   
-  <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='comment'># default options, new opts will override old ones
+  <span class='id identifier rubyid_csv_opts'>csv_opts</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='comment'># default options, new opts will override old ones
 </span>    <span class='symbol'>:feature_name_row</span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='comma'>,</span>    <span class='comment'># first row contains feature names
 </span>    <span class='symbol'>:feature_type_row</span> <span class='op'>=&gt;</span> <span class='int'>2</span><span class='comma'>,</span>    <span class='comment'># second row contains feature types
-</span>    <span class='symbol'>:feature_name2type</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>  <span class='comment'># user-supplied feature name-type pairs
-</span>    <span class='symbol'>:class_label_column</span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='comma'>,</span>  <span class='comment'># first column contains class labels
-</span>  <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_csv_opts'>csv_opts</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span> <span class='kw'>and</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Hash</span>
+</span>    <span class='symbol'>:class_label_column</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>  <span class='comment'># last column contains class labels
+</span>    <span class='symbol'>:feature_name2type</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>   <span class='comment'># user-supplied feature name-type pairs
+</span>  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_csv_opts'>csv_opts</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span> <span class='kw'>and</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Hash</span>
   
-  <span class='id identifier rubyid_feature_name_row'>feature_name_row</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:feature_name_row</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_feature_type_row'>feature_type_row</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:feature_type_row</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_feature_name2type'>feature_name2type</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:feature_name2type</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_class_label_column'>class_label_column</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:class_label_column</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_feature_name_row'>feature_name_row</span> <span class='op'>=</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span><span class='lbracket'>[</span><span class='symbol'>:feature_name_row</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_feature_type_row'>feature_type_row</span> <span class='op'>=</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span><span class='lbracket'>[</span><span class='symbol'>:feature_type_row</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_class_label_column'>class_label_column</span> <span class='op'>=</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span><span class='lbracket'>[</span><span class='symbol'>:class_label_column</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_feature_name2type'>feature_name2type</span> <span class='op'>=</span> <span class='id identifier rubyid_csv_opts'>csv_opts</span><span class='lbracket'>[</span><span class='symbol'>:feature_name2type</span><span class='rbracket'>]</span>
   
   <span class='comment'># user-supplied feature name-type pairs, this is useful 
 </span>  <span class='comment'># when file contains no specific rows for feture names and types
@@ -524,46 +530,50 @@ INTEGER, REAL, NUMERIC, CONTINUOUS, STRING, NOMINAL, CATEGORICAL</p>
   <span class='id identifier rubyid_ifs'>ifs</span><span class='period'>.</span><span class='id identifier rubyid_each_line'>each_line</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ln'>ln</span><span class='op'>|</span>
     <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_ln'>ln</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
     
-    <span class='kw'>if</span> <span class='id identifier rubyid_ifs'>ifs</span><span class='period'>.</span><span class='id identifier rubyid_lineno'>lineno</span> <span class='op'>==</span> <span class='id identifier rubyid_feature_name_row'>feature_name_row</span> <span class='comment'># feature names
-</span>      <span class='id identifier rubyid_features'>features</span> <span class='op'>=</span> <span class='id identifier rubyid_ln'>ln</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_ifs'>ifs</span><span class='period'>.</span><span class='id identifier rubyid_lineno'>lineno</span> <span class='op'>==</span> <span class='id identifier rubyid_feature_type_row'>feature_type_row</span> <span class='comment'># second types
+    <span class='id identifier rubyid_cells'>cells</span> <span class='op'>=</span> <span class='id identifier rubyid_ln'>ln</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+    
+    <span class='comment'># feature names
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_ifs'>ifs</span><span class='period'>.</span><span class='id identifier rubyid_lineno'>lineno</span> <span class='op'>==</span> <span class='id identifier rubyid_feature_name_row'>feature_name_row</span>
+      <span class='id identifier rubyid_class_name'>class_name</span> <span class='op'>=</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_delete_at'>delete_at</span><span class='lparen'>(</span><span class='id identifier rubyid_class_label_column'>class_label_column</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># simply useless
+</span>      <span class='id identifier rubyid_features'>features</span> <span class='op'>=</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+    <span class='comment'># feature types
+</span>    <span class='kw'>elsif</span> <span class='id identifier rubyid_ifs'>ifs</span><span class='period'>.</span><span class='id identifier rubyid_lineno'>lineno</span> <span class='op'>==</span> <span class='id identifier rubyid_feature_type_row'>feature_type_row</span>
+      <span class='id identifier rubyid_class_type'>class_type</span> <span class='op'>=</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_delete_at'>delete_at</span><span class='lparen'>(</span><span class='id identifier rubyid_class_label_column'>class_label_column</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># simply useless
 </span>      <span class='comment'># store feature type as lower-case symbol
-</span>      <span class='id identifier rubyid_types'>types</span> <span class='op'>=</span> <span class='id identifier rubyid_ln'>ln</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='rbrace'>}</span>
+</span>      <span class='id identifier rubyid_types'>types</span> <span class='op'>=</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='rbrace'>}</span>
     <span class='kw'>else</span> <span class='comment'># data rows
-</span>      <span class='id identifier rubyid_cells'>cells</span> <span class='op'>=</span> <span class='id identifier rubyid_ln'>ln</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
-      
-      <span class='kw'>if</span> <span class='id identifier rubyid_class_label_column'>class_label_column</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
-        <span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='id identifier rubyid_cells'>cells</span><span class='lbracket'>[</span><span class='id identifier rubyid_class_label_column'>class_label_column</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
-        <span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='id identifier rubyid_label'>label</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
-        <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='id identifier rubyid_label'>label</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-        
-        <span class='comment'># remove class label
-</span>        <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_delete_at'>delete_at</span><span class='lparen'>(</span><span class='id identifier rubyid_class_label_column'>class_label_column</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_fvs'>fvs</span> <span class='op'>=</span> <span class='id identifier rubyid_cells'>cells</span>
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_class_label_column'>class_label_column</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='kw'>and</span> 
+         <span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>+</span><span class='int'>1</span> <span class='op'>==</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='kw'>and</span> 
+         <span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='op'>+</span><span class='int'>1</span> <span class='op'>==</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+        <span class='id identifier rubyid_class_label'>class_label</span> <span class='op'>=</span> <span class='id identifier rubyid_cells'>cells</span><span class='period'>.</span><span class='id identifier rubyid_delete_at'>delete_at</span><span class='lparen'>(</span><span class='id identifier rubyid_class_label_column'>class_label_column</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+        <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='id identifier rubyid_class_label'>class_label</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='comment'># feature values
+</span>        <span class='id identifier rubyid_fvs'>fvs</span> <span class='op'>=</span> <span class='id identifier rubyid_cells'>cells</span>
       <span class='kw'>else</span>
         <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
-              <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  the class label column can't found!</span><span class='tstring_end'>&quot;</span></span>
+              <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  invalid csv format!</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>              
       
       <span class='id identifier rubyid_fs'>fs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
       <span class='id identifier rubyid_fvs'>fvs</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
         <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='comment'># missing value
-</span>        <span class='id identifier rubyid_feat_type'>feat_type</span> <span class='op'>=</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_feat_type'>feat_type</span> <span class='op'>==</span> <span class='symbol'>:integer</span>
+</span>        <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='symbol'>:integer</span>
           <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
-        <span class='kw'>elsif</span> <span class='lbracket'>[</span><span class='symbol'>:real</span><span class='comma'>,</span> <span class='symbol'>:numeric</span><span class='comma'>,</span> <span class='symbol'>:continuous</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_feat_type'>feat_type</span>
+        <span class='kw'>elsif</span> <span class='lbracket'>[</span><span class='symbol'>:real</span><span class='comma'>,</span> <span class='symbol'>:numeric</span><span class='comma'>,</span> <span class='symbol'>:continuous</span><span class='comma'>,</span> <span class='symbol'>:float</span><span class='comma'>,</span> <span class='symbol'>:double</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_type'>type</span>
           <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
-        <span class='kw'>elsif</span> <span class='lbracket'>[</span><span class='symbol'>:string</span><span class='comma'>,</span> <span class='symbol'>:nominal</span><span class='comma'>,</span> <span class='symbol'>:categorical</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_feat_type'>feat_type</span>
+        <span class='kw'>elsif</span> <span class='lbracket'>[</span><span class='symbol'>:string</span><span class='comma'>,</span> <span class='symbol'>:nominal</span><span class='comma'>,</span> <span class='symbol'>:categorical</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_type'>type</span>
           <span class='comment'>#
 </span>        <span class='kw'>else</span>
           <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
-                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  invalid feature type!</span><span class='tstring_end'>&quot;</span></span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  invalid feature type '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='rbrace'>}</span><span class='tstring_content'>', must be one of the following: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  integer, real, numeric, float, double, continuous, categorical, string, nominal</span><span class='tstring_end'>&quot;</span></span>
         <span class='kw'>end</span>
         
         <span class='id identifier rubyid_fs'>fs</span><span class='lbracket'>[</span><span class='id identifier rubyid_features'>features</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
       <span class='kw'>end</span>
       
-      <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='id identifier rubyid_label'>label</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_fs'>fs</span>
+      <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='id identifier rubyid_class_label'>class_label</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_fs'>fs</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
   
@@ -957,9 +967,6 @@ other  # continuous feature with vaule in the range of [0, 1)</p>
       <pre class="lines">
 
 
-490
-491
-492
 493
 494
 495
@@ -976,10 +983,13 @@ other  # continuous feature with vaule in the range of [0, 1)</p>
 506
 507
 508
-509</pre>
+509
+510
+511
+512</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 490</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 493</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_data_from_url'>data_from_url</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='id identifier rubyid_format'>format</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_format'>format</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
@@ -1058,9 +1068,6 @@ other  # continuous feature with vaule in the range of [0, 1)</p>
       <pre class="lines">
 
 
-306
-307
-308
 309
 310
 311
@@ -1151,10 +1158,13 @@ other  # continuous feature with vaule in the range of [0, 1)</p>
 396
 397
 398
-399</pre>
+399
+400
+401
+402</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 309</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_data_from_weka'>data_from_weka</span><span class='lparen'>(</span><span class='id identifier rubyid_fname'>fname</span><span class='op'>=</span><span class='symbol'>:stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_quote_char'>quote_char</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ifs'>ifs</span> <span class='op'>=</span> <span class='id identifier rubyid_get_ifs'>get_ifs</span><span class='lparen'>(</span><span class='id identifier rubyid_fname'>fname</span><span class='rparen'>)</span>
@@ -1186,7 +1196,7 @@ other  # continuous feature with vaule in the range of [0, 1)</p>
       <span class='id identifier rubyid_features'>features</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_f'>f</span>
       <span class='comment'>#$2.split_me(/,\s*/, quote_char) # feature nominal values
 </span>      <span class='id identifier rubyid_types'>types</span> <span class='op'>&lt;&lt;</span> <span class='symbol'>:nominal</span>
-    <span class='comment'># feature attribute (integer, real, numeric, string, date)
+    <span class='comment'># feature attribute (categorical, integer, real, continuous, numeric, float, double, string, date)
 </span>    <span class='kw'>elsif</span> <span class='id identifier rubyid_ln'>ln</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^@ATTRIBUTE</span><span class='regexp_end'>/i</span></span>
       <span class='id identifier rubyid_tmp'>tmp</span><span class='comma'>,</span> <span class='id identifier rubyid_v1'>v1</span><span class='comma'>,</span> <span class='id identifier rubyid_v2'>v2</span> <span class='op'>=</span> <span class='id identifier rubyid_ln'>ln</span><span class='period'>.</span><span class='id identifier rubyid_split_me'>split_me</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s+</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='id identifier rubyid_quote_char'>quote_char</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_v1'>v1</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
@@ -1266,9 +1276,7 @@ other  # continuous feature with vaule in the range of [0, 1)</p>
   <div class="discussion">
     <p>write to csv</p>
 
-<p>file has the format with the first two rows
-specifying features and their data types
-and the remaing rows showing data</p>
+<p>ouput CSV file has the same format as the default input for data_from_csv()</p>
 
 
   </div>
@@ -1304,10 +1312,6 @@ and the remaing rows showing data</p>
       <pre class="lines">
 
 
-272
-273
-274
-275
 276
 277
 278
@@ -1328,10 +1332,13 @@ and the remaing rows showing data</p>
 293
 294
 295
-296</pre>
+296
+297
+298
+299</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 272</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 276</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_data_to_csv'>data_to_csv</span><span class='lparen'>(</span><span class='id identifier rubyid_fname'>fname</span><span class='op'>=</span><span class='symbol'>:stdout</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ofs'>ofs</span> <span class='op'>=</span> <span class='id identifier rubyid_get_ofs'>get_ofs</span><span class='lparen'>(</span><span class='id identifier rubyid_fname'>fname</span><span class='rparen'>)</span>
@@ -1344,15 +1351,14 @@ and the remaing rows showing data</p>
   <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   
   <span class='id identifier rubyid_each_sample'>each_sample</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
-    <span class='id identifier rubyid_ofs'>ofs</span><span class='period'>.</span><span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k'>k</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_each_feature'>each_feature</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_f'>f</span>
-        <span class='id identifier rubyid_ofs'>ofs</span><span class='period'>.</span><span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>,</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_ofs'>ofs</span><span class='period'>.</span><span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'>s</span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>,</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>else</span>
         <span class='id identifier rubyid_ofs'>ofs</span><span class='period'>.</span><span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>,</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_ofs'>ofs</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span>
+    <span class='id identifier rubyid_ofs'>ofs</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k'>k</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   
   <span class='comment'># close file
@@ -1532,9 +1538,6 @@ and the remaing rows showing data</p>
       <pre class="lines">
 
 
-410
-411
-412
 413
 414
 415
@@ -1600,10 +1603,13 @@ and the remaing rows showing data</p>
 475
 476
 477
-478</pre>
+478
+479
+480
+481</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 410</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/fileio.rb', line 413</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_data_to_weka'>data_to_weka</span><span class='lparen'>(</span><span class='id identifier rubyid_fname'>fname</span><span class='op'>=</span><span class='symbol'>:stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_format'>format</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ofs'>ofs</span> <span class='op'>=</span> <span class='id identifier rubyid_get_ofs'>get_ofs</span><span class='lparen'>(</span><span class='id identifier rubyid_fname'>fname</span><span class='rparen'>)</span>
@@ -1684,7 +1690,7 @@ and the remaing rows showing data</p>
 </div>
     
     <div id="footer">
-  Generated on Tue May 22 18:16:13 2012 by 
+  Generated on Thu May 24 10:24:48 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
