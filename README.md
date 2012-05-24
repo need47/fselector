@@ -9,7 +9,7 @@ FSelector: a Ruby gem for feature selection and ranking
 **Copyright**: 2012  
 **License**: MIT License  
 **Latest Version**: 1.3.0  
-**Release Date**: 2012-05-22
+**Release Date**: 2012-05-24
 
 Synopsis
 --------
@@ -195,7 +195,7 @@ Usage
 	
 	# creating an ensemble of feature selectors by using 
 	# a single feature selection algorithm (INTERACT) 
-	# by instance perturbation (e.g. bootstrap sampling)
+	# by instance perturbation (e.g. random sampling)
 	
 	# test for the type of feature subset selection algorithms
     r = FSelector::INTERACT.new(0.0001)
@@ -259,8 +259,8 @@ Usage
     # the Information Gain (IG) algorithm requires data with discrete feature
     r = FSelector::IG.new
     
-    # but the Iris data set contains continuous features (under the test/ directory)
-    r.data_from_csv('test/iris.csv')
+    # but the Iris data set contains continuous features
+    r.data_from_url('http://repository.seasr.org/Datasets/UCI/arff/iris.arff', :weka)
         
     # let's first discretize it by ChiMerge algorithm at alpha=0.10
     # then perform feature selection as usual
