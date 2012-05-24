@@ -447,7 +447,8 @@ module FSelector
     #   clear_vars() in each derived subclass
     #
     def clear_vars
-      instance_var_in_new = []
+      # instance vars appeared as arguments (with the same name) in initialize()
+      instance_var_in_new = []      
       
       constructor = method(:initialize)
       if constructor.respond_to? :parameters
@@ -457,7 +458,7 @@ module FSelector
       end
       
       instance_variables.each do |var|
-        # retain instance vars defined in intialize()
+        # retain instance vars appeared as arguments in initialize()
         # such as @data
         next if instance_var_in_new.include? var
         # retain feature types, which may be needed 
