@@ -277,6 +277,9 @@ Usage
 
 **4. see more examples test_*.rb under the test/ directory**
 
+How to contribution
+-------------------
+
 Change Log
 ----------
 A {file:ChangeLog} is available from version 0.5.0 and upward to refelect 
