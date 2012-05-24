@@ -258,6 +258,7 @@ module FSelector
       @algo_type = algo.algo_type
     end
     
+    private
     
     #
     # get ensemble feature scores
@@ -304,7 +305,6 @@ module FSelector
       #pp ensem_ranks
     end # get_ensemble_ranks
     
-    private
     
     #
     # override get\_feature\_subset() for EnsembleSingle, 
@@ -417,6 +417,8 @@ module FSelector
       end
     end
     
+    private
+    
     #
     # get ensemble feature scores
     #
@@ -454,8 +456,6 @@ module FSelector
       #pp ensem_ranks
     end # get_ensemble_ranks
     
-    
-    private
     
     #
     # override get\_feature\_subset() for EnsembleMultiple, 
