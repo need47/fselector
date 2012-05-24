@@ -506,7 +506,16 @@ module FSelector
     end
     
     
-    # get feature subset, for the type of subset selection algorithms
+    # calculate each feature's contribution
+    # override it in derived subclass for the type of feature weighting algorithms
+    def calc_contribution(f)
+      abort "[#{__FILE__}@#{__LINE__}]: \n"+
+            "  derived subclass must implement its own calc_contribution()"
+    end
+    
+    
+    # get feature subset
+    # override it in derived subclass for the type of feature subset selection algorithms
     def get_feature_subset
       abort "[#{__FILE__}@#{__LINE__}]: \n"+
             "  derived subclass must implement its own get_feature_subset()"
