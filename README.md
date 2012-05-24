@@ -277,8 +277,8 @@ Usage
 
 **4. see more examples test_*.rb under the test/ directory**
 
-How to contribution
--------------------
+How to contribute
+-----------------
 
 Change Log
 ----------
