@@ -268,9 +268,7 @@ module FileIO
   #
   # write to csv
   #
-  # file has the format with the first two rows
-  # specifying features and their data types
-  # and the remaing rows showing data
+  # ouput CSV file has the same format as the default input for data\_from\_csv()  
   #
   # @param [String] fname file to write  
   #   :stdout  # write to standard ouput
