@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.require_path     = 'lib'
   s.required_ruby_version = '>= 1.9.0'
   s.add_dependency('rinruby', '>= 2.0.2')
-  s.files            = %w(README.md ChangeLog LICENSE .yardopts) + Dir.glob('lib/**/*')
+  s.files            = %w(README.md ChangeLog LICENSE HowToContribute .yardopts) + Dir.glob('lib/**/*')
   s.homepage         = 'http://github.com/need47/fselector'
   s.description      = "FSelector is a Ruby gem that aims to integrate various feature selection/ranking algorithms and related functions into one single package. Welcome to contact me (need47@gmail.com) if you'd like to contribute your own algorithms or report a bug. FSelector allows user to perform feature selection by using either a single algorithm or an ensemble of multiple algorithms, and other common tasks including normalization and discretization on continuous data, as well as replace missing feature values with certain criterion. FSelector acts on a full-feature data set in either CSV, LibSVM or WEKA file format and outputs a reduced data set with only selected subset of features, which can later be used as the input for various machine learning softwares such as LibSVM and WEKA. FSelector, as a collection of filter methods, does not implement any classifier like support vector machines or random forest."
 end
