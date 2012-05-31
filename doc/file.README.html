@@ -63,8 +63,8 @@
 <strong>Email</strong>: <a href="mailto:need47@gmail.com">need47@gmail.com</a><br>
 <strong>Copyright</strong>: 2012<br>
 <strong>License</strong>: MIT License<br>
-<strong>Latest Version</strong>: 1.3.0<br>
-<strong>Release Date</strong>: 2012-05-24</p>
+<strong>Latest Version</strong>: 1.3.1<br>
+<strong>Release Date</strong>: 2012-05-31</p>
 
 <h2>Synopsis</h2>
 
@@ -81,8 +81,9 @@ outputs a reduced data set with only selected subset of features, which
 can later be used as the input for various machine learning softwares 
 such as LibSVM and WEKA. FSelector, as a collection of filter methods, 
 does not implement any classifier like support vector machines or 
-random forest. See below for a list of FSelector&#39;s features and 
-<a href="file.ChangeLog.html" title="ChangeLog">ChangeLog</a> for updates.</p>
+random forest. Check below for a list of FSelector&#39;s features, 
+<a href="file.ChangeLog.html" title="ChangeLog">ChangeLog</a> for updates, and <a href="file.HowToContribute.html" title="HowToContribute">HowToContribute</a> if you want 
+to contribute.</p>
 
 <h2>Feature List</h2>
 
@@ -143,7 +144,8 @@ TScore                           TS          weighting  two-class      continuou
 WilcoxonRankSum                  WRS         weighting  two-class      continuous
 LasVegasFilter                   LVF         subset     multi-class    discrete, continuous, mixed
 LasVegasIncremental              LVI         subset     multi-class    discrete, continuous, mixed
-Random                           Random      weighting  multi-class    discrete, continuous, mixed
+Random                           Rand        weighting  multi-class    discrete, continuous, mixed
+RandomSubset                     RandS       subset     multi-class    discrete, continuous, mixed
 </code></pre>
 
 <p><strong>note for feature selection interface:</strong><br>
@@ -342,7 +344,7 @@ replace_by_most_seen_value!       replace by most seen feature value     discret
 
 <h2>How to contribute</h2>
 
-<p>check <a href="file.HowToContribute.html" title="HowToContribute">HowToContribute</a> to see how to write your own feature selection algorithms and contribute it to FSelector.</p>
+<p>check <a href="file.HowToContribute.html" title="HowToContribute">HowToContribute</a> to see how to write your own feature selection algorithms and/or make contribution to FSelector.</p>
 
 <h2>Change Log</h2>
 
@@ -357,7 +359,7 @@ more information.</p>
 </div></div>
     
     <div id="footer">
-  Generated on Thu May 24 16:44:08 2012 by 
+  Generated on Thu May 31 14:31:38 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

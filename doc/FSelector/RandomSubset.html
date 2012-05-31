@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: FSelector::ChiSquaredTest
+  Class: FSelector::RandomSubset
   
     &mdash; FSelector Documentation
   
@@ -33,10 +33,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../_index.html">Index (C)</a> &raquo; 
+    <a href="../_index.html">Index (R)</a> &raquo; 
     <span class='title'><span class='object_link'><a href="../FSelector.html" title="FSelector (module)">FSelector</a></span></span>
      &raquo; 
-    <span class="title">ChiSquaredTest</span>
+    <span class="title">RandomSubset</span>
   
   
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -56,7 +56,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Class: FSelector::ChiSquaredTest
+    <div id="content"><h1>Class: FSelector::RandomSubset
   
   
   
@@ -66,16 +66,14 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></span>
+      <span class="inheritName"><span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></span>
       
         <ul class="fullTree">
           <li>Object</li>
           
             <li class="next"><span class='object_link'><a href="Base.html" title="FSelector::Base (class)">Base</a></span></li>
           
-            <li class="next"><span class='object_link'><a href="BaseDiscrete.html" title="FSelector::BaseDiscrete (class)">BaseDiscrete</a></span></li>
-          
-            <li class="next">FSelector::ChiSquaredTest</li>
+            <li class="next">FSelector::RandomSubset</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -91,28 +89,17 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/fselector/algo_discrete/ChiSquaredTest.rb</dd>
+    <dd class="r2 last">lib/fselector/algo_both/RandomSubset.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Chi-Squared test (CHI)</p>
+    <p>RandomSubset (RandS) for discrete, continuous or mixed feature, 
+no pratical use but can be used for test purpose</p>
 
-<pre class="code ruby"><code>             N * ( P(f,c) * P(f',c') - P(f,c') * P(f',c) )^2
- CHI(f,c) = -------------------------------------------------
-                      P(f) * P(f') * P(c) * P(c')
-
-                   N * (A*D - B*C)^2
-          = -------------------------------
-             (A+B) * (C+D) * (A+C) * (B+D)
-</code></pre>
-
-<p>suitable for large samples and
-none of the values of (A, B, C, D) &lt; 5</p>
-
-<p>ref: <a href="http://en.wikipedia.org/wiki/Chi-squared_test">Wikipedia</a> and <a href="http://pubs.acs.org/doi/abs/10.1021/ci049875d">A Comparative Study on Feature Selection Methods for Drug Discovery</a></p>
+<p>RandS generates a random subset of the original one</p>
 
 
   </div>
@@ -138,7 +125,7 @@ none of the values of (A, B, C, D) &lt; 5</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (ChiSquaredTest) <strong>initialize</strong>(correction = :yates, data = nil) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (RandomSubset) <strong>initialize</strong>(nfeature = nil, data = nil) </a>
     
 
     
@@ -162,41 +149,6 @@ none of the values of (A, B, C, D) &lt; 5</p>
     </ul>
   
 
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Discretizer.html" title="Discretizer (module)">Discretizer</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Discretizer.html#discretize_by_Chi2%21-instance_method" title="Discretizer#discretize_by_Chi2! (method)">#discretize_by_Chi2!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_ChiMerge%21-instance_method" title="Discretizer#discretize_by_ChiMerge! (method)">#discretize_by_ChiMerge!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_MID%21-instance_method" title="Discretizer#discretize_by_MID! (method)">#discretize_by_MID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_TID%21-instance_method" title="Discretizer#discretize_by_TID! (method)">#discretize_by_TID!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_frequency%21-instance_method" title="Discretizer#discretize_by_equal_frequency! (method)">#discretize_by_equal_frequency!</a></span>, <span class='object_link'><a href="../Discretizer.html#discretize_by_equal_width%21-instance_method" title="Discretizer#discretize_by_equal_width! (method)">#discretize_by_equal_width!</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Entropy.html" title="Entropy (module)">Entropy</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Entropy.html#get_conditional_entropy-instance_method" title="Entropy#get_conditional_entropy (method)">#get_conditional_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_information_gain-instance_method" title="Entropy#get_information_gain (method)">#get_information_gain</a></span>, <span class='object_link'><a href="../Entropy.html#get_joint_entropy-instance_method" title="Entropy#get_joint_entropy (method)">#get_joint_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_marginal_entropy-instance_method" title="Entropy#get_marginal_entropy (method)">#get_marginal_entropy</a></span>, <span class='object_link'><a href="../Entropy.html#get_symmetrical_uncertainty-instance_method" title="Entropy#get_symmetrical_uncertainty (method)">#get_symmetrical_uncertainty</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Consistency.html" title="Consistency (module)">Consistency</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Consistency.html#get_IR-instance_method" title="Consistency#get_IR (method)">#get_IR</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_count-instance_method" title="Consistency#get_IR_by_count (method)">#get_IR_by_count</a></span>, <span class='object_link'><a href="../Consistency.html#get_IR_by_feature-instance_method" title="Consistency#get_IR_by_feature (method)">#get_IR_by_feature</a></span>, <span class='object_link'><a href="../Consistency.html#get_instance_count-instance_method" title="Consistency#get_instance_count (method)">#get_instance_count</a></span></p>
 
   
   
@@ -233,7 +185,7 @@ none of the values of (A, B, C, D) &lt; 5</p>
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="FSelector::ChiSquaredTest (class)">ChiSquaredTest</a></span></tt>) <strong>initialize</strong>(correction = :yates, data = nil) 
+    - (<tt><span class='object_link'><a href="" title="FSelector::RandomSubset (class)">RandomSubset</a></span></tt>) <strong>initialize</strong>(nfeature = nil, data = nil) 
   
 
   
@@ -250,18 +202,18 @@ none of the values of (A, B, C, D) &lt; 5</p>
   
     <li>
       
-        <span class='name'>correction</span>
+        <span class='name'>nfeature</span>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>:yates</tt>)</em>
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>use Yates&#39;s continuity correction if :yates, 
-no correction otherwise</p>
+        <div class='inline'><p>number of feature required 
+use random number if nil</p>
 </div>
       
     </li>
@@ -275,19 +227,19 @@ no correction otherwise</p>
       <pre class="lines">
 
 
-31
-32
-33
-34
-35</pre>
+21
+22
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fselector/algo_discrete/ChiSquaredTest.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/fselector/algo_both/RandomSubset.rb', line 21</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span><span class='op'>=</span><span class='symbol'>:yates</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_nfeature'>nfeature</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   
-  <span class='ivar'>@correction</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_correction'>correction</span><span class='op'>==</span><span class='symbol'>:yates</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
+  <span class='ivar'>@nfeature</span> <span class='op'>=</span> <span class='id identifier rubyid_nfeature'>nfeature</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -300,7 +252,7 @@ no correction otherwise</p>
 </div>
     
     <div id="footer">
-  Generated on Thu May 31 14:31:41 2012 by 
+  Generated on Thu May 31 14:31:40 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>
