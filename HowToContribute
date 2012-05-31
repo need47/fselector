@@ -5,7 +5,7 @@ How to add your own feature selection algorithms
     
     1. Require the FSelector gem
     
-    2. Derive a subclass from a base class (Base, BaseDiscrete, aseContinuous and so on)  
+    2. Derive a subclass from a base class (Base, BaseDiscrete, BaseContinuous and etc.)  
     
     3. Set your own feature selection algorithm with one of the following two types:  
       :feature_weighting         # if it outputs weight for each feature
