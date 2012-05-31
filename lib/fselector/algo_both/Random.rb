@@ -4,9 +4,9 @@
 module FSelector
 #
 # Random (Rand) for discrete, continuous or mixed feature, 
-# no pratical use but can be used as a baseline
+# no pratical use but can be used for test purpose
 #
-#  Rand = rand numbers within [0..1)
+#  Rand assignes random score of [0..1) to each feature
 #  
 # ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
 #
@@ -38,6 +38,10 @@ module FSelector
     
     
   end # class
+  
+  
+  # shortcut so that you can use FSelector::Rand instead of FSelector::Random
+  Rand = Random
   
   
 end # module
