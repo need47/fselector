@@ -219,20 +219,21 @@ r19.select_feature_by_rank!('<=3')
 #
 
 
-# Random
-puts "  test Random ..."
-r20 = FSelector::Random.new
+# Sensitivity (SN)
+puts "  test Sensitivity ..."
+r20 = FSelector::SN.new
 r20.data_from_random(100, 2, 10, 3, true)
 r20.select_feature_by_rank!('<=3')
+
 
 
 # example 21
 #
 
 
-# Sensitivity (SN)
-puts "  test Sensitivity ..."
-r21 = FSelector::SN.new
+# Specificity (SP)
+puts "  test Specificity ..."
+r21 = FSelector::SP.new
 r21.data_from_random(100, 2, 10, 3, true)
 r21.select_feature_by_rank!('<=3')
 
@@ -242,22 +243,21 @@ r21.select_feature_by_rank!('<=3')
 #
 
 
-# Specificity (SP)
-puts "  test Specificity ..."
-r22 = FSelector::SP.new
+# SymmetricalUncertainty (SU)
+puts "  test SymmetricalUncertainty ..."
+r22 = FSelector::SU.new
 r22.data_from_random(100, 2, 10, 3, true)
 r22.select_feature_by_rank!('<=3')
-
 
 
 # example 23
 #
 
 
-# SymmetricalUncertainty (SU)
-puts "  test SymmetricalUncertainty ..."
-r23 = FSelector::SU.new
-r23.data_from_random(100, 2, 10, 3, true)
+# J-Measure (JM)
+puts "  test J-Measure ..."
+r23 = FSelector::JM.new
+r23.data_from_random(100, 3, 10, 3, true)
 r23.select_feature_by_rank!('<=3')
 
 
@@ -265,21 +265,10 @@ r23.select_feature_by_rank!('<=3')
 #
 
 
-# J-Measure (JM)
-puts "  test J-Measure ..."
-r24 = FSelector::JM.new
-r24.data_from_random(100, 3, 10, 3, true)
-r24.select_feature_by_rank!('<=3')
-
-
-# example 25
-#
-
-
 # KL-Divergence (KLD)
 puts "  test KL-Divergence ..."
-r25 = FSelector::KLD.new
-r25.data_from_random(100, 3, 10, 3, true)
-r25.select_feature_by_rank!('<=3')
+r24 = FSelector::KLD.new
+r24.data_from_random(100, 3, 10, 3, true)
+r24.select_feature_by_rank!('<=3')
 
 puts "<============< #{File.basename(__FILE__)}"
