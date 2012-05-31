@@ -1,11 +1,20 @@
-2012-05-24	version 1.3.0
+2012-05-31	v1.3.1
+------------------
+
+  * add HowToContribute section with test examples in README to show how to write one's own feature selection algorithms and/or contribute them to FSelector on GitHub.com
+  * all discretization algorithms now set feature type as CATEGORICAL, this will allow correct file format conversion after discretization
+  * add RandomSubset algorithm (primarily for test purpose)
+  
+2012-05-24	v1.3.0
+------------------
 
   * update clear\_vars() in Base by use of Ruby metaprogramming, this trick avoids repetitive overriding it in each derived subclass
   * re-organize LasVegasFilter, LasVegasIncremental and Random into algo_both/, since they are applicable to dataset with either discrete or continuous features, even with mixed type
   * update data\_from\_csv() so that it can read CSV file more flexibly. note by default, the last column is class label
   * add data\_from\_url() to read on-line dataset (in CSV, LibSVM or Weka ARFF file format) specified by a url
   
-2012-05-20	version 1.2.0
+2012-05-20	v1.2.0
+------------------
 
   * add KS-Test algorithm for continuous feature
   * add KS-CCBF algorithm for continuous feature
@@ -13,7 +22,8 @@
   * add KL-Divergence algorithm for discrete feature
   * include the Discretizer module for algorithms requiring data with discrete feature, which allows to deal with continuous feature after discretization. Those algorithms requiring data with continuous feature now do not include the Discretizer module
   
-2012-05-15	version 1.1.0
+2012-05-15	v1.1.0
+------------------
 
   * add replace\_by\_median\_value! for replacing missing value with feature median value
   * add replace\_by\_knn\_value! for replacing missing value with weighted feature value from k-nearest neighbors
@@ -22,43 +32,51 @@
   * rename Ensemble to EnsembleMultiple for ensemble feature selection by creating an ensemble of feature selectors using multiple feature selection algorithms of the same type
   * bug fix in FileIO module
   
-2012-05-08	version 1.0.1
+2012-05-08	v1.0.1
+------------------
 
   * modify Ensemble module so that ensemble\_by\_score() and ensemble\_by\_rank() now take Symbol, instead of Method, as argument. This allows easier and clearer function call
   * enable select_feature! interface in Ensemble module for the type of subset selection algorithms
   
-2012-05-04	version 1.0.0
+2012-05-04	v1.0.0
+------------------
 
   * add new algorithm INTERACT for discrete feature
   * add Consistency module to deal with data inconsistency calculation, which bases on a Hash table and is efficient in both storage and speed
   * update the Chi2 algorithm to try to reproduce the results of the original Chi2 algorithm
   * update documentation whenever necessary
   
-2012-04-25	version 0.9.0
+2012-04-25	v0.9.0
+------------------
 
   * add new discretization algorithm (Three-Interval Discretization, TID)
   * add new algorithm Las Vegas Filter (LVF) for discrete feature
   * add new algorithm Las Vegas Incremental (LVI) for discrete feature
   
-2012-04-23	version 0.8.1
+2012-04-23	v0.8.1
+------------------
 
   * correct a bug in the example in the README file because discretize\_by\_ChiMerge!() now takes confidence alpha value as argument instead of chi-square value
   
-2012-04-23	version 0.8.0
+2012-04-23	v0.8.0
+------------------
 
   * add new algorithm FTest (FT) for continuous feature
   * add .yardoc_opts to gem to use the MarkDown documentation syntax
   
-2012-04-20	Tiejun Cheng	<need47@gmail.com>
+2012-04-20	v0.7.0
+------------------
 
-  * update to version 0.7.0
+  * update to v0.7.0
 
-2012-04-19	Tiejun Cheng	<need47@gmail.com>
+2012-04-19	v0.6.0
+------------------
 
   * add new algorithm BetweenWithinClassesSumOfSquare (BSS_WSS) for continuous feature
   * add new algorithm WilcoxonRankSum (WRS) for continuous feature
 
-2012-04-18	Tiejun Cheng	<need47@gmail.com>
+2012-04-18	v0.5.0
+------------------
 
   * require the RinRuby gem (http://rinruby.ddahl.org) to access the 
     statistical routines in the R package (http://www.r-project.org/)

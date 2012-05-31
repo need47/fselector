@@ -1,15 +1,15 @@
 FSelector: a Ruby gem for feature selection and ranking
 ===========================================================
 
-**Home** [https://rubygems.org/gems/fselector](https://rubygems.org/gems/fselector)  
+**Home**: [https://rubygems.org/gems/fselector](https://rubygems.org/gems/fselector)  
 **Source Code**: [https://github.com/need47/fselector](https://github.com/need47/fselector)  
 **Documentation** [http://rubydoc.info/gems/fselector/frames](http://rubydoc.info/gems/fselector/frames)  
 **Author**: Tiejun Cheng  
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 1.3.0  
-**Release Date**: 2012-05-24
+**Latest Version**: 1.3.1  
+**Release Date**: 2012-05-31
 
 Synopsis
 --------
@@ -27,8 +27,9 @@ outputs a reduced data set with only selected subset of features, which
 can later be used as the input for various machine learning softwares 
 such as LibSVM and WEKA. FSelector, as a collection of filter methods, 
 does not implement any classifier like support vector machines or 
-random forest. See below for a list of FSelector's features and 
-{file:ChangeLog} for updates.
+random forest. Check below for a list of FSelector's features, 
+{file:ChangeLog} for updates, and {file:HowToContribute} if you want 
+to contribute.
 
 Feature List
 ------------
@@ -88,7 +89,8 @@ Feature List
     WilcoxonRankSum                  WRS         weighting  two-class      continuous
     LasVegasFilter                   LVF         subset     multi-class    discrete, continuous, mixed
     LasVegasIncremental              LVI         subset     multi-class    discrete, continuous, mixed
-    Random                           Random      weighting  multi-class    discrete, continuous, mixed
+    Random                           Rand        weighting  multi-class    discrete, continuous, mixed
+    RandomSubset                     RandS       subset     multi-class    discrete, continuous, mixed
     
   **note for feature selection interface:**   
   there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  
@@ -143,7 +145,7 @@ Usage
 -----
 
 **1. feature selection by a single algorithm**
-
+    
     require 'fselector'
 	
     # use InformationGain (IG) as a feature selection algorithm
@@ -186,7 +188,7 @@ Usage
 
 	
 **2. feature selection by an ensemble of multiple feature selectors**
-
+    
     require 'fselector'
 	
 	# example 1
@@ -253,7 +255,7 @@ Usage
     puts '  # features (after): ' + re.get_features.size.to_s
     
 **3. feature selection after discretization**
- 
+    
     require 'fselector'
     
     # the Information Gain (IG) algorithm requires data with discrete feature
@@ -277,13 +279,19 @@ Usage
 
 **4. see more examples test_*.rb under the test/ directory**
 
+How to contribute
+-----------------
+check {file:HowToContribute} to see how to write your own feature selection algorithms and/or make contribution to FSelector.
+
 Change Log
 ----------
+
 A {file:ChangeLog} is available from version 0.5.0 and upward to refelect 
-what's new and what's changed 
+what's new and what's changed.
 
 Copyright
 ---------
+
 FSelector &copy; 2012 by [Tiejun Cheng](mailto:need47@gmail.com).
 FSelector is licensed under the MIT license. Please see the {file:LICENSE} for
 more information.
