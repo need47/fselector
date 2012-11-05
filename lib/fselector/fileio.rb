@@ -107,6 +107,11 @@ module FileIO
     ifs.close if not ifs == $stdin
     
     set_data(data)
+    
+    # feature name-type pairs
+    each_feature do |f|
+      set_feature_type(f, :numeric)
+    end
   end # data_from_libsvm
   
   
@@ -134,7 +139,13 @@ module FileIO
     each_sample do |k, s|
       ofs.print "#{k2idx[k]} "
       s.keys.sort { |x, y| f2idx[x] <=> f2idx[y] }.each do |f|
-        ofs.print " #{f2idx[f]}:#{s[f]}" if not s[f].zero? # implicit mode
+        if not s[f].is_a? Numeric
+          abort "[#{__FILE__}@#{__LINE__}]: \n"+
+                  "  LibSVM format only supports the following feature type: \n"+
+                  "  integer, real, numeric, float, double, continuous"
+        else
+          ofs.print " #{f2idx[f]}:#{s[f]}" if not s[f].zero? # implicit mode
+        end
       end
       ofs.puts
     end

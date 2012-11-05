@@ -14,7 +14,7 @@ module FSelector
     include Entropy
     
     # this algo outputs a subset of feature
-    @algo_type = :feature_subset_selection
+    @algo_type = :filter_by_feature_searching
     
     private
     

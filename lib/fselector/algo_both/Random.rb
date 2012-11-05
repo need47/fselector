@@ -12,7 +12,7 @@ module FSelector
 #
   class Random < Base
     # this algo outputs weight for each feature
-    @algo_type = :feature_weighting
+    @algo_type = :filter_by_feature_weighting
     
     #
     # initialize from an existing data structure

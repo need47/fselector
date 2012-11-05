@@ -10,7 +10,7 @@ module FSelector
   # to this end, simply override the calc_contribution() in Base class
   class NewAlgo_Weight < Base
     # set the algorithm type
-    @algo_type = :feature_weighting
+    @algo_type = :filter_by_feature_weighting
     
     # add your own initialize() here if necessary
     
@@ -30,7 +30,7 @@ module FSelector
   # to this end, simly override the get_feature_subset() in Base class
   class NewAlgo_Subset < Base
     # set the algorithm type
-    @algo_type = :feature_subset_selection
+    @algo_type = :filter_by_feature_searching
     
     # add your own initialize() here if necessary
     

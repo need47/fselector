@@ -15,7 +15,7 @@ module FSelector
 #
   class McNemarsTest < BaseDiscrete
     # this algo outputs weight for each feature
-    @algo_type = :feature_weighting
+    @algo_type = :filter_by_feature_weighting
     
     #
     # intialize from an existing data structure

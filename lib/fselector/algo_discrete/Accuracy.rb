@@ -9,9 +9,11 @@ module FSelector
 #     Acc = ------------- = ---------
 #            tp+fn+tn+fp     A+B+C+D
 #
+# ref: [An extensive empirical study of feature selection metrics for text classification](http://dl.acm.org/citation.cfm?id=944974)
+#
   class Accuracy < BaseDiscrete
     # this algo outputs weight for each feature
-    @algo_type = :feature_weighting
+    @algo_type = :filter_by_feature_weighting
     
     private
     

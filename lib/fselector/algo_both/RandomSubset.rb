@@ -10,7 +10,7 @@ module FSelector
 #
   class RandomSubset < Base
     # this algo outputs a subset of feature
-    @algo_type = :feature_subset_selection
+    @algo_type = :filter_by_feature_searching
     
     #
     # initialize from an existing data structure

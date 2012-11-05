@@ -1,21 +1,22 @@
-FSelector: a Ruby gem for feature selection and ranking
-===========================================================
+FSelector: a Ruby gem for feature selection
+===========================================
 
 **Home**: [https://rubygems.org/gems/fselector](https://rubygems.org/gems/fselector)  
 **Source Code**: [https://github.com/need47/fselector](https://github.com/need47/fselector)  
-**Documentation** [http://rubydoc.info/gems/fselector/frames](http://rubydoc.info/gems/fselector/frames)  
+**Documentation**: [http://rubydoc.info/gems/fselector/frames](http://rubydoc.info/gems/fselector/frames)  
+**Publication**: [Bioinformatics, 2012, 28, 2851-2852](http://bioinformatics.oxfordjournals.org/content/28/21/2851)  
 **Author**: Tiejun Cheng  
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
-**Latest Version**: 1.3.1  
-**Release Date**: 2012-05-31
+**Latest Version**: 1.4.0  
+**Release Date**: 2012-11-05
 
 Synopsis
 --------
 
 FSelector is a Ruby gem that aims to integrate various feature 
-selection/ranking algorithms and related functions into one single 
+selection algorithms and related functions into one single 
 package. Welcome to contact me (need47@gmail.com) if you'd like to 
 contribute your own algorithms or report a bug. FSelector allows user 
 to perform feature selection by using either a single algorithm or an 
@@ -49,18 +50,18 @@ Feature List
     Accuracy                         Acc         weighting  multi-class    discrete
     AccuracyBalanced                 Acc2        weighting  multi-class    discrete
     BiNormalSeparation               BNS         weighting  multi-class    discrete
-    CFS_d                            CFS_d       subset     multi-class    discrete
+    CFS_d                            CFS_d       searching  multi-class    discrete
     ChiSquaredTest                   CHI         weighting  multi-class    discrete
     CorrelationCoefficient           CC          weighting  multi-class    discrete
     DocumentFrequency                DF          weighting  multi-class    discrete
     F1Measure                        F1          weighting  multi-class    discrete
     FishersExactTest                 FET         weighting  multi-class    discrete
-    FastCorrelationBasedFilter       FCBF        subset     multi-class    discrete
+    FastCorrelationBasedFilter       FCBF        searching  multi-class    discrete
     GiniIndex                        GI          weighting  multi-class    discrete
     GMean                            GM          weighting  multi-class    discrete
     GSSCoefficient                   GSS         weighting  multi-class    discrete
     InformationGain                  IG          weighting  multi-class    discrete
-    INTERACT                         INTERACT    subset     multi-class    discrete
+    INTERACT                         INTERACT    searching  multi-class    discrete
     JMeasure                         JM          weighting  multi-class    discrete
     KLDivergence                     KLD         weighting  multi-class    discrete
     MatthewsCorrelationCoefficient   MCC, PHI    weighting  multi-class    discrete
@@ -78,25 +79,25 @@ Feature List
     Specificity                      SP          weighting  multi-class    discrete
     SymmetricalUncertainty           SU          weighting  multi-class    discrete
     BetweenWithinClassesSumOfSquare  BSS_WSS     weighting  multi-class    continuous
-    CFS_c                            CFS_c       subset     multi-class    continuous
+    CFS_c                            CFS_c       searching  multi-class    continuous
     FTest                            FT          weighting  multi-class    continuous
-    KS_CCBF                          KS_CCBF     subset     multi-class    continuous
+    KS_CCBF                          KS_CCBF     searching  multi-class    continuous
     KSTest                           KST         weighting  two-class      continuous
     PMetric                          PM          weighting  two-class      continuous
     Relief_c                         Relief_c    weighting  two-class      continuous
     ReliefF_c                        ReliefF_c   weighting  multi-class    continuous
     TScore                           TS          weighting  two-class      continuous
     WilcoxonRankSum                  WRS         weighting  two-class      continuous
-    LasVegasFilter                   LVF         subset     multi-class    discrete, continuous, mixed
-    LasVegasIncremental              LVI         subset     multi-class    discrete, continuous, mixed
+    LasVegasFilter                   LVF         searching  multi-class    discrete, continuous, mixed
+    LasVegasIncremental              LVI         searching  multi-class    discrete, continuous, mixed
     Random                           Rand        weighting  multi-class    discrete, continuous, mixed
-    RandomSubset                     RandS       subset     multi-class    discrete, continuous, mixed
+    RandomSubset                     RandS       searching  multi-class    discrete, continuous, mixed
     
   **note for feature selection interface:**   
-  there are two types of filter methods, i.e., feature weighting algorithms and feature subset selection algorithms  
+  there are two types of filter algorithms: filter\_by\_feature\_weighting and filter\_by\_feature\_searching  
   
-  - for weighting type: use either **select\_feature\_by\_score!** or **select\_feature\_by\_rank!**  
-  - for subset type: use **select\_feature!**
+  - for former: use either **select\_feature\_by\_score!** or **select\_feature\_by\_rank!**  
+  - for latter: use **select\_feature!**
 
 **3. feature selection approaches**
 
@@ -205,7 +206,7 @@ Usage
     # an ensemble of 40 feature selectors with 90% data by random sampling
     re = FSelector::EnsembleSingle.new(r, 40, 0.90, :random_sampling)
 
-    # read SPECT data set  (under the test/ directory)
+    # read SPECT data set (under the test/ directory)
     re.data_from_csv('test/SPECT_train.csv')
 
     # number of features before feature selection
@@ -225,7 +226,7 @@ Usage
 	# creating an ensemble of feature selectors by using 
 	# two feature selection algorithms: InformationGain (IG) and Relief_d. 
 	# note: can be 2+ algorithms, as long as they are of the same type, 
-	# either feature weighting or feature subset selection algorithms
+	# either filter_by_feature_weighting or filter_by_feature_searching
 	
 	# test for the type of feature weighting algorithms 
     r1 = FSelector::IG.new

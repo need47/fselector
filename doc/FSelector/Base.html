@@ -1880,7 +1880,7 @@ the subset selection type of algorithms, see <a href="../index.html" title="READ
       <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 345</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature!'>select_feature!</span>
-  <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:feature_subset_selection</span>
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:filter_by_feature_searching</span>
     <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  select_feature! is the interface for the type of feature subset selection algorithms only. \n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  please consider select_featue_by_score! or select_feature_by_rank!, \n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -2000,7 +2000,7 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
       <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 413</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature_by_rank!'>select_feature_by_rank!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_ranks'>my_ranks</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:feature_weighting</span>
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:filter_by_feature_weighting</span>
     <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  select_feature_by_rank! is the interface for the type of feature weighting algorithms only. \n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  please consider select_featue!, \n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -2120,7 +2120,7 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
       <pre class="code"><span class="info file"># File 'lib/fselector/algo_base/base.rb', line 379</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select_feature_by_score!'>select_feature_by_score!</span><span class='lparen'>(</span><span class='id identifier rubyid_criterion'>criterion</span><span class='comma'>,</span> <span class='id identifier rubyid_my_scores'>my_scores</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:feature_weighting</span>
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_algo_type'>algo_type</span> <span class='op'>==</span> <span class='symbol'>:filter_by_feature_weighting</span>
     <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='kw'>__LINE__</span><span class='rbrace'>}</span><span class='tstring_content'>]: \n</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  select_feature_by_score! is the interface for the type of feature weighting algorithms only. \n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  please consider select_featue!, \n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -2525,7 +2525,7 @@ the weighting type of algorithms, see <a href="../index.html" title="README">REA
 </div>
     
     <div id="footer">
-  Generated on Thu May 31 14:31:39 2012 by 
+  Generated on Mon Nov  5 11:19:45 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.3).
 </div>

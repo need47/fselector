@@ -343,7 +343,7 @@ module FSelector
     #   the subset selection type of algorithms, see {file:README.md}
     #
     def select_feature!
-      if not self.algo_type == :feature_subset_selection
+      if not self.algo_type == :filter_by_feature_searching
         abort "[#{__FILE__}@#{__LINE__}]: \n"+
               "  select_feature! is the interface for the type of feature subset selection algorithms only. \n" +
               "  please consider select_featue_by_score! or select_feature_by_rank!, \n" +
@@ -377,7 +377,7 @@ module FSelector
     #   the weighting type of algorithms, see {file:README.md}
     #
     def select_feature_by_score!(criterion, my_scores=nil)
-      if not self.algo_type == :feature_weighting
+      if not self.algo_type == :filter_by_feature_weighting
         abort "[#{__FILE__}@#{__LINE__}]: \n"+
               "  select_feature_by_score! is the interface for the type of feature weighting algorithms only. \n" +
               "  please consider select_featue!, \n" +
@@ -411,7 +411,7 @@ module FSelector
     #   the weighting type of algorithms, see {file:README.md}
     #
     def select_feature_by_rank!(criterion, my_ranks=nil)
-      if not self.algo_type == :feature_weighting
+      if not self.algo_type == :filter_by_feature_weighting
         abort "[#{__FILE__}@#{__LINE__}]: \n"+
               "  select_feature_by_rank! is the interface for the type of feature weighting algorithms only. \n" +
               "  please consider select_featue!, \n" +
