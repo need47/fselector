@@ -5,7 +5,7 @@ FSelector: a Ruby gem for feature selection
 **Source Code**: [https://github.com/need47/fselector](https://github.com/need47/fselector)  
 **Documentation**: [http://rubydoc.info/gems/fselector/frames](http://rubydoc.info/gems/fselector/frames)  
 **Publication**: [Bioinformatics, 2012, 28, 2851-2852](http://bioinformatics.oxfordjournals.org/content/28/21/2851)  
-**Author**: need47 
+**Author**: need47  
 **Email**: [need47@gmail.com](mailto:need47@gmail.com)  
 **Copyright**: 2012  
 **License**: MIT License  
